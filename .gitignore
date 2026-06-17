@@ -1,0 +1,34 @@
+# Dependencies
+**/node_modules/
+**/venv/
+**/.venv/
+**/env/
+**/__pycache__/
+*.pyc
+*.pyo
+.pnpm-store/
+
+# Next.js build output
+**/.next/
+**/out/
+.next/
+
+# Environment / Local Secrets
+**/.env
+**/.env.local
+**/*.env
+**/*.env.local
+.env
+.env.local
+
+# IDE & system files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+Thumbs.db
+*.tsbuildinfo

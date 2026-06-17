@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  name        String
+  slug        String      @unique
+  description String
+  price       Int         // Prix en FCFA (entier)
+  category    String
+  imageUrl    String
+  inStock     Boolean     @default(true)
+  featured    Boolean     @default(false)
+  isDigital   Boolean     @default(false)
+  downloadUrl String?
+  details     String[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+
+  @@index([category])
+  @@index([featured])
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  firstName     String
+  lastName      String
+  phone         String      // Format: 07XXXXXXXX (10 chiffres)
+  city          String      // Ville/Commune de livraison
+  totalAmount   Int         // Total en FCFA
+  paymentMethod String      // "orange_money" | "wave" | "cash_on_delivery"
+  paymentStatus String      @default("pending") // pending | processing | completed | failed
+  orderStatus   String      @default("new")     // new | confirmed | shipped | delivered | cancelled
+  transactionId String?     // ID transaction opérateur (OM/Wave)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  items         OrderItem[]
+
+  @@index([paymentStatus])
+  @@index([orderStatus])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  quantity  Int
+  unitPrice Int     // Prix unitaire au moment de l'achat (FCFA)
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model ContactLead {
+  id        String   @id @default(cuid())
+  firstName String
+  lastName  String?
+  email     String?
+  phone     String
+  message   String
+  type      String   @default("contact") // contact | quote_request | support
+  status    String   @default("new")     // new | contacted | closed
+  company   String?
+  createdAt DateTime @default(now())
+
+  @@index([type])
+  @@index([status])
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  url       String
+  referrer  String?
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([url])
+  @@index([createdAt])
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  password       String?   // null for Google/Apple users
+  firstName      String
+  lastName       String
+  company        String?
+  phone          String?
+  activitySector String?
+  googleId       String?   @unique
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  sessions       Session[]
+}
+
+model Session {
+  id        String   @id // random UUID or secure session ID
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}

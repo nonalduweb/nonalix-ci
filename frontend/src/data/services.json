@@ -1,0 +1,122 @@
+[
+  {
+    "id": "svc_web_design",
+    "title": "Design Web & UI/UX",
+    "description": "Création de maquettes uniques et modernes, pensées pour captiver vos clients ivoiriens dès le premier coup d'œil, sur mobile comme sur desktop.",
+    "icon": "design",
+    "benefits": [
+      "Conception sur-mesure adaptée à l'identité de votre entreprise",
+      "Approche Mobile-First pour s'adapter à l'usage majoritaire en Côte d'Ivoire",
+      "Prototypes interactifs pour visualiser avant de coder",
+      "Parcours utilisateur (UX) optimisé pour maximiser les conversions"
+    ]
+  },
+  {
+    "id": "svc_web_dev",
+    "title": "Développement Web",
+    "description": "Développement de sites web ultra-rapides et sécurisés en Next.js, optimisés pour se charger en moins de 2 secondes sur les réseaux 3G/4G à Abidjan.",
+    "icon": "development",
+    "benefits": [
+      "Code propre et performant respectant les standards du web moderne",
+      "Optimisation maximale du poids des pages pour économiser la data des utilisateurs",
+      "Système d'administration intuitif pour mettre à jour vos contenus en toute autonomie",
+      "Sécurité renforcée contre les cyberattaques et pannes"
+    ]
+  },
+  {
+    "id": "svc_branding",
+    "title": "Automatisez votre business",
+    "description": "Création de tunnels de vente (funnels) performants, systèmes de conversion et automatisations marketing pour structurer votre business et vendre en toute autonomie.",
+    "icon": "branding",
+    "benefits": [
+      "Funnels de vente complets (Landing page, opt-in, checkout) optimisés pour la conversion",
+      "Automatisations d'emails, de SMS et de relances clients automatiques",
+      "Intégrations No-Code (n8n, Make, Zapier) avec vos CRM et bases de données",
+      "Tunnels de vente actifs 24h/24 branchés sur les paiements Mobile Money"
+    ]
+  },
+  {
+    "id": "svc_seo",
+    "title": "Optimisation SEO",
+    "description": "Positionnez votre entreprise en tête des résultats Google en Côte d'Ivoire pour attirer des milliers de visiteurs qualifiés sans payer de publicité.",
+    "icon": "seo",
+    "benefits": [
+      "Recherche des mots-clés les plus recherchés par vos clients locaux",
+      "Optimisation technique complète du site pour les moteurs de recherche",
+      "Création de contenus optimisés à forte valeur ajoutée",
+      "Suivi mensuel du classement et trafic organique"
+    ]
+  },
+  {
+    "id": "svc_ppc",
+    "title": "Campagnes Publicitaires PPC",
+    "description": "Création et gestion de campagnes publicitaires ultra-ciblées sur Google Ads, Facebook, Instagram et TikTok pour générer des leads immédiats.",
+    "icon": "ppc",
+    "benefits": [
+      "Ciblage géographique précis sur Abidjan et les grandes villes de CI",
+      "Optimisation continue du coût par clic (CPC) pour maximiser votre ROI",
+      "A/B testing des visuels et accroches publicitaires",
+      "Rapports de conversion et suivi précis du budget dépensé"
+    ]
+  },
+  {
+    "id": "svc_shopify",
+    "title": "Boutiques Shopify",
+    "description": "Conception et configuration complète de boutiques Shopify clés en main, avec designs premium personnalisés et optimisés pour le commerce local.",
+    "icon": "shopify",
+    "benefits": [
+      "Configuration de la boutique et intégration de vos produits",
+      "Personnalisation de thèmes professionnels et rapides",
+      "Installation des applications indispensables pour booster le panier moyen",
+      "Formation complète à l'utilisation et la gestion des commandes"
+    ]
+  },
+  {
+    "id": "svc_marketing",
+    "title": "Marketing Digital",
+    "description": "Stratégie globale d'acquisition et de fidélisation pour propulser votre croissance en ligne et transformer vos visiteurs en clients fidèles.",
+    "icon": "marketing",
+    "benefits": [
+      "Établissement d'un plan marketing digital annuel structuré",
+      "Gestion de communauté et animation de vos réseaux sociaux",
+      "Campagnes d'emailing et newsletters de fidélisation",
+      "Analyse approfondie du marché et des concurrents locaux"
+    ]
+  },
+  {
+    "id": "svc_ux_audit",
+    "title": "Audit UX/UI",
+    "description": "Analyse approfondie de votre site existant pour identifier les freins à l'achat et proposer des améliorations concrètes pour doubler vos ventes.",
+    "icon": "audit",
+    "benefits": [
+      "Analyse des comportements utilisateurs (cartes de chaleur, enregistrements)",
+      "Audit technique de vitesse, accessibilité et compatibilité mobile",
+      "Recommandations ergonomiques et de design concrètes",
+      "Plan d'action prioritaire pour augmenter le taux de conversion"
+    ]
+  },
+  {
+    "id": "svc_ecommerce",
+    "title": "Solutions E-commerce sur Mesure",
+    "description": "Plateformes e-commerce robustes adaptées au marché ivoirien avec intégration native des paiements Mobile Money (Orange Money, Wave, MTN).",
+    "icon": "ecommerce",
+    "benefits": [
+      "Intégration transparente des APIs Wave et Orange Money sans friction",
+      "Gestion optimisée des livraisons à Abidjan et à l'intérieur du pays",
+      "Système de gestion des stocks et notifications SMS de commande",
+      "Tunnel d'achat simplifié réduisant le taux d'abandon de panier"
+    ]
+  },
+  {
+    "id": "svc_ai_testing",
+    "title": "Optimisation de conversion par IA",
+    "description": "Exploitation de l'intelligence artificielle pour tester automatiquement des variantes de vos pages et conserver uniquement celles qui vendent le plus.",
+    "icon": "ai",
+    "benefits": [
+      "Tests A/B automatisés basés sur le comportement des visiteurs",
+      "Adaptation dynamique des textes et boutons en fonction du profil utilisateur",
+      "Génération d'insights par IA pour orienter les choix stratégiques",
+      "Augmentation continue et mesurable du chiffre d'affaires"
+    ]
+  }
+]

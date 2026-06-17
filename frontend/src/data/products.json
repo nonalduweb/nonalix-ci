@@ -1,0 +1,250 @@
+[
+  {
+    "id": "prod_001",
+    "name": "Pack Marketing Digital Premium",
+    "slug": "pack-marketing-digital-premium",
+    "description": "Solution complète de marketing digital incluant la gestion de vos réseaux sociaux, la création de contenu engageant et le suivi analytique de vos performances. Idéal pour les PME souhaitant développer leur présence en ligne.",
+    "price": 250000,
+    "category": "Marketing",
+    "imageUrl": "/images/products/marketing-pack.png",
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": "prod_002",
+    "name": "Chatbot IA Personnalisé",
+    "slug": "chatbot-ia-personnalise",
+    "description": "Agent conversationnel intelligent sur mesure pour votre entreprise. Automatisez l'accueil de vos clients sur WhatsApp et votre site web 24h/24, 7j/7. Formation et déploiement inclus.",
+    "price": 500000,
+    "category": "Intelligence Artificielle",
+    "imageUrl": "/images/products/chatbot-ia.png",
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": "prod_003",
+    "name": "Site E-commerce Clé en Main",
+    "slug": "site-ecommerce-cle-en-main",
+    "description": "Votre boutique en ligne professionnelle avec intégration Mobile Money (Orange Money, Wave), catalogue produits, gestion des commandes et livraison. Prêt à vendre en 2 semaines.",
+    "price": 750000,
+    "category": "E-commerce",
+    "imageUrl": "/images/products/ecommerce-site.png",
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": "prod_004",
+    "name": "Automatisation Processus Métier",
+    "slug": "automatisation-processus-metier",
+    "description": "Analyse et automatisation de vos processus répétitifs grâce à l'IA. Réduction des tâches manuelles, gain de temps et diminution des erreurs. Audit gratuit inclus.",
+    "price": 350000,
+    "category": "Intelligence Artificielle",
+    "imageUrl": "/images/products/automation.png",
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": "prod_005",
+    "name": "Formation Marketing Digital",
+    "slug": "formation-marketing-digital",
+    "description": "Programme de formation intensive de 5 jours pour maîtriser les fondamentaux du marketing digital : SEO, réseaux sociaux, publicité en ligne, email marketing. Certification incluse.",
+    "price": 150000,
+    "category": "Formation",
+    "imageUrl": "/images/products/formation.png",
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": "prod_006",
+    "name": "Audit SEO Complet",
+    "slug": "audit-seo-complet",
+    "description": "Analyse approfondie de votre site web avec recommandations concrètes pour améliorer votre visibilité sur Google. Rapport détaillé avec plan d'action prioritaire.",
+    "price": 100000,
+    "category": "Marketing",
+    "imageUrl": "/images/products/seo-audit.png",
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": "prod_007",
+    "name": "Pack Community Management",
+    "slug": "pack-community-management",
+    "description": "Gestion professionnelle de vos réseaux sociaux pendant 3 mois. Création de contenu, planification, interaction avec votre communauté et reporting mensuel.",
+    "price": 180000,
+    "category": "Marketing",
+    "imageUrl": "/images/products/community.png",
+    "inStock": true,
+    "featured": false
+  },
+  {
+    "id": "prod_008",
+    "name": "Application Mobile Sur Mesure",
+    "slug": "application-mobile-sur-mesure",
+    "description": "Développement d'une application mobile native (iOS & Android) adaptée à votre activité. Design UX personnalisé, fonctionnalités sur mesure, publication sur les stores.",
+    "price": 1500000,
+    "category": "E-commerce",
+    "imageUrl": "/images/products/mobile-app.png",
+    "inStock": true,
+    "featured": true
+  },
+  {
+    "id": "prod_009",
+    "name": "Pack Formations Révolution IA & ChatGPT",
+    "slug": "pack-formations-revolution-ia-chatgpt",
+    "description": "Exploitez la puissance de l'Intelligence Artificielle pour booster votre entreprise. Inclus 5 formations vidéo ultra-complètes pour apprendre à déléguer vos tâches et automatiser la création de contenu.",
+    "price": 15000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/chatbot-ia.png",
+    "inStock": true,
+    "featured": true,
+    "isDigital": true,
+    "downloadUrl": "https://mega.nz/folder/1vEDGBoT#mnzX8hHSrqZ8gaSofKnjjg",
+    "details": [
+      "ChatGPT de A à Z : La formation ultime pour maîtriser ChatGPT",
+      "Midjourney : Créer des images professionnelles avec l'IA",
+      "Automatisation sur ChatGPT : Optimisez votre flux de travail",
+      "ChatGPT & WordPress : Création de contenu en automatique",
+      "La Suite ultime de bots ChatGPT De Zéro à Héros"
+    ]
+  },
+  {
+    "id": "prod_010",
+    "name": "Pack Formations E-commerce & Dropshipping",
+    "slug": "pack-formations-ecommerce-dropshipping",
+    "description": "Lancez votre boutique en ligne et développez un business rentable en Afrique de l'Ouest. Ce pack complet vous enseigne toutes les techniques logistiques et de vente.",
+    "price": 25000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/ecommerce-site.png",
+    "inStock": true,
+    "featured": true,
+    "isDigital": true,
+    "downloadUrl": "https://mega.nz/folder/1vEDGBoT#mnzX8hHSrqZ8gaSofKnjjg",
+    "details": [
+      "Créer une boutique Shopify à partir de 0",
+      "Créer un Ecommerce qui cartonne en Dropshipping",
+      "Importation Chine Afrique (Alibaba)",
+      "Formation complète sur le Print on Demand (POD)"
+    ]
+  },
+  {
+    "id": "prod_011",
+    "name": "Pack Business en Ligne & Affiliation Premium",
+    "slug": "pack-business-en-ligne-affiliation-premium",
+    "description": "Générez des revenus récurrents et apprenez les méthodes des meilleurs infopreneurs. Ce pack regroupe les stratégies indispensables pour lancer votre activité en ligne.",
+    "price": 20000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/automation.png",
+    "inStock": true,
+    "featured": true,
+    "isDigital": true,
+    "downloadUrl": "https://drive.google.com/drive/folders/1Hm_X9nbsk0tG3LmPSiZWgXHialhuMhpQ?usp=sharing",
+    "details": [
+      "5 000 € par mois avec une agence SMMA",
+      "Formation en Affiliation Premium pour devenir super-affilié",
+      "Construire un business à 2 000 € par mois avec YouTube",
+      "Lancer un business avec un blog en partant de 0",
+      "Le nouveau système pour créer un business qui rapporte gros",
+      "La méthode pour écrire des pages de vente qui convertissent",
+      "Démarrer un business dans l'affiliation en partant de 0"
+    ]
+  },
+  {
+    "id": "prod_012",
+    "name": "Pack Marketing Digital & Publicité Ultra-Ciblée",
+    "slug": "pack-marketing-digital-publicite-ultra-ciblee",
+    "description": "Apprenez à lancer des campagnes publicitaires rentables et optimiser vos budgets. Une mine d'or pour attirer des milliers de clients sur les réseaux sociaux.",
+    "price": 15000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/marketing-pack.png",
+    "inStock": true,
+    "featured": false,
+    "isDigital": true,
+    "downloadUrl": "https://mega.nz/folder/1vEDGBoT#mnzX8hHSrqZ8gaSofKnjjg",
+    "details": [
+      "Formation Facebook Ads de débutant à expert (+26 heures de vidéo)",
+      "Pub sur les réseaux - créer des campagnes efficaces",
+      "L'essentiel de Google Analytics 4 (GA4)",
+      "Les fondements du marketing digital & d'acquisition",
+      "Community Management, Lancements et Pixel"
+    ]
+  },
+  {
+    "id": "prod_013",
+    "name": "Pack Montage Vidéo Professionnel & TikTok",
+    "slug": "pack-montage-video-professionnel-tiktok",
+    "description": "Maîtrisez les outils de montage vidéo professionnels et comprenez les algorithmes de TikTok et Instagram Reels pour booster votre visibilité.",
+    "price": 15000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/community.png",
+    "inStock": true,
+    "featured": false,
+    "isDigital": true,
+    "downloadUrl": "https://drive.google.com/drive/folders/1Hm_X9nbsk0tG3LmPSiZWgXHialhuMhpQ?usp=sharing",
+    "details": [
+      "Premiere Pro 2024 : Apprendre le montage pour les réseaux sociaux",
+      "DaVinci Resolve : Apprendre le montage vidéo pour YouTube",
+      "1 Minute Révolution : 30 jours pour percer sur TikTok, Reels & Shorts",
+      "Certification TikTok Marketing du débutant à l'expert",
+      "Formation complète montage vidéo traditionnel"
+    ]
+  },
+  {
+    "id": "prod_014",
+    "name": "Pack Développement Web, No-Code & Bureautique",
+    "slug": "pack-developpement-web-no-code-bureautique",
+    "description": "Développez des compétences techniques très recherchées. Apprenez à concevoir des applications web sans code et maîtrisez la suite bureautique.",
+    "price": 20000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/mobile-app.png",
+    "inStock": true,
+    "featured": false,
+    "isDigital": true,
+    "downloadUrl": "https://drive.google.com/drive/folders/1Hm_X9nbsk0tG3LmPSiZWgXHialhuMhpQ?usp=sharing",
+    "details": [
+      "Créer une application web de A à Z avec Bubble (No-Code)",
+      "Débuter et apprendre à programmer en Python",
+      "Excel VBA pour débutants",
+      "Formation Microsoft Office 5 en 1 : Word, Excel, PowerPoint, Outlook, OneNote",
+      "Apprenez à hacker des sites WordPress et à les sécuriser",
+      "Formation en développement web, Cybersécurité & Data Science"
+    ]
+  },
+  {
+    "id": "prod_015",
+    "name": "Super Bibliothèque : 2000+ Ebooks & 100 Livres Audio",
+    "slug": "super-bibliotheque-2000-ebooks-100-livres-audio",
+    "description": "Une bibliothèque géante dans votre poche pour votre développement personnel, financier et professionnel. Accédez à des milliers de ressources inspirantes.",
+    "price": 10000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/formation.png",
+    "inStock": true,
+    "featured": false,
+    "isDigital": true,
+    "downloadUrl": "https://drive.google.com/drive/folders/1Hm_X9nbsk0tG3LmPSiZWgXHialhuMhpQ?usp=sharing",
+    "details": [
+      "100 livres audios business, motivation & mindset",
+      "2000 ebooks thématiques - Partie 1",
+      "2000 ebooks thématiques - Partie 2",
+      "Écrire un livre en 60 jours et le placer 1er sur Amazon"
+    ]
+  },
+  {
+    "id": "prod_016",
+    "name": "Pack Langues, Finance & Développement Personnel",
+    "slug": "pack-langues-finance-developpement-personnel",
+    "description": "Développez des aptitudes clés pour votre enrichissement personnel et professionnel : anglais parlé, investissement et entrepreneuriat agricole.",
+    "price": 15000,
+    "category": "Produits Digitaux",
+    "imageUrl": "/images/products/seo-audit.png",
+    "inStock": true,
+    "featured": false,
+    "isDigital": true,
+    "downloadUrl": "https://mega.nz/folder/1vEDGBoT#mnzX8hHSrqZ8gaSofKnjjg",
+    "details": [
+      "Apprendre l'anglais de A à Z (cours complet)",
+      "Formation complète en Trading & Investissement boursier",
+      "Réussissez vos prises de parole en public",
+      "Formation Agropastoral : Élevage & culture rentable"
+    ]
+  }
+]
