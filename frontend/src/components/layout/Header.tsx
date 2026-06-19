@@ -233,13 +233,13 @@ export function Header() {
         </button>
 
         {/* Top Logo */}
-        <div style={{ marginBottom: 'var(--space-md)' }}>
+        <div style={{ marginBottom: 'var(--space-md)', display: 'flex', justifyContent: 'center', width: '100%' }}>
           <Image
             src="/images/logo.png"
             alt="NONALIX CI"
-            width={160}
-            height={48}
-            style={{ filter: 'none', height: 'auto', width: 'auto' }}
+            width={140}
+            height={42}
+            style={{ filter: 'brightness(0) invert(1)', objectFit: 'contain', width: '140px', height: '42px' }}
           />
         </div>
 

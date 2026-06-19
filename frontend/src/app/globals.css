@@ -561,7 +561,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   width: 94%;
   max-width: var(--max-width);
-  z-index: 100;
+  z-index: 1000;
   height: 4.5rem;
   display: flex;
   align-items: center;
@@ -583,7 +583,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-logo {
-  height: 112px;
+  height: 36px;
   width: auto;
   transition: transform var(--transition-fast);
 }
@@ -594,7 +594,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 768px) {
   .header-logo {
-    height: 128px;
+    height: 42px;
   }
 }
 
@@ -705,7 +705,7 @@ h1, h2, h3, h4, h5, h6 {
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 1001;
   background: rgba(11, 12, 14, 0.98); /* Slate black darker for better readability */
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
