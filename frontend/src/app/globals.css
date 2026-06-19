@@ -1077,6 +1077,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.15;
   letter-spacing: -0.03em;
   margin-bottom: var(--space-md);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 @media (min-width: 768px) {
