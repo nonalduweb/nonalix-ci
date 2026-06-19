@@ -1,11 +1,17 @@
+'use client';
+
 import { CONTACT_INFO } from '@/lib/constants';
 
 export function WhatsAppButton() {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.open(CONTACT_INFO.whatsappLink, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <a
-      href={CONTACT_INFO.whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
+      href="#"
+      onClick={handleClick}
       className="whatsapp-float"
       aria-label="Nous contacter sur WhatsApp"
       id="whatsapp-button"
@@ -16,3 +22,4 @@ export function WhatsAppButton() {
     </a>
   );
 }
+
