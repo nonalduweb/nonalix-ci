@@ -228,3 +228,157 @@ Articles: ${JSON.stringify(order.items)}
     `);
   }
 }
+
+/**
+ * Sends a detailed audit report email to the user
+ */
+export async function sendUserAuditNotification(
+  lead: {
+    businessName: string;
+    email: string;
+    phone: string;
+    type: string;
+    company: string;
+  },
+  audit: {
+    globalScore: number;
+    seoScore: number;
+    mobileScore: number;
+    speedScore: number;
+    securityScore: number;
+    summary: string;
+    recommendations: Array<{ title: string; description: string; priority: string }>;
+    marketInsight: string;
+  }
+) {
+  const isWebAudit = lead.type === 'audit-site-web';
+  const subject = `[NONALIX CI] Votre rapport d'audit ${isWebAudit ? 'Site Web' : 'Google Business'} - ${audit.globalScore}/100`;
+  const from = process.env.SMTP_FROM || 'no-reply@nonalix-ci.com';
+
+  const scoreColor = audit.globalScore >= 80 ? '#10b981' : audit.globalScore >= 50 ? '#f59e0b' : '#ef4444';
+
+  const html = `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b; line-height: 1.6;">
+      <!-- Header -->
+      <div style="text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 25px;">
+        <h1 style="color: #4f46e5; margin: 0; font-size: 1.5rem; letter-spacing: 1px;">NONALIX CI</h1>
+        <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b; font-weight: 500;">Agence d'Automatisation IA & Marketing Digital</p>
+      </div>
+
+      <!-- Introduction -->
+      <h2 style="color: #1e293b; margin-top: 0; font-size: 1.3rem;">Bonjour ${lead.businessName},</h2>
+      <p style="font-size: 0.95rem; color: #475569;">
+        Merci d'avoir utilisé notre outil d'analyse gratuite. Notre intelligence artificielle a analysé avec succès votre ${isWebAudit ? 'site web' : 'présence Google Business'} (${lead.company}) au regard des exigences du marché ivoirien.
+      </p>
+
+      <!-- Score Card -->
+      <div style="background-color: #f8fafc; border-radius: 10px; padding: 20px; text-align: center; margin: 25px 0; border: 1px solid #f1f5f9;">
+        <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: 600;">Score Global d'Optimisation</span>
+        <div style="font-size: 3.5rem; font-weight: 800; color: ${scoreColor}; margin: 10px 0; line-height: 1;">
+          ${audit.globalScore}<span style="font-size: 1.5rem; font-weight: 500; color: #94a3b8;">/100</span>
+        </div>
+        <p style="margin: 0; font-size: 0.9rem; font-weight: 500; color: #475569;">
+          ${audit.globalScore >= 80 ? 'Excellent ! Votre site respecte la majorité des bonnes pratiques.' : audit.globalScore >= 50 ? 'Des améliorations sont nécessaires pour optimiser votre visibilité.' : 'Attention, plusieurs points critiques pénalisent fortement votre business.'}
+        </p>
+      </div>
+
+      <!-- Category Scores -->
+      <h3 style="color: #334155; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px;">Détail des performances</h3>
+      <table style="width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem;">
+        <tr>
+          <td style="padding: 10px 0; font-weight: 600; color: #475569;">Référencement (SEO) :</td>
+          <td style="padding: 10px 0; text-align: right; font-weight: bold; color: #1e293b;">${audit.seoScore}/100</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; font-weight: 600; color: #475569;">Ergonomie Mobile :</td>
+          <td style="padding: 10px 0; text-align: right; font-weight: bold; color: #1e293b;">${audit.mobileScore}/100</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; font-weight: 600; color: #475569;">Vitesse de chargement :</td>
+          <td style="padding: 10px 0; text-align: right; font-weight: bold; color: #1e293b;">${audit.speedScore}/100</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 0; font-weight: 600; color: #475569;">Sécurité & Confiance :</td>
+          <td style="padding: 10px 0; text-align: right; font-weight: bold; color: #1e293b;">${audit.securityScore}/100</td>
+        </tr>
+      </table>
+
+      <!-- IA Summary -->
+      <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px; margin: 25px 0;">
+        <h4 style="margin: 0 0 8px 0; color: #1e40af; font-size: 0.95rem; font-weight: 700;">Analyse de notre IA :</h4>
+        <p style="margin: 0; font-size: 0.9rem; color: #1e3a8a; font-style: italic;">${audit.summary}</p>
+      </div>
+
+      <!-- Recommendations -->
+      <h3 style="color: #334155; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px;">Actions prioritaires recommandées</h3>
+      <div style="margin-top: 15px;">
+        ${audit.recommendations.map((rec: any, idx: number) => {
+          const priorityColor = rec.priority === 'haute' ? '#ef4444' : rec.priority === 'moyenne' ? '#f59e0b' : '#3b82f6';
+          return `
+            <div style="margin-bottom: 20px; padding: 12px; border: 1px solid #f1f5f9; border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-weight: 700; color: #1e293b; font-size: 0.95rem;">${idx + 1}. ${rec.title}</span>
+                <span style="font-size: 0.75rem; font-weight: 700; color: #ffffff; background-color: ${priorityColor}; padding: 2px 8px; border-radius: 20px; text-transform: uppercase;">
+                  ${rec.priority}
+                </span>
+              </div>
+              <p style="margin: 0; font-size: 0.85rem; color: #475569;">${rec.description}</p>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <!-- Côte d'Ivoire Market Insight -->
+      <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; border-radius: 4px; margin: 25px 0;">
+        <h4 style="margin: 0 0 8px 0; color: #065f46; font-size: 0.95rem; font-weight: 700;">Conseil Marché Ivoirien :</h4>
+        <p style="margin: 0; font-size: 0.9rem; color: #064e3b;">${audit.marketInsight}</p>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align: center; margin-top: 35px; border-top: 1px solid #f1f5f9; padding-top: 25px;">
+        <p style="font-size: 0.9rem; color: #475569; margin-bottom: 20px;">
+          Vous souhaitez corriger ces points et accélérer la croissance de votre entreprise en Côte d'Ivoire ?
+        </p>
+        <a href="https://wa.me/2250706906930?text=Bonjour%20NONALIX%20CI,%20je%20viens%20de%20recevoir%20mon%20rapport%20d'audit%20(Score:%20${audit.globalScore}/100)%20et%20j'aimerais%20en%20discuter." 
+           style="background-color: #10b981; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 0.95rem; box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);">
+          💬 Discuter avec un expert sur WhatsApp
+        </a>
+        <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px;">
+          Ou contactez-nous directement par téléphone au <strong>+225 07 06 90 69 30</strong>.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div style="text-align: center; margin-top: 35px; padding-top: 15px; border-top: 1px solid #f1f5f9; font-size: 0.75rem; color: #94a3b8;">
+        © ${new Date().getFullYear()} NONALIX CI SARL. Tous droits réservés.<br/>
+        RCCM: CI-ABJ-03-2026-B13-01452 | IDU: 1-26-1234567 A
+      </div>
+    </div>
+  `;
+
+  const transporter = getTransporter();
+  if (transporter) {
+    try {
+      await transporter.sendMail({
+        from,
+        to: lead.email,
+        subject,
+        html,
+      });
+      console.log(`[USER EMAIL SENT] Audit report successfully sent to ${lead.email}`);
+    } catch (err) {
+      console.error('[USER SMTP EMAIL FAIL]', err);
+    }
+  } else {
+    console.log(`
+=========================================
+[USER EMAIL SIMULATION] Audit Report Sent
+To: ${lead.email}
+Subject: ${subject}
+-----------------------------------------
+Score Global: ${audit.globalScore}/100
+=========================================
+    `);
+  }
+}
+

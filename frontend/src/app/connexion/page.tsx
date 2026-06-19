@@ -42,7 +42,9 @@ export default function ConnexionPage() {
   // Rediriger si déjà connecté
   useEffect(() => {
     if (user) {
-      router.push('/');
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect') || '/';
+      router.push(redirect);
     }
   }, [user, router]);
 
@@ -191,7 +193,9 @@ export default function ConnexionPage() {
       }
 
       setTimeout(() => {
-        router.push('/');
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect') || '/';
+        router.push(redirect);
       }, 1500);
     } catch (err) {
       setErrors({ general: 'Impossible de joindre le serveur de connexion. Veuillez réessayer.' });

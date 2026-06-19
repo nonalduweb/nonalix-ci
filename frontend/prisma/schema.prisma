@@ -6,22 +6,22 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
 }
 
 model Product {
   id          String      @id @default(cuid())
   name        String
   slug        String      @unique
-  description String
+  description String      @db.Text
   price       Int         // Prix en FCFA (entier)
   category    String
-  imageUrl    String
+  imageUrl    String      @db.Text
   inStock     Boolean     @default(true)
   featured    Boolean     @default(false)
   isDigital   Boolean     @default(false)
-  downloadUrl String?
-  details     String[]
+  downloadUrl String?     @db.Text
+  details     Json        @default("[]")
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   orderItems  OrderItem[]
@@ -68,7 +68,7 @@ model ContactLead {
   lastName  String?
   email     String?
   phone     String
-  message   String
+  message   String   @db.Text
   type      String   @default("contact") // contact | quote_request | support
   status    String   @default("new")     // new | contacted | closed
   company   String?
@@ -81,8 +81,8 @@ model ContactLead {
 model PageView {
   id        String   @id @default(cuid())
   url       String
-  referrer  String?
-  userAgent String?
+  referrer  String?  @db.Text
+  userAgent String?  @db.Text
   ip        String?
   createdAt DateTime @default(now())
 
@@ -91,18 +91,20 @@ model PageView {
 }
 
 model User {
-  id             String    @id @default(cuid())
-  email          String    @unique
-  password       String?   // null for Google/Apple users
-  firstName      String
-  lastName       String
-  company        String?
-  phone          String?
-  activitySector String?
-  googleId       String?   @unique
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  sessions       Session[]
+  id                    String    @id @default(cuid())
+  email                 String    @unique
+  password              String?   // null for Google/Apple users
+  firstName             String
+  lastName              String
+  company               String?
+  phone                 String?
+  activitySector        String?
+  googleId              String?   @unique
+  isSubscribed          Boolean   @default(false)
+  subscriptionExpiresAt DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  sessions              Session[]
 }
 
 model Session {

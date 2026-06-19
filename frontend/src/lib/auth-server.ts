@@ -76,6 +76,8 @@ export async function getSessionUser() {
             phone: true,
             activitySector: true,
             googleId: true,
+            isSubscribed: true,
+            subscriptionExpiresAt: true,
             createdAt: true,
           },
         },

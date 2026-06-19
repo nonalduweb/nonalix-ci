@@ -129,9 +129,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: 'Service non trouvé' };
   }
 
+  const detail = serviceDetails[slug];
+  const title = detail
+    ? `${detail.heroTitle} ${detail.heroHighlight} — NONALIX CI`
+    : `${service.title} — Services NONALIX CI`;
+  const description = detail
+    ? `${detail.heroDescription.slice(0, 155)}...`
+    : `${service.description} Service professionnel par NONALIX CI, agence digitale à Abidjan, Côte d'Ivoire.`;
+
   return {
-    title: `${service.title} — Services NONALIX CI`,
-    description: service.description,
+    title,
+    description,
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/services/${slug}`,
+    },
   };
 }
 

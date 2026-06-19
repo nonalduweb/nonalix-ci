@@ -372,7 +372,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* CSS local pour les icônes de connexion */}
+      {/* CSS local pour les icônes de connexion et responsive */}
       <style>{`
         .header-connection-btn {
           position: relative;
@@ -426,6 +426,11 @@ export function Header() {
         .user-avatar-btn:hover {
           transform: scale(1.05);
           box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+        }
+        @media (max-width: 767px) {
+          #nav-cta-contact {
+            display: none !important;
+          }
         }
       `}</style>
     </>

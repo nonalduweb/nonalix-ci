@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: nonalix_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: u402981764_nonalixci
+      MYSQL_USER: u402981764_nonalix
+      MYSQL_PASSWORD: fT2KE0b?E
+      MYSQL_ROOT_PASSWORD: fT2KE0b?E_root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - nonalix_net
+
+  backend:
+    build:
+      context: ./backend
+    container_name: nonalix_backend
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://u402981764_nonalix:fT2KE0b%3FE@db:3306/u402981764_nonalixci
+      - ALLOWED_ORIGINS=["https://nonalix-ci.com", "https://www.nonalix-ci.com"]
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - AI_MODEL=gpt-4o-mini
+    depends_on:
+      - db
+    networks:
+      - nonalix_net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: nonalix_frontend
+    restart: always
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - DATABASE_URL=mysql://u402981764_nonalix:fT2KE0b%3FE@db:3306/u402981764_nonalixci
+      - NEXT_PUBLIC_SITE_URL=https://nonalix-ci.com
+      - NEXT_PUBLIC_API_URL=https://api.nonalix-ci.com
+      - SMTP_HOST=smtp.hostinger.com
+      - SMTP_PORT=465
+      - SMTP_USER=contact@nonalix-ci.com
+      - SMTP_PASS=XfezOTML>0x
+      - SMTP_FROM=contact@nonalix-ci.com
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    depends_on:
+      - db
+    networks:
+      - nonalix_net
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: nonalix_n8n
+    restart: always
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Africa/Abidjan
+      - TZ=Africa/Abidjan
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - nonalix_net
+
+volumes:
+  mysql_data:
+  n8n_data:
+
+networks:
+  nonalix_net:
+    driver: bridge

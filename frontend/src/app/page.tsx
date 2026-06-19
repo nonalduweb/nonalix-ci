@@ -15,7 +15,15 @@ import { MarketingManifesto } from '@/components/home/MarketingManifesto';
 
 export const metadata: Metadata = {
   title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
-  description: `${SITE_CONFIG.description}. Découvrez nos solutions de marketing digital, d'automatisation par IA et notre boutique en ligne avec paiement Mobile Money.`,
+  description: `${SITE_CONFIG.description}. Découvrez nos solutions de marketing digital, d'automatisation par IA et notre boutique en ligne avec paiement Mobile Money (Orange Money, Wave) pour les entreprises en Côte d'Ivoire.`,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
+    description: `Agence de marketing digital, développement web et automatisation IA à Abidjan. E-commerce avec Mobile Money, SEO local et chatbots intelligents.`,
+    url: '/',
+  },
 };
 
 export default function HomePage() {

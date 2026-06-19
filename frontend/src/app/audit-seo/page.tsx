@@ -1,10 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { CONTACT_INFO } from '@/lib/constants';
 import { isValidIvorianPhone } from '@/lib/utils';
 
+type LimitState = 'none' | 'LIMIT_REACHED_ANON' | 'SUBSCRIPTION_REQUIRED';
+
 type AuditTab = 'website' | 'google';
+
+const LOADING_STEPS = [
+  "Initialisation du scanner de domaine...",
+  "Analyse technique des balises SEO (Title, Description, H1)...",
+  "Mesure de la vitesse et de la sécurité SSL...",
+  "Analyse du positionnement par l'Intelligence Artificielle...",
+  "Finalisation du plan d'action personnalisé..."
+];
 
 export default function AuditSeoPage() {
   const [activeTab, setActiveTab] = useState<AuditTab>('website');
@@ -14,10 +25,33 @@ export default function AuditSeoPage() {
     email: '',
     phone: '',
     consent: false,
+    sendWhatsApp: true,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [auditResult, setAuditResult] = useState<any>(null);
+
+  // Premium / Limit states
+  const [limitState, setLimitState] = useState<LimitState>('none');
+  const [paymentMethod, setPaymentMethod] = useState<'wave' | 'orange_money'>('wave');
+  const [billingPhone, setBillingPhone] = useState('');
+  const [subscribing, setSubscribing] = useState(false);
+  const [subscriptionSuccess, setSubscriptionSuccess] = useState(false);
+  const router = useRouter();
+
+  // Gérer la progression de l'indicateur de chargement
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (loading) {
+      setLoadingStep(0);
+      interval = setInterval(() => {
+        setLoadingStep((prev) => (prev < LOADING_STEPS.length - 1 ? prev + 1 : prev));
+      }, 2000);
+    }
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const handlePhoneChange = (value: string) => {
     const digits = value.replace(/\D/g, '').slice(0, 10);
@@ -63,22 +97,31 @@ export default function AuditSeoPage() {
     if (!validate()) return;
 
     setLoading(true);
+    setErrors({});
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
           phone: form.phone.replace(/\s/g, ''),
           type: activeTab === 'website' ? 'audit-site-web' : 'audit-google-business',
-          message: `Demande d'audit ${activeTab === 'website' ? 'Site Web' : 'Google Business'} — URL: ${form.url} — Entreprise: ${form.businessName}`,
         }),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (res.ok && data.status === 'success') {
+        setAuditResult(data.auditResult);
         setSubmitted(true);
+        setLimitState('none');
+      } else if (res.status === 403 && data.error === 'LIMIT_REACHED_ANON') {
+        setLimitState('LIMIT_REACHED_ANON');
+      } else if (res.status === 403 && data.error === 'SUBSCRIPTION_REQUIRED') {
+        setLimitState('SUBSCRIPTION_REQUIRED');
+        setBillingPhone(form.phone);
       } else {
-        setErrors({ submit: 'Erreur. Veuillez réessayer ou nous contacter sur WhatsApp.' });
+        setErrors({ submit: data.error || 'Erreur lors de la génération. Veuillez réessayer.' });
       }
     } catch {
       setErrors({ submit: 'Erreur de connexion. Vérifiez votre réseau et réessayez.' });
@@ -87,35 +130,433 @@ export default function AuditSeoPage() {
     }
   };
 
-  // Success state
-  if (submitted) {
+  // Handle subscription payment
+  const handleSubscribe = async () => {
+    if (!billingPhone || !isValidIvorianPhone(billingPhone)) {
+      setErrors({ subscribe: 'Entrez un numéro de téléphone ivoirien valide' });
+      return;
+    }
+    setSubscribing(true);
+    setErrors({});
+    try {
+      const res = await fetch('/api/payment/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: billingPhone.replace(/\s/g, ''), paymentMethod }),
+      });
+      const data = await res.json();
+      if (res.ok && data.status === 'success') {
+        setSubscriptionSuccess(true);
+        setLimitState('none');
+        // Let user try audit again after 2 seconds
+        setTimeout(() => setSubscriptionSuccess(false), 3000);
+      } else {
+        setErrors({ subscribe: data.error || "Erreur lors de l'activation de l'abonnement" });
+      }
+    } catch {
+      setErrors({ subscribe: 'Erreur de connexion. Veuillez réessayer.' });
+    } finally {
+      setSubscribing(false);
+    }
+  };
+
+  // 1. Loading state with step-by-step progress
+  if (loading) {
     return (
       <div className="page-content">
-        <div className="container section" style={{ textAlign: 'center', paddingTop: 'var(--space-4xl)' }}>
-          <div className="audit-success-icon">✅</div>
-          <h1 className="audit-success-title">
-            Votre audit est en cours !
-          </h1>
-          <p className="audit-success-text">
-            Notre IA analyse votre {activeTab === 'website' ? 'site web' : 'fiche Google Business'} en ce moment.
-            Vous recevrez votre rapport complet par email dans les prochaines minutes.
-          </p>
-          <div className="audit-success-actions">
-            <a
-              href={CONTACT_INFO.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-highlight btn-lg"
-            >
-              💬 Discuter avec un expert
-            </a>
-            <a href="/" className="btn btn-outline">
-              Retour à l&apos;accueil
-            </a>
+        <div className="container section" style={{ paddingTop: 'var(--space-4xl)', paddingBottom: 'var(--space-4xl)' }}>
+          <div className="audit-loading-box">
+            <div className="audit-loading-spinner-wrap">
+              <div className="audit-loading-spinner"></div>
+            </div>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)' }}>
+              Analyse en cours...
+            </h2>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>
+              Notre IA scrute votre présence digitale au regard des critères de performance de Côte d&apos;Ivoire.
+            </p>
+
+            <div className="audit-loading-steps-list">
+              {LOADING_STEPS.map((stepText, idx) => {
+                const isActive = idx === loadingStep;
+                const isCompleted = idx < loadingStep;
+                return (
+                  <div 
+                    key={idx} 
+                    className={`audit-loading-step-item ${isActive ? 'audit-loading-step-item--active' : ''} ${isCompleted ? 'audit-loading-step-item--completed' : ''}`}
+                  >
+                    <span className="audit-loading-step-bullet"></span>
+                    <span>{stepText}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
     );
+  }
+
+  // 2. Limit state: Anonymous user already used free audit
+  if (limitState === 'LIMIT_REACHED_ANON') {
+    return (
+      <div className="page-content">
+        <div className="container section" style={{ paddingTop: 'var(--space-4xl)', paddingBottom: 'var(--space-4xl)' }}>
+          <div className="audit-loading-box" style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '4rem', marginBottom: 'var(--space-lg)' }}>🔒</div>
+            <h2 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)', fontFamily: 'var(--font-space-grotesk)' }}>
+              Votre audit gratuit a été utilisé
+            </h2>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', lineHeight: '1.6', maxWidth: '500px', margin: '0 auto var(--space-xl)' }}>
+              En tant qu&apos;invité, vous avez droit à <strong style={{ color: 'var(--color-text)' }}>1 audit gratuit</strong>.
+              Pour continuer à analyser vos sites en illimité, créez un compte gratuit et souscrivez à notre offre Premium.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', maxWidth: '360px', margin: '0 auto' }}>
+              <a
+                href="/connexion?redirect=/audit-seo"
+                className="btn btn-primary btn-lg"
+                style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              >
+                ✨ Créer un compte gratuit
+              </a>
+              <button
+                onClick={() => router.push('/connexion?redirect=/audit-seo')}
+                className="btn btn-outline"
+                style={{ textAlign: 'center' }}
+              >
+                J&apos;ai déjà un compte — Me connecter
+              </button>
+            </div>
+            <p style={{ marginTop: 'var(--space-lg)', fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
+              💡 En créant un compte, vous débloquez 1 audit gratuit supplémentaire !
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 3. Limit state: Logged-in user needs subscription
+  if (limitState === 'SUBSCRIPTION_REQUIRED') {
+    return (
+      <div className="page-content">
+        <div className="container section" style={{ paddingTop: 'var(--space-4xl)', paddingBottom: 'var(--space-4xl)' }}>
+          <div className="audit-loading-box" style={{ textAlign: 'center', maxWidth: '520px', margin: '0 auto' }}>
+            {subscriptionSuccess ? (
+              <>
+                <div style={{ fontSize: '4rem', marginBottom: 'var(--space-lg)' }}>🎉</div>
+                <h2 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)', color: '#10B981', fontFamily: 'var(--font-space-grotesk)' }}>
+                  Abonnement activé !
+                </h2>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
+                  Votre abonnement Premium est actif pour 30 jours. Vous pouvez maintenant relancer un audit.
+                </p>
+              </>
+            ) : (
+              <>
+                <div style={{ fontSize: '4rem', marginBottom: 'var(--space-lg)' }}>⭐</div>
+                <h2 style={{ fontSize: '1.5rem', marginBottom: 'var(--space-xs)', color: 'var(--color-text)', fontFamily: 'var(--font-space-grotesk)' }}>
+                  Passez au Premium
+                </h2>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: 'var(--space-xl)' }}>
+                  Vous avez utilisé votre audit gratuit. Débloquez des audits <strong style={{ color: 'var(--color-text)' }}>illimités</strong> avec l&apos;abonnement Premium.
+                </p>
+
+                {/* Pricing card */}
+                <div style={{ 
+                  background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(226, 83, 116, 0.06) 100%)', 
+                  border: '1px solid rgba(124, 58, 237, 0.2)', 
+                  borderRadius: 'var(--radius-lg)', 
+                  padding: 'var(--space-xl)',
+                  marginBottom: 'var(--space-xl)',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--color-text)', fontFamily: 'var(--font-space-grotesk)' }}>
+                    5 000 <span style={{ fontSize: '1rem', color: 'var(--color-text-muted)' }}>FCFA / mois</span>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: 'var(--space-md)', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
+                    <span>✅ Audits SEO illimités</span>
+                    <span>✅ Analyse IA approfondie</span>
+                    <span>✅ Rapport envoyé par email & WhatsApp</span>
+                    <span>✅ Support prioritaire</span>
+                  </div>
+                </div>
+
+                {/* Payment method selection */}
+                <div style={{ marginBottom: 'var(--space-lg)' }}>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Mode de paiement</label>
+                  <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('wave')}
+                      className={`btn ${paymentMethod === 'wave' ? 'btn-primary' : 'btn-outline'}`}
+                      style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                    >
+                      🌊 Wave
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('orange_money')}
+                      className={`btn ${paymentMethod === 'orange_money' ? 'btn-primary' : 'btn-outline'}`}
+                      style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                    >
+                      📱 Orange Money
+                    </button>
+                  </div>
+                </div>
+
+                {/* Billing phone */}
+                <div style={{ marginBottom: 'var(--space-lg)' }}>
+                  <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'var(--space-sm)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Numéro de facturation</label>
+                  <input
+                    type="tel"
+                    className="input"
+                    placeholder="07 XX XX XX XX"
+                    value={billingPhone}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      const formatted = digits.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
+                      setBillingPhone(formatted);
+                    }}
+                    inputMode="numeric"
+                    style={{ textAlign: 'center', fontSize: '1.1rem', letterSpacing: '0.05em' }}
+                  />
+                </div>
+
+                {errors.subscribe && (
+                  <div className="audit-error-box" style={{ marginBottom: 'var(--space-md)' }}>
+                    {errors.subscribe}
+                  </div>
+                )}
+
+                <button
+                  onClick={handleSubscribe}
+                  disabled={subscribing}
+                  className="audit-submit-btn"
+                  style={{ width: '100%' }}
+                >
+                  {subscribing ? 'Activation en cours...' : 'Activer mon abonnement — 5 000 FCFA / mois'}
+                </button>
+
+                <p style={{ marginTop: 'var(--space-md)', fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>
+                  🔒 Paiement sécurisé. Annulation possible à tout moment.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 4. Success state showing the complete interactive dashboard
+  if (submitted && auditResult) {
+    const scoreColor = auditResult.globalScore >= 80 ? '#10b981' : auditResult.globalScore >= 50 ? '#f59e0b' : '#ef4444';
+    
+    // Prefilled message for direct WhatsApp contact
+    const targetTarget = activeTab === 'website' ? form.url : 'Google Maps';
+    const whatsappMsg = encodeURIComponent(
+      `Bonjour NONALIX CI, je viens de faire l'audit de mon entreprise "${form.businessName}" (${targetTarget}) sur votre outil IA.\n\n` +
+      `📈 Score Global : ${auditResult.globalScore}/100\n` +
+      `📝 Résumé : ${auditResult.summary}\n\n` +
+      `J'aimerais en savoir plus pour mettre en place vos recommandations.`
+    );
+    const customWhatsAppLink = `https://wa.me/2250706906930?text=${whatsappMsg}`;
+
+    return (
+      <div className="page-content" style={{ paddingBottom: 'var(--space-4xl)' }}>
+        <div className="container section" style={{ paddingTop: 'var(--space-3xl)' }}>
+          
+          {/* Dashboard Header */}
+          <div style={{ textAlign: 'center', marginBottom: 'var(--space-2xl)' }}>
+            <span className="badge badge-accent" style={{ marginBottom: 'var(--space-sm)' }}>🎉 Rapport d&apos;Analyse Disponible</span>
+            <h1 style={{ fontSize: '2.25rem', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-space-grotesk)' }}>
+              Audit de {form.businessName}
+            </h1>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem' }}>
+              Cible : <strong style={{ color: 'var(--color-text)' }}>{targetUrlDisplay(form.url)}</strong>
+            </p>
+          </div>
+
+          {/* Interactive Layout */}
+          <div className="audit-dashboard-grid">
+            
+            {/* Left Column: Score, metrics and IA summary */}
+            <div className="audit-dashboard-col">
+              
+              {/* Score card with radial/circular gauge */}
+              <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 'var(--space-xl)', background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
+                <h3 style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', marginBottom: 'var(--space-md)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700 }}>
+                  Score Global d&apos;Optimisation
+                </h3>
+                
+                {/* Visual circle gauge */}
+                <div style={{ position: 'relative', width: '150px', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'var(--space-md) 0' }}>
+                  <svg className="audit-gauge-svg">
+                    <circle className="audit-gauge-bg" cx="75" cy="75" r="65" strokeWidth="10" fill="transparent" />
+                    <circle 
+                      cx="75" 
+                      cy="75" 
+                      r="65" 
+                      stroke={scoreColor} 
+                      strokeWidth="10" 
+                      fill="transparent" 
+                      strokeDasharray={2 * Math.PI * 65} 
+                      strokeDashoffset={2 * Math.PI * 65 * (1 - auditResult.globalScore / 100)} 
+                      strokeLinecap="round"
+                      style={{ transition: 'stroke-dashoffset 1s ease-out' }}
+                    />
+                  </svg>
+                  <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <span style={{ fontSize: '3rem', fontWeight: '800', color: 'var(--color-text)', lineHeight: '1', fontFamily: 'var(--font-space-grotesk)' }}>{auditResult.globalScore}</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', fontWeight: '600', textTransform: 'uppercase', marginTop: '2px' }}>/ 100</span>
+                  </div>
+                </div>
+
+                <p style={{ marginTop: 'var(--space-sm)', fontWeight: '500', color: 'var(--color-text)', maxWidth: '380px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                  {auditResult.globalScore >= 80 
+                    ? 'Excellent travail ! Votre présence digitale respecte la majorité des bonnes pratiques.' 
+                    : auditResult.globalScore >= 50 
+                    ? 'Performance intermédiaire. Il existe plusieurs correctifs importants à appliquer rapidement.' 
+                    : 'Attention ! Votre présence en ligne comporte des lacunes majeures qui nuisent à votre croissance.'}
+                </p>
+              </div>
+
+              {/* Categorized Details */}
+              <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)' }}>
+                <h3 style={{ fontSize: '1.15rem', marginBottom: 'var(--space-lg)', fontWeight: 700, fontFamily: 'var(--font-space-grotesk)' }}>Analyse par catégories</h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                  {/* SEO */}
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '0.85rem', fontWeight: '600' }}>
+                      <span style={{ color: 'var(--color-text-secondary)' }}>Référencement local (SEO)</span>
+                      <span style={{ color: 'var(--color-text)' }}>{auditResult.seoScore}/100</span>
+                    </div>
+                    <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+                      <div style={{ width: `${auditResult.seoScore}%`, height: '100%', background: '#7C3AED', borderRadius: '3px' }}></div>
+                    </div>
+                  </div>
+
+                  {/* Mobile */}
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '0.85rem', fontWeight: '600' }}>
+                      <span style={{ color: 'var(--color-text-secondary)' }}>Ergonomie Mobile</span>
+                      <span style={{ color: 'var(--color-text)' }}>{auditResult.mobileScore}/100</span>
+                    </div>
+                    <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+                      <div style={{ width: `${auditResult.mobileScore}%`, height: '100%', background: '#10B981', borderRadius: '3px' }}></div>
+                    </div>
+                  </div>
+
+                  {/* Speed */}
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '0.85rem', fontWeight: '600' }}>
+                      <span style={{ color: 'var(--color-text-secondary)' }}>Vitesse de chargement</span>
+                      <span style={{ color: 'var(--color-text)' }}>{auditResult.speedScore}/100</span>
+                    </div>
+                    <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+                      <div style={{ width: `${auditResult.speedScore}%`, height: '100%', background: '#F59E0B', borderRadius: '3px' }}></div>
+                    </div>
+                  </div>
+
+                  {/* Security */}
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '0.85rem', fontWeight: '600' }}>
+                      <span style={{ color: 'var(--color-text-secondary)' }}>Sécurité et Confiance</span>
+                      <span style={{ color: 'var(--color-text)' }}>{auditResult.securityScore}/100</span>
+                    </div>
+                    <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden' }}>
+                      <div style={{ width: `${auditResult.securityScore}%`, height: '100%', background: '#EF4444', borderRadius: '3px' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* IA Summary */}
+              <div className="card" style={{ padding: 'var(--space-xl)', background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.06) 0%, rgba(226, 83, 116, 0.04) 100%)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)' }}>
+                <span className="badge badge-primary" style={{ marginBottom: 'var(--space-sm)' }}>🤖 Analyse de notre IA</span>
+                <p style={{ color: 'var(--color-text-secondary)', fontStyle: 'italic', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>
+                  &quot;{auditResult.summary}&quot;
+                </p>
+              </div>
+
+            </div>
+
+            {/* Right Column: Recommendations & Market Insights */}
+            <div className="audit-dashboard-col">
+              
+              {/* Recommendations list */}
+              <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-card-bg)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)' }}>
+                <h3 style={{ fontSize: '1.15rem', marginBottom: 'var(--space-md)', fontWeight: 700, fontFamily: 'var(--font-space-grotesk)' }}>Actions prioritaires</h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                  {auditResult.recommendations.map((rec: any, idx: number) => (
+                    <div key={idx} className="audit-rec-card">
+                      <div className="audit-rec-header">
+                        <span className="audit-rec-title">{idx + 1}. {rec.title}</span>
+                        <span className={`audit-rec-priority-badge audit-rec-priority-badge--${rec.priority}`}>
+                          {rec.priority}
+                        </span>
+                      </div>
+                      <p className="audit-rec-desc">
+                        {rec.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Market Insight Côte d'Ivoire */}
+              <div className="card" style={{ padding: 'var(--space-xl)', background: 'rgba(16, 185, 129, 0.03)', border: '1px solid rgba(16, 185, 129, 0.15)', borderRadius: 'var(--radius-lg)' }}>
+                <h3 style={{ fontSize: '1.1rem', color: '#10B981', display: 'flex', alignItems: 'center', gap: 'var(--space-xs)', marginBottom: 'var(--space-xs)', fontWeight: 700, fontFamily: 'var(--font-space-grotesk)' }}>
+                  🇨🇮 Focus Côte d&apos;Ivoire
+                </h3>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
+                  {auditResult.marketInsight}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+                <a
+                  href={customWhatsAppLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-lg"
+                  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', fontSize: '1rem', fontWeight: '700', background: '#10B981', border: '1px solid #10B981', color: '#ffffff' }}
+                >
+                  💬 Discuter de mon plan d&apos;action sur WhatsApp
+                </a>
+                <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
+                  <button 
+                    onClick={() => {
+                      setSubmitted(false);
+                      setAuditResult(null);
+                    }}
+                    className="btn btn-outline"
+                    style={{ flex: 1 }}
+                  >
+                    🔄 Lancer un autre audit
+                  </button>
+                  <a href="/" className="btn btn-outline" style={{ flex: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    Retour à l&apos;accueil
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+  // Helper function to display Target URL nicely
+  function targetUrlDisplay(url: string) {
+    if (!url) return 'Fiche Google Business';
+    return url.replace(/^https?:\/\//i, '');
   }
 
   return (
@@ -278,7 +719,21 @@ export default function AuditSeoPage() {
                   </div>
                 </div>
 
-                <div className="checkbox-group" style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', marginTop: 'var(--space-sm)', marginBottom: 'var(--space-sm)' }}>
+                {/* WhatsApp Opt-in Checkbox */}
+                <div className="audit-checkbox-wrap">
+                  <input
+                    type="checkbox"
+                    id="audit-whatsapp"
+                    className="audit-checkbox-input"
+                    checked={form.sendWhatsApp}
+                    onChange={(e) => setForm((prev) => ({ ...prev, sendWhatsApp: e.target.checked }))}
+                  />
+                  <label htmlFor="audit-whatsapp" className="audit-checkbox-label">
+                    Je souhaite recevoir gratuitement un résumé de mes résultats par WhatsApp.
+                  </label>
+                </div>
+
+                <div className="checkbox-group" style={{ display: 'flex', alignItems: 'flex-start', gap: 'var(--space-sm)', marginTop: 'var(--space-xs)', marginBottom: 'var(--space-sm)' }}>
                   <input
                     type="checkbox"
                     id="audit-consent"

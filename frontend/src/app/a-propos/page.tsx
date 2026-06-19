@@ -6,8 +6,16 @@ import WhyChooseUs from '@/components/home/WhyChooseUs';
 import { StatsCounter } from '@/components/home/StatsCounter';
 
 export const metadata: Metadata = {
-  title: 'À Propos de Nous',
-  description: `Découvrez l'histoire de ${SITE_CONFIG.name}, notre mission d'automatisation par intelligence artificielle et nos solutions de marketing digital en Côte d'Ivoire.`,
+  title: 'À Propos — Notre Mission et Notre Équipe',
+  description: `Découvrez l'histoire de ${SITE_CONFIG.name}, agence digitale fondée à Abidjan. Notre mission : rendre l'intelligence artificielle et le marketing digital accessibles aux entreprises de Côte d'Ivoire.`,
+  alternates: {
+    canonical: '/a-propos',
+  },
+  openGraph: {
+    title: 'À Propos de NONALIX CI — Agence Digitale à Abidjan',
+    description: 'Agence technologique ivoirienne spécialisée en IA, marketing digital et e-commerce. Fondée à Abidjan pour les entreprises africaines.',
+    url: '/a-propos',
+  },
 };
 
 const values = [

@@ -1,9 +1,17 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { SITE_CONFIG, CONTACT_INFO } from '@/lib/constants';
 
-export const metadata = {
-  title: 'Mentions Légales',
-  description: 'Mentions légales et politique de confidentialité de NONALIX CI.',
+export const metadata: Metadata = {
+  title: 'Mentions Légales & Politique de Confidentialité',
+  description: 'Mentions légales, politique de confidentialité et protection des données personnelles (ARTCI & RGPD) de NONALIX CI SARL, Abidjan, Côte d\'Ivoire.',
+  alternates: {
+    canonical: '/mentions-legales',
+  },
+  robots: {
+    index: true,
+    follow: false,
+  },
 };
 
 export default function LegalNoticePage() {

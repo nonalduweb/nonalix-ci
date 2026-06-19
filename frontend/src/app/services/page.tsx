@@ -5,8 +5,16 @@ import services from '@/data/services.json';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Nos Services',
-  description: `Découvrez les services de ${SITE_CONFIG.name} : Marketing Digital, Automatisation par IA et Solutions E-commerce pour les entreprises ivoiriennes.`,
+  title: 'Nos Services — Marketing Digital, IA & E-commerce',
+  description: `Découvrez les services de ${SITE_CONFIG.name} : création de site web, optimisation SEO, automatisation par IA, e-commerce avec Mobile Money et campagnes publicitaires pour les entreprises ivoiriennes à Abidjan.`,
+  alternates: {
+    canonical: '/services',
+  },
+  openGraph: {
+    title: 'Services NONALIX CI — Marketing Digital & IA en Côte d\'Ivoire',
+    description: 'Création web, SEO, automatisation IA, e-commerce Mobile Money et campagnes publicitaires pour entreprises ivoiriennes.',
+    url: '/services',
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

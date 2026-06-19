@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: list[str] = ["http://localhost:3000", "https://nonalix.ci"]
 
     # Database
-    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/nonalix_ci"
+    DATABASE_URL: str = "mysql+pymysql://root:password@localhost:3306/nonalix_ci"
 
     # IA Agent (Phase 2)
     OPENAI_API_KEY: str = ""
