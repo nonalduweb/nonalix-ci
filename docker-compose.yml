@@ -52,6 +52,7 @@ services:
       - SMTP_FROM=contact@nonalix-ci.com
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - N8N_WEBHOOK_URL=http://n8n:5678
     depends_on:
       - db
     networks:

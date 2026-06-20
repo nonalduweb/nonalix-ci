@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendAdminLeadNotification } from '@/lib/mailer';
+import { notifyNewLead } from '@/lib/n8n-webhooks';
 
 /**
  * POST /api/contact
@@ -67,6 +68,18 @@ export async function POST(req: NextRequest) {
       company: lead.company,
     });
 
+    // 🔗 Notifier n8n (non-bloquant)
+    notifyNewLead({
+      leadId: String(lead.id),
+      firstName: lead.firstName,
+      lastName: lead.lastName,
+      email: lead.email || '',
+      phone: lead.phone,
+      message: lead.message,
+      type: lead.type,
+      company: lead.company,
+    });
+
     return NextResponse.json({
       status: 'success',
       message: 'Message envoyé avec succès',
@@ -80,4 +93,5 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendAdminLeadNotification, sendUserAuditNotification } from '@/lib/mailer';
 import { getSessionUser } from '@/lib/auth-server';
+import { notifyNewLead } from '@/lib/n8n-webhooks';
 
 export const maxDuration = 30; // Permet jusqu'à 30s d'exécution pour l'IA (Vercel/Hostinger)
 
@@ -407,6 +408,20 @@ Résumé: ${auditResult.summary}`;
       type: lead.type,
       company: lead.company || targetUrl
     }, auditResult);
+
+    // 🔗 Notifier n8n (non-bloquant)
+    notifyNewLead({
+      leadId: String(lead.id),
+      firstName: lead.firstName,
+      lastName: lead.lastName,
+      email: lead.email || '',
+      phone: lead.phone,
+      message: lead.message,
+      type: lead.type,
+      company: lead.company,
+      auditScore: auditResult?.globalScore || null,
+      auditUrl: isWebAudit ? (targetUrl || null) : null,
+    });
 
     // 5. Intégration WhatsApp (Optionnelle)
     if (sendWhatsApp) {

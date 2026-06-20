@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendAdminOrderNotification } from '@/lib/mailer';
+import { notifyNewOrder } from '@/lib/n8n-webhooks';
 
 /**
  * POST /api/orders
@@ -80,6 +81,23 @@ export async function POST(req: NextRequest) {
       city: order.city,
       totalAmount: order.totalAmount,
       paymentMethod: order.paymentMethod,
+      items: order.items.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+      })),
+    });
+
+    // 🔗 Notifier n8n (non-bloquant)
+    notifyNewOrder({
+      orderId: order.id,
+      firstName: order.firstName,
+      lastName: order.lastName,
+      phone: order.phone,
+      city: order.city,
+      totalAmount: order.totalAmount,
+      paymentMethod: order.paymentMethod,
+      paymentStatus: order.paymentStatus,
       items: order.items.map((item) => ({
         productId: item.productId,
         quantity: item.quantity,
