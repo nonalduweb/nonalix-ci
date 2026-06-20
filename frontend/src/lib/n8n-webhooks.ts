@@ -20,9 +20,9 @@ interface WebhookOptions {
  * Les erreurs sont loguées mais ne bloquent jamais le flux principal.
  */
 async function sendWebhook({ path, data }: WebhookOptions): Promise<void> {
-  const url = `${N8N_BASE_URL}${path}`;
+  const prodUrl = `${N8N_BASE_URL}${path}`;
   try {
-    const res = await fetch(url, {
+    const res = await fetch(prodUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -30,9 +30,30 @@ async function sendWebhook({ path, data }: WebhookOptions): Promise<void> {
         _source: 'nonalix-ci-frontend',
         _timestamp: new Date().toISOString(),
       }),
-      signal: AbortSignal.timeout(5000), // Timeout 5s pour ne pas bloquer
+      signal: AbortSignal.timeout(4000), // Timeout 4s
     });
-    console.log(`[N8N WEBHOOK] ${path} → ${res.status}`);
+    
+    console.log(`[N8N WEBHOOK] ${path} (Prod) → ${res.status}`);
+
+    // Si n8n renvoie un 404, c'est probablement que le workflow n'est pas encore actif
+    // et que l'utilisateur est en train de tester dans l'éditeur (qui écoute sur /webhook-test/...)
+    if (res.status === 404) {
+      const testPath = `/webhook-test${path}`;
+      const testUrl = `${N8N_BASE_URL}${testPath}`;
+      console.log(`[N8N WEBHOOK] Tentative de secours sur l'URL de test → ${testPath}`);
+      
+      const testRes = await fetch(testUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _source: 'nonalix-ci-frontend',
+          _timestamp: new Date().toISOString(),
+        }),
+        signal: AbortSignal.timeout(4000),
+      });
+      console.log(`[N8N WEBHOOK] ${testPath} (Test) → ${testRes.status}`);
+    }
   } catch (error: any) {
     // Ne jamais laisser un échec webhook casser le flux principal
     console.error(`[N8N WEBHOOK ERROR] ${path}:`, error.message);
