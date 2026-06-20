@@ -67,6 +67,7 @@ services:
     environment:
       - GENERIC_TIMEZONE=Africa/Abidjan
       - TZ=Africa/Abidjan
+      - WEBHOOK_URL=https://n8n.nonalix-ci.com/
     volumes:
       - n8n_data:/home/node/.n8n
     networks:
