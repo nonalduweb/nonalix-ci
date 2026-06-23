@@ -73,7 +73,7 @@ export default function PortfolioPage() {
         <div className="container">
           <ScrollReveal>
             <div className="section-header" style={{ marginBottom: 'var(--space-2xl)' }}>
-              <span className="badge badge-accent">📂 Portfolio</span>
+              <span className="badge badge-accent">Portfolio</span>
               <h1 style={{ marginTop: 'var(--space-md)', fontSize: '2.5rem', fontFamily: 'var(--font-heading)' }}>
                 Nos <span className="text-gradient">Réalisations</span> & Études de Cas
               </h1>

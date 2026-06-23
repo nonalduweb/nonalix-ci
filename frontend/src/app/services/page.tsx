@@ -223,7 +223,7 @@ export default function ServicesPage() {
               />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', justifyContent: 'center' }}>
-              <span className="badge badge-highlight">👥 Notre Vision</span>
+              <span className="badge badge-highlight">Notre Vision</span>
               <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-heading)' }}>
                 Propulser l&apos;économie ivoirienne par l&apos;innovation <span className="text-gradient">digitale</span> et l&apos;IA
               </h2>

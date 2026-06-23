@@ -45,7 +45,7 @@ export function MarketingManifesto() {
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
           <ScrollReveal>
             <span className="badge badge-highlight animate-pulse" style={{ marginBottom: 'var(--space-md)' }}>
-              📢 CONSTAT & VISION
+              🚀 VISION & MISSION
             </span>
           </ScrollReveal>
 
@@ -60,7 +60,7 @@ export function MarketingManifesto() {
                 marginBottom: 'var(--space-lg)' 
               }}
             >
-              Le marketing traditionnel est <span style={{ color: 'var(--color-highlight)', textShadow: '0 0 30px rgba(226, 83, 54, 0.25)' }}>mort</span>.
+              L&apos;ère de l&apos;<span style={{ color: 'var(--color-ai-purple-glow)', textShadow: '0 0 30px rgba(124, 58, 237, 0.25)' }}>automatisation IA</span> est là.
             </h2>
           </ScrollReveal>
 
@@ -74,7 +74,7 @@ export function MarketingManifesto() {
                 margin: '0 auto'
               }}
             >
-              Envoyer le même message à des milliers de personnes ne fonctionne plus. Aujourd&apos;hui, les clients exigence des réponses <strong>immédiates</strong>, des solutions <strong>sur-mesure</strong> et une <strong>fluidité totale</strong> dans leur parcours.
+              Les entreprises qui domineront demain sont celles qui automatisent leurs processus aujourd&apos;hui. Agents IA autonomes, workflows intelligents et commerce conversationnel — bienvenue dans le <strong>futur du business</strong>.
             </p>
           </ScrollReveal>
         </div>
@@ -84,10 +84,10 @@ export function MarketingManifesto() {
           <ScrollReveal>
             <div style={{ textAlign: 'center', marginBottom: 'var(--space-xl)' }}>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-text)' }}>
-                Quel est l&apos;avenir du marketing ?
+                Trois piliers de l&apos;automatisation
               </h3>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', marginTop: 'var(--space-xs)' }}>
-                Trois grandes révolutions redéfinissent complètement le secteur :
+                Les technologies qui propulsent nos clients vers la croissance autonome :
               </p>
             </div>
           </ScrollReveal>
@@ -95,7 +95,7 @@ export function MarketingManifesto() {
           <div 
             style={{ 
               display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
               gap: 'var(--space-lg)',
               marginTop: 'var(--space-lg)'
             }}
@@ -119,24 +119,28 @@ export function MarketingManifesto() {
                     width: '56px', 
                     height: '56px', 
                     borderRadius: 'var(--radius-md)', 
-                    background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(37, 99, 235, 0.02))', 
-                    border: '1px solid rgba(37, 99, 235, 0.25)', 
+                    background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(124, 58, 237, 0.02))', 
+                    border: '1px solid rgba(124, 58, 237, 0.25)', 
                     display: 'flex', 
                     alignItems: 'center', 
                     justifyContent: 'center',
-                    color: 'var(--color-accent-glow)',
-                    boxShadow: '0 8px 20px rgba(37, 99, 235, 0.05)'
+                    color: 'var(--color-ai-purple-glow)',
+                    boxShadow: '0 8px 20px rgba(124, 58, 237, 0.05)'
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <rect x="3" y="11" width="18" height="10" rx="2" />
+                    <circle cx="12" cy="5" r="2" />
+                    <path d="M12 7v4" />
+                    <line x1="8" y1="15" x2="8" y2="15" strokeWidth="3" />
+                    <line x1="16" y1="15" x2="16" y2="15" strokeWidth="3" />
                   </svg>
                 </div>
                 <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-text)', marginTop: 'var(--space-xs)' }}>
-                  Data & Intelligence Artificielle
+                  Agents IA Autonomes
                 </h4>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
-                  L&apos;intelligence artificielle permet d&apos;analyser le comportement des acheteurs à la seconde près pour leur proposer le bon produit, au bon moment, avec le bon message.
+                  Vos agents IA répondent, qualifient et convertissent vos prospects sans intervention humaine. Ils apprennent et s&apos;améliorent en continu.
                 </p>
               </GlowingCard>
             </ScrollReveal>
@@ -174,10 +178,10 @@ export function MarketingManifesto() {
                   </svg>
                 </div>
                 <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-text)', marginTop: 'var(--space-xs)' }}>
-                  Le Commerce Conversationnel
+                  Automatisation WhatsApp & Messenger
                 </h4>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
-                  Les tunnels de vente classiques cèdent la place aux messageries (WhatsApp, Messenger). Le client veut acheter, poser des questions et obtenir son service client au cours d&apos;une discussion naturelle.
+                  Votre chatbot vend, répond et prend des rendez-vous directement sur WhatsApp et Messenger. Le client achète naturellement au cours d&apos;une conversation.
                 </p>
               </GlowingCard>
             </ScrollReveal>
@@ -216,10 +220,10 @@ export function MarketingManifesto() {
                   </svg>
                 </div>
                 <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-text)', marginTop: 'var(--space-xs)' }}>
-                  L&apos;Automatisation des Processus
+                  Workflows n8n & Make
                 </h4>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
-                  Les entreprises qui survivront sont celles qui automatiseront leurs tâches répétitives (leads, relances, commandes e-commerce) pour libérer du temps pour la stratégie et l&apos;humain.
+                  Zéro tâche manuelle, zéro erreur. Vos processus métier (leads, relances, commandes, facturation) tournent en pilote automatique grâce à nos workflows intelligents.
                 </p>
               </GlowingCard>
             </ScrollReveal>

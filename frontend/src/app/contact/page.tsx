@@ -105,7 +105,7 @@ export default function ContactPage() {
       <section className="section" style={{ paddingTop: 'var(--space-4xl)' }}>
         <div className="container">
           <div className="section-header">
-            <span className="badge badge-accent">📍 Contact</span>
+            <span className="badge badge-accent">Contact</span>
             <h1 style={{ marginTop: 'var(--space-md)', fontSize: '2.25rem' }}>
               Parlons de votre <span className="text-gradient">projet</span>
             </h1>

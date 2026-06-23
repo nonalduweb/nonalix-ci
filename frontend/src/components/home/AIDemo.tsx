@@ -71,7 +71,7 @@ export function AIDemo() {
     <section className="section" id="ai-demo-section">
       <div className="container">
         <div className="section-header">
-          <span className="badge badge-accent">🤖 Démo interactive</span>
+          <span className="badge badge-accent">Démo interactive</span>
           <h2 style={{ marginTop: 'var(--space-md)' }}>
             Voyez notre <span className="text-gradient">IA en action</span>
           </h2>

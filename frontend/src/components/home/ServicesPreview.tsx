@@ -261,7 +261,6 @@ export function ServicesPreview() {
                   const serviceColor = colorMap[service.icon] || 'var(--color-accent)';
                   const serviceRgb = colorRgbMap[service.icon] || '37, 99, 235';
                   const badgeLabel = categoryBadges[service.icon] || 'Expertise';
-                  const num = String(index + 1).padStart(2, '0');
                   const rowClass = index < 3 ? 'comp-card-row1' : index < 6 ? 'comp-card-row2' : 'comp-card-row3';
                   return (
                     <div key={service.id} className="comp-card-wrapper">
@@ -276,8 +275,6 @@ export function ServicesPreview() {
                           '--badge-color-rgb': serviceRgb,
                         } as React.CSSProperties}
                       >
-                        {/* Giant serif index number in background */}
-                        <span className="card-bg-number">{num}</span>
 
                         {/* Header: Icon & Category Badge */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-xs)', zIndex: 10 }}>

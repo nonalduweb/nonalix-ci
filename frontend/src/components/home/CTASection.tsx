@@ -9,11 +9,11 @@ export function CTASection() {
       <div className="container">
         <div className="cta-section">
           <h2 style={{ fontSize: '2rem', marginBottom: 'var(--space-md)' }}>
-            Prêt à <span className="text-gradient">transformer</span> votre business ?
+            Prêt à <span className="text-gradient">automatiser</span> votre croissance ?
           </h2>
           <p style={{ color: 'var(--color-text-secondary)', maxWidth: '500px', margin: '0 auto var(--space-2xl)', lineHeight: 1.7 }}>
-            Discutons de votre projet. Notre équipe d&apos;experts est prête
-            à vous accompagner dans votre transformation digitale.
+            Discutons de votre projet. Nos experts en automatisation IA sont prêts
+            à construire un système qui génère des résultats mesurables pour votre entreprise.
           </p>
           <div className="hero-actions">
             <ShimmerButton as="a" href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer">
@@ -22,8 +22,8 @@ export function CTASection() {
               </svg>
               Discuter sur WhatsApp
             </ShimmerButton>
-            <ShimmerButton as="link" href="/contact" style={{ background: 'transparent', border: '1px solid var(--color-border)', color: 'var(--color-text)' }}>
-              Demander un devis
+            <ShimmerButton as="link" href="/contact" style={{ background: 'transparent', border: '1px solid rgba(255, 255, 255, 0.15)', color: 'var(--color-text)' }}>
+              Voir une démo IA
             </ShimmerButton>
           </div>
         </div>

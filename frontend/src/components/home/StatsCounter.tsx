@@ -3,10 +3,10 @@
 import { NumberTicker } from '@/components/ui/NumberTicker';
 
 const stats = [
-  { value: 17, suffix: '', label: 'Entreprises accompagnées' },
+  { value: 45, suffix: '+', label: 'Entreprises automatisées' },
   { value: 85, suffix: '%', label: "Taux d'automatisation" },
-  { value: 200, suffix: 'K', label: 'Interactions IA / mois' },
-  { value: 24, suffix: '/7', label: 'Disponibilité chatbot' },
+  { value: 500, suffix: 'K', label: 'Interactions IA / mois' },
+  { value: 24, suffix: '/7', label: 'Disponibilité agent IA' },
 ];
 
 export function StatsCounter() {

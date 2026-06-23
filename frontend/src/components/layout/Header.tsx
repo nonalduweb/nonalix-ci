@@ -34,15 +34,17 @@ export function Header() {
     <>
       <header className="header" id="main-header">
         <div className="header-inner">
-          <Link href="/" aria-label="NONALIX CI — Accueil">
-            <Image
-              src="/images/logo.png"
-              alt="NONALIX CI"
-              width={200}
-              height={60}
-              className="header-logo"
-              priority
-            />
+          <Link href="/" aria-label="NONALIX CI — Accueil" style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="logo-container">
+              <Image
+                src="/images/logo.png?v=3"
+                alt="NONALIX CI"
+                fill
+                style={{ objectFit: 'contain' }}
+                sizes="(max-width: 767px) 164px, 207px"
+                priority
+              />
+            </div>
           </Link>
 
           <nav className="header-nav" aria-label="Navigation principale">
@@ -88,100 +90,6 @@ export function Header() {
           </nav>
 
           <div className="header-actions">
-            {user ? (
-              <div className="user-dropdown-container" style={{ position: 'relative' }}>
-                <button className="user-avatar-btn" aria-label="Mon compte" style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                  border: '1.5px solid var(--color-accent)',
-                  color: 'var(--color-accent-glow)',
-                  fontWeight: 700,
-                  fontSize: '0.85rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}>
-                  {user.firstName[0]?.toUpperCase()}{user.lastName[0]?.toUpperCase()}
-                </button>
-                <div className="user-dropdown-menu" style={{
-                  position: 'absolute',
-                  top: '100%',
-                  right: 0,
-                  marginTop: '10px',
-                  width: '240px',
-                  backgroundColor: '#0c0f14',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  borderRadius: '12px',
-                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
-                  padding: '12px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                  zIndex: 100,
-                  opacity: 0,
-                  visibility: 'hidden',
-                  transform: 'translateY(10px)',
-                  transition: 'all 0.2s ease'
-                }}>
-                  <div style={{ padding: '4px 8px 8px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', textAlign: 'left' }}>
-                    <div style={{ fontWeight: 600, color: '#ffffff', fontSize: '0.875rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {user.firstName} {user.lastName}
-                    </div>
-                    <div style={{ color: '#94a3b8', fontSize: '0.75rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {user.email}
-                    </div>
-                  </div>
-                  <button onClick={logout} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    width: '100%',
-                    padding: '8px 12px',
-                    borderRadius: '6px',
-                    border: 'none',
-                    backgroundColor: 'transparent',
-                    color: '#ef4444',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s'
-                  }}
-                  className="user-logout-btn"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-                    </svg>
-                    Se déconnecter
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <Link href="/connexion" className="header-connection-btn" aria-label="Connexion" id="nav-login-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
-              </Link>
-            )}
-
-            <Link href="/panier" className="cart-button" aria-label="Panier">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="9" cy="21" r="1"/>
-                <circle cx="20" cy="21" r="1"/>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-              </svg>
-              {totalItems > 0 && (
-                <span className="cart-badge" aria-label={`${totalItems} articles`}>
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-
             <Link
               href="/contact"
               className="btn btn-highlight btn-sm"
@@ -234,13 +142,16 @@ export function Header() {
 
         {/* Top Logo */}
         <div style={{ marginBottom: 'var(--space-md)', display: 'flex', justifyContent: 'center', width: '100%' }}>
-          <Image
-            src="/images/logo.png"
-            alt="NONALIX CI"
-            width={140}
-            height={42}
-            style={{ filter: 'brightness(0) invert(1)', objectFit: 'contain', width: '140px', height: '42px' }}
-          />
+          <div className="logo-container" style={{ height: '30px', width: '164px', position: 'relative' }}>
+            <Image
+              src="/images/logo.png?v=3"
+              alt="NONALIX CI"
+              fill
+              style={{ objectFit: 'contain' }}
+              sizes="164px"
+              priority
+            />
+          </div>
         </div>
 
         {/* Navigation links container */}
@@ -297,77 +208,23 @@ export function Header() {
 
         {/* Bottom Actions */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', width: '80%', maxWidth: '280px', marginTop: 'var(--space-md)' }}>
-          {user ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-              <div className="mobile-user-info" style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                padding: '0.75rem 1rem',
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                borderRadius: '8px',
-                border: '1px solid rgba(255,255,255,0.06)'
-              }}>
-                <div style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--color-accent)',
-                  color: '#ffffff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 'bold',
-                  fontSize: '0.875rem',
-                  flexShrink: 0
-                }}>
-                  {user.firstName[0]?.toUpperCase()}{user.lastName[0]?.toUpperCase()}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, textAlign: 'left' }}>
-                  <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {user.firstName} {user.lastName}
-                  </span>
-                  <span style={{ fontSize: '0.75rem', color: '#94a3b8', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {user.email}
-                  </span>
-                </div>
-              </div>
-              <button
-                onClick={() => {
-                  setMobileOpen(false);
-                  logout();
-                }}
-                className="mobile-connection-cta"
-                style={{ border: '1.5px solid rgba(239, 68, 68, 0.4)', background: 'rgba(239, 68, 68, 0.08)', color: '#f87171' }}
-              >
-                Se déconnecter
-              </button>
-            </div>
-          ) : (
-            <Link
-              href="/connexion"
-              onClick={() => setMobileOpen(false)}
-              className="mobile-connection-cta"
-              id="mobile-login-icon"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-              Mon Compte / Connexion
-            </Link>
-          )}
-
           <Link
-            href="/panier"
+            href="/contact"
             onClick={() => setMobileOpen(false)}
-            className="mobile-cart-cta"
+            className="btn btn-highlight"
+            style={{
+              borderRadius: '9999px',
+              padding: '0.75rem 1.5rem',
+              textAlign: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 600,
+              fontSize: '0.9375rem',
+              textDecoration: 'none'
+            }}
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-            </svg>
-            Mon Panier {totalItems > 0 && ` (${totalItems})`}
+            Contactez-nous <span style={{ marginLeft: '4px' }}>↗</span>
           </Link>
         </div>
       </div>

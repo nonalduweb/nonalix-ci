@@ -4,8 +4,8 @@ export const SITE_CONFIG = {
   name: 'NONALIX CI',
   fullName: 'NONALIX CI SARL',
   domain: 'nonalix-ci.com',
-  description: 'Agence de Marketing Digital, Automatisation par IA et Commerce Électronique en Côte d\'Ivoire',
-  tagline: 'Gagnez du temps et boostez vos ventes grâce à l\'IA',
+  description: 'Systèmes d\'automatisation IA, agents conversationnels et croissance digitale pour les entreprises en Côte d\'Ivoire',
+  tagline: 'Automatisation IA & Croissance Digitale',
 } as const;
 
 export const CONTACT_INFO = {

@@ -116,7 +116,7 @@ export default function IntegrationsSection() {
       ref={containerRef}
       className="section integrations-section" 
       id="integrations"
-      style={{ position: 'relative', overflow: 'hidden', cursor: 'none' }}
+      style={{ position: 'relative', overflow: 'hidden' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}

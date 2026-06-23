@@ -369,7 +369,7 @@ export default function AuditSeoPage() {
           
           {/* Dashboard Header */}
           <div style={{ textAlign: 'center', marginBottom: 'var(--space-2xl)' }}>
-            <span className="badge badge-accent" style={{ marginBottom: 'var(--space-sm)' }}>🎉 Rapport d&apos;Analyse Disponible</span>
+            <span className="badge badge-accent" style={{ marginBottom: 'var(--space-sm)' }}>Rapport d&apos;Analyse Disponible</span>
             <h1 style={{ fontSize: '2.25rem', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-space-grotesk)' }}>
               Audit de {form.businessName}
             </h1>
@@ -475,7 +475,7 @@ export default function AuditSeoPage() {
 
               {/* IA Summary */}
               <div className="card" style={{ padding: 'var(--space-xl)', background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.06) 0%, rgba(226, 83, 116, 0.04) 100%)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)' }}>
-                <span className="badge badge-primary" style={{ marginBottom: 'var(--space-sm)' }}>🤖 Analyse de notre IA</span>
+                <span className="badge badge-primary" style={{ marginBottom: 'var(--space-sm)' }}>Analyse de notre IA</span>
                 <p style={{ color: 'var(--color-text-secondary)', fontStyle: 'italic', lineHeight: '1.6', fontSize: '0.95rem', margin: 0 }}>
                   &quot;{auditResult.summary}&quot;
                 </p>
@@ -798,7 +798,7 @@ export default function AuditSeoPage() {
       <section className="section audit-features-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
-            <span className="badge badge-accent">🔍 Analyse complète</span>
+            <span className="badge badge-accent">Analyse complète</span>
             <h2 style={{ marginTop: 'var(--space-md)', fontSize: '2rem' }}>
               Ce que notre audit <span className="text-gradient">révèle</span>
             </h2>
@@ -889,7 +889,7 @@ export default function AuditSeoPage() {
       <section className="section audit-how-section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
-            <span className="badge badge-highlight">⚡ Simple et rapide</span>
+            <span className="badge badge-highlight">Simple et rapide</span>
             <h2 style={{ marginTop: 'var(--space-md)', fontSize: '2rem' }}>
               Comment ça marche ?
             </h2>
@@ -921,7 +921,7 @@ export default function AuditSeoPage() {
       <section className="section">
         <div className="container">
           <div className="section-header" style={{ textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
-            <span className="badge badge-accent">❓ FAQ</span>
+            <span className="badge badge-accent">FAQ</span>
             <h2 style={{ marginTop: 'var(--space-md)', fontSize: '2rem' }}>
               Questions fréquentes
             </h2>

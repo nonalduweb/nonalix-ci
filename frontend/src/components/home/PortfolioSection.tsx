@@ -31,7 +31,7 @@ export function PortfolioSection() {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <ScrollReveal>
           <div className="section-header">
-            <span className="badge badge-accent">📂 Études de Cas</span>
+            <span className="badge badge-accent">Études de Cas</span>
             <h2 style={{ marginTop: 'var(--space-md)' }}>
               Nos <span className="text-gradient">réalisations</span> récentes
             </h2>

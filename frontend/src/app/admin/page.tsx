@@ -231,13 +231,13 @@ export default function AdminPage() {
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-2xl)', flexWrap: 'wrap', gap: 'var(--space-md)' }}>
           <div>
-            <span className="badge badge-accent">🛡️ Console SuperAdmin</span>
+            <span className="badge badge-accent">Console SuperAdmin</span>
             <h1 style={{ fontSize: '2rem', marginTop: 'var(--space-xs)', fontFamily: 'var(--font-heading)' }}>
               Tableau de bord <span className="text-gradient">Analytique</span>
             </h1>
           </div>
           <button onClick={handleLogout} className="btn btn-outline btn-sm" style={{ borderColor: 'rgba(239, 68, 68, 0.4)', color: 'var(--color-error)' }}>
-            Déconnexion 🚪
+            Déconnexion
           </button>
         </div>
 

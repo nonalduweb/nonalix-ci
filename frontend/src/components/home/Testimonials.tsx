@@ -1,18 +1,18 @@
 const testimonials = [
   {
-    text: "NONALIX CI a transformé notre approche commerciale. Grâce à leur chatbot IA, nous répondons à nos clients 24h/24 et nos ventes ont augmenté de 40% en 3 mois.",
+    text: "Grâce à l'agent IA de NONALIX, nous avons généré +147% de leads qualifiés en seulement 60 jours. Notre équipe commerciale ne perd plus de temps sur les prospects non qualifiés — l'IA fait le tri automatiquement.",
     name: 'Kouadio Yao',
     role: 'Directeur Commercial, TechPlus Abidjan',
     initials: 'KY',
   },
   {
-    text: "L'automatisation mise en place par NONALIX nous a permis de réduire nos tâches administratives de 60%. Notre équipe se concentre désormais sur ce qui compte vraiment.",
+    text: "Les workflows automatisés ont libéré 25 heures par semaine pour notre équipe. Relances clients, facturation, suivi de commandes — tout tourne en pilote automatique. On se concentre enfin sur la stratégie.",
     name: 'Aminata Diallo',
     role: 'CEO, DigiServices CI',
     initials: 'AD',
   },
   {
-    text: "Notre boutique en ligne avec paiement Orange Money a été livrée en 2 semaines. Le résultat est professionnel et nos clients adorent la simplicité du processus d'achat.",
+    text: "Notre chatbot WhatsApp génère 35% de nos ventes sans aucune intervention humaine. Les clients commandent, paient et reçoivent leur confirmation directement dans la conversation. Révolutionnaire.",
     name: 'Jean-Marc Bamba',
     role: 'Fondateur, AfriShop',
     initials: 'JB',
@@ -24,7 +24,7 @@ export function Testimonials() {
     <section className="section" id="testimonials-section" style={{ background: 'var(--color-surface)' }}>
       <div className="container">
         <div className="section-header">
-          <span className="badge badge-success">⭐ Témoignages</span>
+          <span className="badge badge-success">Témoignages</span>
           <h2 style={{ marginTop: 'var(--space-md)' }}>
             Ils nous font <span className="text-gradient">confiance</span>
           </h2>

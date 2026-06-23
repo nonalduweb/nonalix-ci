@@ -22,7 +22,7 @@ export function VideoCurtain() {
       <div className="video-wrapper">
         <video
           ref={videoRef}
-          src="/images/products/Nonalix%20ci%20ia%20agence%20de%20seo%20et%20sea.mp4"
+          src="/images/products/trie/schémas d'automatisation.mp4"
           autoPlay
           loop
           muted

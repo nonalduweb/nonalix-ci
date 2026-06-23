@@ -10,28 +10,30 @@ export function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <Image
-              src="/images/logo.png"
+              src="/images/products/logo_footer.png"
               alt="NONALIX CI"
               width={360}
               height={108}
-              style={{ height: '108px', width: 'auto' }}
+              style={{ height: 'auto', width: 'auto', maxHeight: '108px' }}
             />
             <p>
-              Agence de Marketing Digital, Automatisation par Intelligence Artificielle
-              et Commerce Électronique. Nous aidons les entreprises ivoiriennes à
-              se digitaliser et à booster leurs performances grâce à l&apos;IA.
+              Systèmes d&apos;automatisation IA, agents conversationnels et stratégies de
+              croissance digitale pour les entreprises en Côte d&apos;Ivoire. Nous
+              construisons des machines de vente automatisées grâce à l&apos;IA.
             </p>
           </div>
 
           {/* Navigation */}
           <div className="footer-links">
             <h4>Navigation</h4>
-            {NAV_LINKS.map((link) => (
-              <Link key={link.href} href={link.href}>
-                {link.label}
-              </Link>
-            ))}
-            <Link href="/panier">Panier</Link>
+            <div className="footer-links-grid">
+              {NAV_LINKS.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+              <Link href="/panier">Panier</Link>
+            </div>
           </div>
 
           {/* Contact */}
@@ -61,7 +63,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="footer-bottom" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', alignItems: 'center' }}>
+        <div className="footer-bottom">
           <p>© {LEGAL_INFO.year} {SITE_CONFIG.fullName}. Tous droits réservés.</p>
           <p className="footer-legal">
             RCCM : {LEGAL_INFO.rccm} | IDU : {LEGAL_INFO.idu}

@@ -21,7 +21,7 @@ export default function LegalNoticePage() {
         <div className="container" style={{ maxWidth: '800px' }}>
           
           <div className="section-header" style={{ marginBottom: 'var(--space-2xl)' }}>
-            <span className="badge badge-accent">⚖️ Informations Légales</span>
+            <span className="badge badge-accent">Informations Légales</span>
             <h1 style={{ marginTop: 'var(--space-md)', fontSize: '2.5rem', fontFamily: 'var(--font-heading)' }}>
               Mentions Légales & <span className="text-gradient">Confidentialité</span>
             </h1>

@@ -50,7 +50,7 @@ export default function AProposPage() {
       <section className="section" style={{ paddingTop: 'var(--space-4xl)' }}>
         <div className="container">
           <div className="section-header">
-            <span className="badge badge-accent">🏢 Notre Histoire</span>
+            <span className="badge badge-accent">Notre Histoire</span>
             <h1 style={{ marginTop: 'var(--space-md)', fontSize: '2.5rem' }}>
               Qui sommes-nous chez <span className="text-gradient">{SITE_CONFIG.name}</span> ?
             </h1>
@@ -67,7 +67,7 @@ export default function AProposPage() {
         <div className="container">
           <div className="grid grid-2" style={{ alignItems: 'center', gap: 'var(--space-2xl)' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-              <span className="badge badge-highlight">🎯 Notre Mission</span>
+              <span className="badge badge-highlight">Notre Mission</span>
               <h2 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-heading)' }}>
                 Rendre l&apos;IA accessible aux entreprises ivoiriennes
               </h2>
@@ -114,7 +114,7 @@ export default function AProposPage() {
       <section className="section">
         <div className="container">
           <div className="section-header">
-            <span className="badge badge-accent">⭐ Nos Valeurs</span>
+            <span className="badge badge-accent">Nos Valeurs</span>
             <h2 style={{ marginTop: 'var(--space-md)' }}>
               Ce en quoi nous <span className="text-gradient">croyons</span>
             </h2>

@@ -271,10 +271,10 @@ export default function BoutiquePage() {
                     </span>
                     <div className="bq-card-badges">
                       {product.featured && (
-                        <span className="bq-badge bq-badge-top">★ TOP</span>
+                        <span className="bq-badge bq-badge-top">TOP</span>
                       )}
                       {isDigital && (
-                        <span className="bq-badge bq-badge-digital">⚡ DIGITAL</span>
+                        <span className="bq-badge bq-badge-digital">DIGITAL</span>
                       )}
                     </div>
                   </div>

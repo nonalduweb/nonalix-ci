@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Instrument_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -14,15 +14,15 @@ import { GridBackground } from "@/components/ui/GridBackground";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { AnalyticsTracker } from "@/components/layout/AnalyticsTracker";
 
-const spaceGrotesk = Space_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const instrumentSans = Instrument_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-instrument-sans",
+  variable: "--font-plus-jakarta-sans",
   display: "swap",
 });
 
@@ -208,7 +208,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${spaceGrotesk.variable} ${instrumentSans.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${plusJakartaSans.variable}`}>
       <head>
         {/* JSON-LD Structured Data for Google Rich Results */}
         <script

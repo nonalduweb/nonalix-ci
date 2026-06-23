@@ -166,12 +166,9 @@ export function AIChatWidget() {
     }
   };
 
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputValue.trim() || isLoading) return;
+  const submitMessage = async (userText: string) => {
+    if (!userText.trim() || isLoading) return;
 
-    const userText = inputValue;
-    setInputValue('');
     setErrorMsg(null);
 
     // Ajouter le message utilisateur localement
@@ -216,6 +213,65 @@ export function AIChatWidget() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = inputValue;
+    setInputValue('');
+    await submitMessage(text);
+  };
+
+  const handleSuggestionClick = async (suggestionText: string) => {
+    await submitMessage(suggestionText);
+  };
+
+  const getSuggestions = (text: string): string[] => {
+    const t = text.toLowerCase();
+    
+    // 1. Contextual Sector check
+    if (t.includes("secteur d'activité") || t.includes("secteur d’activité") || t.includes("votre secteur")) {
+      return ['Commerce', 'Immobilier', 'Formation', 'Santé', 'Restauration', 'Services', 'E-commerce', 'Autre'];
+    }
+    
+    // 2. Contextual Needs check
+    if (t.includes("besoin principal") || t.includes("expertise") || t.includes("quel service") || t.includes("votre besoin")) {
+      return ['Création Web Next.js', 'Référencement (SEO)', 'Chatbot IA sur-mesure', 'Automatisation', 'Packs de formation'];
+    }
+
+    // 3. Contextual Packs check
+    if (t.includes("pack") || t.includes("formation en ligne") || t.includes("ebook")) {
+      return ['Pack Révolution IA', 'Pack E-commerce', 'Bibliothèque Ebooks', 'Voir la boutique'];
+    }
+    
+    // 4. Welcome greeting check
+    if (t.includes("bienvenue chez nonalix") || t.includes("comment puis-je vous aider") || t.includes("ravi de faire votre connaissance")) {
+      return ['Services Agence B2B', 'Packs de Formation', 'Demander un devis', 'Parler à un conseiller'];
+    }
+
+    // 5. Fallback list parser
+    // Search for bulleted items (e.g. "- Option")
+    const suggestions: string[] = [];
+    const lines = text.split('\n');
+    for (let line of lines) {
+      line = line.trim();
+      if (line.startsWith('-') || line.startsWith('*')) {
+        const cleaned = line.replace(/^[-*\s]+/, '').trim();
+        if (cleaned.length > 0 && cleaned.length < 40) {
+          suggestions.push(cleaned);
+        }
+      }
+    }
+    if (suggestions.length >= 2) return suggestions;
+
+    // Search for numbered items (e.g. "1. Option")
+    const matches = text.match(/\d+[\.\)\-]\s*([^\d\n\.\)\-]+)/g);
+    if (matches && matches.length >= 2) {
+      const parsed = matches.map(m => m.replace(/^\d+[\.\)\-]\s*/, '').trim()).filter(m => m.length > 0 && m.length < 40);
+      if (parsed.length >= 2) return parsed;
+    }
+
+    return [];
   };
 
   return (
@@ -476,6 +532,41 @@ export function AIChatWidget() {
                     {msg.content}
                   </div>
                 ))}
+
+                {/* Suggestions display if the last message is from assistant */}
+                {!isLoading && messages.length > 0 && messages[messages.length - 1].role === 'assistant' && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '4px', alignSelf: 'flex-start', maxWidth: '100%', padding: '2px 0 10px' }}>
+                    {getSuggestions(messages[messages.length - 1].content).map((suggestion, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => handleSuggestionClick(suggestion)}
+                        style={{
+                          background: 'rgba(59, 130, 246, 0.08)',
+                          border: '1px solid rgba(59, 130, 246, 0.3)',
+                          color: '#FAFAFA',
+                          padding: '6px 12px',
+                          borderRadius: '16px',
+                          fontSize: '0.75rem',
+                          fontWeight: 500,
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          textAlign: 'left'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(59, 130, 246, 0.18)';
+                          e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
+                          e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                        }}
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 
                 {isLoading && (
                   <div
