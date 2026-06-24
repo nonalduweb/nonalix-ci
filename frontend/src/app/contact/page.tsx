@@ -80,7 +80,12 @@ export default function ContactPage() {
     return (
       <div className="page-content">
         <div className="container section" style={{ textAlign: 'center', paddingTop: 'var(--space-4xl)' }}>
-          <div style={{ fontSize: '4rem', marginBottom: 'var(--space-lg)' }}>✉️</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'var(--space-lg)', color: 'var(--color-text-secondary)' }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
           <h1 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)' }}>
             Message envoyé !
           </h1>

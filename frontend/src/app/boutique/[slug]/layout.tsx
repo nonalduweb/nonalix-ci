@@ -2,16 +2,9 @@ import type { Metadata } from 'next';
 import productsData from '@/data/products.json';
 
 interface Product {
-  id: string;
-  name: string;
   slug: string;
+  name: string;
   description: string;
-  price: number;
-  category: string;
-  imageUrl: string;
-  inStock: boolean;
-  featured: boolean;
-  isDigital?: boolean;
 }
 
 export async function generateMetadata({
@@ -24,12 +17,12 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: 'Produit non trouvé — Boutique NONALIX CI',
+      title: 'Produit non trouvé | NONALIX CI',
     };
   }
 
-  const title = `${product.name} — Boutique NONALIX CI`;
-  const description = `${product.description.slice(0, 155)}...`;
+  const title = `${product.name} — Pack Digital & IA à Abidjan | NONALIX CI`;
+  const description = `${product.description.slice(0, 150)}... Achat immédiat en ligne avec Orange Money & Wave en Côte d'Ivoire.`;
 
   return {
     title,
@@ -43,10 +36,18 @@ export async function generateMetadata({
       url: `/boutique/${slug}`,
       images: [
         {
-          url: product.imageUrl.startsWith('/') ? product.imageUrl : `/${product.imageUrl}`,
-          alt: product.name,
+          url: '/images/hero/ai-automation-dashboard.jpg',
+          width: 1200,
+          height: 630,
+          alt: `${product.name} — NONALIX CI`,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/hero/ai-automation-dashboard.jpg'],
     },
   };
 }

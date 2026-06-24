@@ -83,7 +83,9 @@ function ConfirmationContent() {
           fontSize: '2.5rem',
         }}
       >
-        ✅
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
       </div>
 
       <h1 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)' }}>
@@ -171,15 +173,15 @@ function ConfirmationContent() {
           </h3>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
             <li style={{ display: 'flex', gap: 'var(--space-sm)', color: 'var(--color-text-secondary)', fontSize: '0.9375rem' }}>
-              <span>1️⃣</span>
+              <span style={{ fontWeight: 700, color: 'var(--color-highlight)' }}>1.</span>
               <span>Notre équipe vous appelle pour confirmer votre commande</span>
             </li>
             <li style={{ display: 'flex', gap: 'var(--space-sm)', color: 'var(--color-text-secondary)', fontSize: '0.9375rem' }}>
-              <span>2️⃣</span>
+              <span style={{ fontWeight: 700, color: 'var(--color-highlight)' }}>2.</span>
               <span>Nous préparons votre commande et organisons la livraison</span>
             </li>
             <li style={{ display: 'flex', gap: 'var(--space-sm)', color: 'var(--color-text-secondary)', fontSize: '0.9375rem' }}>
-              <span>3️⃣</span>
+              <span style={{ fontWeight: 700, color: 'var(--color-highlight)' }}>3.</span>
               <span>Vous recevez votre commande à l&apos;adresse indiquée</span>
             </li>
           </ul>

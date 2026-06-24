@@ -278,7 +278,7 @@ export default function ProductDetailPage() {
                 borderRadius: 'var(--radius-md)',
               }}>
                 <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#3B82F6', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-heading)' }}>
-                  🎯 À qui s&apos;adresse ce pack ?
+                  À qui s&apos;adresse ce pack ?
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
                   {copy.forWho}
@@ -294,7 +294,7 @@ export default function ProductDetailPage() {
                 borderRadius: 'var(--radius-md)',
               }}>
                 <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#3B82F6', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-heading)' }}>
-                  🚀 Compétences clés acquises :
+                  Compétences clés acquises :
                 </h3>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                   {copy.benefits.map((benefit, bIdx) => (
@@ -316,7 +316,7 @@ export default function ProductDetailPage() {
                   borderRadius: 'var(--radius-md)',
                 }}>
                   <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#3B82F6', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-heading)' }}>
-                    📚 Programme détaillé du pack :
+                    Programme détaillé du pack :
                   </h3>
                   <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                     {(product.details as string[]).map((detail, idx) => (
@@ -339,10 +339,10 @@ export default function ProductDetailPage() {
                 {/* Category Badge & Trust Score */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
                   <span className="badge" style={{ background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)', color: '#3B82F6', fontSize: '0.7rem', fontWeight: 700 }}>
-                    {emojiMap[product.category] || '📦'} {product.category}
+                    {product.category}
                   </span>
                   <div style={{ fontSize: '0.75rem', color: '#F59E0B', fontWeight: 700 }}>
-                    ⭐ 4.9/5 <span style={{ color: 'var(--color-text-muted)', fontWeight: 500 }}>(120+ avis)</span>
+                    4.9/5 <span style={{ color: 'var(--color-text-muted)', fontWeight: 500 }}>(120+ avis)</span>
                   </div>
                 </div>
 
@@ -370,10 +370,10 @@ export default function ProductDetailPage() {
 
                 {/* Features checklist */}
                 <div style={{ borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)', padding: '12px 0', marginBottom: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8rem', color: 'var(--color-text-muted)' }}>
-                  <div>⏳ <strong>Format :</strong> {copy.duration}</div>
-                  <div>📊 <strong>Niveau :</strong> {copy.level}</div>
-                  <div>⚡ <strong>Livraison :</strong> Immédiate par e-mail après paiement</div>
-                  <div>♾️ <strong>Accès :</strong> À vie, mises à jour permanentes incluses</div>
+                  <div><strong>Format :</strong> {copy.duration}</div>
+                  <div><strong>Niveau :</strong> {copy.level}</div>
+                  <div><strong>Livraison :</strong> Immédiate par e-mail après paiement</div>
+                  <div><strong>Accès :</strong> À vie, mises à jour permanentes incluses</div>
                 </div>
 
                 {/* CTA Buttons */}
@@ -387,7 +387,7 @@ export default function ProductDetailPage() {
                     }}
                     id="product-buy-now"
                   >
-                    🚀 ACHAT DIRECT
+                    ACHAT DIRECT
                   </button>
 
                   <button
@@ -407,15 +407,15 @@ export default function ProductDetailPage() {
 
                 {/* Secure payments & Satisfaction guarantee */}
                 <div style={{ marginTop: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.75rem', color: 'var(--color-text-muted)', textAlign: 'center' }}>
-                  <div>🔒 Paiement ultra-sécurisé par Wave ou Orange Money</div>
-                  <div>🤝 Garantie 100% Satisfait ou Remboursé sous 14 jours</div>
+                  <div>Paiement ultra-sécurisé par Wave ou Orange Money</div>
+                  <div>Garantie 100% Satisfait ou Remboursé sous 14 jours</div>
                 </div>
 
               </div>
 
               {/* Comment ça marche card */}
               <div className="card" style={{ marginTop: 'var(--space-md)', padding: 'var(--space-md) var(--space-lg)', border: '1px solid var(--color-border)', background: 'rgba(255, 255, 255, 0.01)' }}>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: 700, marginBottom: '8px', color: '#3B82F6' }}>⚙️ Comment se passe la livraison ?</h4>
+                <h4 style={{ fontSize: '0.85rem', fontWeight: 700, marginBottom: '8px', color: '#3B82F6' }}>Comment se passe la livraison ?</h4>
                 <ol style={{ fontSize: '0.75rem', paddingLeft: '15px', color: 'var(--color-text-muted)', display: 'flex', flexDirection: 'column', gap: '4px', margin: 0 }}>
                   <li>Remplissez vos coordonnées à l&apos;étape suivante (e-mail requis).</li>
                   <li>Effectuez le paiement en ligne en toute sécurité via Orange Money ou Wave.</li>

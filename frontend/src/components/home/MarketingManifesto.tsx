@@ -45,7 +45,7 @@ export function MarketingManifesto() {
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', marginBottom: 'var(--space-3xl)' }}>
           <ScrollReveal>
             <span className="badge badge-highlight animate-pulse" style={{ marginBottom: 'var(--space-md)' }}>
-              🚀 VISION & MISSION
+              VISION & MISSION
             </span>
           </ScrollReveal>
 

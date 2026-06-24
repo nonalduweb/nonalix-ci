@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Particles } from '@/components/ui/Particles';
-import { NumberTicker } from '@/components/ui/NumberTicker';
 
 export function HeroSection() {
   return (
@@ -15,6 +14,7 @@ export function HeroSection() {
     >
       {/* Video Background with dark overlay */}
       <div
+        className="hero-video-bg"
         style={{
           position: 'absolute',
           inset: 0,
@@ -64,13 +64,14 @@ export function HeroSection() {
                 fontSize: '0.8125rem',
                 fontWeight: 600,
                 color: 'var(--color-accent)',
+                marginTop: '2rem',
                 marginBottom: 'var(--space-md)',
                 opacity: 0.95,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
               }}
             >
-              Automatisation IA &amp; Croissance Digitale · Abidjan
+              Automatisation IA &amp; Croissance Digitale
             </p>
 
             <h1 className="hero-giant-title stagger-scale-item stagger-scale-2">
@@ -191,39 +192,9 @@ export function HeroSection() {
                 Nous concevons des <span className="text-gradient" style={{ fontWeight: 700 }}>systèmes intelligents</span> qui génèrent des prospects, qualifient vos leads et convertissent vos visiteurs en clients <span className="text-gradient" style={{ fontWeight: 700 }}>24h/24</span>.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Section: Premium Stats Cards (4 Cards) */}
-        <div className="hero-split-stats stagger-scale-item stagger-scale-3">
-          {[
-            { value: 250, prefix: '+', suffix: '%', label: 'Leads générés' },
-            { value: 85, suffix: '%', label: 'Tâches automatisées' },
-            { value: 24, suffix: '/7', label: 'Réponse IA continue' },
-            { value: 107, suffix: '+', label: 'Clients satisfaits' },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="hero-stat-card"
-            >
-              <span
-                style={{
-                  fontSize: '2.25rem',
-                  fontWeight: 800,
-                  fontFamily: 'var(--font-heading)',
-                  color: 'var(--color-text)',
-                  lineHeight: 1.1,
-                }}
-              >
-                {stat.prefix || ''}<NumberTicker value={stat.value} suffix={stat.suffix} />
-              </span>
-              <span style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', fontWeight: 500 }}>
-                {stat.label}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }

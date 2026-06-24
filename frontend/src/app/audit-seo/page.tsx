@@ -203,7 +203,12 @@ export default function AuditSeoPage() {
       <div className="page-content">
         <div className="container section" style={{ paddingTop: 'var(--space-4xl)', paddingBottom: 'var(--space-4xl)' }}>
           <div className="audit-loading-box" style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '4rem', marginBottom: 'var(--space-lg)' }}>🔒</div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'var(--space-lg)', color: 'var(--color-text-secondary)' }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
             <h2 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)', color: 'var(--color-text)', fontFamily: 'var(--font-space-grotesk)' }}>
               Votre audit gratuit a été utilisé
             </h2>
@@ -217,7 +222,7 @@ export default function AuditSeoPage() {
                 className="btn btn-primary btn-lg"
                 style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
               >
-                ✨ Créer un compte gratuit
+                Créer un compte gratuit
               </a>
               <button
                 onClick={() => router.push('/connexion?redirect=/audit-seo')}
@@ -228,7 +233,7 @@ export default function AuditSeoPage() {
               </button>
             </div>
             <p style={{ marginTop: 'var(--space-lg)', fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
-              💡 En créant un compte, vous débloquez 1 audit gratuit supplémentaire !
+              En créant un compte, vous débloquez 1 audit gratuit supplémentaire !
             </p>
           </div>
         </div>
@@ -244,7 +249,12 @@ export default function AuditSeoPage() {
           <div className="audit-loading-box" style={{ textAlign: 'center', maxWidth: '520px', margin: '0 auto' }}>
             {subscriptionSuccess ? (
               <>
-                <div style={{ fontSize: '4rem', marginBottom: 'var(--space-lg)' }}>🎉</div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'var(--space-lg)', color: '#10B981' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                </div>
                 <h2 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)', color: '#10B981', fontFamily: 'var(--font-space-grotesk)' }}>
                   Abonnement activé !
                 </h2>
@@ -275,10 +285,10 @@ export default function AuditSeoPage() {
                     5 000 <span style={{ fontSize: '1rem', color: 'var(--color-text-muted)' }}>FCFA / mois</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: 'var(--space-md)', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
-                    <span>✅ Audits SEO illimités</span>
-                    <span>✅ Analyse IA approfondie</span>
-                    <span>✅ Rapport envoyé par email & WhatsApp</span>
-                    <span>✅ Support prioritaire</span>
+                    <span><span style={{ color: 'var(--color-success)', fontWeight: 'bold', marginRight: '6px' }}>✓</span>Audits SEO illimités</span>
+                    <span><span style={{ color: 'var(--color-success)', fontWeight: 'bold', marginRight: '6px' }}>✓</span>Analyse IA approfondie</span>
+                    <span><span style={{ color: 'var(--color-success)', fontWeight: 'bold', marginRight: '6px' }}>✓</span>Rapport envoyé par email & WhatsApp</span>
+                    <span><span style={{ color: 'var(--color-success)', fontWeight: 'bold', marginRight: '6px' }}>✓</span>Support prioritaire</span>
                   </div>
                 </div>
 
@@ -510,7 +520,7 @@ export default function AuditSeoPage() {
               {/* Focus Marché Cible */}
               <div className="card" style={{ padding: 'var(--space-xl)', background: 'rgba(16, 185, 129, 0.03)', border: '1px solid rgba(16, 185, 129, 0.15)', borderRadius: 'var(--radius-lg)' }}>
                 <h3 style={{ fontSize: '1.1rem', color: '#10B981', display: 'flex', alignItems: 'center', gap: 'var(--space-xs)', marginBottom: 'var(--space-xs)', fontWeight: 700, fontFamily: 'var(--font-space-grotesk)' }}>
-                  🌍 Focus Marché Cible
+                  Focus Marché Cible
                 </h3>
                 <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
                   {auditResult.marketInsight}

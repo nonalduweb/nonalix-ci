@@ -82,7 +82,11 @@ export function ServiceForm({ serviceTitle }: ServiceFormProps) {
   if (status === 'success') {
     return (
       <div className="card" style={{ border: '1px solid var(--color-success)', background: 'rgba(16, 185, 129, 0.05)', textAlign: 'center', padding: 'var(--space-xl)' }}>
-        <div style={{ fontSize: '3rem', marginBottom: 'var(--space-md)' }}>✅</div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'var(--space-md)' }}>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
         <h3 style={{ marginBottom: 'var(--space-sm)' }}>Demande envoyée !</h3>
         <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9375rem' }}>
           Merci pour votre intérêt. Un conseiller de NONALIX CI vous contactera sous 24 heures pour étudier votre projet.

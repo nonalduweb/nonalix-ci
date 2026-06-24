@@ -100,7 +100,7 @@ export default function CommunityPopup() {
                 color: '#FAFAFA',
                 lineHeight: '1.2',
               }}>
-                Rejoins la communauté ! 🚀
+                Rejoins la communauté !
               </div>
               <div style={{
                 fontSize: '0.75rem',

@@ -41,7 +41,7 @@ export function Header() {
                 alt="NONALIX CI"
                 fill
                 style={{ objectFit: 'contain' }}
-                sizes="(max-width: 767px) 164px, 207px"
+                sizes="(max-width: 767px) 130px, 207px"
                 priority
               />
             </div>

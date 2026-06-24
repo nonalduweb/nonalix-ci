@@ -90,7 +90,7 @@ const serviceDetails: Record<string, ServiceDetailContent> = {
 
   'automatisation-business': {
     slug: 'automatisation-business',
-    badge: '🤖 Automatisation',
+    badge: 'Automatisation',
     heroTitle: 'Automatisez votre business,',
     heroHighlight: 'modernisez votre croissance',
     heroDescription: "Nous concevons des tunnels de vente (funnels) performants, des systèmes de conversion intelligents et des automatisations marketing pour structurer votre business et multiplier vos revenus de manière autonome, où que vous soyez.",
@@ -342,7 +342,7 @@ const serviceDetails: Record<string, ServiceDetailContent> = {
 
   'optimisation-conversion-par-ia': {
     slug: 'optimisation-conversion-par-ia',
-    badge: '🤖 Intelligence Artificielle',
+    badge: 'Intelligence Artificielle',
     heroTitle: "L'IA qui optimise",
     heroHighlight: 'vos ventes automatiquement',
     heroDescription: "Notre intelligence artificielle teste en continu des variantes de vos pages, titres et boutons pour identifier ce qui convertit le mieux. Plus de devinettes — que des données.",
