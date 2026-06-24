@@ -139,7 +139,7 @@ export function ServiceForm({ serviceTitle }: ServiceFormProps) {
             name="company"
             value={formData.company}
             onChange={handleChange}
-            placeholder="Ex: Nonalix SARL"
+            placeholder="Ex: NONALIX CI SARL"
             className="input"
             disabled={status === 'submitting'}
           />

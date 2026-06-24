@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { formatPrice, CITIES } from '@/lib/constants';
-import { isValidIvorianPhone } from '@/lib/utils';
 
 type PaymentMethod = 'orange_money' | 'wave' | 'cash_on_delivery';
 
@@ -18,11 +17,20 @@ export default function CheckoutPage() {
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
+    email: '',
     phone: '',
     city: '',
     paymentMethod: '' as PaymentMethod | '',
     consent: false,
   });
+
+  const hasDigital = items.some((item) => item.product.isDigital);
+
+  useEffect(() => {
+    if (hasDigital) {
+      setForm((prev) => ({ ...prev, city: 'En ligne (Livraison par E-mail)' }));
+    }
+  }, [hasDigital]);
 
   if (items.length === 0) {
     return (
@@ -42,22 +50,38 @@ export default function CheckoutPage() {
     }
   };
 
-  // Phone mask: XX XX XX XX XX
   const handlePhoneChange = (value: string) => {
-    const digits = value.replace(/\D/g, '').slice(0, 10);
-    const formatted = digits.replace(/(\d{2})(?=\d)/g, '$1 ').trim();
-    updateField('phone', formatted);
+    // Allow digits, spaces, and leading +
+    const clean = value.replace(/[^\d+\s]/g, '');
+    updateField('phone', clean);
   };
 
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
     if (!form.firstName.trim()) newErrors.firstName = 'Le prénom est requis';
     if (!form.lastName.trim()) newErrors.lastName = 'Le nom est requis';
+    
+    if (hasDigital) {
+      if (!form.email.trim()) {
+        newErrors.email = 'L\'adresse e-mail est requise pour recevoir vos produits';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+        newErrors.email = 'Adresse e-mail invalide';
+      }
+    } else {
+      if (form.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+        newErrors.email = 'Adresse e-mail invalide';
+      }
+    }
+
     if (!form.phone.trim()) {
       newErrors.phone = 'Le numéro de téléphone est requis';
-    } else if (!isValidIvorianPhone(form.phone)) {
-      newErrors.phone = 'Numéro invalide (format: 07 XX XX XX XX)';
+    } else {
+      const cleanedPhone = form.phone.replace(/\s/g, '');
+      if (!/^\+?[0-9]{8,15}$/.test(cleanedPhone)) {
+        newErrors.phone = 'Numéro de téléphone invalide';
+      }
     }
+
     if (!form.city) newErrors.city = 'La ville de livraison est requise';
     if (!form.paymentMethod) newErrors.paymentMethod = 'Choisissez un mode de paiement';
     if (!form.consent) {
@@ -170,35 +194,78 @@ export default function CheckoutPage() {
               </div>
 
               <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
+                <label className="input-label" htmlFor="email">E-mail *</label>
+                <input
+                  id="email"
+                  type="email"
+                  className={`input ${errors.email ? 'input-error' : ''}`}
+                  placeholder="votre.email@exemple.com"
+                  value={form.email}
+                  onChange={(e) => updateField('email', e.target.value)}
+                />
+                {errors.email && <span className="error-text">{errors.email}</span>}
+              </div>
+
+              {hasDigital && (
+                <div style={{
+                  marginTop: 'var(--space-md)',
+                  padding: 'var(--space-sm) var(--space-md)',
+                  background: 'rgba(16, 185, 129, 0.08)',
+                  border: '1px solid rgba(16, 185, 129, 0.25)',
+                  borderRadius: 'var(--radius-md)',
+                  color: 'var(--color-success)',
+                  fontSize: '0.8rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}>
+                  <span>📧</span>
+                  <span>Les liens de téléchargement de vos packs digitaux seront envoyés à cette adresse dès confirmation du paiement.</span>
+                </div>
+              )}
+
+              <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
                 <label className="input-label" htmlFor="phone">Téléphone *</label>
                 <input
                   id="phone"
                   type="tel"
                   className={`input ${errors.phone ? 'input-error' : ''}`}
-                  placeholder="07 06 90 69 30"
+                  placeholder="+225 07 06 90 69 30"
                   value={form.phone}
                   onChange={(e) => handlePhoneChange(e.target.value)}
-                  inputMode="numeric"
                 />
                 {errors.phone && <span className="error-text">{errors.phone}</span>}
               </div>
 
-              <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
-                <label className="input-label" htmlFor="city">Ville / Commune de livraison *</label>
-                <select
-                  id="city"
-                  className={`input ${errors.city ? 'input-error' : ''}`}
-                  value={form.city}
-                  onChange={(e) => updateField('city', e.target.value)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <option value="">Sélectionner votre ville</option>
-                  {CITIES.map((city) => (
-                    <option key={city} value={city}>{city}</option>
-                  ))}
-                </select>
-                {errors.city && <span className="error-text">{errors.city}</span>}
-              </div>
+              {!hasDigital ? (
+                <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
+                  <label className="input-label" htmlFor="city">Ville / Commune de livraison *</label>
+                  <select
+                    id="city"
+                    className={`input ${errors.city ? 'input-error' : ''}`}
+                    value={form.city}
+                    onChange={(e) => updateField('city', e.target.value)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <option value="">Sélectionner votre ville</option>
+                    {CITIES.map((city) => (
+                      <option key={city} value={city}>{city}</option>
+                    ))}
+                  </select>
+                  {errors.city && <span className="error-text">{errors.city}</span>}
+                </div>
+              ) : (
+                <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
+                  <label className="input-label" htmlFor="city">Mode de livraison *</label>
+                  <input
+                    id="city"
+                    className="input"
+                    value="En ligne (Livraison par E-mail)"
+                    disabled
+                    style={{ opacity: 0.8, cursor: 'not-allowed', background: 'rgba(255,255,255,0.02)' }}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Payment Method */}
@@ -241,19 +308,21 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <div
-                  className={`payment-option ${form.paymentMethod === 'cash_on_delivery' ? 'selected' : ''}`}
-                  onClick={() => updateField('paymentMethod', 'cash_on_delivery')}
-                  id="payment-cash"
-                >
-                  <div className="payment-option-icon" style={{ background: 'rgba(16, 185, 129, 0.15)' }}>
-                    <span style={{ fontSize: '1.5rem' }}>💵</span>
+                {!hasDigital && (
+                  <div
+                    className={`payment-option ${form.paymentMethod === 'cash_on_delivery' ? 'selected' : ''}`}
+                    onClick={() => updateField('paymentMethod', 'cash_on_delivery')}
+                    id="payment-cash"
+                  >
+                    <div className="payment-option-icon" style={{ background: 'rgba(16, 185, 129, 0.15)' }}>
+                      <span style={{ fontSize: '1.5rem' }}>💵</span>
+                    </div>
+                    <div className="payment-option-details">
+                      <h4 style={{ color: 'var(--color-success)' }}>Paiement à la livraison</h4>
+                      <p>Cash ou Mobile Money au livreur</p>
+                    </div>
                   </div>
-                  <div className="payment-option-details">
-                    <h4 style={{ color: 'var(--color-success)' }}>Paiement à la livraison</h4>
-                    <p>Cash ou Mobile Money au livreur</p>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
 
@@ -308,3 +377,4 @@ export default function CheckoutPage() {
     </div>
   );
 }
+

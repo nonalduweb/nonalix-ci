@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D0F18"/><stop offset="100%" stop-color="#111827"/></linearGradient></defs>
+  <rect width="600" height="380" fill="url(#bg)"/>
+  <pattern id="d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.7" fill="#1E2130"/></pattern>
+  <rect width="600" height="380" fill="url(#d)"/>
+  <rect x="0" y="0" width="600" height="38" fill="#080A12"/>
+  <rect x="12" y="9" width="60" height="20" rx="4" fill="#1877F2"/><text x="42" y="23" text-anchor="middle" fill="white" font-family="Arial" font-size="9" font-weight="bold">FB ADS</text>
+  <text x="84" y="23" fill="#9CA3AF" font-family="Arial" font-size="11">Pack Marketing Digital &amp; Publicité Ultra-Ciblée — 5 Formations</text>
+  <rect x="490" y="10" width="98" height="18" rx="9" fill="rgba(24,119,242,0.2)" stroke="rgba(24,119,242,0.3)" stroke-width="1"/><text x="539" y="22" text-anchor="middle" fill="#60A5FA" font-family="Arial" font-size="9" font-weight="bold">15 000 FCFA</text>
+  <!-- Ads Manager mockup -->
+  <rect x="12" y="50" width="576" height="114" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <rect x="12" y="50" width="576" height="28" rx="6" fill="#1A2744"/>
+  <text x="24" y="69" fill="#60A5FA" font-family="Arial" font-size="10" font-weight="600">Meta Ads Manager · Gestionnaire de publicités</text>
+  <text x="440" y="69" fill="#4B5563" font-family="Arial" font-size="9">Période: 30 derniers jours</text>
+  <!-- Campaign metrics -->
+  <rect x="24" y="88" width="120" height="64" rx="4" fill="#1A1D2E"/>
+  <text x="84" y="108" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Personnes touchées</text>
+  <text x="84" y="130" text-anchor="middle" fill="white" font-family="Arial" font-size="22" font-weight="bold">142K</text>
+  <text x="84" y="144" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="8">Côte d'Ivoire + Sénégal</text>
+  <rect x="156" y="88" width="120" height="64" rx="4" fill="#1A1D2E"/>
+  <text x="216" y="108" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Clics sur le lien</text>
+  <text x="216" y="130" text-anchor="middle" fill="white" font-family="Arial" font-size="22" font-weight="bold">8,340</text>
+  <text x="216" y="144" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="8">CTR: 5.87%</text>
+  <rect x="288" y="88" width="120" height="64" rx="4" fill="#1A1D2E"/>
+  <text x="348" y="108" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Conversions</text>
+  <text x="348" y="130" text-anchor="middle" fill="white" font-family="Arial" font-size="22" font-weight="bold">312</text>
+  <text x="348" y="144" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="8">Coût/conv: 2 800 FCFA</text>
+  <rect x="420" y="88" width="156" height="64" rx="4" fill="#1A2744" stroke="rgba(24,119,242,0.3)" stroke-width="1"/>
+  <text x="498" y="108" text-anchor="middle" fill="#60A5FA" font-family="Arial" font-size="9">ROAS · Retour sur pub</text>
+  <text x="498" y="130" text-anchor="middle" fill="#60A5FA" font-family="Arial" font-size="22" font-weight="bold">×7.4</text>
+  <text x="498" y="144" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="8">Budget: 87K FCFA investi</text>
+  <!-- Google Analytics 4 widget -->
+  <rect x="12" y="176" width="180" height="80" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="194" fill="white" font-family="Arial" font-size="10" font-weight="600">Google Analytics 4</text>
+  <text x="24" y="212" fill="#9CA3AF" font-family="Arial" font-size="9">Trafic site web</text>
+  <rect x="24" y="218" width="156" height="28" rx="4" fill="#1A1D2E"/>
+  <polyline points="30,240 50,235 70,230 90,225 110,228 130,218 150,212 170,208" stroke="#EA4335" stroke-width="2" fill="none"/>
+  <!-- Formations list -->
+  <rect x="204" y="176" width="384" height="192" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="216" y="196" fill="white" font-family="Arial" font-size="11" font-weight="600">5 formations incluses — 26h+ de contenu</text>
+  <rect x="216" y="204" width="356" height="36" rx="4" fill="#1A2744"/>
+  <text x="228" y="218" fill="#60A5FA" font-family="Arial" font-size="9" font-weight="600">FORMATION 1 — 26h de vidéo</text>
+  <text x="228" y="232" fill="white" font-family="Arial" font-size="10">Facebook Ads de débutant à expert</text>
+  <rect x="216" y="246" width="356" height="36" rx="4" fill="#1A1D2E"/>
+  <text x="228" y="260" fill="#EF4444" font-family="Arial" font-size="9" font-weight="600">FORMATION 2</text>
+  <text x="228" y="274" fill="white" font-family="Arial" font-size="10">Pub réseaux sociaux — campagnes efficaces</text>
+  <rect x="216" y="288" width="356" height="36" rx="4" fill="#1A1D2E"/>
+  <text x="228" y="302" fill="#F59E0B" font-family="Arial" font-size="9" font-weight="600">FORMATION 3</text>
+  <text x="228" y="316" fill="white" font-family="Arial" font-size="10">L'essentiel de Google Analytics 4 (GA4)</text>
+  <rect x="216" y="330" width="356" height="36" rx="4" fill="#1A1D2E"/>
+  <text x="228" y="344" fill="#10B981" font-family="Arial" font-size="9" font-weight="600">FORMATION 4+5</text>
+  <text x="228" y="358" fill="white" font-family="Arial" font-size="10">Fondamentaux marketing · Community Management &amp; Pixel</text>
+  <!-- Remaining left panel -->
+  <rect x="12" y="262" width="180" height="106" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="280" fill="white" font-family="Arial" font-size="10" font-weight="600">Ciblage publicitaire</text>
+  <text x="24" y="296" fill="#9CA3AF" font-family="Arial" font-size="9">Audiences disponibles:</text>
+  <text x="24" y="312" fill="white" font-family="Arial" font-size="9">▸ Par pays (CI, SN, ML...)</text>
+  <text x="24" y="326" fill="white" font-family="Arial" font-size="9">▸ Par centres d'intérêt</text>
+  <text x="24" y="340" fill="white" font-family="Arial" font-size="9">▸ Lookalike audiences</text>
+  <text x="24" y="356" fill="white" font-family="Arial" font-size="9">▸ Retargeting visiteurs</text>
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D0F18"/><stop offset="100%" stop-color="#111827"/></linearGradient></defs>
+  <rect width="600" height="380" fill="url(#bg)"/>
+  <pattern id="d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.7" fill="#1E2130"/></pattern>
+  <rect width="600" height="380" fill="url(#d)"/>
+  <rect x="0" y="0" width="600" height="38" fill="#080A12"/>
+  <rect x="12" y="9" width="70" height="20" rx="4" fill="#7C3AED"/><text x="47" y="23" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">APP DEV</text>
+  <text x="94" y="23" fill="#9CA3AF" font-family="Arial" font-size="11">Application Mobile Sur Mesure — iOS &amp; Android</text>
+  <!-- Phone mockup left -->
+  <rect x="50" y="52" width="160" height="314" rx="22" fill="#1A1D2E" stroke="#2563EB" stroke-width="2"/>
+  <rect x="58" y="60" width="144" height="298" rx="16" fill="#0D0F18"/>
+  <!-- notch -->
+  <rect x="105" y="60" width="50" height="12" rx="6" fill="#1A1D2E"/>
+  <!-- App screen content -->
+  <rect x="66" y="78" width="128" height="44" rx="8" fill="#13151F"/>
+  <text x="130" y="100" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="bold">Ma Boutique</text>
+  <text x="130" y="114" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Abidjan • 247 produits</text>
+  <!-- Search bar -->
+  <rect x="66" y="128" width="128" height="24" rx="12" fill="#1E2336"/>
+  <text x="130" y="144" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="9">🔍 Rechercher...</text>
+  <!-- Categories -->
+  <rect x="66" y="158" width="36" height="36" rx="8" fill="#1A2744"/><text x="84" y="181" text-anchor="middle" fill="#60A5FA" font-family="Arial" font-size="14">👗</text>
+  <rect x="108" y="158" width="36" height="36" rx="8" fill="#1A3520"/><text x="126" y="181" text-anchor="middle" fill="#6EE7B7" font-family="Arial" font-size="14">🥗</text>
+  <rect x="150" y="158" width="36" height="36" rx="8" fill="#1F1535"/><text x="168" y="181" text-anchor="middle" fill="#C084FC" font-family="Arial" font-size="14">📱</text>
+  <!-- Product cards -->
+  <rect x="66" y="200" width="56" height="70" rx="6" fill="#13151F"/><text x="94" y="240" text-anchor="middle" fill="#2563EB" font-family="Arial" font-size="18">👜</text><text x="94" y="262" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="8" font-weight="bold">12K FCFA</text>
+  <rect x="130" y="200" width="64" height="70" rx="6" fill="#13151F" stroke="#2563EB" stroke-width="1"/><text x="162" y="240" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="18">🍕</text><text x="162" y="262" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="8" font-weight="bold">8K FCFA</text>
+  <!-- Bottom nav -->
+  <rect x="58" y="340" width="144" height="18" rx="0" fill="#13151F"/>
+  <text x="86" y="353" text-anchor="middle" fill="#2563EB" font-family="Arial" font-size="12">🏠</text>
+  <text x="114" y="353" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="12">🛒</text>
+  <text x="142" y="353" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="12">👤</text>
+  <text x="170" y="353" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="12">💬</text>
+  <!-- Right panel -->
+  <rect x="235" y="52" width="352" height="314" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="252" y="78" fill="white" font-family="Arial" font-size="13" font-weight="700">Votre App sur mesure</text>
+  <!-- Tech stack -->
+  <text x="252" y="100" fill="#9CA3AF" font-family="Arial" font-size="10">Stack technique</text>
+  <rect x="252" y="106" width="72" height="26" rx="13" fill="#1A2744"/><text x="288" y="123" text-anchor="middle" fill="#60A5FA" font-family="Arial" font-size="10" font-weight="600">React Native</text>
+  <rect x="332" y="106" width="60" height="26" rx="13" fill="#1A3520"/><text x="362" y="123" text-anchor="middle" fill="#6EE7B7" font-family="Arial" font-size="10" font-weight="600">Node.js</text>
+  <rect x="400" y="106" width="60" height="26" rx="13" fill="#1F1535"/><text x="430" y="123" text-anchor="middle" fill="#C084FC" font-family="Arial" font-size="10" font-weight="600">Firebase</text>
+  <!-- Features list -->
+  <text x="252" y="152" fill="#9CA3AF" font-family="Arial" font-size="10">Fonctionnalités incluses</text>
+  <rect x="252" y="160" width="320" height="1" fill="#1E2336"/>
+  <text x="252" y="180" fill="white" font-family="Arial" font-size="11">✓  Authentification (email, Google, numéro)</text>
+  <text x="252" y="198" fill="white" font-family="Arial" font-size="11">✓  Paiement Orange Money &amp; Wave intégré</text>
+  <text x="252" y="216" fill="white" font-family="Arial" font-size="11">✓  Notifications push personnalisées</text>
+  <text x="252" y="234" fill="white" font-family="Arial" font-size="11">✓  Géolocalisation &amp; carte interactive</text>
+  <text x="252" y="252" fill="white" font-family="Arial" font-size="11">✓  Dashboard admin temps réel</text>
+  <text x="252" y="270" fill="white" font-family="Arial" font-size="11">✓  Publication App Store &amp; Play Store</text>
+  <!-- Timeline -->
+  <rect x="252" y="284" width="320" height="1" fill="#1E2336"/>
+  <text x="252" y="300" fill="#9CA3AF" font-family="Arial" font-size="10">Délai de livraison</text>
+  <rect x="252" y="308" width="320" height="28" rx="4" fill="#1A1D2E"/>
+  <!-- Progress -->
+  <rect x="260" y="316" width="80" height="12" rx="6" fill="#1E2336"/>
+  <rect x="260" y="316" width="80" height="12" rx="6" fill="#2563EB"/>
+  <text x="348" y="326" fill="#9CA3AF" font-family="Arial" font-size="8">Design</text>
+  <rect x="380" y="316" width="80" height="12" rx="6" fill="#1E2336"/>
+  <rect x="380" y="316" width="56" height="12" rx="6" fill="#7C3AED"/>
+  <text x="468" y="326" fill="#9CA3AF" font-family="Arial" font-size="8">Dev</text>
+  <rect x="500" y="316" width="60" height="12" rx="6" fill="#1E2336"/>
+  <rect x="500" y="316" width="20" height="12" rx="6" fill="#10B981"/>
+  <text x="568" y="326" fill="#9CA3AF" font-family="Arial" font-size="8">Livraison</text>
+  <text x="252" y="352" fill="#4B5563" font-family="Arial" font-size="10">Délai moyen : 6 à 10 semaines · Maintenance incluse 3 mois</text>
+</svg>

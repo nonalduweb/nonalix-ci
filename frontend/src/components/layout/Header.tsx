@@ -37,7 +37,7 @@ export function Header() {
           <Link href="/" aria-label="NONALIX CI — Accueil" style={{ display: 'flex', alignItems: 'center' }}>
             <div className="logo-container">
               <Image
-                src="/images/logo.png?v=3"
+                src="/images/brand/logo.png"
                 alt="NONALIX CI"
                 fill
                 style={{ objectFit: 'contain' }}
@@ -144,7 +144,7 @@ export function Header() {
         <div style={{ marginBottom: 'var(--space-md)', display: 'flex', justifyContent: 'center', width: '100%' }}>
           <div className="logo-container" style={{ height: '30px', width: '164px', position: 'relative' }}>
             <Image
-              src="/images/logo.png?v=3"
+              src="/images/brand/logo.png"
               alt="NONALIX CI"
               fill
               style={{ objectFit: 'contain' }}

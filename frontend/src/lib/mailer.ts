@@ -123,6 +123,7 @@ export async function sendAdminOrderNotification(order: {
   id: string;
   firstName: string;
   lastName: string;
+  email?: string | null;
   phone: string;
   city: string;
   totalAmount: number;
@@ -150,6 +151,12 @@ export async function sendAdminOrderNotification(order: {
           <td style="padding: 8px 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Client :</td>
           <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9;">${order.firstName} ${order.lastName}</td>
         </tr>
+        ${order.email ? `
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Email client :</td>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9;"><a href="mailto:${order.email}">${order.email}</a></td>
+        </tr>
+        ` : ''}
         <tr>
           <td style="padding: 8px 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Téléphone :</td>
           <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9;"><a href="tel:${order.phone}">${order.phone}</a></td>
@@ -328,16 +335,16 @@ export async function sendUserAuditNotification(
         }).join('')}
       </div>
 
-      <!-- Côte d'Ivoire Market Insight -->
+      <!-- Market Insight -->
       <div style="background-color: #f0fdf4; border-left: 4px solid #10b981; padding: 15px; border-radius: 4px; margin: 25px 0;">
-        <h4 style="margin: 0 0 8px 0; color: #065f46; font-size: 0.95rem; font-weight: 700;">Conseil Marché Ivoirien :</h4>
+        <h4 style="margin: 0 0 8px 0; color: #065f46; font-size: 0.95rem; font-weight: 700;">Conseil Stratégique :</h4>
         <p style="margin: 0; font-size: 0.9rem; color: #064e3b;">${audit.marketInsight}</p>
       </div>
 
       <!-- CTA -->
       <div style="text-align: center; margin-top: 35px; border-top: 1px solid #f1f5f9; padding-top: 25px;">
         <p style="font-size: 0.9rem; color: #475569; margin-bottom: 20px;">
-          Vous souhaitez corriger ces points et accélérer la croissance de votre entreprise en Côte d'Ivoire ?
+          Vous souhaitez corriger ces points et accélérer la croissance de votre entreprise ?
         </p>
         <a href="https://wa.me/2250706906930?text=Bonjour%20NONALIX%20CI,%20je%20viens%20de%20recevoir%20mon%20rapport%20d'audit%20(Score:%20${audit.globalScore}/100)%20et%20j'aimerais%20en%20discuter." 
            style="background-color: #10b981; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 0.95rem; box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);">
@@ -381,4 +388,130 @@ Score Global: ${audit.globalScore}/100
     `);
   }
 }
+
+/**
+ * Sends digital products download links to the customer
+ */
+export async function sendDigitalProductsDeliveryEmail(order: {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  totalAmount: number;
+}, items: Array<{
+  product: {
+    name: string;
+    isDigital: boolean;
+    downloadUrl: string | null;
+  };
+  quantity: number;
+}>) {
+  const subject = `[NONALIX CI] Vos liens de téléchargement - Commande ${order.id}`;
+  const from = process.env.SMTP_FROM || 'no-reply@nonalix-ci.com';
+
+  const digitalItems = items.filter(i => i.product.isDigital && i.product.downloadUrl);
+
+  const html = `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b; line-height: 1.6;">
+      <!-- Header -->
+      <div style="text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 25px;">
+        <h1 style="color: #4f46e5; margin: 0; font-size: 1.5rem; letter-spacing: 1px;">NONALIX CI</h1>
+        <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b; font-weight: 500;">Votre espace de croissance digitale</p>
+      </div>
+
+      <!-- Introduction -->
+      <h2 style="color: #1e293b; margin-top: 0; font-size: 1.3rem;">Félicitations ${order.firstName},</h2>
+      <p style="font-size: 0.95rem; color: #475569;">
+        Nous vous remercions pour votre confiance. Votre paiement a été validé et vos packs digitaux sont prêts à être téléchargés.
+      </p>
+
+      <!-- Order Details -->
+      <div style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #f1f5f9; font-size: 0.875rem;">
+        <div style="margin-bottom: 5px;"><strong>Commande :</strong> ${order.id}</div>
+        <div><strong>Date :</strong> ${new Date().toLocaleDateString('fr-FR')}</div>
+      </div>
+
+      <!-- Links list -->
+      <h3 style="color: #334155; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 25px;">Vos packs de formation & ressources</h3>
+      
+      <div style="margin-top: 15px;">
+        ${digitalItems.map((item, idx) => {
+          const isMega = item.product.downloadUrl?.includes('mega.nz');
+          const providerName = isMega ? 'MEGA' : 'Google Drive';
+          const providerColor = isMega ? '#d92c20' : '#0f9d58';
+          const providerIcon = isMega ? '☁️' : '📂';
+
+          return `
+            <div style="margin-bottom: 25px; padding: 18px; border: 1px solid #e2e8f0; border-radius: 10px; background-color: #fafafa;">
+              <h4 style="margin: 0 0 10px 0; font-size: 1rem; color: #1e293b;">${idx + 1}. ${item.product.name}</h4>
+              <p style="margin: 0 0 15px 0; font-size: 0.85rem; color: #64748b;">
+                Hébergé de manière sécurisée sur <strong>${providerName}</strong>. Accès à vie et illimité.
+              </p>
+              <div style="text-align: center;">
+                <a href="${item.product.downloadUrl}" target="_blank" 
+                   style="background-color: ${providerColor}; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; font-size: 0.9rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                  ${providerIcon} Accéder au pack (${providerName})
+                </a>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+
+      <!-- FAQ / Guidelines -->
+      <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px; margin: 25px 0; font-size: 0.875rem; color: #1e3a8a;">
+        <h4 style="margin: 0 0 8px 0; font-weight: 700;">💡 Astuce de téléchargement :</h4>
+        <p style="margin: 0 0 6px 0;">Certains packs contiennent des fichiers compressés (formats ZIP/RAR) pour conserver la qualité des vidéos et outils.</p>
+        <p style="margin: 0;">Nous vous recommandons de les télécharger depuis un ordinateur pour les extraire plus facilement.</p>
+      </div>
+
+      <!-- Support CTA -->
+      <div style="text-align: center; margin-top: 30px; border-top: 1px solid #f1f5f9; padding-top: 20px;">
+        <p style="font-size: 0.9rem; color: #475569; margin-bottom: 15px;">
+          Un problème pour télécharger vos fichiers ou une question ?
+        </p>
+        <a href="https://wa.me/2250566360303?text=Bonjour%20NONALIX%20CI,%20j'ai%20besoin%20d'aide%20concernant%20ma%20commande%20${order.id}." 
+           style="background-color: #10b981; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; font-size: 0.85rem;">
+          💬 Contacter le Support WhatsApp
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <div style="text-align: center; margin-top: 35px; padding-top: 15px; border-top: 1px solid #f1f5f9; font-size: 0.75rem; color: #94a3b8;">
+        © ${new Date().getFullYear()} NONALIX CI. Tous droits réservés.<br/>
+        Email : contact@nonalix-ci.com | Téléphone : +225 05 66 36 03 03
+      </div>
+    </div>
+  `;
+
+  const transporter = getTransporter();
+  if (transporter) {
+    try {
+      await transporter.sendMail({
+        from,
+        to: order.email,
+        subject,
+        html,
+      });
+      console.log(`[DIGITAL DELIVERY SENT] Order ${order.id} links successfully sent to ${order.email}`);
+    } catch (err) {
+      console.error('[SMTP DIGITAL DELIVERY FAIL]', err);
+    }
+  } else {
+    console.log(`
+=========================================
+[DIGITAL DELIVERY EMAIL SIMULATION] Links Sent
+To: ${order.email}
+Subject: ${subject}
+-----------------------------------------
+ID: ${order.id}
+Client: ${order.firstName} ${order.lastName}
+Links:
+${digitalItems.map((item, idx) => `${idx + 1}. ${item.product.name} => ${item.product.downloadUrl}`).join('\n')}
+=========================================
+    `);
+  }
+}
+
 

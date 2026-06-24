@@ -22,7 +22,7 @@ export function VideoCurtain() {
       <div className="video-wrapper">
         <video
           ref={videoRef}
-          src="/images/products/trie/schémas d'automatisation.mp4"
+          src="/videos/automation-schema.mp4"
           autoPlay
           loop
           muted

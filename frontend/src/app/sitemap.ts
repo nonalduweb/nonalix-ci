@@ -28,37 +28,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/audit-seo`,
       lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.92,
     },
     {
       url: `${BASE_URL}/portfolio`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.82,
     },
     {
       url: `${BASE_URL}/boutique`,
       lastModified: now,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${BASE_URL}/a-propos`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.72,
     },
     {
       url: `${BASE_URL}/contact`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/connexion`,
-      lastModified: now,
-      changeFrequency: 'yearly',
-      priority: 0.3,
+      priority: 0.78,
     },
     {
       url: `${BASE_URL}/mentions-legales`,
@@ -70,21 +64,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Pages de services détaillées
   const servicePages = [
-    'design-web-ui-ux',
-    'developpement-web',
-    'automatisation-business',
-    'optimisation-seo',
-    'campagnes-publicitaires-ppc',
-    'boutiques-shopify',
-    'marketing-digital',
-    'audit-ux-ui',
-    'solutions-ecommerce-sur-mesure',
-    'optimisation-conversion-par-ia',
-  ].map((slug) => ({
+    { slug: 'design-web-ui-ux', priority: 0.85 },
+    { slug: 'developpement-web', priority: 0.9 },
+    { slug: 'automatisation-business', priority: 0.9 },
+    { slug: 'optimisation-seo', priority: 0.9 },
+    { slug: 'campagnes-publicitaires-ppc', priority: 0.8 },
+    { slug: 'boutiques-shopify', priority: 0.8 },
+    { slug: 'marketing-digital', priority: 0.85 },
+    { slug: 'audit-ux-ui', priority: 0.75 },
+    { slug: 'solutions-ecommerce-sur-mesure', priority: 0.85 },
+    { slug: 'optimisation-conversion-par-ia', priority: 0.8 },
+  ].map(({ slug, priority }) => ({
     url: `${BASE_URL}/services/${slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    priority,
   }));
 
   // Pages boutique produits détaillées

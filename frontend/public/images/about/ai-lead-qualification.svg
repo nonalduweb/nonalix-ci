@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" width="760" height="520">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D0F18"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="score-fill" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="score-high" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <filter id="panel-shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.5)"/>
+    </filter>
+    <filter id="glow-green">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <clipPath id="left-clip"><rect x="16" y="52" width="290" height="452" rx="10"/></clipPath>
+    <clipPath id="right-clip"><rect x="322" y="52" width="422" height="452" rx="10"/></clipPath>
+  </defs>
+
+  <!-- Global background -->
+  <rect width="760" height="520" fill="url(#bg-grad)"/>
+
+  <!-- Subtle grid -->
+  <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="10" cy="10" r="0.8" fill="#1E2130"/>
+  </pattern>
+  <rect width="760" height="520" fill="url(#dots)"/>
+
+  <!-- TOP BAR -->
+  <rect x="0" y="0" width="760" height="44" fill="#080A12"/>
+  <!-- Logo / name -->
+  <rect x="16" y="12" width="54" height="20" rx="4" fill="#2563EB"/>
+  <text x="43" y="26" text-anchor="middle" fill="white" font-family="monospace" font-size="11" font-weight="bold">NONALIX</text>
+  <text x="82" y="26" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="12">AI Platform</text>
+  <text x="200" y="26" fill="#6B7280" font-family="Arial, sans-serif" font-size="12">›</text>
+  <text x="215" y="26" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="500">Lead Intelligence</text>
+  <!-- Status -->
+  <circle cx="698" cy="22" r="5" fill="#10B981"/>
+  <text x="710" y="26" fill="#10B981" font-family="Arial, sans-serif" font-size="11" font-weight="600">Actif</text>
+
+  <!-- ════════════════════════════════════════
+       LEFT PANEL — Chat Qualification
+       ════════════════════════════════════════ -->
+  <rect x="16" y="52" width="290" height="452" rx="10" fill="#13151F" filter="url(#panel-shadow)"/>
+
+  <!-- Chat header -->
+  <rect x="16" y="52" width="290" height="50" rx="10" fill="#1A1D2E"/>
+  <rect x="16" y="82" width="290" height="20" fill="#1A1D2E"/>
+  <!-- Avatar -->
+  <circle cx="44" cy="77" r="14" fill="#2563EB"/>
+  <text x="44" y="82" text-anchor="middle" fill="white" font-family="monospace" font-size="11" font-weight="bold">AI</text>
+  <text x="64" y="72" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="600">Agent Qualification</text>
+  <circle cx="66" cy="83" r="4" fill="#10B981"/>
+  <text x="76" y="87" fill="#10B981" font-family="Arial, sans-serif" font-size="10">En ligne</text>
+  <!-- Channels icon -->
+  <text x="282" y="80" text-anchor="end" fill="#4B5563" font-family="Arial, sans-serif" font-size="10">WhatsApp · Web</text>
+
+  <!-- Chat messages -->
+  <!-- BOT: Question 1 -->
+  <rect x="28" y="116" width="196" height="42" rx="7" fill="#1E2336"/>
+  <rect x="28" y="116" width="3" height="42" rx="1" fill="#2563EB"/>
+  <text x="38" y="132" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="9" font-weight="600">AGENT IA</text>
+  <text x="38" y="147" fill="white" font-family="Arial, sans-serif" font-size="11">Bonjour ! Quel est votre</text>
+  <text x="38" y="161" fill="white" font-family="Arial, sans-serif" font-size="11">secteur d'activité ?</text>
+  <text x="220" y="152" text-anchor="end" fill="#4B5563" font-family="Arial, sans-serif" font-size="9">14:02</text>
+
+  <!-- USER: Reply 1 -->
+  <rect x="94" y="170" width="196" height="30" rx="7" fill="#1F3A5F"/>
+  <text x="108" y="189" fill="white" font-family="Arial, sans-serif" font-size="11">Commerce de détail 🛍️</text>
+  <text x="284" y="193" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="Arial, sans-serif" font-size="9">14:03 ✓✓</text>
+
+  <!-- BOT: Question 2 -->
+  <rect x="28" y="212" width="210" height="42" rx="7" fill="#1E2336"/>
+  <rect x="28" y="212" width="3" height="42" rx="1" fill="#2563EB"/>
+  <text x="38" y="228" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="9" font-weight="600">AGENT IA</text>
+  <text x="38" y="243" fill="white" font-family="Arial, sans-serif" font-size="11">Votre budget mensuel pour</text>
+  <text x="38" y="257" fill="white" font-family="Arial, sans-serif" font-size="11">le digital ? (FCFA)</text>
+  <text x="234" y="248" text-anchor="end" fill="#4B5563" font-family="Arial, sans-serif" font-size="9">14:03</text>
+
+  <!-- USER: Reply 2 -->
+  <rect x="80" y="266" width="210" height="30" rx="7" fill="#1F3A5F"/>
+  <text x="94" y="285" fill="white" font-family="Arial, sans-serif" font-size="11">Entre 500K et 1M FCFA/mois</text>
+  <text x="284" y="289" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="Arial, sans-serif" font-size="9">14:04 ✓✓</text>
+
+  <!-- BOT: Question 3 -->
+  <rect x="28" y="308" width="200" height="42" rx="7" fill="#1E2336"/>
+  <rect x="28" y="308" width="3" height="42" rx="1" fill="#2563EB"/>
+  <text x="38" y="324" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="9" font-weight="600">AGENT IA</text>
+  <text x="38" y="339" fill="white" font-family="Arial, sans-serif" font-size="11">Quand souhaitez-vous</text>
+  <text x="38" y="353" fill="white" font-family="Arial, sans-serif" font-size="11">démarrer le projet ?</text>
+  <text x="224" y="344" text-anchor="end" fill="#4B5563" font-family="Arial, sans-serif" font-size="9">14:04</text>
+
+  <!-- USER: Reply 3 -->
+  <rect x="116" y="362" width="174" height="30" rx="7" fill="#1F3A5F"/>
+  <text x="130" y="381" fill="white" font-family="Arial, sans-serif" font-size="11">Ce mois-ci — urgent ! 🚀</text>
+  <text x="284" y="385" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="Arial, sans-serif" font-size="9">14:05 ✓✓</text>
+
+  <!-- BOT: Scoring in progress -->
+  <rect x="28" y="404" width="224" height="52" rx="7" fill="#1A2744"/>
+  <rect x="28" y="404" width="3" height="52" rx="1" fill="#10B981"/>
+  <text x="38" y="420" fill="#10B981" font-family="Arial, sans-serif" font-size="9" font-weight="600">AGENT IA — ANALYSE</text>
+  <text x="38" y="436" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="500">Lead qualifié détecté !</text>
+  <text x="38" y="450" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="10">Transfert CRM en cours...</text>
+  <!-- Animated dots indicator -->
+  <circle cx="44" cy="465" r="3" fill="#2563EB" opacity="0.9"/>
+  <circle cx="54" cy="465" r="3" fill="#2563EB" opacity="0.6"/>
+  <circle cx="64" cy="465" r="3" fill="#2563EB" opacity="0.3"/>
+
+  <!-- ════════════════════════════════════════
+       RIGHT PANEL — Lead Scoring Dashboard
+       ════════════════════════════════════════ -->
+  <rect x="322" y="52" width="422" height="452" rx="10" fill="#13151F" filter="url(#panel-shadow)"/>
+
+  <!-- Panel header -->
+  <rect x="322" y="52" width="422" height="50" rx="10" fill="#1A1D2E"/>
+  <rect x="322" y="82" width="422" height="20" fill="#1A1D2E"/>
+  <text x="342" y="72" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="700">Lead Intelligence Score</text>
+  <text x="342" y="89" fill="#6B7280" font-family="Arial, sans-serif" font-size="11">Analyse en temps réel — BANT Framework</text>
+  <!-- Live indicator -->
+  <circle cx="700" cy="68" r="5" fill="#10B981" filter="url(#glow-green)"/>
+  <text x="712" y="72" fill="#10B981" font-family="Arial, sans-serif" font-size="11">LIVE</text>
+
+  <!-- ── BIG SCORE CIRCLE ── -->
+  <!-- Background circle -->
+  <circle cx="457" cy="185" r="72" fill="#1A1D2E" stroke="#2D3148" stroke-width="2"/>
+  <!-- Score arc (approx 94%) - using path for arc -->
+  <circle cx="457" cy="185" r="62" fill="none" stroke="#1E2847" stroke-width="12"/>
+  <circle cx="457" cy="185" r="62" fill="none" stroke="#2563EB" stroke-width="12" stroke-linecap="round"
+          stroke-dasharray="367 30" stroke-dashoffset="97" transform="rotate(-90 457 185)"/>
+  <!-- Score text -->
+  <text x="457" y="178" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="36" font-weight="bold">94</text>
+  <text x="457" y="196" text-anchor="middle" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="13">/100</text>
+  <!-- HOT LEAD badge -->
+  <rect x="417" y="208" width="80" height="20" rx="10" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.4)" stroke-width="1"/>
+  <text x="457" y="222" text-anchor="middle" fill="#10B981" font-family="Arial, sans-serif" font-size="10" font-weight="700">🔥 HOT LEAD</text>
+
+  <!-- Lead Info -->
+  <text x="570" y="135" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Prospect</text>
+  <text x="570" y="150" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="600">Kouadio Entreprises</text>
+  <text x="570" y="166" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Commerce · Abidjan</text>
+  <text x="570" y="186" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Budget</text>
+  <text x="570" y="201" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="600">500K–1M FCFA/mois</text>
+  <text x="570" y="221" fill="#6B7280" font-family="Arial, sans-serif" font-size="10">Timing</text>
+  <text x="570" y="236" fill="#F59E0B" font-family="Arial, sans-serif" font-size="12" font-weight="600">⚡ Immédiat</text>
+
+  <!-- ── CRITERIA BARS ── -->
+  <text x="342" y="290" fill="#9CA3AF" font-family="Arial, sans-serif" font-size="10" font-weight="600" letter-spacing="1">CRITÈRES BANT</text>
+
+  <!-- Budget -->
+  <text x="342" y="312" fill="white" font-family="Arial, sans-serif" font-size="12">Budget</text>
+  <text x="726" y="312" text-anchor="end" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="600">88%</text>
+  <rect x="342" y="318" width="380" height="8" rx="4" fill="#1E2336"/>
+  <rect x="342" y="318" width="335" height="8" rx="4" fill="url(#score-high)"/>
+
+  <!-- Authority -->
+  <text x="342" y="344" fill="white" font-family="Arial, sans-serif" font-size="12">Autorité (décideur)</text>
+  <text x="726" y="344" text-anchor="end" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="600">92%</text>
+  <rect x="342" y="350" width="380" height="8" rx="4" fill="#1E2336"/>
+  <rect x="342" y="350" width="350" height="8" rx="4" fill="url(#score-high)"/>
+
+  <!-- Need -->
+  <text x="342" y="376" fill="white" font-family="Arial, sans-serif" font-size="12">Besoin identifié</text>
+  <text x="726" y="376" text-anchor="end" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="600">96%</text>
+  <rect x="342" y="382" width="380" height="8" rx="4" fill="#1E2336"/>
+  <rect x="342" y="382" width="365" height="8" rx="4" fill="url(#score-high)"/>
+
+  <!-- Timing -->
+  <text x="342" y="408" fill="white" font-family="Arial, sans-serif" font-size="12">Timing (urgence)</text>
+  <text x="726" y="408" text-anchor="end" fill="#10B981" font-family="Arial, sans-serif" font-size="12" font-weight="600">100%</text>
+  <rect x="342" y="414" width="380" height="8" rx="4" fill="#1E2336"/>
+  <rect x="342" y="414" width="380" height="8" rx="4" fill="url(#score-high)"/>
+
+  <!-- ── AUTOMATED ACTIONS ── -->
+  <rect x="342" y="438" width="402" height="52" rx="8" fill="#0D1F12" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+  <text x="358" y="456" fill="#10B981" font-family="Arial, sans-serif" font-size="10" font-weight="700">ACTIONS AUTOMATIQUES DÉCLENCHÉES</text>
+  <!-- Action 1 -->
+  <circle cx="360" cy="469" r="4" fill="#10B981"/>
+  <text x="370" y="473" fill="#D1FAE5" font-family="Arial, sans-serif" font-size="10">Fiche créée dans HubSpot CRM</text>
+  <!-- Action 2 -->
+  <circle cx="510" cy="469" r="4" fill="#10B981"/>
+  <text x="520" y="473" fill="#D1FAE5" font-family="Arial, sans-serif" font-size="10">WhatsApp relance → 30 min</text>
+  <!-- Action 3 -->
+  <circle cx="360" cy="484" r="4" fill="#2563EB"/>
+  <text x="370" y="488" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="10">Email personnalisé envoyé</text>
+  <!-- Action 4 -->
+  <circle cx="510" cy="484" r="4" fill="#2563EB"/>
+  <text x="520" y="488" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="10">Commercial notifié</text>
+</svg>

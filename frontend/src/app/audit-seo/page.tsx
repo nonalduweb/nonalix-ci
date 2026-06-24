@@ -507,10 +507,10 @@ export default function AuditSeoPage() {
                 </div>
               </div>
 
-              {/* Market Insight Côte d'Ivoire */}
+              {/* Focus Marché Cible */}
               <div className="card" style={{ padding: 'var(--space-xl)', background: 'rgba(16, 185, 129, 0.03)', border: '1px solid rgba(16, 185, 129, 0.15)', borderRadius: 'var(--radius-lg)' }}>
                 <h3 style={{ fontSize: '1.1rem', color: '#10B981', display: 'flex', alignItems: 'center', gap: 'var(--space-xs)', marginBottom: 'var(--space-xs)', fontWeight: 700, fontFamily: 'var(--font-space-grotesk)' }}>
-                  🇨🇮 Focus Côte d&apos;Ivoire
+                  🌍 Focus Marché Cible
                 </h3>
                 <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.6' }}>
                   {auditResult.marketInsight}

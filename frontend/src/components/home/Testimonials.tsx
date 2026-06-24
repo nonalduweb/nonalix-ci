@@ -1,6 +1,6 @@
 const testimonials = [
   {
-    text: "Grâce à l'agent IA de NONALIX, nous avons généré +147% de leads qualifiés en seulement 60 jours. Notre équipe commerciale ne perd plus de temps sur les prospects non qualifiés — l'IA fait le tri automatiquement.",
+    text: "Grâce à l'agent IA de NONALIX CI, nous avons généré +147% de leads qualifiés en seulement 60 jours. Notre équipe commerciale ne perd plus de temps sur les prospects non qualifiés — l'IA fait le tri automatiquement.",
     name: 'Kouadio Yao',
     role: 'Directeur Commercial, TechPlus Abidjan',
     initials: 'KY',

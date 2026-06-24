@@ -140,11 +140,11 @@ export default function ConnexionPage() {
       }
       
       const cleanPhone = phone.replace(/[\s.-]/g, '');
-      const phoneRegex = /^0[157]\d{8}$/;
+      const phoneRegex = /^\+?[0-9]{8,15}$/;
       if (!phone.trim()) {
         newErrors.phone = 'Le numéro de téléphone est requis.';
       } else if (!phoneRegex.test(cleanPhone)) {
-        newErrors.phone = "Le numéro doit être au format de Côte d'Ivoire (ex: 0707070707).";
+        newErrors.phone = "Le numéro doit être au format valide (ex: +2250707070707).";
       }
 
       if (!activitySector) {
@@ -246,7 +246,7 @@ export default function ConnexionPage() {
               marginBottom: '0.5rem',
               color: '#ffffff'
             }}>
-              {isSignUp ? 'Créer un compte' : 'Bienvenue sur Nonalix'}
+              {isSignUp ? 'Créer un compte' : 'Bienvenue sur NONALIX CI'}
             </h1>
             
             <p style={{ fontSize: '0.875rem', color: '#94a3b8' }}>
@@ -460,7 +460,7 @@ export default function ConnexionPage() {
                       <label style={{ fontSize: '0.75rem', fontWeight: 600, color: '#94a3b8' }}>Téléphone *</label>
                       <input
                         type="tel"
-                        placeholder="ex: 0707070707"
+                        placeholder="ex: +2250707070707 ou +33..."
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         disabled={isLoading}
@@ -673,7 +673,7 @@ export default function ConnexionPage() {
                       animation: 'spin 0.6s linear infinite'
                     }} />
                   ) : (
-                    isSignUp ? 'Créer mon compte Nonalix' : 'Se connecter à Nonalix'
+                    isSignUp ? 'Créer mon compte NONALIX CI' : 'Se connecter à NONALIX CI'
                   )}
                 </button>
 
@@ -694,7 +694,7 @@ export default function ConnexionPage() {
         
         {/* Vidéo de la planète en boucle */}
         <video
-          src="/images/products/planet-nonalix.webm"
+          src="/videos/planet-nonalix.webm"
           autoPlay
           loop
           muted

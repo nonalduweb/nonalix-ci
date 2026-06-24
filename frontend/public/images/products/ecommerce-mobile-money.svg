@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D0F18"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#bg)"/>
+  <pattern id="d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.7" fill="#1E2130"/></pattern>
+  <rect width="600" height="380" fill="url(#d)"/>
+  <!-- Top bar -->
+  <rect x="0" y="0" width="600" height="38" fill="#080A12"/>
+  <rect x="12" y="9" width="70" height="20" rx="4" fill="#2563EB"/><text x="47" y="23" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">NONALIX</text>
+  <text x="94" y="23" fill="#9CA3AF" font-family="Arial" font-size="11">E-commerce Platform</text>
+  <circle cx="560" cy="19" r="5" fill="#10B981"/><text x="572" y="23" fill="#10B981" font-family="Arial" font-size="10">Live</text>
+  <!-- Store header -->
+  <rect x="12" y="50" width="576" height="44" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <rect x="24" y="58" width="80" height="28" rx="4" fill="#1F2A40"/>
+  <text x="64" y="77" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="bold">MA BOUTIQUE</text>
+  <text x="200" y="76" fill="#9CA3AF" font-family="Arial" font-size="11">Accueil</text>
+  <text x="260" y="76" fill="#9CA3AF" font-family="Arial" font-size="11">Produits</text>
+  <text x="322" y="76" fill="#9CA3AF" font-family="Arial" font-size="11">Contact</text>
+  <rect x="480" y="58" width="96" height="26" rx="13" fill="#2563EB"/><text x="528" y="75" text-anchor="middle" fill="white" font-family="Arial" font-size="11" font-weight="600">Panier (2)</text>
+  <!-- Product grid -->
+  <rect x="12" y="106" width="182" height="140" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <rect x="22" y="116" width="162" height="80" rx="4" fill="#1A2744"/>
+  <text x="103" y="162" text-anchor="middle" fill="#2563EB" font-family="Arial" font-size="28">👗</text>
+  <text x="22" y="212" fill="white" font-family="Arial" font-size="11" font-weight="600">Robe Wax Premium</text>
+  <text x="22" y="228" fill="#10B981" font-family="Arial" font-size="12" font-weight="bold">15 000 FCFA</text>
+  <rect x="22" y="232" width="162" height="8" rx="3" fill="#2563EB" opacity="0.15"/>
+  <rect x="197" y="106" width="182" height="140" rx="6" fill="#13151F" stroke="#2563EB" stroke-width="1"/>
+  <rect x="207" y="116" width="162" height="80" rx="4" fill="#1A3520"/>
+  <text x="288" y="162" text-anchor="middle" fill="#10B981" font-family="Arial" font-size="28">🍱</text>
+  <rect x="207" y="116" width="50" height="18" rx="9" fill="#2563EB"/><text x="232" y="128" text-anchor="middle" fill="white" font-family="Arial" font-size="8" font-weight="bold">BEST</text>
+  <text x="207" y="212" fill="white" font-family="Arial" font-size="11" font-weight="600">Pack Traiteur 10p</text>
+  <text x="207" y="228" fill="#10B981" font-family="Arial" font-size="12" font-weight="bold">45 000 FCFA</text>
+  <rect x="382" y="106" width="206" height="140" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <rect x="392" y="116" width="186" height="80" rx="4" fill="#1F1A30"/>
+  <text x="485" y="162" text-anchor="middle" fill="#7C3AED" font-family="Arial" font-size="28">📱</text>
+  <text x="392" y="212" fill="white" font-family="Arial" font-size="11" font-weight="600">Accessoires Téléphone</text>
+  <text x="392" y="228" fill="#10B981" font-family="Arial" font-size="12" font-weight="bold">8 500 FCFA</text>
+  <!-- Checkout panel -->
+  <rect x="12" y="258" width="576" height="110" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="278" fill="white" font-family="Arial" font-size="12" font-weight="600">Paiement sécurisé</text>
+  <!-- Payment methods -->
+  <!-- Orange Money -->
+  <rect x="24" y="286" width="130" height="48" rx="6" fill="#1A1D2E" stroke="#EA580C" stroke-width="1"/>
+  <rect x="24" y="286" width="130" height="6" rx="6" fill="#EA580C"/>
+  <text x="89" y="316" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">Orange Money</text>
+  <text x="89" y="328" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Paiement instantané</text>
+  <!-- Wave -->
+  <rect x="166" y="286" width="130" height="48" rx="6" fill="#1A1D2E" stroke="#0EA5E9" stroke-width="1"/>
+  <rect x="166" y="286" width="130" height="6" rx="6" fill="#0EA5E9"/>
+  <text x="231" y="316" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">Wave</text>
+  <text x="231" y="328" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Envoi rapide</text>
+  <!-- MTN -->
+  <rect x="308" y="286" width="130" height="48" rx="6" fill="#1A1D2E" stroke="#EAB308" stroke-width="1"/>
+  <rect x="308" y="286" width="130" height="6" rx="6" fill="#EAB308"/>
+  <text x="373" y="316" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">MTN MoMo</text>
+  <text x="373" y="328" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="9">Mobile Money</text>
+  <!-- Confirm button -->
+  <rect x="450" y="286" width="126" height="48" rx="6" fill="#2563EB"/>
+  <text x="513" y="308" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">Confirmer</text>
+  <text x="513" y="324" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Arial" font-size="10">63 500 FCFA</text>
+  <!-- Security badge -->
+  <text x="300" y="362" text-anchor="middle" fill="#4B5563" font-family="Arial" font-size="9">🔒 Paiement 100% sécurisé · Livraison Abidjan & intérieur</text>
+</svg>

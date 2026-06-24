@@ -2,11 +2,11 @@
   {
     "id": "svc_web_design",
     "title": "Design Web & UI/UX",
-    "description": "Création de maquettes uniques et modernes, pensées pour captiver vos clients ivoiriens dès le premier coup d'œil, sur mobile comme sur desktop.",
+    "description": "Création de maquettes uniques et modernes, pensées pour captiver vos clients dès le premier coup d'œil, sur mobile comme sur desktop.",
     "icon": "design",
     "benefits": [
       "Conception sur-mesure adaptée à l'identité de votre entreprise",
-      "Approche Mobile-First pour s'adapter à l'usage majoritaire en Côte d'Ivoire",
+      "Approche Mobile-First pour s'adapter aux habitudes de navigation sur smartphone",
       "Prototypes interactifs pour visualiser avant de coder",
       "Parcours utilisateur (UX) optimisé pour maximiser les conversions"
     ]
@@ -14,7 +14,7 @@
   {
     "id": "svc_web_dev",
     "title": "Développement Web",
-    "description": "Développement de sites web ultra-rapides et sécurisés en Next.js, optimisés pour se charger en moins de 2 secondes sur les réseaux 3G/4G à Abidjan.",
+    "description": "Développement de sites web ultra-rapides et sécurisés en Next.js, optimisés pour se charger en moins de 2 secondes sur les réseaux mobiles.",
     "icon": "development",
     "benefits": [
       "Code propre et performant respectant les standards du web moderne",
@@ -38,7 +38,7 @@
   {
     "id": "svc_seo",
     "title": "Optimisation SEO",
-    "description": "Positionnez votre entreprise en tête des résultats Google en Côte d'Ivoire pour attirer des milliers de visiteurs qualifiés sans payer de publicité.",
+    "description": "Positionnez votre entreprise en tête des résultats Google pour attirer des milliers de visiteurs qualifiés sans payer de publicité.",
     "icon": "seo",
     "benefits": [
       "Recherche des mots-clés les plus recherchés par vos clients locaux",
@@ -53,7 +53,7 @@
     "description": "Création et gestion de campagnes publicitaires ultra-ciblées sur Google Ads, Facebook, Instagram et TikTok pour générer des leads immédiats.",
     "icon": "ppc",
     "benefits": [
-      "Ciblage géographique précis sur Abidjan et les grandes villes de CI",
+      "Ciblage géographique précis adapté à vos marchés cibles régionaux et mondiaux",
       "Optimisation continue du coût par clic (CPC) pour maximiser votre ROI",
       "A/B testing des visuels et accroches publicitaires",
       "Rapports de conversion et suivi précis du budget dépensé"
@@ -98,11 +98,11 @@
   {
     "id": "svc_ecommerce",
     "title": "Solutions E-commerce sur Mesure",
-    "description": "Plateformes e-commerce robustes adaptées au marché ivoirien avec intégration native des paiements Mobile Money (Orange Money, Wave, MTN).",
+    "description": "Plateformes e-commerce robustes avec intégration native des paiements internationaux (Stripe) et Mobile Money (Orange Money, Wave, MTN).",
     "icon": "ecommerce",
     "benefits": [
       "Intégration transparente des APIs Wave et Orange Money sans friction",
-      "Gestion optimisée des livraisons à Abidjan et à l'intérieur du pays",
+      "Gestion optimisée des livraisons locales et internationales",
       "Système de gestion des stocks et notifications SMS de commande",
       "Tunnel d'achat simplifié réduisant le taux d'abandon de panier"
     ]

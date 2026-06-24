@@ -10,7 +10,7 @@ import { notifyNewOrder } from '@/lib/n8n-webhooks';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { firstName, lastName, phone, city, paymentMethod, items, totalAmount } = body;
+    const { firstName, lastName, email, phone, city, paymentMethod, items, totalAmount } = body;
 
     // Validate required fields
     if (!firstName || !lastName || !phone || !city || !paymentMethod || !items?.length) {
@@ -20,9 +20,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate phone format (10 digits)
+    // Validate phone format (flexible)
     const cleanPhone = phone.replace(/\s/g, '');
-    if (!/^0[157]\d{8}$/.test(cleanPhone)) {
+    if (!/^\+?[0-9]{8,15}$/.test(cleanPhone)) {
       return NextResponse.json(
         { error: 'Numéro de téléphone invalide' },
         { status: 400 }
@@ -32,7 +32,8 @@ export async function POST(req: NextRequest) {
     // Generate an order ID
     const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
 
-    // Ensure all ordered products exist in the database Product table
+    // Ensure all ordered products exist in the database Product table & check if any is digital
+    let hasDigitalInDb = false;
     for (const item of items) {
       const dbProduct = await prisma.product.findUnique({
         where: { id: item.productId },
@@ -43,14 +44,25 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
+      if (dbProduct.isDigital) {
+        hasDigitalInDb = true;
+      }
     }
 
-    // Save to PostgreSQL database via Prisma
+    if (hasDigitalInDb && !email) {
+      return NextResponse.json(
+        { error: 'L\'adresse e-mail est requise pour recevoir vos produits digitaux' },
+        { status: 400 }
+      );
+    }
+
+    // Save to database via Prisma
     const order = await prisma.order.create({
       data: {
         id: orderId,
         firstName,
         lastName,
+        email: email || null,
         phone: cleanPhone,
         city,
         totalAmount,
@@ -77,6 +89,7 @@ export async function POST(req: NextRequest) {
       id: order.id,
       firstName: order.firstName,
       lastName: order.lastName,
+      email: order.email,
       phone: order.phone,
       city: order.city,
       totalAmount: order.totalAmount,

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D0F18"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+    <linearGradient id="score-arc" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#10B981"/></linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#bg)"/>
+  <pattern id="d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.7" fill="#1E2130"/></pattern>
+  <rect width="600" height="380" fill="url(#d)"/>
+  <rect x="0" y="0" width="600" height="38" fill="#080A12"/>
+  <rect x="12" y="9" width="70" height="20" rx="4" fill="#2563EB"/><text x="47" y="23" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">NONALIX</text>
+  <text x="94" y="23" fill="#9CA3AF" font-family="Arial" font-size="11">Rapport SEO Complet</text>
+  <rect x="490" y="10" width="98" height="18" rx="9" fill="rgba(37,99,235,0.2)" stroke="rgba(37,99,235,0.4)" stroke-width="1"/><text x="539" y="22" text-anchor="middle" fill="#60A5FA" font-family="Arial" font-size="9">nonalix-ci.com</text>
+  <!-- Score circle left -->
+  <rect x="12" y="50" width="160" height="160" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <circle cx="92" cy="130" r="55" fill="#1A1D2E" stroke="#2D3148" stroke-width="2"/>
+  <circle cx="92" cy="130" r="46" fill="none" stroke="#1E2336" stroke-width="10"/>
+  <circle cx="92" cy="130" r="46" fill="none" stroke="url(#score-arc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="260 30" stroke-dashoffset="72" transform="rotate(-90 92 130)"/>
+  <text x="92" y="124" text-anchor="middle" fill="white" font-family="Arial" font-size="28" font-weight="bold">78</text>
+  <text x="92" y="140" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="11">/100</text>
+  <text x="92" y="60" text-anchor="middle" fill="#9CA3AF" font-family="Arial" font-size="10">Score SEO Global</text>
+  <!-- Audit criteria -->
+  <rect x="184" y="50" width="404" height="160" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="196" y="70" fill="white" font-family="Arial" font-size="12" font-weight="600">Analyse des critères</text>
+  <!-- Criteria bars -->
+  <text x="196" y="92" fill="#9CA3AF" font-family="Arial" font-size="10">Balises Title &amp; Meta</text>
+  <rect x="196" y="98" width="380" height="7" rx="3" fill="#1E2336"/>
+  <rect x="196" y="98" width="340" height="7" rx="3" fill="#10B981"/>
+  <text x="578" y="103" text-anchor="end" fill="#10B981" font-family="Arial" font-size="9">89%</text>
+
+  <text x="196" y="120" fill="#9CA3AF" font-family="Arial" font-size="10">Vitesse de chargement</text>
+  <rect x="196" y="126" width="380" height="7" rx="3" fill="#1E2336"/>
+  <rect x="196" y="126" width="228" height="7" rx="3" fill="#F59E0B"/>
+  <text x="578" y="131" text-anchor="end" fill="#F59E0B" font-family="Arial" font-size="9">60%</text>
+
+  <text x="196" y="148" fill="#9CA3AF" font-family="Arial" font-size="10">Mots-clés locaux (Abidjan)</text>
+  <rect x="196" y="154" width="380" height="7" rx="3" fill="#1E2336"/>
+  <rect x="196" y="154" width="304" height="7" rx="3" fill="#2563EB"/>
+  <text x="578" y="159" text-anchor="end" fill="#2563EB" font-family="Arial" font-size="9">80%</text>
+
+  <text x="196" y="176" fill="#9CA3AF" font-family="Arial" font-size="10">Backlinks &amp; Autorité de domaine</text>
+  <rect x="196" y="182" width="380" height="7" rx="3" fill="#1E2336"/>
+  <rect x="196" y="182" width="152" height="7" rx="3" fill="#EF4444"/>
+  <text x="578" y="187" text-anchor="end" fill="#EF4444" font-family="Arial" font-size="9">40%</text>
+
+  <text x="196" y="200" fill="#9CA3AF" font-family="Arial" font-size="10">Google My Business (Fiche locale)</text>
+  <rect x="196" y="206" width="380" height="7" rx="3" fill="#1E2336"/>
+  <rect x="196" y="206" width="266" height="7" rx="3" fill="#2563EB"/>
+  <!-- Plan d'action -->
+  <rect x="12" y="222" width="576" height="146" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="242" fill="white" font-family="Arial" font-size="12" font-weight="600">Plan d'action prioritaire</text>
+  <text x="540" y="242" text-anchor="end" fill="#4B5563" font-family="Arial" font-size="10">12 recommandations</text>
+  <!-- Actions -->
+  <rect x="24" y="250" width="270" height="50" rx="4" fill="#0D1F12" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+  <text x="34" y="264" fill="#10B981" font-family="Arial" font-size="9" font-weight="600">PRIORITÉ HAUTE</text>
+  <text x="34" y="279" fill="white" font-family="Arial" font-size="10">Créer 3 pages locales "Abidjan"</text>
+  <text x="34" y="293" fill="#9CA3AF" font-family="Arial" font-size="9">Impact: +45% trafic local estimé</text>
+  <rect x="306" y="250" width="270" height="50" rx="4" fill="#1A1500" stroke="rgba(245,158,11,0.2)" stroke-width="1"/>
+  <text x="316" y="264" fill="#F59E0B" font-family="Arial" font-size="9" font-weight="600">PRIORITÉ MOYENNE</text>
+  <text x="316" y="279" fill="white" font-family="Arial" font-size="10">Optimiser images (WebP)</text>
+  <text x="316" y="293" fill="#9CA3AF" font-family="Arial" font-size="9">Impact: Vitesse +2.3s → Core Web Vitals</text>
+  <rect x="24" y="308" width="270" height="50" rx="4" fill="#1A0D1A" stroke="rgba(239,68,68,0.2)" stroke-width="1"/>
+  <text x="34" y="322" fill="#EF4444" font-family="Arial" font-size="9" font-weight="600">URGENT — À CORRIGER</text>
+  <text x="34" y="337" fill="white" font-family="Arial" font-size="10">47 liens brisés détectés</text>
+  <text x="34" y="351" fill="#9CA3AF" font-family="Arial" font-size="9">Impact direct sur classement Google</text>
+  <rect x="306" y="308" width="270" height="50" rx="4" fill="#1A1D2E" stroke="#2D3148" stroke-width="1"/>
+  <text x="316" y="322" fill="#6B7280" font-family="Arial" font-size="9" font-weight="600">QUICK WIN</text>
+  <text x="316" y="337" fill="white" font-family="Arial" font-size="10">Ajouter schema FAQ + LocalBusiness</text>
+  <text x="316" y="351" fill="#9CA3AF" font-family="Arial" font-size="9">Rich snippets Google en 48h</text>
+</svg>

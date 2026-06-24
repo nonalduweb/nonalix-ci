@@ -98,12 +98,12 @@ export function AIChatWidget() {
     
     // Nettoyer le téléphone (espaces, tirets, points)
     const phoneClean = onboardingForm.phone.replace(/[\s.-]/g, '');
-    // Regex pour numéro de téléphone de Côte d'Ivoire (10 chiffres, commençant par 01, 05, ou 07)
-    const phoneRegex = /^0[157]\d{8}$/;
+    // Regex pour numéro de téléphone national/international valide (min 8 chiffres)
+    const phoneRegex = /^\+?[0-9]{8,15}$/;
     if (!onboardingForm.phone.trim()) {
       errors.phone = 'Le numéro de téléphone est requis.';
     } else if (!phoneRegex.test(phoneClean)) {
-      errors.phone = 'Le numéro doit être au format de Côte d\'Ivoire (ex: 07 07 07 07 07).';
+      errors.phone = 'Le numéro doit être au format valide (ex: +225 07 07 07 07 07 ou +33 6...).';
     }
 
     if (Object.keys(errors).length > 0) {
@@ -274,6 +274,49 @@ export function AIChatWidget() {
     return [];
   };
 
+  const renderMessageContent = (content: string) => {
+    if (!content) return null;
+    
+    const lines = content.split('\n');
+    
+    return lines.map((line, lineIdx) => {
+      const trimmed = line.trim();
+      if (!trimmed) {
+        return <div key={lineIdx} style={{ height: '6px' }} />;
+      }
+      
+      if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+        const itemText = trimmed.substring(2);
+        const parts = itemText.split(/(\*\*[^*]+\*\*)/g);
+        return (
+          <div key={lineIdx} style={{ display: 'flex', gap: '8px', margin: '4px 0 4px 12px' }}>
+            <span style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>•</span>
+            <span style={{ flex: 1 }}>
+              {parts.map((part, idx) => {
+                if (part.startsWith('**') && part.endsWith('**')) {
+                  return <strong key={idx} style={{ fontWeight: 700, color: '#ffffff' }}>{part.slice(2, -2)}</strong>;
+                }
+                return part;
+              })}
+            </span>
+          </div>
+        );
+      }
+      
+      const parts = line.split(/(\*\*[^*]+\*\*)/g);
+      return (
+        <p key={lineIdx} style={{ margin: lineIdx === lines.length - 1 ? 0 : '0 0 8px 0', wordBreak: 'break-word' }}>
+          {parts.map((part, idx) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+              return <strong key={idx} style={{ fontWeight: 700, color: '#ffffff' }}>{part.slice(2, -2)}</strong>;
+            }
+            return part;
+          })}
+        </p>
+      );
+    });
+  };
+
   return (
     <>
       {/* Bouton flottant du Chatbot (à gauche) */}
@@ -442,10 +485,10 @@ export function AIChatWidget() {
 
               {/* Champ Téléphone */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <label style={{ fontSize: '0.75rem', fontWeight: 500, color: 'var(--color-text-muted)' }}>Téléphone (Côte d'Ivoire) *</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: 500, color: 'var(--color-text-muted)' }}>Téléphone *</label>
                 <input
                   type="tel"
-                  placeholder="ex: 07 07 07 07 07"
+                  placeholder="ex: +225 07 07 07 07 07 ou +33 6..."
                   value={onboardingForm.phone}
                   onChange={(e) => setOnboardingForm(prev => ({ ...prev, phone: e.target.value }))}
                   disabled={isLoading}
@@ -519,17 +562,17 @@ export function AIChatWidget() {
                     key={msg.id}
                     style={{
                       alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                      maxWidth: '80%',
+                      maxWidth: '85%',
                       background: msg.role === 'user' ? 'var(--color-accent)' : 'var(--color-primary-light)',
                       color: 'var(--color-text)',
-                      padding: '10px 14px',
-                      borderRadius: msg.role === 'user' ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
-                      fontSize: '0.875rem',
-                      lineHeight: 1.4,
+                      padding: '12px 16px',
+                      borderRadius: msg.role === 'user' ? '16px 16px 2px 16px' : '16px 16px 16px 2px',
+                      fontSize: '0.85rem',
+                      lineHeight: 1.55,
                       border: msg.role === 'user' ? 'none' : '1px solid var(--color-border-light)'
                     }}
                   >
-                    {msg.content}
+                    {renderMessageContent(msg.content)}
                   </div>
                 ))}
 

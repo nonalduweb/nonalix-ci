@@ -34,6 +34,7 @@ model Order {
   id            String      @id @default(cuid())
   firstName     String
   lastName      String
+  email         String?
   phone         String      // Format: 07XXXXXXXX (10 chiffres)
   city          String      // Ville/Commune de livraison
   totalAmount   Int         // Total en FCFA
@@ -116,3 +117,30 @@ model Session {
 
   @@index([userId])
 }
+
+model ChatSession {
+  id           String        @id @db.VarChar(255)
+  platform     String        @default("web") @db.VarChar(50)
+  leadName     String?       @db.VarChar(255)
+  leadCompany  String?       @db.VarChar(255)
+  leadActivity String?       @db.VarChar(255)
+  leadPhone    String?       @db.VarChar(50)
+  leadEmail    String?       @db.VarChar(255)
+  leadNeed     String?       @db.Text
+  isQualified  Boolean       @default(false)
+  currentState String        @default("greeting") @db.VarChar(100)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  messages     ChatMessage[]
+}
+
+model ChatMessage {
+  id        String      @id @db.VarChar(255)
+  sessionId String      @db.VarChar(255)
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role      String      @db.VarChar(50)
+  content   String      @db.Text
+  createdAt DateTime    @default(now())
+}
+
+

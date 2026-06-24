@@ -1,16 +1,23 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contactez-nous — Agence Digitale à Abidjan',
-  description:
-    "Contactez NONALIX CI pour discuter de votre projet digital en Côte d'Ivoire. Devis gratuit sous 24h. Téléphone, email, WhatsApp ou rendez-vous à Abidjan Cocody.",
+  title: "Contactez-nous — Devis Gratuit Site Web & IA à Abidjan | NONALIX CI",
+  description: "Contactez NONALIX CI pour un devis gratuit. Création de sites web, SEO, e-commerce Orange Money & Wave, chatbot IA WhatsApp à Abidjan, Côte d'Ivoire. Réponse sous 24h via WhatsApp ou email.",
+  keywords: [
+    "contact agence web Abidjan",
+    "devis site web Côte d'Ivoire gratuit",
+    "devis développement web Abidjan",
+    "contacter agence digitale Abidjan",
+    "devis SEO Abidjan",
+    "devis e-commerce Côte d'Ivoire",
+    "WhatsApp agence web Abidjan",
+  ],
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contactez NONALIX CI — Agence Digitale Abidjan',
-    description:
-      "Demandez un devis gratuit pour votre projet web, e-commerce ou automatisation IA. Réponse en 24h depuis Abidjan.",
+    title: "Contactez NONALIX CI — Devis Gratuit à Abidjan",
+    description: "Demandez votre devis gratuit pour un site web, SEO, e-commerce ou chatbot IA. Agence digitale à Abidjan, Côte d'Ivoire. Réponse rapide via WhatsApp.",
     url: '/contact',
   },
 };

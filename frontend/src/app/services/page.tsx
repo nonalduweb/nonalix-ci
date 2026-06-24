@@ -215,7 +215,7 @@ export default function ServicesPage() {
           <div className="grid grid-2" style={{ alignItems: 'center', gap: 'var(--space-2xl)' }}>
             <div style={{ position: 'relative', aspectRatio: '4/3', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--color-border)', boxShadow: 'var(--shadow-lg)' }}>
               <Image
-                src="/images/products/about-img.jpg"
+                src="/images/hero/about.jpg"
                 alt="Équipe NONALIX CI"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

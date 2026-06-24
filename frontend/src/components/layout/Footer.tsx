@@ -10,7 +10,7 @@ export function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <Image
-              src="/images/products/logo_footer.png"
+              src="/images/brand/logo-footer.png"
               alt="NONALIX CI"
               width={360}
               height={108}

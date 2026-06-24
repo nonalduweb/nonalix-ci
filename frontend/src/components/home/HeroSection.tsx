@@ -34,7 +34,7 @@ export function HeroSection() {
             opacity: 0.30, /* Visible background video */
           }}
         >
-          <source src="/images/products/nonalix-ci.webm" type="video/webm" />
+          <source src="/videos/nonalix-ci.webm" type="video/webm" />
         </video>
         {/* Dark overlay to balance visibility and readability */}
         <div

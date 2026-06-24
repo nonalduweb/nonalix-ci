@@ -16,21 +16,39 @@ import { MarketingManifesto } from '@/components/home/MarketingManifesto';
 import { BeforeAfterSection } from '@/components/home/BeforeAfterSection';
 
 export const metadata: Metadata = {
-  title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
-  description: `${SITE_CONFIG.description}. Découvrez nos systèmes d'automatisation IA, agents conversationnels intelligents et solutions de croissance digitale avec paiement Mobile Money (Orange Money, Wave) pour les entreprises en Côte d'Ivoire.`,
+  title: `Agence Digitale Abidjan — Web, IA, SEO & E-commerce | ${SITE_CONFIG.name}`,
+  description: `Agence digitale n°1 à Abidjan, Côte d'Ivoire. Sites web Next.js ultra-rapides, SEO Google, e-commerce Orange Money & Wave, chatbots IA WhatsApp et automatisation pour booster votre business en Afrique de l'Ouest.`,
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
-    description: `Systèmes d'automatisation IA, agents conversationnels, workflows intelligents et e-commerce avec Mobile Money à Abidjan. Transformez votre entreprise en machine de vente automatisée.`,
+    title: `${SITE_CONFIG.name} — Agence Digitale & IA à Abidjan, Côte d'Ivoire`,
+    description: `Développement web, SEO, e-commerce Mobile Money, chatbots IA et automatisation à Abidjan. Votre business en pilote automatique 24h/24.`,
     url: '/',
   },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Combien de temps faut-il pour créer un site web ?", "acceptedAnswer": { "@type": "Answer", "text": "Un site vitrine est livré en 2 à 3 semaines. Une boutique e-commerce complète avec intégration Mobile Money demande 4 à 6 semaines selon la complexité." } },
+    { "@type": "Question", "name": "Quels modes de paiement acceptez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Nous acceptons Orange Money, Wave, MTN Mobile Money et le virement bancaire. Un acompte de 50 % est demandé au démarrage, le solde à la livraison." } },
+    { "@type": "Question", "name": "Les paiements clients seront-ils sécurisés sur ma boutique ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Nous intégrons les APIs officielles d'Orange Money et Wave. Vos clients paient sans quitter votre site et reçoivent une confirmation instantanée." } },
+    { "@type": "Question", "name": "Proposez-vous une maintenance après la livraison ?", "acceptedAnswer": { "@type": "Answer", "text": "30 jours de support gratuit après mise en ligne. Des forfaits de maintenance mensuelle sont disponibles pour les mises à jour, sauvegardes et monitoring." } },
+    { "@type": "Question", "name": "Mon site sera-t-il bien positionné sur Google en Côte d'Ivoire ?", "acceptedAnswer": { "@type": "Answer", "text": "Chaque site inclut une optimisation SEO de base. Nos forfaits SEO mensuels ciblent spécifiquement le marché ivoirien et d'Afrique de l'Ouest avec un suivi de positionnement." } },
+    { "@type": "Question", "name": "Travaillez-vous avec des entreprises hors de Côte d'Ivoire ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous intervenons dans toute l'Afrique de l'Ouest : Sénégal, Mali, Burkina Faso, Togo, Bénin, Cameroun et au-delà pour les entreprises francophones." } },
+    { "@type": "Question", "name": "Comment fonctionne l'optimisation de conversion par IA ?", "acceptedAnswer": { "@type": "Answer", "text": "Notre IA analyse le comportement de vos visiteurs, teste automatiquement plusieurs variantes de vos pages et conserve celles qui génèrent le plus de ventes, sans intervention manuelle." } },
+  ],
 };
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <HeroSection />
 
       {/* Stats immediately after hero for impressive first impression */}
@@ -42,8 +60,8 @@ export default function HomePage() {
           <div className="hero-mockup-container animate-fade-in-up">
             <div className="hero-image-wrapper" style={{ position: 'relative', overflow: 'hidden' }}>
               <Image
-                src="/images/products/systemes_d_automatisation_IA.jpg"
-                alt="Dashboard IA NONALIX — Automatisation & Analytics temps réel"
+                src="/images/hero/ai-automation-dashboard.jpg"
+                alt="Dashboard IA NONALIX CI — Automatisation & Analytics temps réel"
                 width={1000}
                 height={550}
                 style={{ objectFit: 'cover' }}
@@ -65,7 +83,7 @@ export default function HomePage() {
               >
                 <div style={{ maxWidth: '820px', textAlign: 'center' }}>
                   <p className="hero-image-statement">
-                    Chez <span className="text-gradient" style={{ fontWeight: 700 }}>NONALIX</span>, nous construisons des <span className="text-gradient" style={{ fontWeight: 700 }}>systèmes d&apos;automatisation IA</span> qui génèrent des prospects, qualifient vos leads et convertissent vos visiteurs en clients — <span className="text-gradient" style={{ fontWeight: 700 }}>24h/24, sans intervention humaine</span>. Grâce à nos <span className="text-gradient" style={{ fontWeight: 700 }}>agents IA, workflows intelligents et chatbots conversationnels</span>, votre business tourne en pilote automatique.
+                    Chez <span className="text-gradient" style={{ fontWeight: 700 }}>NONALIX CI</span>, nous construisons des <span className="text-gradient" style={{ fontWeight: 700 }}>systèmes d&apos;automatisation IA</span> qui génèrent des prospects, qualifient vos leads et convertissent vos visiteurs en clients — <span className="text-gradient" style={{ fontWeight: 700 }}>24h/24, sans intervention humaine</span>. Grâce à nos <span className="text-gradient" style={{ fontWeight: 700 }}>agents IA, workflows intelligents et chatbots conversationnels</span>, votre business tourne en pilote automatique.
                   </p>
                 </div>
               </div>

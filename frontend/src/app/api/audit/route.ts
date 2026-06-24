@@ -207,7 +207,7 @@ export async function POST(req: NextRequest) {
       // 2. Génération IA
       console.log(`[AUDIT] Génération de l'analyse IA pour ${businessName} (${targetUrl})...`);
       
-      const prompt = `Tu es un expert en SEO, performance web et stratégie marketing digital en Côte d'Ivoire.
+      const prompt = `Tu es un expert en SEO, performance web et stratégie marketing digital local et international.
 Analyse les données techniques suivantes pour le site web ${targetUrl} de l'entreprise ${businessName} :
 - URL: ${targetUrl}
 - HTTPS: ${seoData.isHttps ? 'Oui' : 'Non'}
@@ -218,14 +218,14 @@ Analyse les données techniques suivantes pour le site web ${targetUrl} de l'ent
 - Balise Viewport (Mobile-Friendly): ${seoData.hasViewport ? 'Présente' : 'Absente'}
 - Images: ${seoData.totalImages} images au total, dont ${seoData.imagesWithoutAlt} sans attribut 'alt'.
 
-Génère un rapport d'audit SEO & IA de haute qualité, spécifique au contexte de Côte d'Ivoire, au format JSON brut avec les clés suivantes :
+Génère un rapport d'audit SEO & IA de haute qualité, au format JSON brut avec les clés suivantes :
 {
   "globalScore": <nombre entier entre 10 et 98 basé sur les résultats techniques>,
   "seoScore": <nombre entier entre 10 et 98>,
   "mobileScore": <nombre entier entre 10 et 98 (pénaliser fortement si la balise viewport est absente)>,
   "speedScore": <nombre entier entre 10 et 98 (pénaliser si le temps de réponse est supérieur à 1500ms)>,
   "securityScore": <nombre entier entre 10 et 98 (pénaliser si HTTPS est absent)>,
-  "summary": "<résumé synthétique de l'état actuel et de sa visibilité locale en Côte d'Ivoire (2-3 phrases)>",
+  "summary": "<résumé synthétique de l'état actuel et de sa visibilité en ligne (2-3 phrases)>",
   "recommendations": [
     {
       "title": "<titre court en français>",
@@ -233,7 +233,7 @@ Génère un rapport d'audit SEO & IA de haute qualité, spécifique au contexte 
       "priority": "haute" | "moyenne" | "faible"
     }
   ],
-  "marketInsight": "<perspective marketing spécifique au marché ivoirien pour cette entreprise>"
+  "marketInsight": "<perspective marketing spécifique au marché cible ou au contexte local de cette entreprise>"
 }
 
 Retourne UNIQUEMENT le JSON brut valide sans aucun code block (pas de \`\`\`json ou de \`\`\`), sans texte avant ou après.`;
@@ -268,11 +268,11 @@ Retourne UNIQUEMENT le JSON brut valide sans aucun code block (pas de \`\`\`json
           mobileScore: seoData.hasViewport ? 85 : 40,
           speedScore: seoData.responseTimeMs < 1000 ? 90 : 60,
           securityScore: seoData.isHttps ? 95 : 20,
-          summary: `L'analyse technique du site ${targetUrl} pour l'entreprise ${businessName} montre des fondations SEO fonctionnelles, mais des opportunités majeures d'optimisation sont décelées pour accroître votre visibilité à Abidjan et en Côte d'Ivoire.`,
+          summary: `L'analyse technique du site ${targetUrl} pour l'entreprise ${businessName} montre des fondations SEO fonctionnelles, mais des opportunités majeures d'optimisation sont décelées pour accroître votre visibilité locale et nationale.`,
           recommendations: [
             {
               title: "Optimiser les balises Meta",
-              description: "Ajustez le titre et la description pour cibler les requêtes recherchées par vos prospects ivoiriens.",
+              description: "Ajustez le titre et la description pour cibler les requêtes recherchées par vos prospects.",
               priority: "haute"
             },
             {
@@ -286,13 +286,13 @@ Retourne UNIQUEMENT le JSON brut valide sans aucun code block (pas de \`\`\`json
               priority: "moyenne"
             }
           ],
-          marketInsight: "Le marché digital ivoirien est très concurrentiel sur mobile. Un site rapide et sécurisé est primordial pour convertir le trafic provenant de WhatsApp et des réseaux sociaux."
+          marketInsight: "Le marché digital est très concurrentiel sur mobile. Un site rapide et sécurisé est primordial pour convertir le trafic provenant des différents canaux d'acquisition."
         };
       }
     } else {
       // Audit local Google Business
       console.log(`[AUDIT] Génération de l'audit local pour ${businessName}...`);
-      const prompt = `Génère un audit local Google Business réaliste pour l'entreprise "${businessName}" située en Côte d'Ivoire.
+      const prompt = `Génère un audit local Google Business réaliste pour l'entreprise "${businessName}".
 L'utilisateur a fourni le numéro de téléphone : ${cleanPhone} et l'e-mail : ${email}.
 
 Génère un rapport d'audit au format JSON brut avec les clés suivantes :
@@ -302,7 +302,7 @@ Génère un rapport d'audit au format JSON brut avec les clés suivantes :
   "mobileScore": <optimisation mobile score entre 50 et 90>,
   "speedScore": <score de réactivité/engagement local entre 50 et 85>,
   "securityScore": <confiance client/avis score entre 40 et 90>,
-  "summary": "<résumé de la présence locale de l'entreprise et de sa visibilité sur Google Maps à Abidjan/Côte d'Ivoire (2-3 phrases)>",
+  "summary": "<résumé de la présence locale de l'entreprise et de sa visibilité sur Google Maps (2-3 phrases)>",
   "recommendations": [
     {
       "title": "<titre court en français>",
@@ -310,7 +310,7 @@ Génère un rapport d'audit au format JSON brut avec les clés suivantes :
       "priority": "haute" | "moyenne" | "faible"
     }
   ],
-  "marketInsight": "<perspective de référencement local et de croissance sur le marché d'Abidjan et de l'intérieur du pays>"
+  "marketInsight": "<perspective de référencement local et de croissance sur votre marché cible>"
 }
 
 Retourne UNIQUEMENT le JSON brut valide sans aucun code block (pas de \`\`\`json ou de \`\`\`), sans texte avant ou après.`;
@@ -433,7 +433,7 @@ Résumé: ${auditResult.summary}`;
         `📝 *Résumé :* ${auditResult.summary}\n\n` +
         `💡 *Recommandation principale :* ${auditResult.recommendations[0]?.title} - ${auditResult.recommendations[0]?.description}\n\n` +
         `Le rapport complet et détaillé vous a été envoyé par email à *${email}*.\n\n` +
-        `💬 Vous souhaitez optimiser votre visibilité en Côte d'Ivoire ? Répondez directement à ce message ou contactez notre expert.`;
+        `💬 Vous souhaitez optimiser votre visibilité ? Répondez directement à ce message ou contactez notre expert.`;
 
       // Log/Simulation d'envoi WhatsApp
       console.log(`[WHATSAPP AUDIT SIMULATION] Envoi du message à ${cleanPhone} :\n${waText}`);

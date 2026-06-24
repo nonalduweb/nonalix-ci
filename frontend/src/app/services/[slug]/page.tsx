@@ -120,6 +120,19 @@ const colorMap: Record<string, string> = {
   ai: 'var(--color-accent-glow)',
 };
 
+const serviceKeywords: Record<string, string[]> = {
+  'design-web-ui-ux': ['design web Abidjan', 'UI UX Côte d\'Ivoire', 'maquette site web Abidjan', 'design mobile-first Afrique'],
+  'developpement-web': ['développement web Abidjan', 'création site web Côte d\'Ivoire', 'Next.js Abidjan', 'développeur web Afrique de l\'Ouest'],
+  'automatisation-business': ['automatisation IA Abidjan', 'n8n Côte d\'Ivoire', 'chatbot WhatsApp Abidjan', 'agent IA Afrique', 'automatisation processus métier'],
+  'optimisation-seo': ['SEO Abidjan', 'référencement Google Côte d\'Ivoire', 'agence SEO Abidjan', 'référencement local Afrique', 'Google Maps Abidjan'],
+  'campagnes-publicitaires-ppc': ['Google Ads Abidjan', 'Facebook Ads Côte d\'Ivoire', 'publicité digitale Abidjan', 'campagnes payantes Afrique'],
+  'boutiques-shopify': ['Shopify Abidjan', 'e-commerce Côte d\'Ivoire', 'boutique en ligne Abidjan', 'Shopify expert Afrique'],
+  'marketing-digital': ['marketing digital Abidjan', 'stratégie digitale Côte d\'Ivoire', 'plan marketing Abidjan', 'growth hacking Afrique'],
+  'audit-ux-ui': ['audit UX Abidjan', 'optimisation conversion Côte d\'Ivoire', 'audit site web Abidjan'],
+  'solutions-ecommerce-sur-mesure': ['e-commerce Orange Money Abidjan', 'boutique Wave Côte d\'Ivoire', 'paiement Mobile Money', 'e-commerce sur mesure Afrique'],
+  'optimisation-conversion-par-ia': ['optimisation IA Abidjan', 'A/B testing Côte d\'Ivoire', 'conversion rate optimization Afrique'],
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const serviceId = servicesSlugMap[slug];
@@ -131,15 +144,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const detail = serviceDetails[slug];
   const title = detail
-    ? `${detail.heroTitle} ${detail.heroHighlight} — NONALIX CI`
-    : `${service.title} — Services NONALIX CI`;
+    ? `${detail.heroTitle} ${detail.heroHighlight} à Abidjan — NONALIX CI`
+    : `${service.title} à Abidjan — NONALIX CI`;
   const description = detail
-    ? `${detail.heroDescription.slice(0, 155)}...`
-    : `${service.description} Service professionnel par NONALIX CI, agence digitale à Abidjan, Côte d'Ivoire.`;
+    ? `${detail.heroDescription.slice(0, 145)}... Service disponible à Abidjan et dans toute l'Afrique de l'Ouest.`
+    : `${service.description} Par NONALIX CI, agence digitale à Abidjan, Côte d'Ivoire — service disponible en Afrique de l'Ouest.`;
 
   return {
     title,
     description,
+    keywords: serviceKeywords[slug] ?? [],
     alternates: {
       canonical: `/services/${slug}`,
     },
@@ -176,8 +190,46 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     .filter((s) => s.id !== service.id)
     .slice(0, 3);
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `https://nonalix-ci.com/services/${slug}#service`,
+        "name": service.title,
+        "description": service.description,
+        "url": `https://nonalix-ci.com/services/${slug}`,
+        "provider": { "@id": "https://nonalix-ci.com/#organization" },
+        "areaServed": [
+          { "@type": "Country", "name": "Côte d'Ivoire" },
+          { "@type": "Country", "name": "Sénégal" },
+          { "@type": "Country", "name": "Mali" },
+          { "@type": "Country", "name": "Burkina Faso" },
+          { "@type": "AdministrativeArea", "name": "Afrique de l'Ouest" },
+        ],
+        "audience": { "@type": "BusinessAudience", "audienceType": "Entreprises et professionnels" },
+        "serviceType": service.title,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "XOF",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@id": "https://nonalix-ci.com/#organization" },
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://nonalix-ci.com" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://nonalix-ci.com/services" },
+          { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://nonalix-ci.com/services/${slug}` },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="page-content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       {/* ===== HERO SECTION ===== */}
       <section className="svc-detail-hero">
         {/* Background glow */}

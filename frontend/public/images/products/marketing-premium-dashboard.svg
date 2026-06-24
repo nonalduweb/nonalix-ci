@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D0F18"/><stop offset="100%" stop-color="#111827"/></linearGradient>
+    <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+    <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2563EB" stop-opacity="0.8"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0.4"/></linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#bg)"/>
+  <pattern id="d" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.7" fill="#1E2130"/></pattern>
+  <rect width="600" height="380" fill="url(#d)"/>
+  <!-- Top bar -->
+  <rect x="0" y="0" width="600" height="38" fill="#080A12"/>
+  <rect x="12" y="9" width="70" height="20" rx="4" fill="#2563EB"/><text x="47" y="23" text-anchor="middle" fill="white" font-family="Arial" font-size="10" font-weight="bold">NONALIX</text>
+  <text x="94" y="23" fill="#9CA3AF" font-family="Arial" font-size="11">Marketing Analytics</text>
+  <circle cx="560" cy="19" r="5" fill="#10B981"/><text x="572" y="23" fill="#10B981" font-family="Arial" font-size="10">Live</text>
+  <!-- KPI row -->
+  <rect x="12" y="50" width="130" height="66" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="68" fill="#9CA3AF" font-family="Arial" font-size="9">Portée totale</text>
+  <text x="24" y="90" fill="white" font-family="Arial" font-size="22" font-weight="bold">48.2K</text>
+  <text x="24" y="108" fill="#10B981" font-family="Arial" font-size="10">↑ +23% ce mois</text>
+  <rect x="154" y="50" width="130" height="66" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="166" y="68" fill="#9CA3AF" font-family="Arial" font-size="9">Engagement</text>
+  <text x="166" y="90" fill="white" font-family="Arial" font-size="22" font-weight="bold">6.8%</text>
+  <text x="166" y="108" fill="#10B981" font-family="Arial" font-size="10">↑ +1.4pt</text>
+  <rect x="296" y="50" width="130" height="66" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="308" y="68" fill="#9CA3AF" font-family="Arial" font-size="9">Leads générés</text>
+  <text x="308" y="90" fill="white" font-family="Arial" font-size="22" font-weight="bold">312</text>
+  <text x="308" y="108" fill="#10B981" font-family="Arial" font-size="10">↑ +67 vs sem.</text>
+  <rect x="438" y="50" width="150" height="66" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="450" y="68" fill="#9CA3AF" font-family="Arial" font-size="9">Chiffre d'affaires</text>
+  <text x="450" y="90" fill="white" font-family="Arial" font-size="22" font-weight="bold">4.1M</text>
+  <text x="450" y="108" fill="#10B981" font-family="Arial" font-size="10">FCFA · ↑ +18%</text>
+  <!-- Bar chart -->
+  <rect x="12" y="130" width="270" height="130" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="148" fill="white" font-family="Arial" font-size="11" font-weight="600">Trafic par canal</text>
+  <!-- Bars -->
+  <rect x="36" y="200" width="28" height="50" rx="3" fill="url(#bar1)"/><text x="50" y="262" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="8">FB</text>
+  <rect x="80" y="185" width="28" height="65" rx="3" fill="url(#bar1)"/><text x="94" y="262" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="8">IG</text>
+  <rect x="124" y="215" width="28" height="35" rx="3" fill="url(#bar2)"/><text x="138" y="262" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="8">SEO</text>
+  <rect x="168" y="195" width="28" height="55" rx="3" fill="url(#bar1)"/><text x="182" y="262" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="8">WA</text>
+  <rect x="212" y="225" width="28" height="25" rx="3" fill="url(#bar2)"/><text x="226" y="262" text-anchor="middle" fill="#6B7280" font-family="Arial" font-size="8">Email</text>
+  <!-- Line chart area -->
+  <rect x="294" y="130" width="294" height="130" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="306" y="148" fill="white" font-family="Arial" font-size="11" font-weight="600">Évolution des ventes — 6 mois</text>
+  <polyline points="310,240 340,230 370,220 400,205 440,198 480,185 520,175 560,165" stroke="#2563EB" stroke-width="2" fill="none"/>
+  <polygon points="310,240 340,230 370,220 400,205 440,198 480,185 520,175 560,165 560,255 310,255" fill="rgba(37,99,235,0.1)"/>
+  <circle cx="560" cy="165" r="4" fill="#3B82F6"/>
+  <!-- Social breakdown -->
+  <rect x="12" y="272" width="576" height="96" rx="6" fill="#13151F" stroke="#1E2336" stroke-width="1"/>
+  <text x="24" y="291" fill="white" font-family="Arial" font-size="11" font-weight="600">Réseaux sociaux gérés</text>
+  <!-- Facebook -->
+  <rect x="24" y="300" width="120" height="56" rx="4" fill="#1A1D2E"/>
+  <rect x="24" y="300" width="3" height="56" rx="1" fill="#1877F2"/>
+  <text x="34" y="316" fill="#9CA3AF" font-family="Arial" font-size="8">Facebook</text>
+  <text x="34" y="332" fill="white" font-family="Arial" font-size="14" font-weight="bold">12.4K</text>
+  <text x="34" y="348" fill="#10B981" font-family="Arial" font-size="8">abonnés · +340</text>
+  <!-- Instagram -->
+  <rect x="156" y="300" width="120" height="56" rx="4" fill="#1A1D2E"/>
+  <rect x="156" y="300" width="3" height="56" rx="1" fill="#E1306C"/>
+  <text x="166" y="316" fill="#9CA3AF" font-family="Arial" font-size="8">Instagram</text>
+  <text x="166" y="332" fill="white" font-family="Arial" font-size="14" font-weight="bold">8.7K</text>
+  <text x="166" y="348" fill="#10B981" font-family="Arial" font-size="8">abonnés · +218</text>
+  <!-- TikTok -->
+  <rect x="288" y="300" width="120" height="56" rx="4" fill="#1A1D2E"/>
+  <rect x="288" y="300" width="3" height="56" rx="1" fill="#FF0050"/>
+  <text x="298" y="316" fill="#9CA3AF" font-family="Arial" font-size="8">TikTok</text>
+  <text x="298" y="332" fill="white" font-family="Arial" font-size="14" font-weight="bold">22.1K</text>
+  <text x="298" y="348" fill="#10B981" font-family="Arial" font-size="8">vues · ×3</text>
+  <!-- WhatsApp -->
+  <rect x="420" y="300" width="156" height="56" rx="4" fill="#1A1D2E"/>
+  <rect x="420" y="300" width="3" height="56" rx="1" fill="#25D366"/>
+  <text x="430" y="316" fill="#9CA3AF" font-family="Arial" font-size="8">WhatsApp Business</text>
+  <text x="430" y="332" fill="white" font-family="Arial" font-size="14" font-weight="bold">567</text>
+  <text x="430" y="348" fill="#10B981" font-family="Arial" font-size="8">conversations · 94% répondues</text>
+</svg>
