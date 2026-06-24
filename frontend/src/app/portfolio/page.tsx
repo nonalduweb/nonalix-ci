@@ -127,7 +127,7 @@ export default function PortfolioPage() {
                   Études de cas <span className="text-gradient">réelles</span>
                 </h2>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '600px' }}>
-                  Des entreprises comme la vôtre ont déjà transformé leur activité grâce à nos systèmes d’automatisation IA, nos agents intelligents et nos solutions de croissance digitale.
+                  Des entreprises comme la vôtre ont déjà transformé leur activité grâce aux technologies d&apos;intelligence artificielle.
                 </p>
               </div>
             </ScrollReveal>
