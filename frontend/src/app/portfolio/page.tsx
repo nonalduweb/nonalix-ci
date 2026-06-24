@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GlowingCard from '@/components/layout/GlowingCard';
 import ScrollReveal from '@/components/layout/ScrollReveal';
-import { PORTFOLIO_PROJECTS } from '@/data/portfolio';
+import { PORTFOLIO_PROJECTS, CASE_STUDIES } from '@/data/portfolio';
 import { CONTACT_INFO } from '@/lib/constants';
 
 const FILTER_OPTIONS = [
@@ -16,9 +16,21 @@ const FILTER_OPTIONS = [
   { value: 'seo-marketing', label: 'SEO & Marketing' },
 ] as const;
 
+const CASE_FILTERS = [
+  { value: 'all', label: 'Tous les secteurs' },
+  { value: 'immobilier', label: 'Immobilier' },
+  { value: 'ecommerce', label: 'E-commerce' },
+  { value: 'services', label: 'Services' },
+  { value: 'education', label: 'Éducation' },
+  { value: 'sante', label: 'Santé' },
+] as const;
+
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [animating, setAnimating] = useState<boolean>(false);
+
+  const [activeCaseFilter, setActiveCaseFilter] = useState<string>('all');
+  const [caseAnimating, setCaseAnimating] = useState<boolean>(false);
 
   const handleFilterChange = (filter: string) => {
     if (filter === activeFilter) return;
@@ -29,9 +41,23 @@ export default function PortfolioPage() {
     }, 200); // Short delay for transition animation
   };
 
+  const handleCaseFilterChange = (filter: string) => {
+    if (filter === activeCaseFilter) return;
+    setCaseAnimating(true);
+    setTimeout(() => {
+      setActiveCaseFilter(filter);
+      setCaseAnimating(false);
+    }, 200); // Short delay for transition animation
+  };
+
   const filteredProjects = PORTFOLIO_PROJECTS.filter((project) => {
     if (activeFilter === 'all') return true;
     return project.category === activeFilter;
+  });
+
+  const filteredCaseStudies = CASE_STUDIES.filter((study) => {
+    if (activeCaseFilter === 'all') return true;
+    return study.sector === activeCaseFilter;
   });
 
   return (
@@ -41,7 +67,7 @@ export default function PortfolioPage() {
         className="glow-bubble glow-bubble-top" 
         style={{ 
           position: 'absolute', 
-          top: '10%', 
+          top: '5%', 
           left: '10%', 
           width: '400px', 
           height: '400px', 
@@ -69,7 +95,7 @@ export default function PortfolioPage() {
       />
 
       {/* Main Header / Hero Section */}
-      <section className="section" style={{ paddingTop: 'var(--space-4xl)', position: 'relative', zIndex: 1 }}>
+      <section className="section" style={{ paddingTop: 'var(--space-4xl)', paddingBottom: 'var(--space-xl)', position: 'relative', zIndex: 1 }}>
         <div className="container">
           <ScrollReveal>
             <div className="section-header" style={{ marginBottom: 'var(--space-2xl)' }}>
@@ -83,8 +109,196 @@ export default function PortfolioPage() {
               </p>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
 
-          {/* Glassmorphic Category Filter Bar */}
+      {/* DETAILED CASE STUDIES SECTION */}
+      <section className="section" style={{ padding: '0 0 var(--space-4xl) 0', position: 'relative', zIndex: 1 }}>
+        <div className="container">
+          {/* Top Row with Title & Proof Pills */}
+          <div className="top-row" style={{ marginBottom: 'var(--space-2xl)' }}>
+            <ScrollReveal>
+              <div>
+                <span className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', color: 'var(--color-accent)', fontSize: '0.875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 'var(--space-sm)' }}>
+                  <span className="eyebrow-dot" style={{ width: '8px', height: '8px', borderRadius: 'var(--radius-full)', background: 'var(--color-accent)', boxShadow: '0 0 10px var(--color-accent)' }}></span>
+                  Preuves de résultats
+                </span>
+                <h2 style={{ fontSize: '2.25rem', fontFamily: 'var(--font-heading)', fontWeight: 600, color: 'var(--color-text)', marginBottom: 'var(--space-sm)' }}>
+                  Études de cas <span className="text-gradient">réelles</span>
+                </h2>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '600px' }}>
+                  Des entreprises comme la vôtre ont déjà transformé leur activité grâce à nos systèmes d’automatisation IA, nos agents intelligents et nos solutions de croissance digitale.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delayMs={100}>
+              <div className="proof-pills">
+                <div className="proof-pill">
+                  <div className="proof-icon">↗</div>
+                  <div>
+                    <strong>Résultats mesurables</strong>
+                    <small>Des améliorations chiffrées et vérifiables.</small>
+                  </div>
+                </div>
+                <div className="proof-pill">
+                  <div className="proof-icon">⏱</div>
+                  <div>
+                    <strong>Gain de temps</strong>
+                    <small>Automatisation 24h/24, sans intervention.</small>
+                  </div>
+                </div>
+                <div className="proof-pill">
+                  <div className="proof-icon">●</div>
+                  <div>
+                    <strong>Croissance durable</strong>
+                    <small>Plus de leads, de ventes et de clients satisfaits.</small>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Sector Filters */}
+          <ScrollReveal delayMs={150}>
+            <div 
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                flexWrap: 'wrap',
+                gap: 'var(--space-sm)',
+                marginBottom: 'var(--space-2xl)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid var(--color-border)',
+                padding: 'var(--space-sm)',
+                borderRadius: 'var(--radius-xl)',
+                backdropFilter: 'blur(10px)',
+                width: 'fit-content'
+              }}
+              className="portfolio-filter-bar"
+            >
+              {CASE_FILTERS.map((option) => (
+                <button
+                  key={option.value}
+                  onClick={() => handleCaseFilterChange(option.value)}
+                  className={`filter-chip ${activeCaseFilter === option.value ? 'active' : ''}`}
+                  style={{
+                    padding: '8px 18px',
+                    borderRadius: 'var(--radius-lg)',
+                    fontSize: '0.875rem',
+                    fontWeight: 500,
+                    transition: 'var(--transition-fast)',
+                    border: '1px solid transparent',
+                    background: activeCaseFilter === option.value ? 'var(--color-accent)' : 'transparent',
+                    color: activeCaseFilter === option.value ? '#FFFFFF' : 'var(--color-text-secondary)',
+                  }}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* Case Studies Grid */}
+          <div 
+            className={`case-grid ${caseAnimating ? 'fade-out-transition' : 'fade-in-transition'}`}
+            style={{ transition: 'opacity 0.20s ease' }}
+          >
+            {filteredCaseStudies.map((study, idx) => (
+              <ScrollReveal key={study.id} delayMs={idx * 50}>
+                <div className={`case-card ${study.featured ? 'featured' : ''}`}>
+                  <span className={`case-tag ${study.sector === 'ecommerce' ? 'purple' : ''}`}>
+                    {study.sectorLabel}
+                  </span>
+                  
+                  <div className="case-visual">
+                    <Image
+                      src={study.image}
+                      alt={study.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
+                      priority={study.featured}
+                    />
+                  </div>
+
+                  <h3>{study.title.split(' ')[0]} <span>{study.title.split(' ').slice(1).join(' ')}</span></h3>
+                  <p>{study.description}</p>
+
+                  <div className="metrics">
+                    {study.metrics.map((metric, mIdx) => (
+                      <div key={mIdx}>
+                        <strong>{metric.value}</strong>
+                        <small>{metric.label}</small>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="solutions-title">Solutions déployées</div>
+                  <ul className="solutions">
+                    {study.solutions.map((sol, sIdx) => (
+                      <li key={sIdx}>{sol}</li>
+                    ))}
+                  </ul>
+
+                  <Link href={study.link} className="case-link">
+                    Voir le projet <span>→</span>
+                  </Link>
+                </div>
+              </ScrollReveal>
+            ))}
+
+            {filteredCaseStudies.length === 0 && (
+              <div style={{ textAlign: 'center', padding: 'var(--space-3xl)', color: 'var(--color-text-secondary)', width: '100%' }}>
+                <p>Aucune étude de cas trouvée pour ce secteur pour le moment.</p>
+              </div>
+            )}
+          </div>
+
+          {/* Global Statistics Box */}
+          <ScrollReveal delayMs={200}>
+            <div className="global-results">
+              <div className="global-intro">
+                <strong>Des résultats qui parlent d’eux-mêmes</strong>
+                <span>Nous aidons les entreprises à automatiser, convertir et croître durablement grâce à l’IA.</span>
+              </div>
+              <div className="global-item">
+                <strong>107+</strong>
+                <span>Clients satisfaits dans 6 pays</span>
+              </div>
+              <div className="global-item">
+                <strong>250+</strong>
+                <span>Projets réalisés avec succès</span>
+              </div>
+              <div className="global-item">
+                <strong>3,2M+</strong>
+                <span>Leads traités par nos systèmes IA</span>
+              </div>
+              <div className="global-item">
+                <strong>18 000+</strong>
+                <span>Heures économisées par nos clients</span>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* CATALOGUE / OTHER PROJECTS SECTION */}
+      <section className="section" style={{ borderTop: '1px solid var(--color-border)', position: 'relative', zIndex: 1 }}>
+        <div className="container">
+          <ScrollReveal>
+            <div className="section-header" style={{ marginBottom: 'var(--space-xl)', textAlign: 'center' }}>
+              <span className="badge badge-accent">Catalogue</span>
+              <h2 style={{ marginTop: 'var(--space-sm)', fontSize: '2rem', fontFamily: 'var(--font-heading)' }}>
+                Notre <span className="text-gradient">Catalogue</span> de Projets
+              </h2>
+              <p style={{ maxWidth: '600px', margin: 'var(--space-xs) auto 0 auto', color: 'var(--color-text-secondary)', fontSize: '0.925rem' }}>
+                Parcourez nos réalisations par domaine d&apos;expertise et découvrez la diversité de nos solutions.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Glassmorphic Category Filter Bar for Catalog */}
           <ScrollReveal delayMs={100}>
             <div 
               style={{
