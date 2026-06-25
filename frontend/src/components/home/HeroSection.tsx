@@ -50,7 +50,7 @@ export function HeroSection() {
       <Particles color="rgba(59, 130, 246, 0.25)" quantity={35} speed={0.15} size={1.2} opacity={0.25} />
 
       {/* Hero container */}
-      <div className="container hero-container" style={{ position: 'relative', zIndex: 1, padding: 'var(--space-4xl) var(--content-padding) var(--space-3xl)' }}>
+      <div className="container hero-container" style={{ position: 'relative', zIndex: 1, padding: 'calc(var(--announcement-bar-height) + var(--space-4xl)) var(--content-padding) var(--space-3xl)' }}>
         
         {/* Split Grid Layout 50/50 */}
         <div className="hero-split-grid">

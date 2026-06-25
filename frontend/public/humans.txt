@@ -1,0 +1,48 @@
+/* TEAM */
+
+Agency: NONALIX CI SARL
+Role: AI Automation & Digital Growth Agency
+Location: Abidjan, Cocody Angré, Côte d'Ivoire
+Contact: contact@nonalix-ci.com
+Website: https://nonalix-ci.com
+WhatsApp: +225 05 66 36 03 03
+
+/* EXPERTISE */
+
+AI Automation · WhatsApp AI Agents · Web Development (Next.js)
+SEO & Local Visibility · Google Ads & Meta Ads · E-commerce (Mobile Money)
+n8n Workflow Automation · UI/UX Design · Digital Training
+
+/* TECHNOLOGY */
+
+Languages: TypeScript, JavaScript, Python, SQL
+Frontend: Next.js 15, React 19, Tailwind CSS, Custom CSS
+Backend: Node.js, Prisma ORM, PostgreSQL
+AI & Automation: OpenAI GPT-4o, Anthropic Claude, n8n, LangChain, WhatsApp Business API
+Payments: Orange Money, Wave, MTN Mobile Money, Stripe
+Infrastructure: Vercel, VPS (Linux), Cloudflare
+Analytics: Google Analytics 4, Google Tag Manager, Meta Pixel
+
+/* STANDARDS */
+
+HTML5 · CSS3 · WCAG 2.1 AA · Schema.org · Open Graph · JSON-LD
+Core Web Vitals Optimized · Mobile-First · PWA Ready
+
+/* MARKETS SERVED */
+
+Côte d'Ivoire · Sénégal · Cameroun · Mali · Burkina Faso
+Togo · Bénin · Guinée · France · Belgique · Canada
+
+/* SOCIAL */
+
+Facebook:  https://www.facebook.com/nonalix.ci
+Instagram: https://www.instagram.com/nonalix.ci
+LinkedIn:  https://www.linkedin.com/company/nonalix-ci
+TikTok:    https://www.tiktok.com/@nonalix.ci
+
+/* NOTE */
+
+Built with passion for Africa's digital future.
+NONALIX CI — Automatisation IA & Croissance Digitale.
+
+Last updated: 2026-06-24

@@ -1,0 +1,18 @@
+Contact: mailto:contact@nonalix-ci.com
+Contact: https://nonalix-ci.com/contact
+Expires: 2027-06-24T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://nonalix-ci.com/.well-known/security.txt
+
+# NONALIX CI — Security Policy
+#
+# If you discover a security vulnerability on nonalix-ci.com,
+# please report it responsibly via email at contact@nonalix-ci.com
+# with the subject line: [SECURITY] Vulnerability Report
+#
+# We commit to:
+# - Acknowledging your report within 48 hours
+# - Keeping you informed of our progress
+# - Not taking legal action against good-faith security researchers
+#
+# Thank you for helping keep NONALIX CI and our clients safe.

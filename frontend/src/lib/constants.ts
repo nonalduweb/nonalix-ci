@@ -28,6 +28,15 @@ export const PAYMENT_CONFIG = {
   simulation: true, // Passer à false quand les clés API marchand sont fournies
 } as const;
 
+export const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/nonalix.ci',
+  instagram: 'https://www.instagram.com/nonalix.ci',
+  linkedin: 'https://www.linkedin.com/company/nonalix-ci',
+  tiktok: 'https://www.tiktok.com/@nonalix.ci',
+  googleBusiness: 'https://g.page/r/Ca9830uxPe1xEBI/review',
+  googleReviews: 'https://g.page/r/Ca9830uxPe1xEBI/review',
+} as const;
+
 export const NAV_LINKS = [
   { href: '/', label: 'Accueil' },
   { href: '/services', label: 'Services' },

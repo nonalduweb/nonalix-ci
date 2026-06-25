@@ -24,7 +24,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     tags: ['React', 'Laravel', 'Tailwind CSS', 'Inertia.js'],
     badge: 'Site Web',
     featured: true,
-    link: '#',
+    link: '/portfolio/global-building-service',
   },
   {
     id: 'proj_002',
@@ -36,7 +36,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     tags: ['React', 'Tailwind CSS', 'Laravel'],
     badge: 'Site Web',
     featured: true,
-    link: '#',
+    link: '/portfolio/black-wolf-cnc',
   },
   {
     id: 'proj_003',
@@ -48,7 +48,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     tags: ['React', 'Laravel', 'Tailwind CSS'],
     badge: 'Site Web',
     featured: true,
-    link: '#',
+    link: '/portfolio/global-building-ltd',
   },
   {
     id: 'proj_004',
@@ -60,7 +60,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     tags: ['Next.js', 'PostgreSQL', 'Orange Money / Wave / MTN'],
     badge: 'E-commerce',
     featured: false,
-    link: '#',
+    link: '/portfolio/afrishop',
   },
   {
     id: 'proj_005',
@@ -72,7 +72,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     tags: ['FastAPI', 'OpenAI API', 'WhatsApp Cloud API'],
     badge: 'Chatbot IA',
     featured: false,
-    link: '#',
+    link: '/portfolio/chatbot-ia-whatsapp',
   },
   {
     id: 'proj_006',
@@ -84,7 +84,7 @@ export const PORTFOLIO_PROJECTS: Project[] = [
     tags: ['n8n', 'Make', 'Zapier', 'CRM Hubspot'],
     badge: 'Automatisation',
     featured: false,
-    link: '#',
+    link: '/portfolio/automatisation-processus-crm',
   },
 ];
 
@@ -127,7 +127,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Prise de rendez-vous intelligente',
       'Dashboard de suivi commercial'
     ],
-    link: '#'
+    link: '/portfolio/africa-immo'
   },
   {
     id: 'case_002',
@@ -150,7 +150,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Dashboard administrateur',
       'Automatisation du parcours client'
     ],
-    link: '#'
+    link: '/portfolio/sound-light-pro'
   },
   {
     id: 'case_003',
@@ -173,7 +173,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'Scoring automatique des prospects',
       'Reporting de performance'
     ],
-    link: '#'
+    link: '/portfolio/btp-solutions-ci'
   }
 ];
 

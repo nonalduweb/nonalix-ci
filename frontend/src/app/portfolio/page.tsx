@@ -449,15 +449,18 @@ export default function PortfolioPage() {
                     </div>
 
                     {/* Bottom Row case study link */}
-                    <div 
+                    <Link 
+                      href={project.link}
                       style={{ 
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'space-between',
                         borderTop: '1px solid rgba(255, 255, 255, 0.05)',
                         paddingTop: 'var(--space-md)',
-                        marginTop: 'auto'
+                        marginTop: 'auto',
+                        textDecoration: 'none'
                       }}
+                      className="case-study-link"
                     >
                       <span 
                         style={{ 
@@ -498,7 +501,7 @@ export default function PortfolioPage() {
                           <polyline points="12 5 19 12 12 19"></polyline>
                         </svg>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </GlowingCard>
               </ScrollReveal>
