@@ -92,7 +92,7 @@ export function Header() {
           <div className="header-actions">
             <Link
               href="/contact"
-              className="btn btn-highlight btn-sm"
+              className="btn btn-highlight btn-sm header-contact-btn"
               style={{
                 borderRadius: '9999px',
                 padding: '0.5rem 1.25rem',

@@ -325,23 +325,6 @@ export function AIChatWidget() {
         className="chat-float-btn"
         aria-label="Discuter avec notre IA"
         id="chat-ai-button"
-        style={{
-          position: 'fixed',
-          bottom: '1.5rem',
-          left: '1.5rem',
-          zIndex: 1000,
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--color-accent), var(--color-accent-glow))',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 16px rgba(37, 99, 235, 0.4)',
-          transition: 'transform var(--transition-base), box-shadow var(--transition-base)',
-          animation: 'float 3s ease-in-out infinite',
-          border: '1px solid rgba(255, 255, 255, 0.1)'
-        }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -352,22 +335,7 @@ export function AIChatWidget() {
       {isOpen && (
         <div
           className="chat-window card animate-fade-in-up"
-          style={{
-            position: 'fixed',
-            bottom: '5.5rem',
-            left: '1.5rem',
-            width: '350px',
-            height: '480px',
-            zIndex: 1000,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: 0,
-            overflow: 'hidden',
-            border: '1px solid var(--color-border)',
-            background: 'rgba(22, 23, 27, 0.9)',
-            backdropFilter: 'blur(16px)'
-          }}
+          id="chat-ai-window"
         >
           {/* Header */}
           <div

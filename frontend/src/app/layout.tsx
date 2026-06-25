@@ -141,12 +141,13 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png" },
-      { url: "/favicon.png", type: "image/png" },
+      { url: "/icon.png?v=2", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.png?v=2", type: "image/png", sizes: "512x512" },
     ],
     apple: [
-      { url: "/icon.png", type: "image/png" },
+      { url: "/icon.png?v=2", type: "image/png", sizes: "180x180" },
     ],
+    shortcut: ["/favicon.png?v=2"],
   },
 
   category: "technology",
