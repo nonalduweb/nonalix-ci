@@ -75,8 +75,12 @@ docker compose exec -T frontend npx prisma db push --accept-data-loss
 echo "Peuplement initial de la base de données (Seeding)..."
 docker compose exec -T frontend npx prisma db seed
 
-# 7. Finalisation
-echo ">>> [7/7] Déploiement terminé avec succès !"
+# 7. Nettoyage de l'espace disque
+echo ">>> [7/8] Nettoyage des anciennes images et du cache Docker..."
+docker system prune -af
+
+# 8. Finalisation
+echo ">>> [8/8] Déploiement terminé avec succès !"
 echo "==============================================="
 echo "Note : Pour activer le SSL HTTPS, exécutez la commande suivante :"
 echo "sudo certbot --nginx -d nonalix-ci.com -d www.nonalix-ci.com -d api.nonalix-ci.com"
