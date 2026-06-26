@@ -141,13 +141,13 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: "/icon.png?v=2", type: "image/png", sizes: "512x512" },
-      { url: "/favicon.png?v=2", type: "image/png", sizes: "512x512" },
+      { url: "/images/brand/icon.png?v=3", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.png?v=3", type: "image/png", sizes: "512x512" },
     ],
     apple: [
-      { url: "/icon.png?v=2", type: "image/png", sizes: "180x180" },
+      { url: "/images/brand/icon.png?v=3", type: "image/png", sizes: "180x180" },
     ],
-    shortcut: ["/favicon.png?v=2"],
+    shortcut: ["/favicon.png?v=3"],
   },
 
   category: "technology",
@@ -350,7 +350,10 @@ export default function RootLayout({
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-ZFSHQ5LP91');
+          gtag('config', 'G-ZFSHQ5LP91', {
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+          });
         `}
       </Script>
       <body style={{ position: 'relative' }}>

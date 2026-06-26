@@ -1454,19 +1454,19 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px; /* Proper touch target for mobile (44×44 minimum) */
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-full);
   color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.08); /* Visible background so users can see the button */
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(59, 130, 246, 0.18);
+  border: 1.5px solid rgba(59, 130, 246, 0.45);
   transition: all var(--transition-fast);
-  flex-shrink: 0; /* Never collapse */
+  flex-shrink: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
 .menu-toggle:active {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(59, 130, 246, 0.35);
   transform: scale(0.95);
 }
 

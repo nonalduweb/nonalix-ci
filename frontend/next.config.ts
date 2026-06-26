@@ -19,10 +19,11 @@ const nextConfig: NextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'identity-credentials-get=(), browsing-topics=()' },
         ],
       },
       {
-        source: '/(favicon|icon)\\.(ico|png|svg)',
+        source: '/(favicon\\.png|images/brand/icon\\.png)',
         headers: [
           { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
           { key: 'Pragma', value: 'no-cache' },
