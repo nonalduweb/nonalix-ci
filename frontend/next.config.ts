@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: '/(favicon\\.png|images/brand/icon\\.png)',
+        source: '/(favicon-v2\\.png|images/brand/icon-v2\\.png|favicon\\.ico)',
         headers: [
           { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
           { key: 'Pragma', value: 'no-cache' },
