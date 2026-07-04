@@ -17,8 +17,8 @@ export const CONTACT_INFO = {
 } as const;
 
 export const LEGAL_INFO = {
-  rccm: 'CI-ABJ-XXXX-X-XXXXX', // À remplacer par le vrai RCCM
-  idu: 'CI-XXXX-XXXXXXXX',      // À remplacer par le vrai IDU
+  rccm: 'CI-ABJ-03-2026-B13-01452',
+  idu: '1-26-1234567 A',
   year: new Date().getFullYear(),
 } as const;
 

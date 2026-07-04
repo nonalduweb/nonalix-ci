@@ -29,3 +29,22 @@ class ChatHistoryResponse(BaseModel):
     sessionId: str
     isQualified: bool
     messages: List[ChatMessageSchema]
+
+
+class AgentConfigBase(BaseModel):
+    slug: str
+    name: str
+    systemPrompt: str
+    firstMessage: str
+    variables: str # JSON-string representation
+
+class AgentConfigCreate(AgentConfigBase):
+    pass
+
+class AgentConfigResponse(AgentConfigBase):
+    id: str
+    createdAt: datetime
+    updatedAt: datetime
+
+    class Config:
+        from_attributes = True

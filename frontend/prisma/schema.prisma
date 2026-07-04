@@ -143,4 +143,15 @@ model ChatMessage {
   createdAt DateTime    @default(now())
 }
 
+model AgentConfig {
+  id           String   @id @default(cuid())
+  slug         String   @unique // e.g. 'immobilier', 'restaurant', 'clinique'
+  name         String
+  systemPrompt String   @db.Text
+  firstMessage String   @db.Text
+  variables    Json     // Store JSON with products, contact details, cal.com links
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 

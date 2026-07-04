@@ -60,29 +60,41 @@ export default function LegalNoticePage() {
                 Conformément à la loi n° 2013-450 relative à la protection des données à caractère personnel en Côte d&apos;Ivoire réglementée par l&apos;<strong>ARTCI</strong>, 
                 ainsi qu&apos;aux standards internationaux du RGPD, <strong>{SITE_CONFIG.fullName}</strong> s&apos;engage à protéger la confidentialité des données de ses utilisateurs.
               </p>
+              
               <h3 style={{ fontSize: '1rem', marginTop: 'var(--space-md)', marginBottom: 'var(--space-sm)', fontWeight: 600 }}>
-                Données collectées :
+                Quelles données nous récupérons :
               </h3>
-              <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
-                Nous collectons des informations lors de la soumission de formulaires (Nom complet, e-mail, téléphone, nom d&apos;entreprise, détails du projet) et de commandes (Adresse de livraison, mode de paiement).
-              </p>
+              <ul style={{ lineHeight: '1.8', fontSize: '0.9375rem', marginLeft: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
+                <li><strong>Formulaires & Commandes :</strong> Nom complet, adresse e-mail, numéro de téléphone, nom d&apos;entreprise, détails du projet, adresse de livraison et mode de paiement.</li>
+                <li><strong>Chatbot & Assistant IA (Web / WhatsApp) :</strong> Historique de discussion, identifiant de session, numéro de téléphone (pour WhatsApp), et toutes les informations de qualification partagées volontairement lors de la conversation (besoins, secteur d&apos;activité, nom).</li>
+              </ul>
+
               <h3 style={{ fontSize: '1rem', marginTop: 'var(--space-md)', marginBottom: 'var(--space-sm)', fontWeight: 600 }}>
-                Finalité du traitement :
+                Pourquoi nous les collectons (Finalités) :
               </h3>
-              <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
-                Ces données sont uniquement traitées pour :
-              </p>
-              <ul style={{ lineHeight: '1.8', fontSize: '0.9375rem', marginLeft: 'var(--space-md)' }}>
-                <li>Répondre à vos demandes de contact ou de devis personnalisé.</li>
+              <ul style={{ lineHeight: '1.8', fontSize: '0.9375rem', marginLeft: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
+                <li>Répondre à vos demandes de contact, de support ou de devis personnalisé.</li>
+                <li>Permettre à notre assistant virtuel de conserver le contexte et la mémoire des conversations en cours.</li>
                 <li>Générer et envoyer les rapports d&apos;audit SEO/IA demandés.</li>
                 <li>Gérer, valider et livrer vos commandes sur notre boutique e-commerce.</li>
               </ul>
+
               <h3 style={{ fontSize: '1rem', marginTop: 'var(--space-md)', marginBottom: 'var(--space-sm)', fontWeight: 600 }}>
-                Vos droits :
+                Comment elles sont protégées :
+              </h3>
+              <ul style={{ lineHeight: '1.8', fontSize: '0.9375rem', marginLeft: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
+                <li><strong>Chiffrement :</strong> Toutes les données transitent via des protocoles de communication sécurisés et chiffrés (HTTPS/SSL).</li>
+                <li><strong>Stockage sécurisé :</strong> Vos données et historiques de chat sont hébergés dans une base de données privée MySQL protégée et accessible uniquement par le personnel autorisé.</li>
+                <li><strong>Confidentialité IA :</strong> Les données envoyées aux modèles d&apos;intelligence artificielle (ex: OpenAI) pour générer les réponses du chatbot transitent via des connexions API professionnelles privées et ne sont en aucun cas utilisées pour entraîner des modèles publics.</li>
+              </ul>
+
+              <h3 style={{ fontSize: '1rem', marginTop: 'var(--space-md)', marginBottom: 'var(--space-sm)', fontWeight: 600 }}>
+                Comment demander leur suppression :
               </h3>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
                 Vous disposez d&apos;un droit d&apos;accès, de rectification, de suppression et d&apos;opposition au traitement de vos données personnelles. 
-                Vous pouvez exercer ce droit à tout moment en écrivant à <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)' }}>{CONTACT_INFO.email}</a>.
+                Vous pouvez demander à tout moment la suppression complète de vos informations ou de votre historique de chat en nous envoyant un e-mail à l&apos;adresse : 
+                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>.
               </p>
             </div>
 

@@ -110,3 +110,15 @@ class ChatMessage(Base):
 
     session = relationship("ChatSession", back_populates="messages")
 
+
+class AgentConfig(Base):
+    __tablename__ = 'AgentConfig'
+
+    id = Column(String(255), primary_key=True)
+    slug = Column(String(255), unique=True, nullable=False)
+    name = Column(String(255), nullable=False)
+    systemPrompt = Column(Text, nullable=False)
+    firstMessage = Column(Text, nullable=False)
+    variables = Column(Text, nullable=False) # JSON-string representation
+    createdAt = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updatedAt = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)

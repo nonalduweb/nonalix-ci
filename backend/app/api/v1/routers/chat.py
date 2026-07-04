@@ -2,8 +2,8 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db
-from app.models.models import ChatSession, ChatMessage, ContactLead
-from app.schemas.chat import MessageCreate, MessageResponse, ChatHistoryResponse, ChatMessageSchema
+from app.models.models import ChatSession, ChatMessage, ContactLead, AgentConfig
+from app.schemas.chat import MessageCreate, MessageResponse, ChatHistoryResponse, ChatMessageSchema, AgentConfigCreate, AgentConfigResponse
 from app.services.ai_agent import AIAgent
 
 router = APIRouter(prefix="/chat", tags=["Web Chat"])
@@ -111,3 +111,41 @@ def get_chat_history(session_id: str, db: Session = Depends(get_db)):
         isQualified=chat_session.isQualified,
         messages=mapped_messages
     )
+
+
+@router.get("/config/{slug}", response_model=AgentConfigResponse)
+def get_agent_config(slug: str, db: Session = Depends(get_db)):
+    """Récupère la configuration d'un agent IA par son slug."""
+    config = db.query(AgentConfig).filter(AgentConfig.slug == slug.lower().strip()).first()
+    if not config:
+        raise HTTPException(status_code=404, detail=f"Configuration d'agent '{slug}' introuvable")
+    return config
+
+
+@router.post("/config", response_model=AgentConfigResponse)
+def upsert_agent_config(payload: AgentConfigCreate, db: Session = Depends(get_db)):
+    """Crée ou met à jour la configuration d'un agent IA."""
+    slug_clean = payload.slug.lower().strip()
+    config = db.query(AgentConfig).filter(AgentConfig.slug == slug_clean).first()
+    
+    if config:
+        # Update
+        config.name = payload.name
+        config.systemPrompt = payload.systemPrompt
+        config.firstMessage = payload.firstMessage
+        config.variables = payload.variables
+    else:
+        # Create
+        config = AgentConfig(
+            id=str(uuid.uuid4()),
+            slug=slug_clean,
+            name=payload.name,
+            systemPrompt=payload.systemPrompt,
+            firstMessage=payload.firstMessage,
+            variables=payload.variables
+        )
+        db.add(config)
+        
+    db.commit()
+    db.refresh(config)
+    return config

@@ -1,0 +1,320 @@
+{
+  "name": "Universal Multi-Sector AI Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "agent-chat",
+        "options": {}
+      },
+      "id": "1e1b4f4c-1123-4567-89ab-cdef01234567",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://backend:8000/api/v1/chat/config/{{ $json.body.slug || 'immobilier' }}",
+        "options": {}
+      },
+      "id": "2e2b4f4c-2234-4567-89ab-cdef01234568",
+      "name": "Get Agent Config",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://backend:8000/api/v1/chat/history/{{ $node[\"Webhook Trigger\"].json.body.sessionId }}",
+        "options": {
+          "failOnStatusCode": false
+        }
+      },
+      "id": "3e3b4f4c-3345-4567-89ab-cdef01234569",
+      "name": "Get Session History",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        540,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const config = $('Get Agent Config').item.json;\nconst historyData = $('Get Session History').item.json;\nconst body = $('Webhook Trigger').item.json.body;\n\n// 1. Remplacer les variables dans le prompt système\nlet systemPrompt = config.systemPrompt;\nconst variables = typeof config.variables === 'string' ? config.variables : JSON.stringify(config.variables);\nsystemPrompt = systemPrompt.replace('{variables}', variables);\n\n// 2. Construire l'historique des messages pour OpenAI\nconst messages = [];\n\nif (historyData && historyData.messages) {\n  historyData.messages.forEach(msg => {\n    messages.push({\n      role: msg.role === 'assistant' ? 'assistant' : 'user',\n      content: msg.content\n    });\n  });\n}\n\n// Ajouter le message actuel de l'utilisateur\nmessages.push({\n  role: 'user',\n  content: body.message\n});\n\n// 3. Préparer le payload OpenAI\nconst openaiPayload = {\n  model: \"gpt-4o-mini\",\n  messages: [\n    {\n      role: \"system\",\n      content: systemPrompt\n    },\n    ...messages\n  ],\n  temperature: 0.7\n};\n\nreturn {\n  json: {\n    sessionId: body.sessionId,\n    slug: body.slug,\n    platform: body.platform || 'web',\n    openaiPayload: openaiPayload,\n    currentMessage: body.message\n  }\n};"
+      },
+      "id": "4e4b4f4c-4456-4567-89ab-cdef01234570",
+      "name": "Merge Prompt & History",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.OPENAI_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.openaiPayload) }}",
+        "options": {}
+      },
+      "id": "5e5b4f4c-5567-4567-89ab-cdef01234571",
+      "name": "OpenAI Chat API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const rawResponse = $('OpenAI Chat API').item.json.choices[0].message.content;\nconst inputData = $('Merge Prompt & History').item.json;\n\nlet reply = rawResponse;\nlet isQualified = false;\nlet leadData = null;\n\n// Regex pour détecter [QUALIFIED: {json}]\nconst match = rawResponse.match(/\\[QUALIFIED:\\s*(\\{.*?\\})\\s*\\]/s);\nif (match) {\n  try {\n    leadData = JSON.parse(match[1]);\n    isQualified = true;\n    // Nettoyer le tag de la réponse finale\n    reply = rawResponse.replace(/\\[QUALIFIED:\\s*\\{.*?\\}\\s*\\]/s, '').trim();\n  } catch (e) {\n    console.error(\"Erreur de parsing du JSON de qualification\", e);\n  }\n}\n\nreturn {\n  json: {\n    sessionId: inputData.sessionId,\n    slug: inputData.slug,\n    platform: inputData.platform,\n    reply: reply,\n    isQualified: isQualified,\n    leadData: leadData,\n    userMessage: inputData.currentMessage\n  }\n};"
+      },
+      "id": "6e6b4f4c-6678-4567-89ab-cdef01234572",
+      "name": "Parse OpenAI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=INSERT INTO ChatMessage (id, sessionId, role, content, createdAt) VALUES \n('{{ $uuid }}', '{{ $json.sessionId }}', 'user', '{{ $json.userMessage.replace(/'/g, \"''\") }}', NOW()),\n('{{ $uuid }}', '{{ $json.sessionId }}', 'assistant', '{{ $json.reply.replace(/'/g, \"''\") }}', NOW());"
+      },
+      "id": "7e7b4f4c-7789-4567-89ab-cdef01234573",
+      "name": "Save Messages to MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        300
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "mysql-credentials-id",
+          "name": "MySQL NONALIX CI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.isQualified }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "8e8b4f4c-8890-4567-89ab-cdef01234574",
+      "name": "If Qualified?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=INSERT INTO ContactLead (id, firstName, lastName, email, phone, message, type, status, createdAt) \nVALUES (\n  '{{ $uuid }}', \n  '{{ $json.leadData.firstName ? $json.leadData.firstName.replace(/'/g, \"''\") : 'Prospect' }}', \n  '{{ $json.leadData.lastName ? $json.leadData.lastName.replace(/'/g, \"''\") : 'IA' }}', \n  '{{ $json.leadData.email ? $json.leadData.email.replace(/'/g, \"''\") : '' }}', \n  '{{ $json.leadData.phone ? $json.leadData.phone.replace(/'/g, \"''\") : '' }}', \n  '{{ (\"[Qualifié via n8n Agent \" + $json.slug + \"] Besoin: \" + ($json.leadData.need || '')).replace(/'/g, \"''\") }}', \n  'quote_request', \n  'new', \n  NOW()\n);\n\nUPDATE ChatSession \nSET \n  isQualified = true, \n  leadName = '{{ $json.leadData.firstName ? $json.leadData.firstName.replace(/'/g, \"''\") : 'Prospect' }}', \n  leadPhone = '{{ $json.leadData.phone ? $json.leadData.phone.replace(/'/g, \"''\") : '' }}', \n  leadEmail = '{{ $json.leadData.email ? $json.leadData.email.replace(/'/g, \"''\") : '' }}', \n  leadNeed = '{{ $json.leadData.need ? $json.leadData.need.replace(/'/g, \"''\") : '' }}', \n  updatedAt = NOW() \nWHERE id = '{{ $json.sessionId }}';"
+      },
+      "id": "9e9b4f4c-9901-4567-89ab-cdef01234575",
+      "name": "Save Lead & Update Session",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        200
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "mysql-credentials-id",
+          "name": "MySQL NONALIX CI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "notifications@nonalix-ci.com",
+        "toEmail": "contact@nonalix-ci.com",
+        "subject": "=📢 Nouveau Lead Qualifié par l'Agent IA ({{ $json.slug.toUpperCase() }})",
+        "html": "=<h3>Un prospect a été qualifié automatiquement !</h3>\n<p><strong>Agent :</strong> {{ $json.slug }}</p>\n<p><strong>Nom :</strong> {{ $json.leadData.firstName }} {{ $json.leadData.lastName }}</p>\n<p><strong>Téléphone :</strong> {{ $json.leadData.phone }}</p>\n<p><strong>Email :</strong> {{ $json.leadData.email }}</p>\n<p><strong>Besoin :</strong> {{ $json.leadData.need }}</p>\n<p><strong>Plateforme :</strong> {{ $json.platform }}</p>\n<br/>\n<p><i>Cet email a été envoyé automatiquement par le workflow n8n.</i></p>",
+        "options": {}
+      },
+      "id": "ae0b4f4c-0012-4567-89ab-cdef01234576",
+      "name": "Send Email Alert",
+      "type": "n8n-nodes-base.email",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"reply\": \"{{ $json.reply.replace(/\\n/g, '\\\\n').replace(/\"/g, '\\\\\"') }}\",\n  \"sessionId\": \"{{ $json.sessionId }}\",\n  \"isQualified\": {{ $json.isQualified }},\n  \"platform\": \"{{ $json.platform }}\"\n}"
+      },
+      "id": "be1b4f4c-1123-4567-89ab-cdef01234577",
+      "name": "Respond to Client",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2300,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Agent Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Agent Config": {
+      "main": [
+        [
+          {
+            "node": "Get Session History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Session History": {
+      "main": [
+        [
+          {
+            "node": "Merge Prompt & History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Prompt & History": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Chat API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat API": {
+      "main": [
+        [
+          {
+            "node": "Parse OpenAI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse OpenAI Response": {
+      "main": [
+        [
+          {
+            "node": "Save Messages to MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Messages to MySQL": {
+      "main": [
+        [
+          {
+            "node": "If Qualified?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Qualified?": {
+      "main": [
+        [
+          {
+            "node": "Save Lead & Update Session",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Lead & Update Session": {
+      "main": [
+        [
+          {
+            "node": "Send Email Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email Alert": {
+      "main": [
+        [
+          {
+            "node": "Respond to Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -126,7 +126,7 @@ export default function CheckoutPage() {
             : '/api/payment/wave';
 
           try {
-            await fetch(paymentEndpoint, {
+            const payRes = await fetch(paymentEndpoint, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -136,6 +136,16 @@ export default function CheckoutPage() {
                 description: `Paiement commande ${orderId}`,
               }),
             });
+
+            if (payRes.ok) {
+              const payData = await payRes.json();
+              if (payData.url) {
+                // Real payment redirect
+                clearCart();
+                window.location.href = payData.url;
+                return;
+              }
+            }
           } catch (payErr) {
             console.error('Failed to initialize mobile money payment:', payErr);
           }
