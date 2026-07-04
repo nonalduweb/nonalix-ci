@@ -60,6 +60,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
+    {
+      url: `${BASE_URL}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
+      url: `${BASE_URL}/delete-data`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
   ];
 
   // Pages de services détaillées

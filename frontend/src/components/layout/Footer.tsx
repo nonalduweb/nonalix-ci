@@ -68,9 +68,21 @@ export function Footer() {
           <p className="footer-legal">
             RCCM : {LEGAL_INFO.rccm} | IDU : {LEGAL_INFO.idu}
           </p>
-          <p style={{ marginTop: 'var(--space-xs)', fontSize: '0.8125rem' }}>
+          <p style={{ marginTop: 'var(--space-xs)', fontSize: '0.8125rem', display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/mentions-legales" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>
-              Mentions Légales & Politique de Confidentialité
+              Mentions Légales
+            </Link>
+            <span>•</span>
+            <Link href="/privacy-policy" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>
+              Politique de Confidentialité
+            </Link>
+            <span>•</span>
+            <Link href="/terms" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>
+              Conditions Générales (CGU/CGV)
+            </Link>
+            <span>•</span>
+            <Link href="/delete-data" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>
+              Suppression des Données
             </Link>
           </p>
         </div>
