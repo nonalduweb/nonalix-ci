@@ -23,3 +23,14 @@ class DashboardStats(BaseModel):
     qualifiedLeads: int
     activeChatSessions: int
     recentLeads: List[LeadSummary]
+    # Stats journalières / hebdo
+    dailyOrders: int = 0
+    dailyRevenue: int = 0
+    dailyLeads: int = 0
+    weeklyPageViews: int = 0
+    dailyPageViews: int = 0
+    # WhatsApp vs Web chat
+    whatsappSessions: int = 0
+    whatsappQualified: int = 0
+    webChatSessions: int = 0
+    webChatQualified: int = 0
