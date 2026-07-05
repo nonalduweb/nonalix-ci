@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.api.v1.routers import chat, whatsapp, analytics
+from app.api.v1.routers import chat, whatsapp, analytics, leads
 from app.db.session import engine, Base
 from app.models import models
 
@@ -37,6 +37,7 @@ app.add_middleware(
 app.include_router(chat.router, prefix="/api/v1")
 app.include_router(whatsapp.router, prefix="/api/v1")
 app.include_router(analytics.router, prefix="/api/v1")
+app.include_router(leads.router, prefix="/api/v1")
 
 
 @app.get("/health")
