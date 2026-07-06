@@ -115,9 +115,9 @@ class BlogPost(Base):
     __tablename__ = 'BlogPost'
 
     id = Column(String(255), primary_key=True)
-    slug = Column(String(255), unique=True, nullable=False, index=True)
-    title = Column(String(500), nullable=False)
-    description = Column(String(500), nullable=True)
+    slug = Column(String(255), unique=True, nullable=False)
+    title = Column(String(255), nullable=False)
+    description = Column(String(255), nullable=True)
     contentHtml = Column(Text, nullable=False)
     category = Column(String(100), nullable=False)
     categoryLabel = Column(String(100), nullable=True)
@@ -128,8 +128,8 @@ class BlogPost(Base):
     featured = Column(Boolean, default=False, nullable=False)
     published = Column(Boolean, default=True, nullable=False)
     keywords = Column(Text, nullable=True)
-    metaOgTitle = Column(String(500), nullable=True)
-    metaOgDescription = Column(String(300), nullable=True)
+    metaOgTitle = Column(String(255), nullable=True)
+    metaOgDescription = Column(String(255), nullable=True)
     publishedAt = Column(DateTime, nullable=True)
     createdAt = Column(DateTime, default=datetime.utcnow, nullable=False)
 
