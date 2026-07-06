@@ -86,6 +86,21 @@ def create_blog_post(
     return post
 
 
+@router.delete("/{slug}", status_code=204)
+def delete_blog_post(
+    slug: str,
+    x_blog_secret: str = Header(None, alias="x-blog-secret"),
+    db: Session = Depends(get_db),
+):
+    if x_blog_secret != BLOG_SECRET:
+        raise HTTPException(status_code=401, detail="Non autorisé")
+    post = db.query(BlogPost).filter(BlogPost.slug == slug).first()
+    if not post:
+        raise HTTPException(status_code=404, detail="Article non trouvé")
+    db.delete(post)
+    db.commit()
+
+
 @router.post("/image-upload")
 async def upload_image(
     body: ImageUploadRequest,
