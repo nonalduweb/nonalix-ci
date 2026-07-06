@@ -566,48 +566,7 @@ export default function AuditIAPage() {
         }}
       />
 
-      {/* Header local avec Logo */}
-      <header className="audit-local-header" style={{
-        padding: '1.5rem var(--content-padding)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'relative',
-        zIndex: 10
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span style={{ 
-            fontSize: '1.25rem', 
-            fontWeight: 800, 
-            background: 'linear-gradient(90deg, #FAFAFA 0%, #3B82F6 100%)', 
-            WebkitBackgroundClip: 'text', 
-            WebkitTextFillColor: 'transparent',
-            letterSpacing: '1px',
-            fontFamily: 'var(--font-heading)'
-          }}>
-            NONALIX CI
-          </span>
-          <span className="audit-badge-tech" style={{
-            fontSize: '0.65rem',
-            background: 'rgba(59, 130, 246, 0.1)',
-            color: '#3B82F6',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            padding: '2px 8px',
-            borderRadius: '99px',
-            textTransform: 'uppercase',
-            fontWeight: 700
-          }}>
-            IA Audit Engine v2
-          </span>
-        </div>
 
-        {step === 'questions' && (
-          <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)' }}>
-            Question {currentQuestionIndex + 1} sur {QUESTIONS.length}
-          </div>
-        )}
-      </header>
 
       {/* ────────────────────────────────────────────────────────
           Étape 1 : HERO SECTION
@@ -708,18 +667,30 @@ export default function AuditIAPage() {
           <div key={currentQuestionIndex} className="animate-fade-in" style={{
             animation: 'fadeIn 0.5s ease-out'
           }}>
-            {/* Category badge */}
-            <span style={{
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              color: '#3B82F6',
-              letterSpacing: '0.1em',
-              display: 'block',
+            {/* Category and progress badge */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
               marginBottom: '0.75rem'
             }}>
-              {currentQuestion.category}
-            </span>
+              <span style={{
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                color: '#3B82F6',
+                letterSpacing: '0.1em'
+              }}>
+                {currentQuestion.category}
+              </span>
+              <span style={{
+                fontSize: '0.75rem',
+                color: 'var(--color-text-secondary)',
+                fontWeight: 500
+              }}>
+                Question {currentQuestionIndex + 1} sur {QUESTIONS.length}
+              </span>
+            </div>
 
             <h2 style={{
               fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)',
