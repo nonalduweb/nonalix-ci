@@ -1,11 +1,55 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { ShimmerButton } from '@/components/ui/ShimmerButton';
 import { Particles } from '@/components/ui/Particles';
 
+const MESSAGES = [
+  "Nous concevons des systèmes intelligents qui génèrent des prospects, qualifient vos leads et convertissent vos visiteurs en clients 24h/24.",
+  "Nos agents conversationnels WhatsApp répondent instantanément à vos clients et automatisent 80% des demandes répétitives.",
+  "Nous connectons vos outils de facturation, e-mails et CRM via n8n pour libérer vos collaborateurs des copier-coller.",
+  "Optimisez votre visibilité locale sur Google Maps pour multiplier vos appels commerciaux directs à Abidjan."
+];
+
 export function HeroSection() {
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const fullText = MESSAGES[currentMessageIndex];
+    
+    // Typewriter speeds: faster deleting, natural typing
+    const typingSpeed = isDeleting ? 15 : 30;
+
+    const handleType = () => {
+      if (!isDeleting) {
+        setDisplayedText(fullText.substring(0, displayedText.length + 1));
+        
+        if (displayedText === fullText) {
+          // Pause showing full text for 10s
+          timer = setTimeout(() => setIsDeleting(true), 10000);
+          return;
+        }
+      } else {
+        setDisplayedText(fullText.substring(0, displayedText.length - 1));
+        
+        if (displayedText === '') {
+          setIsDeleting(false);
+          setCurrentMessageIndex((prev) => (prev + 1) % MESSAGES.length);
+          return;
+        }
+      }
+      
+      timer = setTimeout(handleType, typingSpeed);
+    };
+
+    timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, currentMessageIndex]);
+
   return (
     <section
       className="hero"
@@ -31,17 +75,17 @@ export function HeroSection() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            opacity: 0.30, /* Visible background video */
+            opacity: 0.18, /* Optimisé pour maximiser le contraste et la lisibilité */
           }}
         >
-          <source src="/videos/nonalix-ci.webm" type="video/webm" />
+          <source src="/videos/bannier%20nonalix%20ci%20le%20roi%20du%20digital%20en%20Afrique.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay to balance visibility and readability */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(5, 5, 5, 0.85) 0%, rgba(5, 5, 5, 0.45) 50%, rgba(5, 5, 5, 0.85) 100%)',
+            background: 'linear-gradient(135deg, rgba(5, 5, 5, 0.88) 0%, rgba(5, 5, 5, 0.5) 50%, rgba(5, 5, 5, 0.88) 100%)',
           }}
         />
       </div>
@@ -57,39 +101,19 @@ export function HeroSection() {
           
           {/* Left Column: Title, Subtitle, CTA */}
           <div className="hero-split-left">
-            {/* Top Badge */}
-            <p
-              className="stagger-scale-item stagger-scale-1"
-              style={{
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-accent)',
-                marginBottom: 'var(--space-md)',
-                opacity: 0.95,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-              }}
-            >
-              Automatisation IA &amp; Croissance Digitale
-            </p>
-
-            <h1 className="hero-giant-title stagger-scale-item stagger-scale-2">
-              TRANSFORMEZ
+            <h1 className="hero-giant-title stagger-scale-item stagger-scale-2" style={{ textTransform: 'none', letterSpacing: '-0.02em', fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.25, marginBottom: '2.5rem' }}>
+              Automatisez. Développez.
               <br />
-              VOTRE ENTREPRISE
+              Dominez votre marché
               <br />
-              EN MACHINE DE VENTE
-              <br />
-              AUTOMATISÉE
-              <br />
-              PAR L&apos;<span style={{ color: 'var(--color-accent)' }}>IA</span>
+              grâce à l&apos;<span style={{ color: 'var(--color-accent)' }}>IA</span>.
             </h1>
-            
-            <div className="hero-split-actions stagger-scale-item stagger-scale-4">
-              <Link
+
+            <div className="hero-split-actions stagger-scale-item stagger-scale-4" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <ShimmerButton
+                as="link"
                 href="/contact"
-                className="btn btn-highlight btn-lg"
-                id="hero-cta-contact"
+                className="hero-cta-contact-shimmer"
                 style={{
                   borderRadius: '9999px',
                   padding: '0.875rem 2.25rem',
@@ -98,11 +122,12 @@ export function HeroSection() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  fontWeight: 600,
                   textDecoration: 'none',
                 }}
               >
                 Automatiser ma croissance <span style={{ marginLeft: '6px' }}>↗</span>
-              </Link>
+              </ShimmerButton>
 
               <Link
                 href="/portfolio"
@@ -151,6 +176,7 @@ export function HeroSection() {
               style={{
                 width: '100%',
                 maxWidth: '520px',
+                minHeight: '280px',
                 padding: 'var(--space-xl) var(--space-lg)',
                 background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(59, 130, 246, 0.01) 100%)',
                 border: '1px solid rgba(59, 130, 246, 0.15)',
@@ -159,6 +185,9 @@ export function HeroSection() {
                 backdropFilter: 'blur(12px)',
                 position: 'relative',
                 overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
               }}
             >
               {/* Decorative soft glow bubble */}
@@ -174,26 +203,106 @@ export function HeroSection() {
                 }}
               />
               
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 'var(--space-md)', opacity: 0.9 }}>
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
+              <div>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 'var(--space-md)', opacity: 0.9 }}>
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
 
-              <p 
-                style={{ 
-                  fontSize: '1.20rem', 
-                  lineHeight: '1.7', 
-                  color: 'rgba(250, 250, 250, 0.95)', 
-                  fontWeight: 500,
-                  margin: 0,
-                  fontFamily: 'var(--font-heading)'
-                }}
-              >
-                Nous concevons des <span className="text-gradient" style={{ fontWeight: 700 }}>systèmes intelligents</span> qui génèrent des prospects, qualifient vos leads et convertissent vos visiteurs en clients <span className="text-gradient" style={{ fontWeight: 700 }}>24h/24</span>.
-              </p>
+                <p 
+                  style={{ 
+                    fontSize: '1.20rem', 
+                    lineHeight: '1.7', 
+                    color: 'rgba(250, 250, 250, 0.95)', 
+                    fontWeight: 500,
+                    margin: 0,
+                    fontFamily: 'var(--font-heading)'
+                  }}
+                >
+                  {displayedText}
+                  <span className="typewriter-cursor" />
+                </p>
+              </div>
+
+              {/* Micro-indicateurs d'agents IA interactifs */}
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '8px',
+                marginTop: '1.5rem',
+                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                paddingTop: '1.25rem'
+              }}>
+                <div style={{
+                  fontSize: '0.75rem',
+                  background: 'rgba(16, 185, 129, 0.08)',
+                  color: '#10B981',
+                  border: '1px solid rgba(16, 185, 129, 0.2)',
+                  padding: '4px 10px',
+                  borderRadius: '99px',
+                  fontWeight: 600,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}>
+                  <span className="live-pulse-dot" style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                  Agent WhatsApp Actif 24/7
+                </div>
+                <div style={{
+                  fontSize: '0.75rem',
+                  background: 'rgba(59, 130, 246, 0.08)',
+                  color: '#3B82F6',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                  padding: '4px 10px',
+                  borderRadius: '99px',
+                  fontWeight: 600,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3B82F6', display: 'inline-block' }} />
+                  n8n Lead Engine Connecté
+                </div>
+                <div style={{
+                  fontSize: '0.75rem',
+                  background: 'rgba(245, 158, 11, 0.08)',
+                  color: '#F59E0B',
+                  border: '1px solid rgba(245, 158, 11, 0.2)',
+                  padding: '4px 10px',
+                  borderRadius: '99px',
+                  fontWeight: 600,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}>
+                  📈 Qualification IA: +92%
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+      <style jsx>{`
+        @keyframes pulseGlow {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.4; transform: scale(1.2); }
+        }
+        .live-pulse-dot {
+          animation: pulseGlow 1.5s ease-in-out infinite;
+        }
+        .typewriter-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 1.15em;
+          background-color: var(--color-accent);
+          margin-left: 4px;
+          vertical-align: middle;
+          animation: cursorBlink 0.8s step-end infinite;
+        }
+        @keyframes cursorBlink {
+          from, to { background-color: transparent }
+          50% { background-color: var(--color-accent) }
+        }
+      `}</style>
+    </section>
   );
 }

@@ -14,6 +14,7 @@ import WhyChooseUs from '@/components/home/WhyChooseUs';
 import IntegrationsSection from '@/components/home/IntegrationsSection';
 import { MarketingManifesto } from '@/components/home/MarketingManifesto';
 import { BeforeAfterSection } from '@/components/home/BeforeAfterSection';
+import { GoogleReviews } from '@/components/home/GoogleReviews';
 
 export const metadata: Metadata = {
   title: `Agence Digitale Abidjan — Web, IA, SEO & E-commerce | ${SITE_CONFIG.name}`,
@@ -145,6 +146,14 @@ export default function HomePage() {
 
         <ScrollReveal>
           <Testimonials />
+        </ScrollReveal>
+
+        <div className="flow-connector">
+          <div className="flow-node flow-node-orange"></div>
+        </div>
+
+        <ScrollReveal>
+          <GoogleReviews />
         </ScrollReveal>
 
         <div className="flow-connector">

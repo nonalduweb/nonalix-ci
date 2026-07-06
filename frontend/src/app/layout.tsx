@@ -134,9 +134,10 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    // Ajouter vos codes de vérification Google / Bing ici
-    // google: "votre-code-google",
-    // yandex: "votre-code-yandex",
+    // TODO: remplacer par votre code Google Search Console
+    // Aller sur search.google.com/search-console → Ajouter propriété → nonalix-ci.com
+    // → Méthode "Balise HTML" → copier uniquement le code (ex: "abc123xyz")
+    // google: "VOTRE_CODE_ICI",
   },
 
   icons: {

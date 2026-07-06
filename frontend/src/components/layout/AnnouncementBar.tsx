@@ -20,7 +20,7 @@ export function AnnouncementBar() {
 
       {/* CENTER — CTA */}
       <div className="announcement-cta-wrap">
-        <Link href="/audit-seo" className="announcement-cta">
+        <Link href="/audit-ia" className="announcement-cta">
           Audit gratuit <span className="announcement-cta-arrow">→</span>
         </Link>
       </div>

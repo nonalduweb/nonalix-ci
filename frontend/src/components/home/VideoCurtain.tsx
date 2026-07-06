@@ -22,7 +22,7 @@ export function VideoCurtain() {
       <div className="video-wrapper">
         <video
           ref={videoRef}
-          src="/videos/automation-schema.mp4"
+          src="/videos/nonalix-ci.webm"
           autoPlay
           loop
           muted

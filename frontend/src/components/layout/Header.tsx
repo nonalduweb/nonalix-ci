@@ -9,16 +9,17 @@ import { NAV_LINKS } from '@/lib/constants';
 import { useAuth } from '@/lib/auth-context';
 
 const dropdownServices = [
-  { slug: 'design-web-ui-ux', title: 'Design Web & UI/UX', desc: 'Design mobile-first premium' },
-  { slug: 'developpement-web', title: 'Développement Web', desc: 'Next.js ultra-rapide' },
-  { slug: 'automatisation-business', title: 'Automatisez votre business', desc: 'Funnels & systèmes autonomes' },
-  { slug: 'optimisation-seo', title: 'Optimisation SEO', desc: 'Référencement Côte d\'Ivoire' },
-  { slug: 'campagnes-publicitaires-ppc', title: 'Campagnes PPC', desc: 'Publicité Facebook & Google' },
-  { slug: 'boutiques-shopify', title: 'Boutiques Shopify', desc: 'E-commerce clé en main' },
-  { slug: 'marketing-digital', title: 'Marketing Digital', desc: 'Plan d\'acquisition global' },
-  { slug: 'audit-ux-ui', title: 'Audit UX/UI', desc: 'Optimisation de conversions' },
-  { slug: 'solutions-ecommerce-sur-mesure', title: 'E-commerce sur Mesure', desc: 'Paiements Mobile Money' },
-  { slug: 'optimisation-conversion-par-ia', title: 'Optimisation par IA', desc: 'Tests A/B automatisés' }
+  { slug: 'design-web-ui-ux', title: 'Design Web & UI/UX', desc: 'Design mobile-first premium', href: '/services/design-web-ui-ux' },
+  { slug: 'developpement-web', title: 'Développement Web', desc: 'Next.js ultra-rapide', href: '/services/developpement-web' },
+  { slug: 'automatisation-business', title: 'Automatisez votre business', desc: 'Funnels & systèmes autonomes', href: '/services/automatisation-business' },
+  { slug: 'optimisation-seo', title: 'Optimisation SEO', desc: 'Référencement Côte d\'Ivoire', href: '/services/optimisation-seo' },
+  { slug: 'campagnes-publicitaires-ppc', title: 'Campagnes PPC', desc: 'Publicité Facebook & Google', href: '/services/campagnes-publicitaires-ppc' },
+  { slug: 'boutiques-shopify', title: 'Boutiques Shopify', desc: 'E-commerce clé en main', href: '/services/boutiques-shopify' },
+  { slug: 'marketing-digital', title: 'Marketing Digital', desc: 'Plan d\'acquisition global', href: '/services/marketing-digital' },
+  { slug: 'audit-ux-ui', title: 'Audit UX/UI', desc: 'Optimisation de conversions', href: '/services/audit-ux-ui' },
+  { slug: 'solutions-ecommerce-sur-mesure', title: 'E-commerce sur Mesure', desc: 'Paiements Mobile Money', href: '/services/solutions-ecommerce-sur-mesure' },
+  { slug: 'optimisation-conversion-par-ia', title: 'Optimisation par IA', desc: 'Tests A/B automatisés', href: '/services/optimisation-conversion-par-ia' },
+  { slug: 'boutique', title: 'Boutique', desc: 'Nos produits et solutions digitales', href: '/boutique' }
 ];
 
 export function Header() {
@@ -27,8 +28,11 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, logout } = useAuth();
 
-  // Filter out contact link for main menu center alignment, since we have the CTA button
-  const centerLinks = NAV_LINKS.filter((link) => link.href !== '/contact');
+  // Filter out duplicates for main menu navigation (both desktop and mobile):
+  // - We keep /contact since the main CTA is now Audit IA.
+  // - We filter out /audit-ia because it is the main CTA.
+  // - We filter out /boutique because it is inside the Services submenu.
+  const headerLinks = NAV_LINKS.filter((link) => link.href !== '/audit-ia' && link.href !== '/boutique');
 
   return (
     <>
@@ -48,7 +52,7 @@ export function Header() {
           </Link>
 
           <nav className="header-nav" aria-label="Navigation principale">
-            {centerLinks.map((link) => {
+            {headerLinks.map((link) => {
               if (link.href === '/services') {
                 return (
                   <div key={link.href} className="nav-item-dropdown">
@@ -66,7 +70,7 @@ export function Header() {
                       {dropdownServices.map((service) => (
                         <Link
                           key={service.slug}
-                          href={`/services/${service.slug}`}
+                          href={service.href}
                           className="dropdown-link"
                         >
                           <span className="dropdown-link-title">{service.title}</span>
@@ -91,7 +95,7 @@ export function Header() {
 
           <div className="header-actions">
             <Link
-              href="/contact"
+              href="/audit-ia"
               className="btn btn-highlight btn-sm header-contact-btn"
               style={{
                 borderRadius: '9999px',
@@ -102,7 +106,7 @@ export function Header() {
               }}
               id="nav-cta-contact"
             >
-              Contactez-nous <span style={{ marginLeft: '4px' }}>↗</span>
+              Audit IA Gratuit <span style={{ marginLeft: '4px' }}>↗</span>
             </Link>
 
             <button
@@ -156,7 +160,7 @@ export function Header() {
 
         {/* Navigation links container */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-md)', width: '100%' }}>
-          {NAV_LINKS.map((link) => {
+          {headerLinks.map((link) => {
             if (link.href === '/services') {
               return (
                 <div key={link.href} className="mobile-nav-item-group">
@@ -169,24 +173,24 @@ export function Header() {
                   </Link>
                   {/* Indented mobile sub-menu grid */}
                   <div className="mobile-submenu">
-                    {dropdownServices.slice(0, 6).map((service) => (
+                    {dropdownServices.slice(0, 7).map((service) => (
                       <Link
                         key={service.slug}
-                        href={`/services/${service.slug}`}
+                        href={service.href}
                         onClick={() => setMobileOpen(false)}
-                        className={`mobile-submenu-link ${pathname === `/services/${service.slug}` ? 'active' : ''}`}
+                        className={`mobile-submenu-link ${pathname === service.href ? 'active' : ''}`}
                       >
                         {service.title}
                       </Link>
                     ))}
-                    {dropdownServices.length > 6 && (
+                    {dropdownServices.length > 7 && (
                       <Link
                         href="/services"
                         onClick={() => setMobileOpen(false)}
                         className="mobile-submenu-link-more"
                         style={{ gridColumn: 'span 2' }}
                       >
-                        Voir tous les services (10) ↗
+                        Voir tous les services (11) ↗
                       </Link>
                     )}
                   </div>
@@ -209,7 +213,7 @@ export function Header() {
         {/* Bottom Actions */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', width: '80%', maxWidth: '280px', marginTop: 'var(--space-md)' }}>
           <Link
-            href="/contact"
+            href="/audit-ia"
             onClick={() => setMobileOpen(false)}
             className="btn btn-highlight"
             style={{
@@ -224,13 +228,119 @@ export function Header() {
               textDecoration: 'none'
             }}
           >
-            Contactez-nous <span style={{ marginLeft: '4px' }}>↗</span>
+            Audit IA Gratuit <span style={{ marginLeft: '4px' }}>↗</span>
           </Link>
         </div>
       </div>
 
-      {/* CSS local pour les icônes de connexion et responsive */}
+      {/* CSS local pour les icônes de connexion, le dropdown et le responsive */}
       <style>{`
+        /* Fix visibility of absolute positioned dropdown */
+        .header {
+          overflow: visible !important;
+        }
+
+        /* Desktop Dropdown Styles */
+        .nav-item-dropdown {
+          position: relative;
+        }
+        .nav-item-dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) translateY(0);
+        }
+        .nav-item-dropdown:hover svg {
+          transform: rotate(180deg);
+        }
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%) translateY(10px);
+          width: 580px;
+          background: rgba(6, 7, 14, 0.97);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 16px;
+          padding: 1.25rem;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(59, 130, 246, 0.05);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: 100;
+          margin-top: 10px;
+        }
+        .dropdown-link {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          padding: 8px 12px;
+          border-radius: 10px;
+          transition: all 0.2s ease;
+          text-align: left;
+        }
+        .dropdown-link:hover {
+          background: rgba(255, 255, 255, 0.03);
+          transform: translateY(-1px);
+        }
+        .dropdown-link-title {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #ffffff;
+        }
+        .dropdown-link-desc {
+          font-size: 0.75rem;
+          color: var(--color-text-secondary);
+        }
+
+        /* Mobile Dropdown / Submenu Styles */
+        .mobile-nav-item-group {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .mobile-submenu {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+          padding: 10px 14px;
+          margin-top: 8px;
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.04);
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .mobile-submenu-link {
+          font-size: 0.8125rem;
+          color: var(--color-text-secondary);
+          padding: 6px 8px;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+          text-align: left;
+        }
+        .mobile-submenu-link:hover, .mobile-submenu-link.active {
+          color: #ffffff;
+          background: rgba(255, 255, 255, 0.03);
+        }
+        .mobile-submenu-link-more {
+          font-size: 0.8125rem;
+          color: var(--color-accent);
+          padding: 6px 8px;
+          font-weight: 600;
+          text-align: center;
+          transition: color 0.2s ease;
+        }
+        .mobile-submenu-link-more:hover {
+          color: #ffffff;
+        }
+
+        /* Connection Buttons & Rest */
         .header-connection-btn {
           position: relative;
           display: flex;

@@ -3,6 +3,14 @@
     "@magicuidesign/mcp": {
       "command": "cmd",
       "args": ["/c", "npx", "-y", "@magicuidesign/mcp@latest"]
+    },
+    "n8n-mcp": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "n8n-mcp"],
+      "env": {
+        "N8N_API_URL": "https://n8n.nonalix-ci.com",
+        "N8N_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyOGJiZDQxYy0zOGJkLTRiNjktOThkNC0wNmYxMjkyYWZmNTMiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiYzU0ODk1ZTYtZWIyYS00YTc5LTkyMjUtN2ExNTZlMjU2ZDMwIiwiaWF0IjoxNzgyOTc1NzUxfQ.AKJ3Xbu8gP87R9XLY8Axfjdb9SsPaZcwEMvBVU3t2qo"
+      }
     }
   }
 }
