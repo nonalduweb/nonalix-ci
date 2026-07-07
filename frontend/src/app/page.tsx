@@ -78,7 +78,7 @@ export default function HomePage() {
                   display: 'flex', 
                   alignItems: 'center', 
                   justifyContent: 'center',
-                  padding: 'var(--space-lg)',
+                  padding: 'clamp(1rem, 3vw, var(--space-xl))',
                   zIndex: 10
                 }}
               >

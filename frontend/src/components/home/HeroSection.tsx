@@ -103,13 +103,13 @@ export function HeroSection() {
           <div className="hero-split-left">
             <h1 className="hero-giant-title stagger-scale-item stagger-scale-2" style={{ textTransform: 'none', letterSpacing: '-0.02em', fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.25, marginBottom: '2.5rem' }}>
               Automatisez. Développez.
-              <br />
+              <br className="desktop-only-br" />
               Dominez votre marché
-              <br />
+              <br className="desktop-only-br" />
               grâce à l&apos;<span style={{ color: 'var(--color-accent)' }}>IA</span>.
             </h1>
 
-            <div className="hero-split-actions stagger-scale-item stagger-scale-4" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div className="hero-split-actions stagger-scale-item stagger-scale-4">
               <ShimmerButton
                 as="link"
                 href="/contact"
@@ -172,24 +172,7 @@ export function HeroSection() {
 
           {/* Right Column: Key Statement Card */}
           <div className="hero-split-right stagger-scale-item stagger-scale-3">
-            <div 
-              style={{
-                width: '100%',
-                maxWidth: '520px',
-                minHeight: '280px',
-                padding: 'var(--space-xl) var(--space-lg)',
-                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(59, 130, 246, 0.01) 100%)',
-                border: '1px solid rgba(59, 130, 246, 0.15)',
-                borderRadius: 'var(--radius-xl)',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(12px)',
-                position: 'relative',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
-            >
+            <div className="hero-statement-card">
               {/* Decorative soft glow bubble */}
               <div 
                 style={{
@@ -224,56 +207,16 @@ export function HeroSection() {
               </div>
 
               {/* Micro-indicateurs d'agents IA interactifs */}
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '8px',
-                marginTop: '1.5rem',
-                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-                paddingTop: '1.25rem'
-              }}>
-                <div style={{
-                  fontSize: '0.75rem',
-                  background: 'rgba(16, 185, 129, 0.08)',
-                  color: '#10B981',
-                  border: '1px solid rgba(16, 185, 129, 0.2)',
-                  padding: '4px 10px',
-                  borderRadius: '99px',
-                  fontWeight: 600,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}>
+              <div className="hero-indicators-container">
+                <div className="hero-indicator-badge success-badge">
                   <span className="live-pulse-dot" style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
                   Agent WhatsApp Actif 24/7
                 </div>
-                <div style={{
-                  fontSize: '0.75rem',
-                  background: 'rgba(59, 130, 246, 0.08)',
-                  color: '#3B82F6',
-                  border: '1px solid rgba(59, 130, 246, 0.2)',
-                  padding: '4px 10px',
-                  borderRadius: '99px',
-                  fontWeight: 600,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}>
+                <div className="hero-indicator-badge info-badge">
                   <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3B82F6', display: 'inline-block' }} />
                   n8n Lead Engine Connecté
                 </div>
-                <div style={{
-                  fontSize: '0.75rem',
-                  background: 'rgba(245, 158, 11, 0.08)',
-                  color: '#F59E0B',
-                  border: '1px solid rgba(245, 158, 11, 0.2)',
-                  padding: '4px 10px',
-                  borderRadius: '99px',
-                  fontWeight: 600,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}>
+                <div className="hero-indicator-badge warning-badge">
                   📈 Qualification IA: +92%
                 </div>
               </div>
@@ -301,6 +244,105 @@ export function HeroSection() {
         @keyframes cursorBlink {
           from, to { background-color: transparent }
           50% { background-color: var(--color-accent) }
+        }
+
+        /* Layout & Responsiveness */
+        .hero-split-actions {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+        }
+
+        .hero-statement-card {
+          width: 100%;
+          max-width: 520px;
+          min-height: 280px;
+          padding: var(--space-xl) var(--space-lg);
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(59, 130, 246, 0.01) 100%);
+          border: 1px solid rgba(59, 130, 246, 0.15);
+          border-radius: var(--radius-xl);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(12px);
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .hero-indicators-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 1.5rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          padding-top: 1.25rem;
+        }
+
+        .hero-indicator-badge {
+          font-size: 0.75rem;
+          padding: 4px 10px;
+          border-radius: 99px;
+          font-weight: 600;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .success-badge {
+          background: rgba(16, 185, 129, 0.08);
+          color: #10B981;
+          border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .info-badge {
+          background: rgba(59, 130, 246, 0.08);
+          color: #3B82F6;
+          border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .warning-badge {
+          background: rgba(245, 158, 11, 0.08);
+          color: #F59E0B;
+          border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        @media (max-width: 767px) {
+          .desktop-only-br {
+            display: none;
+          }
+          .hero-giant-title {
+            font-size: 2.25rem !important;
+            margin-bottom: 1.5rem !important;
+            line-height: 1.2 !important;
+          }
+          .hero-split-actions {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 10px !important;
+          }
+          .hero-split-actions :global(.hero-cta-contact-shimmer),
+          .hero-split-actions :global(.btn) {
+            width: 100% !important;
+            justify-content: center !important;
+            box-sizing: border-box;
+          }
+          .hero-statement-card {
+            padding: var(--space-md) !important;
+            min-height: auto !important;
+          }
+          .hero-indicators-container {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 6px !important;
+            margin-top: 1rem !important;
+            padding-top: 1rem !important;
+          }
+          .hero-indicator-badge {
+            width: 100% !important;
+            box-sizing: border-box;
+          }
         }
       `}</style>
     </section>
