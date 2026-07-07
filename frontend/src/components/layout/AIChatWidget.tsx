@@ -26,7 +26,19 @@ export function AIChatWidget() {
   const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  
+  // Resolve backendUrl dynamically to prevent Chrome Local Network Access security prompts.
+  // In production, we force HTTPS api.nonalix-ci.com to avoid triggering "Access other apps and services" warnings.
+  const getBackendUrl = () => {
+    if (typeof window !== 'undefined') {
+      const host = window.location.hostname;
+      if (host !== 'localhost' && host !== '127.0.0.1') {
+        return 'https://api.nonalix-ci.com';
+      }
+    }
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  };
+  const backendUrl = getBackendUrl();
 
   // Charger ou initialiser la session au montage
   useEffect(() => {
