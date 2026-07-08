@@ -95,12 +95,14 @@ function ConfirmationContent() {
       <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 'var(--space-xl)' }}>
         Merci pour votre commande ! Nous avons bien reçu votre demande.
         {digitalItems.length > 0
-          ? " Vos liens de téléchargement pour vos produits digitaux sont disponibles ci-dessous."
+          ? (order?.paymentStatus === 'completed'
+              ? " Vos liens de téléchargement pour vos produits digitaux sont disponibles ci-dessous."
+              : " Vos liens de téléchargement seront disponibles dès la validation de votre paiement en ligne.")
           : " Notre équipe va vous contacter très rapidement par téléphone pour confirmer les détails de livraison."}
       </p>
 
       {/* Digital Products Downloads */}
-      {digitalItems.length > 0 && (
+      {digitalItems.length > 0 && order?.paymentStatus === 'completed' && (
         <div
           className="card animate-fade-in-up"
           style={{
@@ -162,6 +164,35 @@ function ConfirmationContent() {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Pending Payment Card for Digital Products */}
+      {digitalItems.length > 0 && order?.paymentStatus !== 'completed' && (
+        <div
+          className="card animate-fade-in-up"
+          style={{
+            textAlign: 'left',
+            marginBottom: 'var(--space-xl)',
+            background: 'rgba(245, 158, 11, 0.04)',
+            border: '2px solid #f59e0b',
+            boxShadow: '0 0 25px rgba(245, 158, 11, 0.1)',
+            padding: 'var(--space-lg)',
+          }}
+        >
+          <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-md)', color: '#f59e0b', display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+            <span>⏳</span> Paiement en attente de validation
+          </h3>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: 'var(--space-md)' }}>
+            Votre paiement est en cours de traitement ou n&apos;a pas encore été validé. Vos espaces de téléchargement sécurisés apparaîtront ici dès réception de la confirmation de paiement (généralement sous quelques instants).
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="btn btn-outline btn-sm btn-full"
+            style={{ borderColor: 'rgba(245, 158, 11, 0.4)', color: '#f59e0b', minHeight: '38px' }}
+          >
+            Actualiser le statut de paiement 🔄
+          </button>
         </div>
       )}
 

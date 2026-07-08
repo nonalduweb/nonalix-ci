@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { formatPrice, CITIES } from '@/lib/constants';
 
-type PaymentMethod = 'orange_money' | 'wave' | 'cash_on_delivery';
+type PaymentMethod = 'orange_money' | 'wave' | 'cash_on_delivery' | 'paydunya';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -119,11 +119,11 @@ export default function CheckoutPage() {
         const data = await res.json();
         const orderId = data.orderId;
 
-        // If Mobile Money, initialize payment transaction
-        if (form.paymentMethod === 'orange_money' || form.paymentMethod === 'wave') {
-          const paymentEndpoint = form.paymentMethod === 'orange_money' 
-            ? '/api/payment/orange-money' 
-            : '/api/payment/wave';
+        // If Mobile Money or PayDunya, initialize payment transaction
+        if (form.paymentMethod === 'orange_money' || form.paymentMethod === 'wave' || form.paymentMethod === 'paydunya') {
+          let paymentEndpoint = '/api/payment/wave';
+          if (form.paymentMethod === 'orange_money') paymentEndpoint = '/api/payment/orange-money';
+          if (form.paymentMethod === 'paydunya') paymentEndpoint = '/api/payment/paydunya';
 
           try {
             const payRes = await fetch(paymentEndpoint, {
@@ -144,10 +144,27 @@ export default function CheckoutPage() {
                 clearCart();
                 window.location.href = payData.url;
                 return;
+              } else if (payData.status === 'simulation') {
+                // Simulation mode
+                clearCart();
+                router.push(`/checkout/confirmation?order=${orderId}`);
+                return;
+              } else {
+                setErrors({ submit: "Erreur : L'URL de paiement est manquante." });
+                setLoading(false);
+                return;
               }
+            } else {
+              const errData = await payRes.json();
+              setErrors({ submit: errData.error || "Échec de l'initialisation du paiement." });
+              setLoading(false);
+              return;
             }
           } catch (payErr) {
-            console.error('Failed to initialize mobile money payment:', payErr);
+            console.error('Failed to initialize payment:', payErr);
+            setErrors({ submit: "Erreur réseau lors de l'initialisation du paiement. Veuillez réessayer." });
+            setLoading(false);
+            return;
           }
         }
 
@@ -315,6 +332,20 @@ export default function CheckoutPage() {
                   <div className="payment-option-details">
                     <h4 style={{ color: 'var(--color-wave)' }}>Wave</h4>
                     <p>Paiement rapide via Wave</p>
+                  </div>
+                </div>
+
+                <div
+                  className={`payment-option ${form.paymentMethod === 'paydunya' ? 'selected' : ''}`}
+                  onClick={() => updateField('paymentMethod', 'paydunya')}
+                  id="payment-paydunya"
+                >
+                  <div className="payment-option-icon" style={{ background: 'rgba(168, 85, 247, 0.15)' }}>
+                    <span style={{ fontSize: '1.5rem' }}>🌍</span>
+                  </div>
+                  <div className="payment-option-details">
+                    <h4 style={{ color: '#a855f7' }}>PayDunya</h4>
+                    <p>Paiement via Orange Money, Wave, MTN ou Visa/Mastercard</p>
                   </div>
                 </div>
 

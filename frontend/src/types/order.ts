@@ -5,7 +5,7 @@ export interface Order {
   phone: string;
   city: string;
   totalAmount: number;
-  paymentMethod: 'orange_money' | 'wave' | 'cash_on_delivery';
+  paymentMethod: 'orange_money' | 'wave' | 'cash_on_delivery' | 'paydunya';
   paymentStatus: 'pending' | 'processing' | 'completed' | 'failed';
   orderStatus: 'new' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled';
   transactionId?: string;
@@ -24,5 +24,5 @@ export interface CheckoutFormData {
   lastName: string;
   phone: string;
   city: string;
-  paymentMethod: 'orange_money' | 'wave' | 'cash_on_delivery';
+  paymentMethod: 'orange_money' | 'wave' | 'cash_on_delivery' | 'paydunya';
 }
