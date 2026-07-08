@@ -29,12 +29,73 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Récupérer d'abord la commande en BDD pour connaître la méthode de paiement
+    const existingOrder = await prisma.order.findUnique({
+      where: { id: orderId }
+    });
+
+    if (!existingOrder) {
+      return NextResponse.json(
+        { error: 'Commande introuvable' },
+        { status: 404 }
+      );
+    }
+
     // Détermination du statut de paiement
     let paymentStatus = 'pending';
-    if (['success', 'completed', 'paid', 'approved', 'simulation'].includes(status.toLowerCase())) {
-      paymentStatus = 'completed';
-    } else if (['failed', 'cancelled', 'declined'].includes(status.toLowerCase())) {
-      paymentStatus = 'failed';
+
+    if (existingOrder.paymentMethod === 'paydunya') {
+      const token = body.token || body.transaction_id || existingOrder.transactionId;
+      
+      if (!token) {
+        console.error('[WEBHOOK PAYDUNYA ERROR] Aucun token de transaction trouvé pour valider la commande');
+        return NextResponse.json({ error: 'Token PayDunya manquant' }, { status: 400 });
+      }
+
+      // Appeler PayDunya pour confirmer le statut de la facture de manière sécurisée
+      try {
+        const isTestMode = (process.env.PAYDUNYA_PRIVATE_KEY || '').startsWith('test_');
+        const baseUrl = isTestMode 
+          ? 'https://app.paydunya.com/sandbox-api/v1' 
+          : 'https://app.paydunya.com/api/v1';
+
+        const verifyRes = await fetch(`${baseUrl}/checkout-invoice/confirm/${token}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'PAYDUNYA-MASTER-KEY': process.env.PAYDUNYA_MASTER_KEY || '',
+            'PAYDUNYA-PRIVATE-KEY': process.env.PAYDUNYA_PRIVATE_KEY || '',
+            'PAYDUNYA-TOKEN': process.env.PAYDUNYA_TOKEN || '',
+          },
+        });
+
+        if (!verifyRes.ok) {
+          const verifyErrText = await verifyRes.text();
+          console.error('[WEBHOOK PAYDUNYA VERIFICATION FAILED]', verifyErrText);
+          return NextResponse.json({ error: 'Échec de vérification PayDunya' }, { status: 500 });
+        }
+
+        const verifyData = await verifyRes.json();
+        console.log('[WEBHOOK PAYDUNYA VERIFICATION RESPONSE]', verifyData);
+
+        if (verifyData.status === 'completed') {
+          paymentStatus = 'completed';
+        } else if (verifyData.status === 'cancelled' || verifyData.status === 'failed') {
+          paymentStatus = 'failed';
+        } else {
+          paymentStatus = 'processing';
+        }
+      } catch (verifyErr) {
+        console.error('[WEBHOOK PAYDUNYA ERROR]', verifyErr);
+        return NextResponse.json({ error: 'Erreur lors de la vérification PayDunya' }, { status: 500 });
+      }
+    } else {
+      // Pour les autres opérateurs (Orange Money, Wave)
+      if (['success', 'completed', 'paid', 'approved', 'simulation'].includes(status.toLowerCase())) {
+        paymentStatus = 'completed';
+      } else if (['failed', 'cancelled', 'declined'].includes(status.toLowerCase())) {
+        paymentStatus = 'failed';
+      }
     }
 
     // Mise à jour de la commande en base de données avec inclusion des produits pour livraison
