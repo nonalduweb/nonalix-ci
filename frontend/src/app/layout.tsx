@@ -15,6 +15,7 @@ import { WelcomePopup } from "@/components/layout/WelcomePopup";
 import { GridBackground } from "@/components/ui/GridBackground";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { AnalyticsTracker } from "@/components/layout/AnalyticsTracker";
+import { CanonicalURL } from "@/components/layout/CanonicalURL";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -93,9 +94,7 @@ export const metadata: Metadata = {
   creator: SITE_CONFIG.fullName,
   publisher: SITE_CONFIG.fullName,
 
-  alternates: {
-    canonical: "/",
-  },
+
 
   openGraph: {
     type: "website",
@@ -340,6 +339,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <CanonicalURL />
       </head>
       {/* Google Analytics */}
       <Script
