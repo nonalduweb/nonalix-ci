@@ -246,5 +246,25 @@
       "Réussissez vos prises de parole en public",
       "Formation Agropastoral : Élevage & culture rentable"
     ]
+  },
+  {
+    "id": "prod_017",
+    "name": "+ 1300 Modèles de Contrats et Actes Juridiques",
+    "slug": "1300-modeles-de-contrats-et-actes-juridiques",
+    "description": "Optimisez votre temps et sécurisez vos relations professionnelles avec ce pack complet de plus de 1300 modèles de contrats et actes juridiques rédigés par des professionnels (CDI, CDD, baux, conclusions de justice, etc.). Téléchargement instantané après paiement !",
+    "price": 4900,
+    "category": "Juridique",
+    "imageUrl": "https://assets.chariowcdn.com/assets/store_sa3mj4023c1p/dsEqHLCFjByiHWGxJuqx1vCfgIes59gHWrSZONSX.png",
+    "inStock": true,
+    "featured": true,
+    "isDigital": true,
+    "downloadUrl": "https://drive.google.com/drive/folders/19cn4Hj2rllW9G6YEyQAMMmtmLvD6Orth?usp=drive_link",
+    "details": [
+      "Procédures civiles, pénales & administratives",
+      "Assignations, conclusions, requêtes & recours",
+      "Contrats essentiels (travail CDI/CDD, bail, vente)",
+      "Dossiers types de gestion RH, BTP & Bâtiment",
+      "Manuels de formation juridique rédigés par des notaires & avocats"
+    ]
   }
 ]
