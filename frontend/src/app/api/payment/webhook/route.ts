@@ -17,26 +17,32 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // Extraction des paramètres
-    const orderId = body.orderId || body.order_id || body.data?.order_id;
+    const depositId = body.depositId;
+    let existingOrder = null;
+    let orderId = body.orderId || body.order_id || body.data?.order_id;
     const status = body.status || body.state || body.data?.status || 'success';
     const transactionId = body.transactionId || body.transaction_id || body.data?.id || body.id;
 
-    if (!orderId) {
-      return NextResponse.json(
-        { error: 'ID de commande manquant dans la notification' },
-        { status: 400 }
-      );
+    // 1. Essayer de trouver la commande par depositId (PawaPay)
+    if (depositId) {
+      existingOrder = await prisma.order.findFirst({
+        where: { transactionId: depositId }
+      });
+      if (existingOrder) {
+        orderId = existingOrder.id;
+      }
     }
 
-    // Récupérer d'abord la commande en BDD pour connaître la méthode de paiement
-    const existingOrder = await prisma.order.findUnique({
-      where: { id: orderId }
-    });
+    // 2. Sinon, essayer par orderId classique
+    if (!existingOrder && orderId) {
+      existingOrder = await prisma.order.findUnique({
+        where: { id: orderId }
+      });
+    }
 
     if (!existingOrder) {
       return NextResponse.json(
-        { error: 'Commande introuvable' },
+        { error: 'Commande introuvable pour ce webhook' },
         { status: 404 }
       );
     }
@@ -44,7 +50,16 @@ export async function POST(req: NextRequest) {
     // Détermination du statut de paiement
     let paymentStatus = 'pending';
 
-    if (existingOrder.paymentMethod === 'paydunya') {
+    if (existingOrder.paymentMethod === 'pawapay') {
+      const pawaStatus = (body.status || '').toUpperCase();
+      if (pawaStatus === 'COMPLETED') {
+        paymentStatus = 'completed';
+      } else if (pawaStatus === 'FAILED' || pawaStatus === 'REJECTED') {
+        paymentStatus = 'failed';
+      } else {
+        paymentStatus = 'processing';
+      }
+    } else if (existingOrder.paymentMethod === 'paydunya') {
       const token = body.token || body.transaction_id || existingOrder.transactionId;
       
       if (!token) {
@@ -103,7 +118,7 @@ export async function POST(req: NextRequest) {
       where: { id: orderId },
       data: {
         paymentStatus,
-        transactionId: transactionId || null,
+        transactionId: depositId || transactionId || null,
         orderStatus: paymentStatus === 'completed' ? 'confirmed' : 'new',
       },
       include: {

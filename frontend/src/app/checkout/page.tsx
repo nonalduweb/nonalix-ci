@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { formatPrice, CITIES } from '@/lib/constants';
 
-type PaymentMethod = 'orange_money' | 'wave' | 'cash_on_delivery' | 'paydunya';
+type PaymentMethod = 'pawapay' | 'cash_on_delivery';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -119,11 +119,9 @@ export default function CheckoutPage() {
         const data = await res.json();
         const orderId = data.orderId;
 
-        // If Mobile Money or PayDunya, initialize payment transaction
-        if (form.paymentMethod === 'orange_money' || form.paymentMethod === 'wave' || form.paymentMethod === 'paydunya') {
-          let paymentEndpoint = '/api/payment/wave';
-          if (form.paymentMethod === 'orange_money') paymentEndpoint = '/api/payment/orange-money';
-          if (form.paymentMethod === 'paydunya') paymentEndpoint = '/api/payment/paydunya';
+        // If Mobile Money (PawaPay), initialize payment transaction
+        if (form.paymentMethod === 'pawapay') {
+          const paymentEndpoint = '/api/payment/pawapay';
 
           try {
             const payRes = await fetch(paymentEndpoint, {
@@ -306,46 +304,18 @@ export default function CheckoutPage() {
                 </span>
               )}
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                 <div
-                  className={`payment-option ${form.paymentMethod === 'orange_money' ? 'selected' : ''}`}
-                  onClick={() => updateField('paymentMethod', 'orange_money')}
-                  id="payment-orange-money"
+                  className={`payment-option ${form.paymentMethod === 'pawapay' ? 'selected' : ''}`}
+                  onClick={() => updateField('paymentMethod', 'pawapay')}
+                  id="payment-pawapay"
                 >
-                  <div className="payment-option-icon" style={{ background: 'rgba(255, 102, 0, 0.15)' }}>
-                    <span style={{ fontSize: '1.5rem' }}>📱</span>
+                  <div className="payment-option-icon" style={{ background: 'rgba(109, 40, 217, 0.15)' }}>
+                    <span style={{ fontSize: '1.5rem' }}>💳</span>
                   </div>
                   <div className="payment-option-details">
-                    <h4 style={{ color: 'var(--color-orange-money)' }}>Orange Money</h4>
-                    <p>Paiement sécurisé via Orange Money</p>
-                  </div>
-                </div>
-
-                <div
-                  className={`payment-option ${form.paymentMethod === 'wave' ? 'selected' : ''}`}
-                  onClick={() => updateField('paymentMethod', 'wave')}
-                  id="payment-wave"
-                >
-                  <div className="payment-option-icon" style={{ background: 'rgba(29, 195, 255, 0.15)' }}>
-                    <span style={{ fontSize: '1.5rem' }}>🌊</span>
-                  </div>
-                  <div className="payment-option-details">
-                    <h4 style={{ color: 'var(--color-wave)' }}>Wave</h4>
-                    <p>Paiement rapide via Wave</p>
-                  </div>
-                </div>
-
-                <div
-                  className={`payment-option ${form.paymentMethod === 'paydunya' ? 'selected' : ''}`}
-                  onClick={() => updateField('paymentMethod', 'paydunya')}
-                  id="payment-paydunya"
-                >
-                  <div className="payment-option-icon" style={{ background: 'rgba(168, 85, 247, 0.15)' }}>
-                    <span style={{ fontSize: '1.5rem' }}>🌍</span>
-                  </div>
-                  <div className="payment-option-details">
-                    <h4 style={{ color: '#a855f7' }}>PayDunya</h4>
-                    <p>Paiement via Orange Money, Wave, MTN ou Visa/Mastercard</p>
+                    <h4 style={{ color: '#6d28d9' }}>Paiement Mobile Money (Orange, Wave, MTN)</h4>
+                    <p>Paiement sécurisé et instantané via PawaPay</p>
                   </div>
                 </div>
 
