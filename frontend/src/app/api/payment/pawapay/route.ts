@@ -53,8 +53,8 @@ export async function POST(req: NextRequest) {
     try {
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonalix-ci.com';
       
-      // Déterminer l'environnement
-      const isSandbox = apiKey.startsWith('test_') || apiKey.startsWith('sandbox_') || process.env.PAWAPAY_ENV !== 'production';
+      // Déterminer l'environnement (si clé commence par test_ ou sandbox_, c'est le bac à sable)
+      const isSandbox = apiKey.startsWith('test_') || apiKey.startsWith('sandbox_');
       const apiUrl = isSandbox 
         ? 'https://api.sandbox.pawapay.io/v1/widget/sessions' 
         : 'https://api.pawapay.io/v1/widget/sessions';
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
           depositId: depositId,
           amount: Math.round(amount).toString(),
           currency: 'XOF',
-          country: 'CI',
+          country: 'CIV',
           returnUrl: returnUrl,
           statementDescription: `Commande ${orderId}`,
           language: 'FR',
