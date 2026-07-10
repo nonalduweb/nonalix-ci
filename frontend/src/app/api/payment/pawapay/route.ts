@@ -75,6 +75,11 @@ export async function POST(req: NextRequest) {
         apiUrl,
       });
 
+      let returnUrl = `${siteUrl}/checkout/confirmation?order=${orderId}`;
+      if (returnUrl.includes('localhost') || returnUrl.includes('127.0.0.1')) {
+        returnUrl = `https://nonalix-ci.com/checkout/confirmation?order=${orderId}`;
+      }
+
       const pawapayResponse = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -86,7 +91,7 @@ export async function POST(req: NextRequest) {
           amount: Math.round(amount).toString(),
           currency: 'XOF',
           country: 'CI',
-          returnUrl: `${siteUrl}/checkout/confirmation?order=${orderId}`,
+          returnUrl: returnUrl,
           statementDescription: `Commande ${orderId}`,
           language: 'FR',
           msisdn: formattedPhone || undefined,
