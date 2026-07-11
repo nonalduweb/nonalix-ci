@@ -6,13 +6,18 @@ import { fetchApiBlogPosts } from '@/lib/blog-api';
 import { SITE_CONFIG } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: `Blog — Marketing Digital, SEO & IA en Côte d'Ivoire | ${SITE_CONFIG.name}`,
+  title: `Blog — Marketing Digital, SEO & IA en Côte d'Ivoire`,
   description: `Conseils, guides et stratégies en marketing digital, SEO, développement web et intelligence artificielle pour les entreprises de Côte d'Ivoire et d'Afrique de l'Ouest.`,
   alternates: { canonical: '/blog' },
   openGraph: {
     title: `Blog NONALIX CI — Ressources Marketing Digital & IA pour la Côte d'Ivoire`,
     description: `Guides pratiques, études de cas et stratégies digitales adaptées au marché ivoirien. SEO, e-commerce Mobile Money, chatbots WhatsApp, automatisation IA.`,
     url: '/blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Blog NONALIX CI — Ressources Marketing Digital & IA pour la Côte d'Ivoire`,
+    description: `Guides pratiques, études de cas et stratégies digitales adaptées au marché ivoirien. SEO, e-commerce Mobile Money, chatbots WhatsApp, automatisation IA.`,
   },
 };
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendAdminLeadNotification } from '@/lib/mailer';
 import { notifyNewLead } from '@/lib/n8n-webhooks';
+import { getClientIp, isRateLimited } from '@/lib/rate-limit';
 
 /**
  * POST /api/contact
@@ -9,11 +10,25 @@ import { notifyNewLead } from '@/lib/n8n-webhooks';
  */
 export async function POST(req: NextRequest) {
   try {
+    // Limitation de débit : 5 soumissions max par IP / 10 minutes
+    const ip = getClientIp(req);
+    if (isRateLimited(`contact:${ip}`, 5, 10 * 60 * 1000)) {
+      return NextResponse.json(
+        { error: 'Trop de tentatives. Veuillez réessayer dans quelques minutes.' },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     // Accept name (from ServiceForm) or firstName, and company or businessName (from AuditSeoPage)
-    const { name, firstName, lastName, email, phone, message, type, company, businessName } = body;
+    const { name, firstName, lastName, email, phone, message, type, company, businessName, website } = body;
     const finalFirstName = firstName || name;
     const finalCompany = company || businessName || null;
+
+    // Honeypot : champ "website" invisible pour un humain, rempli automatiquement par la plupart des bots
+    if (website) {
+      return NextResponse.json({ status: 'success', message: 'Message envoyé avec succès' });
+    }
 
     // Validate required fields
     if (!finalFirstName || !email || !phone || !message) {

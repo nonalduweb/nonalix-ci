@@ -3,23 +3,42 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '@/lib/cart';
 import { NAV_LINKS } from '@/lib/constants';
 import { useAuth } from '@/lib/auth-context';
 
-const dropdownServices = [
-  { slug: 'design-web-ui-ux', title: 'Design Web & UI/UX', desc: 'Design mobile-first premium', href: '/services/design-web-ui-ux' },
-  { slug: 'developpement-web', title: 'Développement Web', desc: 'Next.js ultra-rapide', href: '/services/developpement-web' },
-  { slug: 'automatisation-business', title: 'Automatisez votre business', desc: 'Funnels & systèmes autonomes', href: '/services/automatisation-business' },
-  { slug: 'optimisation-seo', title: 'Optimisation SEO', desc: 'Référencement Côte d\'Ivoire', href: '/services/optimisation-seo' },
-  { slug: 'campagnes-publicitaires-ppc', title: 'Campagnes PPC', desc: 'Publicité Facebook & Google', href: '/services/campagnes-publicitaires-ppc' },
-  { slug: 'boutiques-shopify', title: 'Boutiques Shopify', desc: 'E-commerce clé en main', href: '/services/boutiques-shopify' },
-  { slug: 'marketing-digital', title: 'Marketing Digital', desc: 'Plan d\'acquisition global', href: '/services/marketing-digital' },
-  { slug: 'audit-ux-ui', title: 'Audit UX/UI', desc: 'Optimisation de conversions', href: '/services/audit-ux-ui' },
-  { slug: 'solutions-ecommerce-sur-mesure', title: 'E-commerce sur Mesure', desc: 'Paiements Mobile Money', href: '/services/solutions-ecommerce-sur-mesure' },
-  { slug: 'optimisation-conversion-par-ia', title: 'Optimisation par IA', desc: 'Tests A/B automatisés', href: '/services/optimisation-conversion-par-ia' },
-  { slug: 'boutique', title: 'Boutique', desc: 'Nos produits et solutions digitales', href: '/boutique' }
+const serviceCategories = [
+  {
+    category: 'Sites & E-commerce',
+    services: [
+      { slug: 'developpement-web', title: 'Développement Web', desc: 'Next.js ultra-rapide', href: '/services/developpement-web' },
+      { slug: 'design-web-ui-ux', title: 'Design Web & UI/UX', desc: 'Design mobile-first premium', href: '/services/design-web-ui-ux' },
+      { slug: 'boutiques-shopify', title: 'Boutiques Shopify', desc: 'E-commerce clé en main', href: '/services/boutiques-shopify' },
+      { slug: 'solutions-ecommerce-sur-mesure', title: 'E-commerce sur Mesure', desc: 'Paiements Mobile Money', href: '/services/solutions-ecommerce-sur-mesure' },
+    ],
+  },
+  {
+    category: 'SEO & Contenus',
+    services: [
+      { slug: 'optimisation-seo', title: 'Optimisation SEO', desc: 'Référencement Côte d\'Ivoire', href: '/services/optimisation-seo' },
+      { slug: 'marketing-digital', title: 'Marketing Digital', desc: 'Plan d\'acquisition global', href: '/services/marketing-digital' },
+    ],
+  },
+  {
+    category: 'Publicité & Conversion',
+    services: [
+      { slug: 'campagnes-publicitaires-ppc', title: 'Campagnes PPC', desc: 'Publicité Facebook & Google', href: '/services/campagnes-publicitaires-ppc' },
+      { slug: 'audit-ux-ui', title: 'Audit UX/UI', desc: 'Optimisation de conversions', href: '/services/audit-ux-ui' },
+      { slug: 'optimisation-conversion-par-ia', title: 'Optimisation par IA', desc: 'Tests A/B automatisés', href: '/services/optimisation-conversion-par-ia' },
+    ],
+  },
+  {
+    category: 'Automatisation & IA',
+    services: [
+      { slug: 'automatisation-business', title: 'Automatisez votre business', desc: 'Funnels & systèmes autonomes', href: '/services/automatisation-business' },
+    ],
+  },
 ];
 
 export function Header() {
@@ -28,11 +47,21 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, logout } = useAuth();
 
-  // Filter out duplicates for main menu navigation (both desktop and mobile):
-  // - We keep /contact since the main CTA is now Audit IA.
-  // - We filter out /audit-ia because it is the main CTA.
-  // - We filter out /boutique because it is inside the Services submenu.
-  const headerLinks = NAV_LINKS.filter((link) => link.href !== '/audit-ia' && link.href !== '/boutique');
+  // Filter out /audit-ia from the main menu navigation since it's already the header's main CTA button.
+  const headerLinks = NAV_LINKS.filter((link) => link.href !== '/audit-ia');
+
+  // Ferme le méga-menu Services au clavier (Échap) en retirant le focus de l'élément actif.
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && active.closest('.nav-item-dropdown')) {
+        active.blur();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <>
@@ -67,15 +96,20 @@ export function Header() {
                       </svg>
                     </Link>
                     <div className="dropdown-menu">
-                      {dropdownServices.map((service) => (
-                        <Link
-                          key={service.slug}
-                          href={service.href}
-                          className="dropdown-link"
-                        >
-                          <span className="dropdown-link-title">{service.title}</span>
-                          <span className="dropdown-link-desc">{service.desc}</span>
-                        </Link>
+                      {serviceCategories.map((cat) => (
+                        <div key={cat.category} className="dropdown-category">
+                          <span className="dropdown-category-title">{cat.category}</span>
+                          {cat.services.map((service) => (
+                            <Link
+                              key={service.slug}
+                              href={service.href}
+                              className="dropdown-link"
+                            >
+                              <span className="dropdown-link-title">{service.title}</span>
+                              <span className="dropdown-link-desc">{service.desc}</span>
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -171,28 +205,30 @@ export function Header() {
                   >
                     {link.label}
                   </Link>
-                  {/* Indented mobile sub-menu grid */}
-                  <div className="mobile-submenu">
-                    {dropdownServices.slice(0, 7).map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={service.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`mobile-submenu-link ${pathname === service.href ? 'active' : ''}`}
-                      >
-                        {service.title}
-                      </Link>
+                  {/* Indented mobile sub-menu, regroupé par catégorie */}
+                  <div className="mobile-submenu-groups">
+                    {serviceCategories.map((cat) => (
+                      <div key={cat.category} className="mobile-submenu">
+                        <span className="mobile-submenu-category-title" style={{ gridColumn: 'span 2' }}>{cat.category}</span>
+                        {cat.services.map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={service.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={`mobile-submenu-link ${pathname === service.href ? 'active' : ''}`}
+                          >
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
                     ))}
-                    {dropdownServices.length > 7 && (
-                      <Link
-                        href="/services"
-                        onClick={() => setMobileOpen(false)}
-                        className="mobile-submenu-link-more"
-                        style={{ gridColumn: 'span 2' }}
-                      >
-                        Voir tous les services (11) ↗
-                      </Link>
-                    )}
+                    <Link
+                      href="/services"
+                      onClick={() => setMobileOpen(false)}
+                      className="mobile-submenu-link-more"
+                    >
+                      Voir tous les services ↗
+                    </Link>
                   </div>
                 </div>
               );
@@ -244,13 +280,20 @@ export function Header() {
         .nav-item-dropdown {
           position: relative;
         }
-        .nav-item-dropdown:hover .dropdown-menu {
+        .nav-item-dropdown:hover .dropdown-menu,
+        .nav-item-dropdown:focus-within .dropdown-menu {
           opacity: 1;
           visibility: visible;
           transform: translateX(-50%) translateY(0);
         }
-        .nav-item-dropdown:hover svg {
+        .nav-item-dropdown:hover svg,
+        .nav-item-dropdown:focus-within svg {
           transform: rotate(180deg);
+        }
+        .dropdown-link:focus-visible,
+        .mobile-submenu-link:focus-visible {
+          outline: 2px solid var(--color-accent);
+          outline-offset: 2px;
         }
         .dropdown-menu {
           position: absolute;
@@ -296,6 +339,19 @@ export function Header() {
           font-size: 0.75rem;
           color: var(--color-text-secondary);
         }
+        .dropdown-category {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .dropdown-category-title {
+          font-size: 0.6875rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          color: var(--color-accent-glow);
+          padding: 4px 12px 6px;
+        }
 
         /* Mobile Dropdown / Submenu Styles */
         .mobile-nav-item-group {
@@ -338,6 +394,21 @@ export function Header() {
         }
         .mobile-submenu-link-more:hover {
           color: #ffffff;
+        }
+        .mobile-submenu-groups {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+        }
+        .mobile-submenu-category-title {
+          font-size: 0.6875rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          color: var(--color-accent-glow);
+          padding: 2px 8px 4px;
+          text-align: left;
         }
 
         /* Connection Buttons & Rest */

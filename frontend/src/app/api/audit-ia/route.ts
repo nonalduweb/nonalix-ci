@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendAdminLeadNotification, sendUserAuditNotification } from '@/lib/mailer';
 import { notifyNewLead } from '@/lib/n8n-webhooks';
+import { getClientIp, isRateLimited } from '@/lib/rate-limit';
 
 export const maxDuration = 30; // Permet jusqu'à 30s d'exécution pour l'IA
 
@@ -126,6 +127,15 @@ function calculateBaseScores(data: any) {
 
 export async function POST(req: NextRequest) {
   try {
+    // Limitation de débit : 3 audits max par IP / 10 minutes (l'analyse appelle l'API OpenAI)
+    const ip = getClientIp(req);
+    if (isRateLimited(`audit-ia:${ip}`, 3, 10 * 60 * 1000)) {
+      return NextResponse.json(
+        { error: 'Trop de tentatives. Veuillez réessayer dans quelques minutes.' },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const {
       businessName,
@@ -146,8 +156,14 @@ export async function POST(req: NextRequest) {
       contactName,
       email,
       phone,
-      consent
+      consent,
+      honeypot,
     } = body;
+
+    // Honeypot : champ invisible pour un humain, rempli automatiquement par la plupart des bots
+    if (honeypot) {
+      return NextResponse.json({ status: 'success', leadId: 'skipped', metrics: null, aiAnalysis: null });
+    }
 
     // Validation minimale pour la capture de lead
     if (!contactName || !email || !phone || !businessName || !consent) {

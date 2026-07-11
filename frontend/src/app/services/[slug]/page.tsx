@@ -144,8 +144,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const detail = serviceDetails[slug];
   const title = detail
-    ? `${detail.heroTitle} ${detail.heroHighlight} à Abidjan — NONALIX CI`
-    : `${service.title} à Abidjan — NONALIX CI`;
+    ? `${detail.heroTitle} ${detail.heroHighlight} à Abidjan`
+    : `${service.title} à Abidjan`;
+  const socialTitle = `${title} — NONALIX CI`;
   const description = detail
     ? `${detail.heroDescription.slice(0, 145)}... Service disponible à Abidjan et dans toute l'Afrique de l'Ouest.`
     : `${service.description} Par NONALIX CI, agence digitale à Abidjan, Côte d'Ivoire — service disponible en Afrique de l'Ouest.`;
@@ -158,7 +159,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: `/services/${slug}`,
     },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url: `/services/${slug}`,
     },

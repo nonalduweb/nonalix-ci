@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { SOCIAL_LINKS } from '@/lib/constants';
 
+// Dates absolues (et non relatives) pour éviter qu'elles ne deviennent fausses avec le temps.
+// Un lien de vérification vers la fiche Google réelle est affiché de manière proéminente ci-dessous.
 const REVIEWS = [
   {
     name: 'Kouamé Assi',
@@ -10,7 +12,7 @@ const REVIEWS = [
     initials: 'KA',
     rating: 5,
     text: 'NONALIX CI a créé notre boutique en ligne avec paiement Orange Money et Wave. En 3 semaines c\'était live. Nos ventes ont triplé en 2 mois. Je recommande vivement !',
-    date: 'il y a 2 semaines',
+    date: 'Juin 2026',
     color: '#F59E0B',
   },
   {
@@ -19,7 +21,7 @@ const REVIEWS = [
     initials: 'MC',
     rating: 5,
     text: 'Le chatbot WhatsApp qu\'ils ont mis en place qualifie nos prospects automatiquement. On ne manque plus aucun lead, même la nuit. Équipe très professionnelle et réactive.',
-    date: 'il y a 1 mois',
+    date: 'Mai 2026',
     color: '#10B981',
   },
   {
@@ -28,7 +30,7 @@ const REVIEWS = [
     initials: 'SY',
     rating: 5,
     text: 'Excellente agence ! Notre site Next.js se charge en moins de 2 secondes. Le SEO local a fait passer notre trafic Google de 200 à 1 500 visites par mois en 4 mois.',
-    date: 'il y a 1 mois',
+    date: 'Mai 2026',
     color: '#3B82F6',
   },
   {
@@ -37,7 +39,7 @@ const REVIEWS = [
     initials: 'FT',
     rating: 5,
     text: 'Service impeccable du début à la fin. NONALIX CI a compris exactement ce dont nous avions besoin pour le marché ivoirien. Notre CA en ligne a augmenté de 180% en 3 mois.',
-    date: 'il y a 2 mois',
+    date: 'Avril 2026',
     color: '#EC4899',
   },
   {
@@ -46,7 +48,7 @@ const REVIEWS = [
     initials: 'JK',
     rating: 5,
     text: 'L\'audit SEO gratuit était déjà très complet. Après avoir souscrit à leurs services, notre fiche Google Business est passée en top 3 pour "consultant Abidjan". Merci !',
-    date: 'il y a 3 mois',
+    date: 'Mars 2026',
     color: '#7C3AED',
   },
 ];
@@ -98,6 +100,17 @@ export function GoogleReviews() {
               <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#10B981', lineHeight: 1 }}>98%</div>
               <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '4px' }}>recommandent</div>
             </div>
+          </div>
+
+          <div style={{ marginTop: 'var(--space-md)' }}>
+            <Link
+              href={SOCIAL_LINKS.googleReviews}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ fontSize: '0.8125rem', color: 'var(--color-text-muted)', textDecoration: 'underline' }}
+            >
+              Vérifier ces avis sur notre fiche Google →
+            </Link>
           </div>
         </div>
 

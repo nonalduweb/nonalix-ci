@@ -17,8 +17,7 @@ export const CONTACT_INFO = {
 } as const;
 
 export const LEGAL_INFO = {
-  rccm: 'CI-ABJ-03-2026-B13-01452',
-  idu: '1-26-1234567 A',
+  rccm: 'CI-ABJ-03-2026-B13-10152',
   year: new Date().getFullYear(),
 } as const;
 

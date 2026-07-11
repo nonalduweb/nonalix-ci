@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     description: 'Création web, SEO, automatisation IA, e-commerce Mobile Money et campagnes publicitaires pour entreprises ivoiriennes.',
     url: '/services',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Services NONALIX CI — Marketing Digital & IA en Côte d\'Ivoire',
+    description: 'Création web, SEO, automatisation IA, e-commerce Mobile Money et campagnes publicitaires pour entreprises ivoiriennes.',
+  },
 };
 
 const iconMap: Record<string, React.ReactNode> = {

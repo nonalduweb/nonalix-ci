@@ -16,7 +16,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: 'Projet non trouvé' };
   }
 
-  const title = `${detail.heroTitle} ${detail.heroHighlight} — NONALIX CI`;
+  const title = `${detail.heroTitle} ${detail.heroHighlight}`;
+  const socialTitle = `${title} — NONALIX CI`;
   const description = `${detail.heroDescription.slice(0, 150)}... Réalisation premium par NONALIX CI, agence digitale à Abidjan, Côte d'Ivoire.`;
 
   return {
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: `/portfolio/${slug}`,
     },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url: `/portfolio/${slug}`,
     },
@@ -75,8 +76,19 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
 
   const accentColor = 'var(--color-accent)';
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://nonalix-ci.com' },
+      { '@type': 'ListItem', position: 2, name: 'Portfolio', item: 'https://nonalix-ci.com/portfolio' },
+      { '@type': 'ListItem', position: 3, name: `${detail.heroTitle} ${detail.heroHighlight}`, item: `https://nonalix-ci.com/portfolio/${slug}` },
+    ],
+  };
+
   return (
     <div className="page-content" style={{ overflow: 'hidden', position: 'relative' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {/* Background ambient glow bubbles */}
       <div 
         className="glow-bubble" 

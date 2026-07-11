@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Audit IA Gratuit pour Entreprise — Score d'Automatisation & ROI | NONALIX CI",
+  title: "Audit IA Gratuit pour Entreprise — Score d'Automatisation & ROI",
   description: "Faites auditer gratuitement votre entreprise par notre Intelligence Artificielle en 5 minutes. Obtenez votre score d'automatisation, l'estimation précise de vos pertes financières et votre plan d'action personnalisé avec NONALIX CI à Abidjan.",
   keywords: [
     "audit IA gratuit",

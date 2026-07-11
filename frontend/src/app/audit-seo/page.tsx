@@ -26,6 +26,7 @@ export default function AuditSeoPage() {
     phone: '',
     consent: false,
     sendWhatsApp: true,
+    website: '', // Honeypot anti-bot : doit rester vide (champ masqué pour les humains)
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
@@ -654,6 +655,19 @@ export default function AuditSeoPage() {
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="audit-form">
+                {/* Honeypot anti-bot : invisible et inatteignable au clavier pour un humain */}
+                <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+                  <label htmlFor="audit-seo-website">Site web (ne pas remplir)</label>
+                  <input
+                    id="audit-seo-website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={(e) => setForm((prev) => ({ ...prev, website: e.target.value }))}
+                  />
+                </div>
+
                 {activeTab === 'website' && (
                   <div className="input-group">
                     <div className="audit-input-wrap">

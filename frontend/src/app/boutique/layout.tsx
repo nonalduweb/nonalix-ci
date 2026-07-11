@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Boutique — Packs Digitaux avec Paiement Orange Money & Wave | NONALIX CI",
+  title: "Boutique — Packs Digitaux avec Paiement Orange Money & Wave",
   description: "Achetez nos packs de services digitaux en ligne à Abidjan : création de site web Next.js, SEO Côte d'Ivoire, automatisation IA, chatbot WhatsApp. Paiement sécurisé Orange Money, Wave ou MTN Mobile Money. Livraison rapide.",
   keywords: [
     "acheter pack site web Abidjan",

@@ -5,7 +5,7 @@ import WhyChooseUs from '@/components/home/WhyChooseUs';
 import { StatsCounter } from '@/components/home/StatsCounter';
 
 export const metadata: Metadata = {
-  title: `À Propos — Agence Digitale & IA Fondée à Abidjan, Côte d'Ivoire | ${SITE_CONFIG.name}`,
+  title: `À Propos — Agence Digitale & IA Fondée à Abidjan, Côte d'Ivoire`,
   description: `NONALIX CI est une agence digitale ivoirienne fondée à Abidjan, Cocody. Spécialisés en développement web Next.js, automatisation IA, SEO Google et e-commerce Orange Money & Wave pour les entreprises de Côte d'Ivoire et d'Afrique de l'Ouest.`,
   keywords: [
     "agence digitale Abidjan",
@@ -133,7 +133,7 @@ export default function AProposPage() {
                 lineHeight: 1.6,
               }}>
                 <strong>Enregistrement Légal :</strong>
-                <div>NONALIX CI SARL — RCCM : {LEGAL_INFO.rccm} — IDU : {LEGAL_INFO.idu}</div>
+                <div>NONALIX CI SARL — RCCM : {LEGAL_INFO.rccm}</div>
                 <div>Siège social : Abidjan, Côte d&apos;Ivoire</div>
               </div>
             </div>

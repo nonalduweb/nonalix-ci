@@ -14,6 +14,7 @@ export function ServiceForm({ serviceTitle }: ServiceFormProps) {
     company: '',
     message: `Bonjour,\nJe souhaiterais obtenir plus d'informations et un devis personnalisé concernant votre service : "${serviceTitle}".`,
     consent: false,
+    website: '', // Honeypot anti-bot : doit rester vide (champ masqué pour les humains)
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -66,6 +67,7 @@ export function ServiceForm({ serviceTitle }: ServiceFormProps) {
           message: formData.message,
           type: 'quote_request',
           subject: `Demande de devis - ${serviceTitle}`,
+          website: formData.website,
         }),
       });
       if (response.ok) {
@@ -105,6 +107,20 @@ export function ServiceForm({ serviceTitle }: ServiceFormProps) {
       </p>
 
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+        {/* Honeypot anti-bot : invisible et inatteignable au clavier pour un humain */}
+        <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+          <label htmlFor="service-form-website">Site web</label>
+          <input
+            id="service-form-website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={handleChange}
+          />
+        </div>
+
         <div className="input-group">
           <label htmlFor="name" className="input-label">Nom complet *</label>
           <input

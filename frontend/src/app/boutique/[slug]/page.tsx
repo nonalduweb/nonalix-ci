@@ -228,8 +228,19 @@ export default function ProductDetailPage() {
 
   const meta = CATEGORY_META[product.category] || DEFAULT_META;
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://nonalix-ci.com' },
+      { '@type': 'ListItem', position: 2, name: 'Boutique', item: 'https://nonalix-ci.com/boutique' },
+      { '@type': 'ListItem', position: 3, name: product.name, item: `https://nonalix-ci.com/boutique/${product.slug}` },
+    ],
+  };
+
   return (
     <div className="page-content">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <section className="section" style={{ paddingTop: 'var(--space-3xl)' }}>
         <div className="container">
           

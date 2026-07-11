@@ -53,19 +53,23 @@ export async function POST(req: NextRequest) {
     try {
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonalix-ci.com';
       
-      // Déterminer l'environnement (si clé commence par test_ ou sandbox_, c'est le bac à sable)
-      const isSandbox = apiKey.startsWith('test_') || apiKey.startsWith('sandbox_');
-      const apiUrl = isSandbox 
-        ? 'https://api.sandbox.pawapay.io/v1/widget/sessions' 
+      // Déterminer l'environnement via PAWAPAY_ENV (les clés PawaPay sont des JWT et n'ont pas
+      // de préfixe permettant de le déduire automatiquement). Par défaut : sandbox, pour éviter
+      // d'appeler l'API de production par erreur. Mettre PAWAPAY_ENV=live pour la production.
+      const isSandbox = process.env.PAWAPAY_ENV?.toLowerCase() !== 'live';
+      const apiUrl = isSandbox
+        ? 'https://api.sandbox.pawapay.io/v1/widget/sessions'
         : 'https://api.pawapay.io/v1/widget/sessions';
 
       // Générer un depositId unique sous forme de UUID v4 pour PawaPay
       const depositId = crypto.randomUUID();
 
-      // Nettoyer le numéro de téléphone pour PawaPay (il doit inclure l'indicatif pays +225 pour la Côte d'Ivoire par défaut s'il fait 10 chiffres)
-      let formattedPhone = phone ? phone.replace(/\s/g, '') : '';
-      if (formattedPhone && formattedPhone.length === 10 && !formattedPhone.startsWith('+')) {
-        formattedPhone = `+225${formattedPhone}`;
+      // Nettoyer le numéro de téléphone pour PawaPay : le MSISDN doit être composé
+      // uniquement de chiffres (sans "+" ni espaces), préfixé par l'indicatif pays 225
+      // pour la Côte d'Ivoire.
+      let formattedPhone = phone ? phone.replace(/[\s+]/g, '') : '';
+      if (formattedPhone && !formattedPhone.startsWith('225')) {
+        formattedPhone = `225${formattedPhone}`;
       }
 
       console.log('[PAWAPAY - INITIATING SESSIONS]', {
@@ -89,17 +93,17 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           depositId: depositId,
           amount: Math.round(amount).toString(),
-          currency: 'XOF',
           country: 'CIV',
           returnUrl: returnUrl,
-          statementDescription: `Commande ${orderId}`,
+          // statementDescription doit faire 4-22 caractères alphanumériques/espaces uniquement
+          statementDescription: `Commande ${orderId.replace(/[^a-zA-Z0-9]/g, '').slice(-8)}`,
           language: 'FR',
           msisdn: formattedPhone || undefined,
           metadata: [
             {
               fieldName: 'orderId',
               fieldValue: orderId,
-            }
+            },
           ],
         }),
       });

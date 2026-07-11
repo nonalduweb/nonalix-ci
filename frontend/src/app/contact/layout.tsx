@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Contactez-nous — Devis Gratuit Site Web & IA à Abidjan | NONALIX CI",
+  title: "Contactez-nous — Devis Gratuit Site Web & IA à Abidjan",
   description: "Contactez NONALIX CI pour un devis gratuit. Création de sites web, SEO, e-commerce Orange Money & Wave, chatbot IA WhatsApp à Abidjan, Côte d'Ivoire. Réponse sous 24h via WhatsApp ou email.",
   keywords: [
     "contact agence web Abidjan",

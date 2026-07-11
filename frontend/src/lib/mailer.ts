@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { LEGAL_INFO } from './constants';
 
 const ADMIN_EMAIL = 'contact@nonalix-ci.com';
 
@@ -358,7 +359,7 @@ export async function sendUserAuditNotification(
       <!-- Footer -->
       <div style="text-align: center; margin-top: 35px; padding-top: 15px; border-top: 1px solid #f1f5f9; font-size: 0.75rem; color: #94a3b8;">
         © ${new Date().getFullYear()} NONALIX CI SARL. Tous droits réservés.<br/>
-        RCCM: CI-ABJ-03-2026-B13-01452 | IDU: 1-26-1234567 A
+        RCCM: ${LEGAL_INFO.rccm}
       </div>
     </div>
   `;

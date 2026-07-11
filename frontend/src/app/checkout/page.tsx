@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
@@ -13,6 +14,14 @@ export default function CheckoutPage() {
   const { items, totalAmount, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [paymentModal, setPaymentModal] = useState<{ orderId: string; url: string } | null>(null);
+  const pollIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+    };
+  }, []);
 
   const [form, setForm] = useState({
     firstName: '',
@@ -91,6 +100,32 @@ export default function CheckoutPage() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const startPaymentPolling = (orderId: string) => {
+    if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+    pollIntervalRef.current = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/orders?id=${orderId}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.paymentStatus === 'completed' || data.paymentStatus === 'failed') {
+            if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+            setPaymentModal(null);
+            clearCart();
+            router.push(`/checkout/confirmation?order=${orderId}`);
+          }
+        }
+      } catch (err) {
+        console.error('Erreur lors de la vérification du statut de paiement:', err);
+      }
+    }, 3000);
+  };
+
+  const cancelPaymentModal = () => {
+    if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
+    setPaymentModal(null);
+    setLoading(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
@@ -138,9 +173,11 @@ export default function CheckoutPage() {
             if (payRes.ok) {
               const payData = await payRes.json();
               if (payData.url) {
-                // Real payment redirect
-                clearCart();
-                window.location.href = payData.url;
+                // Garder l'utilisateur sur le site : paiement affiché dans un iframe modal.
+                // Le panier n'est vidé qu'à la confirmation du paiement (voir startPaymentPolling) :
+                // le vider ici déclencherait le garde "panier vide" et ferait disparaître le modal.
+                setPaymentModal({ orderId, url: payData.url });
+                startPaymentPolling(orderId);
                 return;
               } else if (payData.status === 'simulation') {
                 // Simulation mode
@@ -383,6 +420,52 @@ export default function CheckoutPage() {
               {loading ? 'Traitement en cours...' : `Confirmer ma commande — ${formatPrice(totalAmount)}`}
             </button>
           </form>
+
+          {paymentModal && typeof document !== 'undefined' && createPortal(
+            <div
+              style={{
+                position: 'fixed',
+                inset: 0,
+                background: 'rgba(0,0,0,0.75)',
+                zIndex: 10001,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: 'var(--space-lg)',
+              }}
+            >
+              <div
+                className="card"
+                style={{
+                  width: '100%',
+                  maxWidth: '480px',
+                  padding: 0,
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 'var(--space-md) var(--space-lg)', borderBottom: '1px solid var(--color-border)' }}>
+                  <h3 style={{ fontSize: '1rem', margin: 0 }}>💳 Paiement Mobile Money</h3>
+                  <button
+                    type="button"
+                    onClick={cancelPaymentModal}
+                    className="btn btn-ghost btn-sm"
+                    aria-label="Fermer"
+                    style={{ padding: '4px 10px' }}
+                  >
+                    ✕
+                  </button>
+                </div>
+                <iframe
+                  src={paymentModal.url}
+                  title="Paiement PawaPay"
+                  style={{ width: '100%', height: '640px', border: 'none', background: '#fff' }}
+                />
+              </div>
+            </div>,
+            document.body
+          )}
         </div>
       </section>
     </div>

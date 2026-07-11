@@ -17,8 +17,8 @@ import { BeforeAfterSection } from '@/components/home/BeforeAfterSection';
 import { GoogleReviews } from '@/components/home/GoogleReviews';
 
 export const metadata: Metadata = {
-  title: `Agence Digitale Abidjan — Web, IA, SEO & E-commerce | ${SITE_CONFIG.name}`,
-  description: `Agence digitale n°1 à Abidjan, Côte d'Ivoire. Sites web Next.js ultra-rapides, SEO Google, e-commerce Orange Money & Wave, chatbots IA WhatsApp et automatisation pour booster votre business en Afrique de l'Ouest.`,
+  title: `Agence Digitale Abidjan — Web, IA, SEO & E-commerce`,
+  description: `Agence spécialisée en automatisation IA et paiements Mobile Money à Abidjan, Côte d'Ivoire. Sites web Next.js ultra-rapides, SEO Google, e-commerce Orange Money & Wave, chatbots IA WhatsApp et automatisation pour booster votre business en Afrique de l'Ouest.`,
   alternates: {
     canonical: '/',
   },
@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     title: `${SITE_CONFIG.name} — Agence Digitale & IA à Abidjan, Côte d'Ivoire`,
     description: `Développement web, SEO, e-commerce Mobile Money, chatbots IA et automatisation à Abidjan. Votre business en pilote automatique 24h/24.`,
     url: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_CONFIG.name} — Agence Digitale & IA à Abidjan, Côte d'Ivoire`,
+    description: `Développement web, SEO, e-commerce Mobile Money, chatbots IA et automatisation à Abidjan. Votre business en pilote automatique 24h/24.`,
   },
 };
 

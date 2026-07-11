@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Audit SEO Gratuit par IA à Abidjan — Analysez Votre Site | NONALIX CI",
+  title: "Audit SEO Gratuit par IA à Abidjan — Analysez Votre Site",
   description: "Audit SEO gratuit propulsé par l'IA pour les entreprises de Côte d'Ivoire et d'Afrique de l'Ouest. Analysez votre site web ou fiche Google Maps en 30 secondes. Score instantané, +50 critères et plan d'action pour dominer Google à Abidjan.",
   keywords: [
     "audit SEO gratuit Abidjan",

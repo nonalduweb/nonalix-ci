@@ -230,7 +230,8 @@ export default function AuditIAPage() {
     contactName: '',
     email: '',
     phone: '',
-    consent: false
+    consent: false,
+    honeypot: '', // Anti-bot : doit rester vide (champ masqué pour les humains)
   });
   const [leadErrors, setLeadErrors] = useState<Record<string, string>>({});
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
@@ -390,7 +391,8 @@ export default function AuditIAPage() {
         contactName: leadForm.contactName,
         email: leadForm.email,
         phone: leadForm.phone,
-        consent: leadForm.consent
+        consent: leadForm.consent,
+        honeypot: leadForm.honeypot,
       };
 
       const res = await fetch('/api/audit-ia', {
@@ -1630,6 +1632,19 @@ export default function AuditIAPage() {
                   gap: '16px',
                   textAlign: 'left'
                 }}>
+                  {/* Honeypot anti-bot : invisible et inatteignable au clavier pour un humain */}
+                  <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+                    <label htmlFor="audit-ia-honeypot">Ne pas remplir</label>
+                    <input
+                      id="audit-ia-honeypot"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={leadForm.honeypot}
+                      onChange={(e) => setLeadForm((prev) => ({ ...prev, honeypot: e.target.value }))}
+                    />
+                  </div>
+
                   {/* Nom complet */}
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: '6px' }}>

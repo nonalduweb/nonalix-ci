@@ -37,6 +37,7 @@ export default function ContactPage() {
     budget: '',
     message: '',
     consent: false,
+    website: '', // Honeypot anti-bot : doit rester vide (champ masqué pour les humains)
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -146,6 +147,20 @@ export default function ContactPage() {
             {/* Left: Form */}
             <div className="card" style={{ padding: 'var(--space-2xl)' }}>
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+
+                {/* Honeypot anti-bot : invisible et inatteignable au clavier pour un humain */}
+                <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
+                  <label htmlFor="contact-website">Site web</label>
+                  <input
+                    id="contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={(e) => setForm((prev) => ({ ...prev, website: e.target.value }))}
+                  />
+                </div>
 
                 {/* Row: Nom + Email */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>

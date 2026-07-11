@@ -66,7 +66,7 @@ export function Footer() {
         <div className="footer-bottom">
           <p>© {LEGAL_INFO.year} {SITE_CONFIG.fullName}. Tous droits réservés.</p>
           <p className="footer-legal">
-            RCCM : {LEGAL_INFO.rccm} | IDU : {LEGAL_INFO.idu}
+            RCCM : {LEGAL_INFO.rccm}
           </p>
           <p style={{ marginTop: 'var(--space-xs)', fontSize: '0.8125rem', display: 'flex', gap: 'var(--space-md)', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/mentions-legales" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>

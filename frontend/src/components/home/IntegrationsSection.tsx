@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
 import ScrollReveal from '@/components/layout/ScrollReveal';
 
 // Custom logos with official branding colors and SVG paths
@@ -98,28 +97,11 @@ const integrations = [
 ];
 
 export default function IntegrationsSection() {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setCoords({
-      x: e.clientX - rect.left - 40, // 40 is half of the badge size (80px)
-      y: e.clientY - rect.top - 40,
-    });
-  };
-
   return (
-    <section 
-      ref={containerRef}
-      className="section integrations-section" 
+    <section
+      className="section integrations-section"
       id="integrations"
       style={{ position: 'relative', overflow: 'hidden' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onMouseMove={handleMouseMove}
     >
       {/* Background Radial Glow */}
       <div 
@@ -218,36 +200,6 @@ export default function IntegrationsSection() {
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Floating Drag "TRAÎNER" Badge */}
-      <div 
-        className="floating-drag-badge"
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: '80px',
-          height: '80px',
-          borderRadius: '50%',
-          backgroundColor: 'rgba(18, 19, 22, 0.85)',
-          border: '1.5px solid rgba(255, 255, 255, 0.15)',
-          color: 'var(--color-text)',
-          fontSize: '0.62rem',
-          fontWeight: 700,
-          letterSpacing: '0.18em',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-          zIndex: 10,
-          opacity: isHovered ? 1 : 0,
-          transform: `translate(${coords.x}px, ${coords.y}px) scale(${isHovered ? 1 : 0.8})`,
-          transition: 'opacity 0.25s ease, transform 0.08s ease-out',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.05)'
-        }}
-      >
-        TRAÎNER
       </div>
     </section>
   );

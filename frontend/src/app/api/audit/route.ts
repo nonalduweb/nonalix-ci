@@ -3,6 +3,7 @@ import { prisma } from '@/lib/db';
 import { sendAdminLeadNotification, sendUserAuditNotification } from '@/lib/mailer';
 import { getSessionUser } from '@/lib/auth-server';
 import { notifyNewLead } from '@/lib/n8n-webhooks';
+import { getClientIp, isRateLimited } from '@/lib/rate-limit';
 
 export const maxDuration = 30; // Permet jusqu'à 30s d'exécution pour l'IA (Vercel/Hostinger)
 
@@ -107,8 +108,22 @@ async function fetchAndAnalyzeSite(targetUrl: string) {
 
 export async function POST(req: NextRequest) {
   try {
+    // Limitation de débit : 3 audits max par IP / 10 minutes (l'analyse appelle un LLM et un fetch externe)
+    const ip = getClientIp(req);
+    if (isRateLimited(`audit:${ip}`, 3, 10 * 60 * 1000)) {
+      return NextResponse.json(
+        { error: 'Trop de tentatives. Veuillez réessayer dans quelques minutes.' },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
-    const { url, businessName, email, phone, consent, type, sendWhatsApp } = body;
+    const { url, businessName, email, phone, consent, type, sendWhatsApp, website } = body;
+
+    // Honeypot : champ "website" invisible pour un humain, rempli automatiquement par la plupart des bots
+    if (website) {
+      return NextResponse.json({ status: 'success', message: 'Audit envoyé avec succès' });
+    }
 
     // Validation des champs
     if (!businessName || !email || !phone || !consent) {

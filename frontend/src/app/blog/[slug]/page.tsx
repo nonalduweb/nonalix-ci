@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   return {
-    title: `${post.title} | ${SITE_CONFIG.name}`,
+    title: post.title,
     description: post.description,
     keywords: post.tags,
     alternates: { canonical: `/blog/${post.slug}` },
@@ -88,11 +88,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     inLanguage: 'fr-CI',
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://nonalix-ci.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://nonalix-ci.com/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://nonalix-ci.com/blog/${post.slug}` },
+    ],
+  };
+
   const catColor = CATEGORY_COLORS[post.category];
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="page-content">
         {/* Hero article */}

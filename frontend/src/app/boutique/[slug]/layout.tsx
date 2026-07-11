@@ -17,11 +17,12 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: 'Produit non trouvé | NONALIX CI',
+      title: 'Produit non trouvé',
     };
   }
 
-  const title = `${product.name} — Pack Digital & IA à Abidjan | NONALIX CI`;
+  const title = `${product.name} — Pack Digital & IA à Abidjan`;
+  const socialTitle = `${title} | NONALIX CI`;
   const description = `${product.description.slice(0, 150)}... Achat immédiat en ligne avec Orange Money & Wave en Côte d'Ivoire.`;
 
   return {
@@ -31,7 +32,7 @@ export async function generateMetadata({
       canonical: `/boutique/${slug}`,
     },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url: `/boutique/${slug}`,
       images: [
@@ -45,7 +46,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: socialTitle,
       description,
       images: ['/images/hero/ai-automation-dashboard.jpg'],
     },
