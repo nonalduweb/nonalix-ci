@@ -1914,7 +1914,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--space-md);
   overflow-wrap: break-word;
   word-wrap: break-word;
-  hyphens: auto;
 }
 
 @media (min-width: 768px) {
@@ -3387,8 +3386,8 @@ h1, h2, h3, h4, h5, h6 {
   inset: 0;
   z-index: 10000;
   display: flex;
-  align-items: center;
   justify-content: center;
+  overflow-y: auto;
   background: rgba(0, 0, 0, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -3406,6 +3405,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   width: 100%;
   max-width: 460px;
+  margin: auto 0;
   background: linear-gradient(165deg, #16171B 0%, #0d0e11 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xl);
@@ -4537,6 +4537,13 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
+}
+
+/* Ancre et clippe les glow-bubbles décoratifs — sans ceci ils débordent
+   du viewport mobile et forcent un zoom arrière de toute la page */
+.manifesto-section {
+  position: relative;
+  overflow: hidden;
 }
 
 .why-choose-us-container {

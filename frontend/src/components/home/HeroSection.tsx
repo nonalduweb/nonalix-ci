@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ShimmerButton } from '@/components/ui/ShimmerButton';
 import { Particles } from '@/components/ui/Particles';
@@ -16,6 +16,36 @@ export function HeroSection() {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // A continuously-playing (even muted) background video keeps mobile browsers
+  // from auto-locking the screen. It's purely decorative, so freeze it on the
+  // last frame after a few loops instead of looping forever.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let stopped = false;
+    const stopTimer = setTimeout(() => {
+      stopped = true;
+      video.pause();
+    }, 15000);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (stopped) return;
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0 }
+    );
+    observer.observe(video);
+
+    return () => {
+      clearTimeout(stopTimer);
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -67,6 +97,7 @@ export function HeroSection() {
         }}
       >
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
@@ -102,9 +133,9 @@ export function HeroSection() {
           {/* Left Column: Title, Subtitle, CTA */}
           <div className="hero-split-left">
             <h1 className="hero-giant-title stagger-scale-item stagger-scale-2" style={{ textTransform: 'none', letterSpacing: '-0.02em', fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.25, marginBottom: '2.5rem' }}>
-              Automatisez. Développez.
+              Automatisez. Développez.{' '}
               <br className="desktop-only-br" />
-              Dominez votre marché
+              Dominez votre marché{' '}
               <br className="desktop-only-br" />
               grâce à l&apos;<span style={{ color: 'var(--color-accent)' }}>IA</span>.
             </h1>
