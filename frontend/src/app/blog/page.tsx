@@ -32,10 +32,10 @@ const jsonLd = {
 
 const CATEGORY_COLORS: Record<BlogCategory, string> = {
   seo: 'var(--color-accent)',
-  'developpement-web': '#7C3AED',
-  'marketing-digital': '#EC4899',
-  'ia-automatisation': '#10B981',
-  ecommerce: '#F59E0B',
+  'developpement-web': 'var(--color-accent)',
+  'marketing-digital': 'var(--color-accent)',
+  'ia-automatisation': 'var(--color-accent)',
+  ecommerce: 'var(--color-accent)',
 };
 
 function formatDate(iso: string) {
@@ -228,8 +228,8 @@ export default async function BlogPage() {
               style={{
                 textAlign: 'center',
                 padding: 'var(--space-3xl)',
-                background: 'linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(124,58,237,0.06) 100%)',
-                border: '1px solid rgba(59,130,246,0.15)',
+                background: 'linear-gradient(135deg, rgba(231,173,5,0.08) 0%, rgba(124,58,237,0.06) 100%)',
+                border: '1px solid rgba(231,173,5,0.15)',
               }}
             >
               <span className="badge badge-accent" style={{ marginBottom: 'var(--space-md)' }}>

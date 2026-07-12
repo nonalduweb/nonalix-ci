@@ -111,8 +111,8 @@ export default function AProposPage() {
               {/* Ambition statement */}
               <div style={{
                 padding: 'var(--space-lg)',
-                background: 'linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(59,130,246,0.04) 100%)',
-                border: '1px solid rgba(37,99,235,0.2)',
+                background: 'linear-gradient(135deg, rgba(231,173,5,0.08) 0%, rgba(231,173,5,0.04) 100%)',
+                border: '1px solid rgba(231,173,5,0.2)',
                 borderLeft: '3px solid var(--color-accent)',
                 borderRadius: 'var(--radius-md)',
               }}>
@@ -145,7 +145,7 @@ export default function AProposPage() {
               borderRadius: 'var(--radius-lg)',
               overflow: 'hidden',
               border: '1px solid var(--color-border)',
-              boxShadow: '0 0 60px rgba(37,99,235,0.08), var(--shadow-lg)',
+              boxShadow: '0 0 60px rgba(231,173,5,0.08), var(--shadow-lg)',
             }}>
               <img
                 src="/images/about/ai-lead-qualification.svg"
@@ -232,8 +232,8 @@ export default function AProposPage() {
                 </p>
                 <div style={{
                   padding: 'var(--space-xl)',
-                  background: 'linear-gradient(135deg, rgba(226,83,54,0.06) 0%, rgba(255,120,50,0.03) 100%)',
-                  border: '1px solid rgba(226,83,54,0.2)',
+                  background: 'linear-gradient(135deg, rgba(231,173,5,0.06) 0%, rgba(245, 197, 89,0.03) 100%)',
+                  border: '1px solid rgba(231,173,5,0.2)',
                   borderLeft: '3px solid var(--color-highlight)',
                   borderRadius: 'var(--radius-md)',
                 }}>

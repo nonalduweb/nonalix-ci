@@ -34,7 +34,7 @@ export default function TermsPage() {
             
             {/* Objet */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 1. Objet et acceptation des conditions
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -46,7 +46,7 @@ export default function TermsPage() {
 
             {/* Utilisation de l'assistant virtuel */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 2. Limitation de responsabilité — Assistants Virtuels & IA
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -62,7 +62,7 @@ export default function TermsPage() {
 
             {/* Vente de produits digitaux */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 3. Conditions de Vente des Produits Digitaux
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginBottom: 'var(--space-sm)' }}>
@@ -77,7 +77,7 @@ export default function TermsPage() {
 
             {/* Propriété intellectuelle */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 4. Propriété intellectuelle
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -88,7 +88,7 @@ export default function TermsPage() {
 
             {/* Loi applicable */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 5. Droit applicable et juridiction compétente
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -97,7 +97,7 @@ export default function TermsPage() {
               </p>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginTop: 'var(--space-md)' }}>
                 Pour toute question ou réclamation, vous pouvez contacter notre service client à l&apos;adresse suivante : 
-                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>.
+                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>.
               </p>
             </div>
 

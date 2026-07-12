@@ -124,16 +124,16 @@ const PRODUCT_MARKETING_COPY: Record<string, {
 };
 
 const CATEGORY_META: Record<string, { color: string; rgb: string; code: string }> = {
-  'IA & ChatGPT':                 { color: '#3B82F6', rgb: '59,130,246',  code: 'AI'  },
-  'E-commerce & Dropshipping':    { color: '#3B82F6', rgb: '59,130,246',  code: 'ECO' },
-  'Business & Affiliation':       { color: '#3B82F6', rgb: '59,130,246',  code: 'BIZ' },
-  'Marketing & Publicité':        { color: '#3B82F6', rgb: '59,130,246',  code: 'MKT' },
-  'Montage & Réseaux Sociaux':    { color: '#3B82F6', rgb: '59,130,246',  code: 'VID' },
-  'Développement & No-Code':      { color: '#3B82F6', rgb: '59,130,246',  code: 'DEV' },
-  'Mindset & Ebooks':             { color: '#3B82F6', rgb: '59,130,246',  code: 'EKB' },
-  'Langues, Finance & Dev. Perso':{ color: '#3B82F6', rgb: '59,130,246',  code: 'LFD' },
+  'IA & ChatGPT':                 { color: '#e7ad05', rgb: '231,173,5',  code: 'AI'  },
+  'E-commerce & Dropshipping':    { color: '#e7ad05', rgb: '231,173,5',  code: 'ECO' },
+  'Business & Affiliation':       { color: '#e7ad05', rgb: '231,173,5',  code: 'BIZ' },
+  'Marketing & Publicité':        { color: '#e7ad05', rgb: '231,173,5',  code: 'MKT' },
+  'Montage & Réseaux Sociaux':    { color: '#e7ad05', rgb: '231,173,5',  code: 'VID' },
+  'Développement & No-Code':      { color: '#e7ad05', rgb: '231,173,5',  code: 'DEV' },
+  'Mindset & Ebooks':             { color: '#e7ad05', rgb: '231,173,5',  code: 'EKB' },
+  'Langues, Finance & Dev. Perso':{ color: '#e7ad05', rgb: '231,173,5',  code: 'LFD' },
 };
-const DEFAULT_META = { color: '#3B82F6', rgb: '59,130,246', code: 'PRO' };
+const DEFAULT_META = { color: '#e7ad05', rgb: '231,173,5', code: 'PRO' };
 
 const emojiMap: Record<string, string> = {
   'IA & ChatGPT': '🤖',
@@ -246,9 +246,9 @@ export default function ProductDetailPage() {
           
           {/* Breadcrumb */}
           <nav style={{ marginBottom: 'var(--space-xl)', fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
-            <Link href="/" style={{ color: '#3B82F6' }}>Accueil</Link>
+            <Link href="/" style={{ color: '#e7ad05' }}>Accueil</Link>
             {' / '}
-            <Link href="/boutique" style={{ color: '#3B82F6' }}>Boutique</Link>
+            <Link href="/boutique" style={{ color: '#e7ad05' }}>Boutique</Link>
             {' / '}
             <span style={{ color: 'var(--color-text)' }}>{product.name}</span>
           </nav>
@@ -288,7 +288,7 @@ export default function ProductDetailPage() {
                 border: '1px solid rgba(255, 255, 255, 0.05)',
                 borderRadius: 'var(--radius-md)',
               }}>
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#3B82F6', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-heading)' }}>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#e7ad05', marginBottom: 'var(--space-xs)', fontFamily: 'var(--font-heading)' }}>
                   À qui s&apos;adresse ce pack ?
                 </h3>
                 <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
@@ -304,7 +304,7 @@ export default function ProductDetailPage() {
                 border: '1px solid rgba(255, 255, 255, 0.05)',
                 borderRadius: 'var(--radius-md)',
               }}>
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#3B82F6', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-heading)' }}>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#e7ad05', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-heading)' }}>
                   Compétences clés acquises :
                 </h3>
                 <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
@@ -326,7 +326,7 @@ export default function ProductDetailPage() {
                   border: '1px solid var(--color-border)',
                   borderRadius: 'var(--radius-md)',
                 }}>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#3B82F6', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-heading)' }}>
+                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#e7ad05', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-heading)' }}>
                     Programme détaillé du pack :
                   </h3>
                   <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
@@ -349,7 +349,7 @@ export default function ProductDetailPage() {
                 
                 {/* Category Badge & Trust Score */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
-                  <span className="badge" style={{ background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)', color: '#3B82F6', fontSize: '0.7rem', fontWeight: 700 }}>
+                  <span className="badge" style={{ background: 'rgba(231, 173, 5, 0.08)', border: '1px solid rgba(231, 173, 5, 0.2)', color: '#e7ad05', fontSize: '0.7rem', fontWeight: 700 }}>
                     {product.category}
                   </span>
                   <div style={{ fontSize: '0.75rem', color: '#F59E0B', fontWeight: 700 }}>
@@ -426,7 +426,7 @@ export default function ProductDetailPage() {
 
               {/* Comment ça marche card */}
               <div className="card" style={{ marginTop: 'var(--space-md)', padding: 'var(--space-md) var(--space-lg)', border: '1px solid var(--color-border)', background: 'rgba(255, 255, 255, 0.01)' }}>
-                <h4 style={{ fontSize: '0.85rem', fontWeight: 700, marginBottom: '8px', color: '#3B82F6' }}>Comment se passe la livraison ?</h4>
+                <h4 style={{ fontSize: '0.85rem', fontWeight: 700, marginBottom: '8px', color: '#e7ad05' }}>Comment se passe la livraison ?</h4>
                 <ol style={{ fontSize: '0.75rem', paddingLeft: '15px', color: 'var(--color-text-muted)', display: 'flex', flexDirection: 'column', gap: '4px', margin: 0 }}>
                   <li>Remplissez vos coordonnées à l&apos;étape suivante (e-mail requis).</li>
                   <li>Effectuez le paiement en ligne en toute sécurité via Orange Money ou Wave.</li>
@@ -452,8 +452,8 @@ export default function ProductDetailPage() {
                       key={sp.id}
                       className="bq-card"
                       style={{
-                        '--c': '#3B82F6',
-                        '--rgb': '59,130,246',
+                        '--c': '#e7ad05',
+                        '--rgb': '231,173,5',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
@@ -465,10 +465,10 @@ export default function ProductDetailPage() {
 
                         {/* Top row */}
                         <div className="bq-card-head" style={{ padding: '14px 16px 6px 20px' }}>
-                          <span className="bq-card-code" style={{ color: '#3B82F6', fontSize: '0.65rem' }}>
+                          <span className="bq-card-code" style={{ color: '#e7ad05', fontSize: '0.65rem' }}>
                             {spMeta.code}
                           </span>
-                          <span className="bq-badge bq-badge-digital" style={{ background: 'rgba(59,130,246,0.1)', borderColor: 'rgba(59,130,246,0.2)', color: '#3B82F6' }}>DIGITAL</span>
+                          <span className="bq-badge bq-badge-digital" style={{ background: 'rgba(231,173,5,0.1)', borderColor: 'rgba(231,173,5,0.2)', color: '#e7ad05' }}>DIGITAL</span>
                         </div>
 
                         {/* Body */}

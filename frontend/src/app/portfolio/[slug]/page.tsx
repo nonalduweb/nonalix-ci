@@ -98,7 +98,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
           left: '5%', 
           width: '350px', 
           height: '350px', 
-          backgroundColor: 'rgba(59, 130, 246, 0.04)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.04)', 
           filter: 'blur(100px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -113,7 +113,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
           right: '5%', 
           width: '450px', 
           height: '450px', 
-          backgroundColor: 'rgba(99, 102, 241, 0.03)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.03)', 
           filter: 'blur(120px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -154,7 +154,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
             {/* Left Content */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
               <div>
-                <span className="badge badge-accent" style={{ background: 'rgba(59, 130, 246, 0.1)', color: accentColor, border: '1px solid rgba(59, 130, 246, 0.2)' }}>
+                <span className="badge badge-accent" style={{ background: 'rgba(231, 173, 5, 0.1)', color: accentColor, border: '1px solid rgba(231, 173, 5, 0.2)' }}>
                   {detail.badge}
                 </span>
               </div>
@@ -215,7 +215,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                   borderRadius: 'var(--radius-xl)',
                   overflow: 'hidden',
                   border: '1px solid var(--color-border)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.1)'
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(231, 173, 5, 0.1)'
                 }}
               >
                 <Image
@@ -257,7 +257,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                 }}
                 className="metric-column"
               >
-                <span style={{ fontSize: '2.5rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: accentColor, textShadow: '0 0 20px rgba(59, 130, 246, 0.3)' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: accentColor, textShadow: '0 0 20px rgba(231, 173, 5, 0.3)' }}>
                   {metric.value}
                 </span>
                 <span style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>
@@ -450,14 +450,14 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
             {detail.testimonial && (
               <GlowingCard 
                 style={{ 
-                  background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(99, 102, 241, 0.01) 100%)',
+                  background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.02) 0%, rgba(231, 173, 5, 0.01) 100%)',
                   padding: 'var(--space-lg)',
                   borderRadius: 'var(--radius-lg)',
                   border: '1px solid var(--color-border)'
                 }}
               >
                 {/* Quote symbol */}
-                <div style={{ fontSize: '2.5rem', color: 'rgba(59, 130, 246, 0.2)', height: '24px', lineHeight: '1', fontFamily: 'Georgia, serif', marginTop: '-10px' }}>
+                <div style={{ fontSize: '2.5rem', color: 'rgba(231, 173, 5, 0.2)', height: '24px', lineHeight: '1', fontFamily: 'Georgia, serif', marginTop: '-10px' }}>
                   “
                 </div>
                 <p style={{ color: 'var(--color-text-secondary)', fontStyle: 'italic', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: 'var(--space-md)', position: 'relative', zIndex: 1 }}>
@@ -480,7 +480,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
         <section style={{ marginBottom: 'var(--space-4xl)' }}>
           <div 
             style={{
-              background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(99, 102, 241, 0.02) 100%)',
+              background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.06) 0%, rgba(231, 173, 5, 0.02) 100%)',
               border: '1px solid var(--color-border)',
               padding: 'var(--space-3xl) var(--space-2xl)',
               borderRadius: 'var(--radius-2xl)',
@@ -617,7 +617,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                       }}
                       className="case-study-link"
                     >
-                      <span style={{ color: '#4F46E5', fontSize: '0.85rem', fontWeight: 600 }} className="case-study-link-text">
+                      <span style={{ color: '#e7ad05', fontSize: '0.85rem', fontWeight: 600 }} className="case-study-link-text">
                         {project.type === 'case' ? 'Voir le cas d\'étude' : 'Voir le projet'}
                       </span>
                       <div 
@@ -625,11 +625,11 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                           width: '28px',
                           height: '28px',
                           borderRadius: 'var(--radius-full)',
-                          background: 'rgba(79, 70, 229, 0.1)',
+                          background: 'rgba(231, 173, 5, 0.1)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: '#6366F1'
+                          color: '#e7ad05'
                         }}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
             
             {/* Introduction */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 Introduction
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Données collectées */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 1. Données collectées
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginBottom: 'var(--space-sm)' }}>
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Pourquoi collecter */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 2. Finalités du traitement (Pourquoi nous collectons vos données)
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginBottom: 'var(--space-sm)' }}>
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Protection des données */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 3. Sécurité et Protection de vos données
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginBottom: 'var(--space-sm)' }}>
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Droits des utilisateurs */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 4. Vos droits et demande de suppression
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginTop: 'var(--space-sm)' }}>
                 Pour exercer ces droits ou formuler une demande de suppression de données, vous pouvez nous écrire directement à notre adresse e-mail de contact : 
-                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>. 
+                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>. 
                 Toutes les demandes de suppression sont traitées dans un délai maximum de 48 heures.
               </p>
             </div>

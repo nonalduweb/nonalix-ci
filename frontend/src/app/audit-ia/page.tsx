@@ -508,7 +508,7 @@ export default function AuditIAPage() {
     }}>
       {/* Particles effect for background */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
-        <Particles quantity={40} color="#3B82F6" />
+        <Particles quantity={40} color="#e7ad05" />
       </div>
 
       {/* JSON-LD Schema.org Structured Data */}
@@ -660,7 +660,7 @@ export default function AuditIAPage() {
               left: 0,
               height: '100%',
               width: `${progressPercent}%`,
-              background: 'linear-gradient(90deg, #3B82F6 0%, #10B981 100%)',
+              background: 'linear-gradient(90deg, #e7ad05 0%, #10B981 100%)',
               transition: 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
             }} />
           </div>
@@ -680,7 +680,7 @@ export default function AuditIAPage() {
                 fontSize: '0.75rem',
                 fontWeight: 700,
                 textTransform: 'uppercase',
-                color: '#3B82F6',
+                color: '#e7ad05',
                 letterSpacing: '0.1em'
               }}>
                 {currentQuestion.category}
@@ -728,8 +728,8 @@ export default function AuditIAPage() {
                     onClick={() => handleAnswerSelect(option.value)}
                     style={{
                       width: '100%',
-                      background: answers[currentQuestion.id] === option.value ? 'rgba(59, 130, 246, 0.08)' : 'rgba(255, 255, 255, 0.02)',
-                      border: answers[currentQuestion.id] === option.value ? '1px solid #3B82F6' : '1px solid rgba(255, 255, 255, 0.05)',
+                      background: answers[currentQuestion.id] === option.value ? 'rgba(231, 173, 5, 0.08)' : 'rgba(255, 255, 255, 0.02)',
+                      border: answers[currentQuestion.id] === option.value ? '1px solid #e7ad05' : '1px solid rgba(255, 255, 255, 0.05)',
                       borderRadius: '12px',
                       padding: '1.25rem 1.5rem',
                       display: 'flex',
@@ -738,7 +738,7 @@ export default function AuditIAPage() {
                       cursor: 'pointer',
                       textAlign: 'left',
                       transition: 'all 0.2s ease',
-                      boxShadow: answers[currentQuestion.id] === option.value ? '0 0 15px rgba(59, 130, 246, 0.15)' : 'none'
+                      boxShadow: answers[currentQuestion.id] === option.value ? '0 0 15px rgba(231, 173, 5, 0.15)' : 'none'
                     }}
                     onMouseEnter={(e) => {
                       if (answers[currentQuestion.id] !== option.value) {
@@ -783,7 +783,7 @@ export default function AuditIAPage() {
                     transition: 'border-color 0.2s ease',
                     marginBottom: '2rem'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#3B82F6'}
+                  onFocus={(e) => e.target.style.borderColor = '#e7ad05'}
                   onBlur={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)'}
                   autoFocus
                 />
@@ -797,10 +797,10 @@ export default function AuditIAPage() {
                     fontSize: '1rem',
                     fontWeight: 700,
                     cursor: 'pointer',
-                    background: '#3B82F6',
+                    background: '#e7ad05',
                     border: 'none',
                     color: '#ffffff',
-                    boxShadow: '0 4px 14px rgba(59, 130, 246, 0.3)'
+                    boxShadow: '0 4px 14px rgba(231, 173, 5, 0.3)'
                   }}
                 >
                   Continuer
@@ -872,7 +872,7 @@ export default function AuditIAPage() {
               height: '100%',
               borderRadius: '50%',
               border: '3px solid transparent',
-              borderTopColor: '#3B82F6',
+              borderTopColor: '#e7ad05',
               animation: 'spin 1.5s linear infinite'
             }} />
             {/* Middle ring */}
@@ -895,8 +895,8 @@ export default function AuditIAPage() {
               width: '40px',
               height: '40px',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, #3B82F6 0%, #2563eb 100%)',
-              boxShadow: '0 0 20px #3B82F6',
+              background: 'radial-gradient(circle, #e7ad05 0%, #b8860b 100%)',
+              boxShadow: '0 0 20px #e7ad05',
               animation: 'pulse 1s ease-in-out infinite'
             }} />
           </div>
@@ -951,7 +951,7 @@ export default function AuditIAPage() {
             <div style={{
               height: '100%',
               width: `${((analyzingStepIndex + 1) / ANALYZING_STEPS.length) * 100}%`,
-              background: '#3B82F6',
+              background: '#e7ad05',
               transition: 'width 1.5s linear'
             }} />
           </div>
@@ -990,7 +990,7 @@ export default function AuditIAPage() {
             gap: '1rem',
             marginBottom: '3rem'
           }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#3B82F6', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#e7ad05', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
               Rapport d'audit IA généré pour
             </span>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', gap: '1.5rem' }}>
@@ -1011,9 +1011,9 @@ export default function AuditIAPage() {
                   onClick={handlePrint}
                   className="no-print btn-download-pdf"
                   style={{
-                    background: 'rgba(59, 130, 246, 0.1)',
-                    border: '1px solid rgba(59, 130, 246, 0.2)',
-                    color: '#3B82F6',
+                    background: 'rgba(231, 173, 5, 0.1)',
+                    border: '1px solid rgba(231, 173, 5, 0.2)',
+                    color: '#e7ad05',
                     padding: '10px 20px',
                     borderRadius: '8px',
                     fontWeight: 600,
@@ -1024,10 +1024,10 @@ export default function AuditIAPage() {
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
+                    e.currentTarget.style.background = 'rgba(231, 173, 5, 0.15)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                    e.currentTarget.style.background = 'rgba(231, 173, 5, 0.1)';
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -1077,7 +1077,7 @@ export default function AuditIAPage() {
                 {/* SVG Circular Gauge */}
                 <svg width="100%" height="100%" viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)' }}>
                   <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.03)" strokeWidth="8" fill="none" />
-                  <circle cx="50" cy="50" r="42" stroke={displayMetrics.scores.globalScore > 75 ? '#10B981' : displayMetrics.scores.globalScore > 50 ? '#3B82F6' : '#EF4444'} strokeWidth="8" fill="none" strokeDasharray="264" strokeDashoffset={264 - (264 * displayMetrics.scores.globalScore) / 100} style={{ transition: 'stroke-dashoffset 2s ease-out' }} />
+                  <circle cx="50" cy="50" r="42" stroke={displayMetrics.scores.globalScore > 75 ? '#10B981' : displayMetrics.scores.globalScore > 50 ? '#e7ad05' : '#EF4444'} strokeWidth="8" fill="none" strokeDasharray="264" strokeDashoffset={264 - (264 * displayMetrics.scores.globalScore) / 100} style={{ transition: 'stroke-dashoffset 2s ease-out' }} />
                 </svg>
                 <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <span style={{ fontSize: '3rem', fontWeight: 800, fontFamily: 'var(--font-heading)', color: '#ffffff' }}>
@@ -1088,8 +1088,8 @@ export default function AuditIAPage() {
 
               <span style={{
                 fontSize: '0.85rem',
-                background: displayMetrics.scores.globalScore > 75 ? 'rgba(16, 185, 129, 0.1)' : displayMetrics.scores.globalScore > 50 ? 'rgba(59, 130, 246, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-                color: displayMetrics.scores.globalScore > 75 ? '#10B981' : displayMetrics.scores.globalScore > 50 ? '#3B82F6' : '#EF4444',
+                background: displayMetrics.scores.globalScore > 75 ? 'rgba(16, 185, 129, 0.1)' : displayMetrics.scores.globalScore > 50 ? 'rgba(231, 173, 5, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                color: displayMetrics.scores.globalScore > 75 ? '#10B981' : displayMetrics.scores.globalScore > 50 ? '#e7ad05' : '#EF4444',
                 padding: '4px 12px',
                 borderRadius: '99px',
                 fontWeight: 600
@@ -1120,7 +1120,7 @@ export default function AuditIAPage() {
                   <span style={{ fontWeight: 'bold' }}>{displayMetrics.scores.digitalMaturity}%</span>
                 </div>
                 <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.03)', borderRadius: '99px', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${displayMetrics.scores.digitalMaturity}%`, background: '#3B82F6', borderRadius: '99px' }} />
+                  <div style={{ height: '100%', width: `${displayMetrics.scores.digitalMaturity}%`, background: '#e7ad05', borderRadius: '99px' }} />
                 </div>
               </div>
 
@@ -1323,8 +1323,8 @@ export default function AuditIAPage() {
 
               {/* Après Nonalix */}
               <div style={{
-                background: 'rgba(59, 130, 246, 0.02)',
-                border: '1px solid rgba(59, 130, 246, 0.1)',
+                background: 'rgba(231, 173, 5, 0.02)',
+                border: '1px solid rgba(231, 173, 5, 0.1)',
                 borderRadius: '16px',
                 padding: '1.75rem'
               }}>
@@ -1394,7 +1394,7 @@ export default function AuditIAPage() {
                         right: 0,
                         width: '80px',
                         height: '80px',
-                        background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
+                        background: 'radial-gradient(circle, rgba(231, 173, 5, 0.15) 0%, transparent 70%)',
                         pointerEvents: 'none'
                       }} />
                     )}
@@ -1403,9 +1403,9 @@ export default function AuditIAPage() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                         <span style={{
                           fontSize: '0.7rem',
-                          background: isHigh ? 'rgba(239, 68, 68, 0.1)' : 'rgba(59, 130, 246, 0.1)',
-                          color: isHigh ? '#EF4444' : '#3B82F6',
-                          border: isHigh ? '1px solid rgba(239, 68, 68, 0.2)' : '1px solid rgba(59, 130, 246, 0.2)',
+                          background: isHigh ? 'rgba(239, 68, 68, 0.1)' : 'rgba(231, 173, 5, 0.1)',
+                          color: isHigh ? '#EF4444' : '#e7ad05',
+                          border: isHigh ? '1px solid rgba(239, 68, 68, 0.2)' : '1px solid rgba(231, 173, 5, 0.2)',
                           padding: '2px 10px',
                           borderRadius: '99px',
                           fontWeight: 700,
@@ -1436,7 +1436,7 @@ export default function AuditIAPage() {
                       paddingTop: '10px'
                     }}>
                       <span>📈 Impact: <strong style={{ color: '#10B981' }}>Élevé</strong></span>
-                      <span>⚙️ Effort: <strong style={{ color: '#3B82F6' }}>Modéré</strong></span>
+                      <span>⚙️ Effort: <strong style={{ color: '#e7ad05' }}>Modéré</strong></span>
                     </div>
                   </div>
                 );
@@ -1473,8 +1473,8 @@ export default function AuditIAPage() {
                   width: '10px',
                   height: '10px',
                   borderRadius: '50%',
-                  background: '#3B82F6',
-                  boxShadow: '0 0 8px #3B82F6'
+                  background: '#e7ad05',
+                  boxShadow: '0 0 8px #e7ad05'
                 }} />
                 <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>Jour 1 à 30 : Fondations & automatisation CRM</h4>
                 <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
@@ -1599,8 +1599,8 @@ export default function AuditIAPage() {
               ──────────────────────────────────────────────────────── */}
           <div className="no-print" style={{
             marginTop: '5rem',
-            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%)',
-            border: '1px solid rgba(59, 130, 246, 0.15)',
+            background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%)',
+            border: '1px solid rgba(231, 173, 5, 0.15)',
             borderRadius: '24px',
             padding: '3rem var(--content-padding)',
             textAlign: 'center'
@@ -1777,7 +1777,7 @@ export default function AuditIAPage() {
                   <button
                     onClick={handlePrint}
                     style={{
-                      background: '#3B82F6',
+                      background: '#e7ad05',
                       border: 'none',
                       color: '#ffffff',
                       padding: '12px 28px',
@@ -1785,7 +1785,7 @@ export default function AuditIAPage() {
                       fontSize: '0.95rem',
                       fontWeight: 700,
                       cursor: 'pointer',
-                      boxShadow: '0 4px 14px rgba(59, 130, 246, 0.3)'
+                      boxShadow: '0 4px 14px rgba(231, 173, 5, 0.3)'
                     }}
                   >
                     🖨️ Imprimer / Enregistrer en PDF

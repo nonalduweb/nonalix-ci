@@ -109,7 +109,7 @@ export default function PanierPage() {
                 </Link>
               </div>
               <div style={{ marginTop: 'var(--space-md)', textAlign: 'center' }}>
-                <Link href="/boutique" style={{ fontSize: '0.875rem', color: 'var(--color-accent-glow)' }}>
+                <Link href="/boutique" style={{ fontSize: '0.875rem', color: 'var(--color-accent)' }}>
                   ← Continuer les achats
                 </Link>
               </div>

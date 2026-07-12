@@ -46,7 +46,7 @@ export function CookieBanner() {
         border: '1px solid rgba(255, 255, 255, 0.08)',
         borderRadius: 'var(--radius-lg)',
         padding: 'var(--space-lg)',
-        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4), 0 0 40px rgba(59, 130, 246, 0.1)',
+        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4), 0 0 40px rgba(231, 173, 5, 0.1)',
         zIndex: 9999,
         display: 'flex',
         flexDirection: 'column',
@@ -62,7 +62,7 @@ export function CookieBanner() {
           </h4>
           <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', margin: 0, lineHeight: '1.5' }}>
             Nous utilisons des cookies pour mesurer l&apos;audience du site et enregistrer le trafic de manière anonyme afin d&apos;améliorer nos services. Vous pouvez accepter ou refuser ces cookies à tout moment. Pour en savoir plus, consultez nos{' '}
-            <Link href="/mentions-legales" style={{ color: 'var(--color-accent-glow)', textDecoration: 'underline' }}>
+            <Link href="/mentions-legales" style={{ color: 'var(--color-accent)', textDecoration: 'underline' }}>
               mentions légales
             </Link>.
           </p>
@@ -80,7 +80,7 @@ export function CookieBanner() {
         <button
           onClick={handleAccept}
           className="btn btn-primary btn-sm"
-          style={{ padding: '6px 20px', fontSize: '0.8125rem', boxShadow: '0 0 10px rgba(59, 130, 246, 0.3)' }}
+          style={{ padding: '6px 20px', fontSize: '0.8125rem', boxShadow: '0 0 10px rgba(231, 173, 5, 0.3)' }}
         >
           Accepter
         </button>

@@ -15,7 +15,7 @@ export function AnimatedGridPattern({
   className = '',
   cellSize = 44,
   strokeColor = 'rgba(255,255,255,0.03)',
-  fillColor = 'rgba(37, 99, 235, 0.05)',
+  fillColor = 'rgba(231, 173, 5, 0.05)',
   highlightChance = 0.035,
   intervalMs = 1800,
 }: Props) {

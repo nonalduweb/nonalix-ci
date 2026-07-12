@@ -8,18 +8,18 @@ import { formatPrice } from '@/lib/constants';
 import type { Product } from '@/types/product';
 import CommunityPopup from '@/components/boutique/CommunityPopup';
 
-// Unify all category colors around the premium blue brand color to avoid chaotic rainbow aesthetics
+// Unify all category colors around the premium gold brand color to avoid chaotic rainbow aesthetics
 const CATEGORY_META: Record<string, { color: string; rgb: string; code: string }> = {
-  'IA & ChatGPT':                 { color: '#3B82F6', rgb: '59,130,246',  code: 'AI'  },
-  'E-commerce & Dropshipping':    { color: '#3B82F6', rgb: '59,130,246',  code: 'ECO' },
-  'Business & Affiliation':       { color: '#3B82F6', rgb: '59,130,246',  code: 'BIZ' },
-  'Marketing & Publicité':        { color: '#3B82F6', rgb: '59,130,246',  code: 'MKT' },
-  'Montage & Réseaux Sociaux':    { color: '#3B82F6', rgb: '59,130,246',  code: 'VID' },
-  'Développement & No-Code':      { color: '#3B82F6', rgb: '59,130,246',  code: 'DEV' },
-  'Mindset & Ebooks':             { color: '#3B82F6', rgb: '59,130,246',  code: 'EKB' },
-  'Langues, Finance & Dev. Perso':{ color: '#3B82F6', rgb: '59,130,246',  code: 'LFD' },
+  'IA & ChatGPT':                 { color: '#e7ad05', rgb: '231,173,5',  code: 'AI'  },
+  'E-commerce & Dropshipping':    { color: '#e7ad05', rgb: '231,173,5',  code: 'ECO' },
+  'Business & Affiliation':       { color: '#e7ad05', rgb: '231,173,5',  code: 'BIZ' },
+  'Marketing & Publicité':        { color: '#e7ad05', rgb: '231,173,5',  code: 'MKT' },
+  'Montage & Réseaux Sociaux':    { color: '#e7ad05', rgb: '231,173,5',  code: 'VID' },
+  'Développement & No-Code':      { color: '#e7ad05', rgb: '231,173,5',  code: 'DEV' },
+  'Mindset & Ebooks':             { color: '#e7ad05', rgb: '231,173,5',  code: 'EKB' },
+  'Langues, Finance & Dev. Perso':{ color: '#e7ad05', rgb: '231,173,5',  code: 'LFD' },
 };
-const DEFAULT_META = { color: '#3B82F6', rgb: '59,130,246', code: 'PRO' };
+const DEFAULT_META = { color: '#e7ad05', rgb: '231,173,5', code: 'PRO' };
 
 // Simplified and robust CountUp that updates correctly when target changes
 function CountUp({ target, duration = 1000 }: { target: number; duration?: number }) {
@@ -276,7 +276,7 @@ export default function BoutiquePage() {
                     onClick={() => handleCategory(cat)}
                   >
                     {meta && (
-                      <span className="bq-pill-code" style={{ color: '#3B82F6' }}>{meta.code}</span>
+                      <span className="bq-pill-code" style={{ color: '#e7ad05' }}>{meta.code}</span>
                     )}
                     {cat}
                   </button>
@@ -331,8 +331,8 @@ export default function BoutiquePage() {
                   key={product.id}
                   className="bq-card"
                   style={{
-                    '--c': '#3B82F6',
-                    '--rgb': '59,130,246',
+                    '--c': '#e7ad05',
+                    '--rgb': '231,173,5',
                     animationDelay: `${idx * 0.045}s`,
                     display: 'flex',
                     flexDirection: 'column',
@@ -350,14 +350,14 @@ export default function BoutiquePage() {
 
                     {/* Top row */}
                     <div className="bq-card-head">
-                      <span className="bq-card-code" style={{ color: '#3B82F6' }}>
+                      <span className="bq-card-code" style={{ color: '#e7ad05' }}>
                         {meta.code}·{String(product.id).replace('prod_', '')}
                       </span>
                       <div className="bq-card-badges">
                         {product.featured && (
-                          <span className="bq-badge bq-badge-top" style={{ color: 'var(--color-highlight)', background: 'rgba(226,83,54,0.1)', borderColor: 'rgba(226,83,54,0.2)' }}>TOP</span>
+                          <span className="bq-badge bq-badge-top" style={{ color: 'var(--color-highlight)', background: 'rgba(231,173,5,0.1)', borderColor: 'rgba(231,173,5,0.2)' }}>TOP</span>
                         )}
-                        <span className="bq-badge bq-badge-digital" style={{ background: 'rgba(59,130,246,0.1)', borderColor: 'rgba(59,130,246,0.2)', color: '#3B82F6' }}>DIGITAL</span>
+                        <span className="bq-badge bq-badge-digital" style={{ background: 'rgba(231,173,5,0.1)', borderColor: 'rgba(231,173,5,0.2)', color: '#e7ad05' }}>DIGITAL</span>
                       </div>
                     </div>
 
@@ -417,7 +417,7 @@ export default function BoutiquePage() {
                           {Array.isArray(product.details) && product.details.length > 3 && (
                             <li style={{
                               fontSize: '0.725rem',
-                              color: 'var(--color-accent-glow)',
+                              color: 'var(--color-accent)',
                               fontWeight: 600,
                               paddingLeft: '14px',
                               fontStyle: 'italic',

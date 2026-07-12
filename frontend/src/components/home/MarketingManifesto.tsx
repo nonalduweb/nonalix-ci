@@ -16,7 +16,7 @@ export function MarketingManifesto() {
           left: '10%', 
           width: '400px', 
           height: '400px', 
-          backgroundColor: 'rgba(226, 83, 54, 0.04)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.04)', 
           filter: 'blur(100px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -31,7 +31,7 @@ export function MarketingManifesto() {
           right: '10%', 
           width: '500px', 
           height: '500px', 
-          backgroundColor: 'rgba(37, 99, 235, 0.04)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.04)', 
           filter: 'blur(120px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -60,7 +60,7 @@ export function MarketingManifesto() {
                 marginBottom: 'var(--space-lg)' 
               }}
             >
-              L&apos;ère de l&apos;<span style={{ color: 'var(--color-ai-purple-glow)', textShadow: '0 0 30px rgba(124, 58, 237, 0.25)' }}>automatisation IA</span> est là.
+              L&apos;ère de l&apos;<span style={{ color: 'var(--color-accent)', textShadow: '0 0 30px rgba(231, 173, 5, 0.25)' }}>automatisation IA</span> est là.
             </h2>
           </ScrollReveal>
 
@@ -119,13 +119,13 @@ export function MarketingManifesto() {
                     width: '56px', 
                     height: '56px', 
                     borderRadius: 'var(--radius-md)', 
-                    background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(124, 58, 237, 0.02))', 
-                    border: '1px solid rgba(124, 58, 237, 0.25)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
+                    background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.15), rgba(231, 173, 5, 0.02))',
+                    border: '1px solid rgba(231, 173, 5, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--color-ai-purple-glow)',
-                    boxShadow: '0 8px 20px rgba(124, 58, 237, 0.05)'
+                    color: 'var(--color-accent)',
+                    boxShadow: '0 8px 20px rgba(231, 173, 5, 0.05)'
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -164,13 +164,13 @@ export function MarketingManifesto() {
                     width: '56px', 
                     height: '56px', 
                     borderRadius: 'var(--radius-md)', 
-                    background: 'linear-gradient(135deg, rgba(226, 83, 54, 0.15), rgba(226, 83, 54, 0.02))', 
-                    border: '1px solid rgba(226, 83, 54, 0.25)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
+                    background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.15), rgba(231, 173, 5, 0.02))',
+                    border: '1px solid rgba(231, 173, 5, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--color-highlight)',
-                    boxShadow: '0 8px 20px rgba(226, 83, 54, 0.05)'
+                    color: 'var(--color-accent)',
+                    boxShadow: '0 8px 20px rgba(231, 173, 5, 0.05)'
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -205,13 +205,13 @@ export function MarketingManifesto() {
                     width: '56px', 
                     height: '56px', 
                     borderRadius: 'var(--radius-md)', 
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.02))', 
-                    border: '1px solid rgba(16, 185, 129, 0.25)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
+                    background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.15), rgba(231, 173, 5, 0.02))',
+                    border: '1px solid rgba(231, 173, 5, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--color-success)',
-                    boxShadow: '0 8px 20px rgba(16, 185, 129, 0.05)'
+                    color: 'var(--color-accent)',
+                    boxShadow: '0 8px 20px rgba(231, 173, 5, 0.05)'
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

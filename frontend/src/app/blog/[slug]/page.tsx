@@ -201,8 +201,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               className="card"
               style={{
                 padding: 'var(--space-2xl)',
-                background: 'linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(124,58,237,0.06) 100%)',
-                border: '1px solid rgba(59,130,246,0.15)',
+                background: 'linear-gradient(135deg, rgba(231,173,5,0.08) 0%, rgba(124,58,237,0.06) 100%)',
+                border: '1px solid rgba(231,173,5,0.15)',
                 textAlign: 'center',
               }}
             >

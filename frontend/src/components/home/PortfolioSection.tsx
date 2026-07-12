@@ -15,7 +15,7 @@ export function PortfolioSection() {
           transform: 'translate(-50%, -50%)', 
           width: '500px', 
           height: '500px', 
-          backgroundColor: 'rgba(37, 99, 235, 0.04)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.04)', 
           filter: 'blur(120px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 

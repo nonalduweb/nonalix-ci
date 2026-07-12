@@ -34,7 +34,7 @@ export default function DeleteDataPage() {
             
             {/* Explications */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 1. Vos droits de suppression (Droit à l&apos;oubli)
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -54,7 +54,7 @@ export default function DeleteDataPage() {
 
             {/* Procédure */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 2. Comment formuler votre demande
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -62,7 +62,7 @@ export default function DeleteDataPage() {
               </p>
               
               <div style={{ 
-                background: 'rgba(var(--color-accent-glow-rgb, 0, 229, 255), 0.05)', 
+                background: 'rgba(231, 173, 5, 0.05)',
                 border: '1px solid var(--color-border)', 
                 borderRadius: '8px', 
                 padding: 'var(--space-md)', 
@@ -71,7 +71,7 @@ export default function DeleteDataPage() {
                 fontSize: '0.9375rem'
               }}>
                 <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
-                  <li>📧 <strong>Envoyer à :</strong> <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)', fontWeight: 'bold' }}>{CONTACT_INFO.email}</a></li>
+                  <li>📧 <strong>Envoyer à :</strong> <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>{CONTACT_INFO.email}</a></li>
                   <li>📝 <strong>Objet du mail :</strong> Demande de suppression de données personnelles</li>
                   <li>💬 <strong>Contenu :</strong> Votre nom et le numéro de téléphone ou l&apos;adresse e-mail associé aux données à supprimer.</li>
                 </ul>
@@ -85,7 +85,7 @@ export default function DeleteDataPage() {
 
             {/* Délais de conservation */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 3. Durée de conservation par défaut
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>

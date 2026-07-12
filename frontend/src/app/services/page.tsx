@@ -95,16 +95,16 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const colorMap: Record<string, string> = {
-  design: 'var(--color-accent-glow)',
-  development: 'var(--color-accent-glow)',
+  design: 'var(--color-accent)',
+  development: 'var(--color-accent)',
   branding: 'var(--color-highlight)',
-  seo: 'var(--color-accent-glow)',
+  seo: 'var(--color-accent)',
   ppc: 'var(--color-highlight)',
-  shopify: 'var(--color-accent-glow)',
+  shopify: 'var(--color-accent)',
   marketing: 'var(--color-highlight)',
-  audit: 'var(--color-accent-glow)',
-  ecommerce: 'var(--color-accent-glow)',
-  ai: 'var(--color-accent-glow)',
+  audit: 'var(--color-accent)',
+  ecommerce: 'var(--color-accent)',
+  ai: 'var(--color-accent)',
 };
 
 const serviceIdToSlug: Record<string, string> = {
@@ -129,10 +129,10 @@ const processSteps = [
 
 export default function ServicesPage() {
   const sortedServices = [...services].sort((a, b) => {
-    const aColor = colorMap[a.icon] || 'var(--color-accent-glow)';
-    const bColor = colorMap[b.icon] || 'var(--color-accent-glow)';
-    if (aColor === 'var(--color-accent-glow)' && bColor === 'var(--color-highlight)') return -1;
-    if (aColor === 'var(--color-highlight)' && bColor === 'var(--color-accent-glow)') return 1;
+    const aColor = colorMap[a.icon] || 'var(--color-accent)';
+    const bColor = colorMap[b.icon] || 'var(--color-accent)';
+    if (aColor === 'var(--color-accent)' && bColor === 'var(--color-highlight)') return -1;
+    if (aColor === 'var(--color-highlight)' && bColor === 'var(--color-accent)') return 1;
     return 0;
   });
 
@@ -178,7 +178,7 @@ export default function ServicesPage() {
                         {service.description}
                       </p>
 
-                      <h3 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-accent-glow)', marginBottom: 'var(--space-sm)' }}>
+                      <h3 style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--color-accent)', marginBottom: 'var(--space-sm)' }}>
                         Ce que vous obtenez :
                       </h3>
                       <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', marginBottom: 'var(--space-md)' }}>

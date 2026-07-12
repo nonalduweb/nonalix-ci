@@ -42,13 +42,13 @@ export async function sendAdminLeadNotification(lead: {
 
   const html = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background-color: #ffffff; color: #1e293b;">
-      <h2 style="color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; margin-top: 0;">Nouveau Lead Reçu</h2>
+      <h2 style="color: #e7ad05; border-bottom: 2px solid #e7ad05; padding-bottom: 10px; margin-top: 0;">Nouveau Lead Reçu</h2>
       <p>Un nouveau formulaire a été soumis sur le site <strong>nonalix-ci.com</strong> :</p>
       
       <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
         <tr>
           <td style="padding: 8px 0; font-weight: bold; border-bottom: 1px solid #f1f5f9; width: 140px;">Type :</td>
-          <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #2563eb; font-weight: bold;">${lead.type}</td>
+          <td style="padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #b8860b; font-weight: bold;">${lead.type}</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Nom complet :</td>
@@ -74,13 +74,13 @@ export async function sendAdminLeadNotification(lead: {
         </tr>
       </table>
       
-      <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0; border-radius: 4px;">
+      <div style="background-color: #f8fafc; border-left: 4px solid #e7ad05; padding: 15px; margin: 20px 0; border-radius: 4px;">
         <h4 style="margin-top: 0; margin-bottom: 8px; color: #475569;">Message :</h4>
         <p style="margin: 0; white-space: pre-wrap; line-height: 1.6; color: #334155;">${lead.message}</p>
       </div>
 
       <div style="text-align: center; margin-top: 25px;">
-        <a href="https://nonalix-ci.com/admin" style="background-color: #3b82f6; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Accéder à la console Admin</a>
+        <a href="https://nonalix-ci.com/admin" style="background-color: #e7ad05; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">Accéder à la console Admin</a>
       </div>
     </div>
   `;
@@ -269,7 +269,7 @@ export async function sendUserAuditNotification(
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b; line-height: 1.6;">
       <!-- Header -->
       <div style="text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 25px;">
-        <h1 style="color: #4f46e5; margin: 0; font-size: 1.5rem; letter-spacing: 1px;">NONALIX CI</h1>
+        <h1 style="color: #e7ad05; margin: 0; font-size: 1.5rem; letter-spacing: 1px;">NONALIX CI</h1>
         <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b; font-weight: 500;">Agence d'Automatisation IA & Marketing Digital</p>
       </div>
 
@@ -312,16 +312,16 @@ export async function sendUserAuditNotification(
       </table>
 
       <!-- IA Summary -->
-      <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px; margin: 25px 0;">
-        <h4 style="margin: 0 0 8px 0; color: #1e40af; font-size: 0.95rem; font-weight: 700;">Analyse de notre IA :</h4>
-        <p style="margin: 0; font-size: 0.9rem; color: #1e3a8a; font-style: italic;">${audit.summary}</p>
+      <div style="background-color: #fdf6e0; border-left: 4px solid #e7ad05; padding: 15px; border-radius: 4px; margin: 25px 0;">
+        <h4 style="margin: 0 0 8px 0; color: #92660a; font-size: 0.95rem; font-weight: 700;">Analyse de notre IA :</h4>
+        <p style="margin: 0; font-size: 0.9rem; color: #7a5400; font-style: italic;">${audit.summary}</p>
       </div>
 
       <!-- Recommendations -->
       <h3 style="color: #334155; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px;">Actions prioritaires recommandées</h3>
       <div style="margin-top: 15px;">
         ${audit.recommendations.map((rec: any, idx: number) => {
-          const priorityColor = rec.priority === 'haute' ? '#ef4444' : rec.priority === 'moyenne' ? '#f59e0b' : '#3b82f6';
+          const priorityColor = rec.priority === 'haute' ? '#ef4444' : rec.priority === 'moyenne' ? '#f59e0b' : '#e7ad05';
           return `
             <div style="margin-bottom: 20px; padding: 12px; border: 1px solid #f1f5f9; border-radius: 8px;">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
@@ -417,7 +417,7 @@ export async function sendDigitalProductsDeliveryEmail(order: {
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b; line-height: 1.6;">
       <!-- Header -->
       <div style="text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 25px;">
-        <h1 style="color: #4f46e5; margin: 0; font-size: 1.5rem; letter-spacing: 1px;">NONALIX CI</h1>
+        <h1 style="color: #e7ad05; margin: 0; font-size: 1.5rem; letter-spacing: 1px;">NONALIX CI</h1>
         <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b; font-weight: 500;">Votre espace de croissance digitale</p>
       </div>
 
@@ -461,7 +461,7 @@ export async function sendDigitalProductsDeliveryEmail(order: {
       </div>
 
       <!-- FAQ / Guidelines -->
-      <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px; margin: 25px 0; font-size: 0.875rem; color: #1e3a8a;">
+      <div style="background-color: #fdf6e0; border-left: 4px solid #e7ad05; padding: 15px; border-radius: 4px; margin: 25px 0; font-size: 0.875rem; color: #7a5400;">
         <h4 style="margin: 0 0 8px 0; font-weight: 700;">💡 Astuce de téléchargement :</h4>
         <p style="margin: 0 0 6px 0;">Certains packs contiennent des fichiers compressés (formats ZIP/RAR) pour conserver la qualité des vidéos et outils.</p>
         <p style="margin: 0;">Nous vous recommandons de les télécharger depuis un ordinateur pour les extraire plus facilement.</p>

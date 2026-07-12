@@ -565,8 +565,8 @@ export function AIChatWidget() {
                         type="button"
                         onClick={() => handleSuggestionClick(suggestion)}
                         style={{
-                          background: 'rgba(59, 130, 246, 0.08)',
-                          border: '1px solid rgba(59, 130, 246, 0.3)',
+                          background: 'rgba(231, 173, 5, 0.08)',
+                          border: '1px solid rgba(231, 173, 5, 0.3)',
                           color: '#FAFAFA',
                           padding: '6px 12px',
                           borderRadius: '16px',
@@ -577,12 +577,12 @@ export function AIChatWidget() {
                           textAlign: 'left'
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'rgba(59, 130, 246, 0.18)';
-                          e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                          e.currentTarget.style.background = 'rgba(231, 173, 5, 0.18)';
+                          e.currentTarget.style.borderColor = 'rgba(231, 173, 5, 0.5)';
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(59, 130, 246, 0.08)';
-                          e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                          e.currentTarget.style.background = 'rgba(231, 173, 5, 0.08)';
+                          e.currentTarget.style.borderColor = 'rgba(231, 173, 5, 0.3)';
                         }}
                       >
                         {suggestion}

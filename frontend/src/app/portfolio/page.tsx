@@ -71,7 +71,7 @@ export default function PortfolioPage() {
           left: '10%', 
           width: '400px', 
           height: '400px', 
-          backgroundColor: 'rgba(37, 99, 235, 0.05)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.05)', 
           filter: 'blur(100px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -86,7 +86,7 @@ export default function PortfolioPage() {
           right: '5%', 
           width: '500px', 
           height: '500px', 
-          backgroundColor: 'rgba(226, 83, 54, 0.03)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.03)', 
           filter: 'blur(120px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -464,7 +464,7 @@ export default function PortfolioPage() {
                     >
                       <span 
                         style={{ 
-                          color: '#4F46E5',
+                          color: '#e7ad05',
                           fontSize: '0.85rem', 
                           fontWeight: 600 
                         }}
@@ -477,12 +477,12 @@ export default function PortfolioPage() {
                           width: '32px',
                           height: '32px',
                           borderRadius: 'var(--radius-full)',
-                          background: 'rgba(79, 70, 229, 0.1)',
-                          border: '1px solid rgba(79, 70, 229, 0.2)',
+                          background: 'rgba(231, 173, 5, 0.1)',
+                          border: '1px solid rgba(231, 173, 5, 0.2)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: '#6366F1',
+                          color: '#e7ad05',
                           transition: 'var(--transition-fast)',
                         }}
                         className="case-study-arrow-btn"
@@ -522,7 +522,7 @@ export default function PortfolioPage() {
           <ScrollReveal>
             <div 
               style={{
-                background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(226, 83, 54, 0.03) 100%)',
+                background: 'linear-gradient(135deg, rgba(231, 173, 5, 0.05) 0%, rgba(231, 173, 5, 0.03) 100%)',
                 border: '1px solid var(--color-border)',
                 padding: 'var(--space-3xl) var(--space-2xl)',
                 borderRadius: 'var(--radius-2xl)',

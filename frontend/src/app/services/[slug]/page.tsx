@@ -108,16 +108,16 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const colorMap: Record<string, string> = {
-  design: 'var(--color-accent-glow)',
-  development: 'var(--color-accent-glow)',
+  design: 'var(--color-accent)',
+  development: 'var(--color-accent)',
   branding: 'var(--color-highlight)',
-  seo: 'var(--color-accent-glow)',
+  seo: 'var(--color-accent)',
   ppc: 'var(--color-highlight)',
-  shopify: 'var(--color-accent-glow)',
+  shopify: 'var(--color-accent)',
   marketing: 'var(--color-highlight)',
-  audit: 'var(--color-accent-glow)',
-  ecommerce: 'var(--color-accent-glow)',
-  ai: 'var(--color-accent-glow)',
+  audit: 'var(--color-accent)',
+  ecommerce: 'var(--color-accent)',
+  ai: 'var(--color-accent)',
 };
 
 const serviceKeywords: Record<string, string[]> = {

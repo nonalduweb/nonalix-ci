@@ -112,7 +112,7 @@ export default function IntegrationsSection() {
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '250px',
-          background: 'radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 80%)',
+          background: 'radial-gradient(circle, rgba(231, 173, 5, 0.03) 0%, transparent 80%)',
           pointerEvents: 'none',
           zIndex: 0
         }}

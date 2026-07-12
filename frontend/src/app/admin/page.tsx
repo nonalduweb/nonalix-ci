@@ -187,7 +187,7 @@ export default function AdminPage() {
   if (!isAuthenticated) {
     return (
       <div className="page-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', padding: 'var(--space-md)' }}>
-        <div className="card" style={{ maxWidth: '420px', width: '100%', padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', boxShadow: '0 0 30px rgba(59, 130, 246, 0.1)' }}>
+        <div className="card" style={{ maxWidth: '420px', width: '100%', padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)', border: '1px solid var(--color-border)', boxShadow: '0 0 30px rgba(231, 173, 5, 0.1)' }}>
           <div style={{ textAlign: 'center', marginBottom: 'var(--space-lg)' }}>
             <span style={{ fontSize: '3rem' }}>🔒</span>
             <h1 style={{ fontSize: '1.5rem', marginTop: 'var(--space-sm)', fontFamily: 'var(--font-heading)' }}>
@@ -259,9 +259,9 @@ export default function AdminPage() {
               </h3>
             </div>
 
-            <div className="card" style={{ padding: 'var(--space-lg)', background: 'var(--color-surface-elevated)', borderLeft: '4px solid var(--color-accent-glow)' }}>
+            <div className="card" style={{ padding: 'var(--space-lg)', background: 'var(--color-surface-elevated)', borderLeft: '4px solid var(--color-accent)' }}>
               <span style={{ fontSize: '0.8125rem', color: 'var(--color-text-secondary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Leads de Contact</span>
-              <h3 style={{ fontSize: '1.75rem', marginTop: 'var(--space-xs)', color: 'var(--color-accent-glow)' }}>
+              <h3 style={{ fontSize: '1.75rem', marginTop: 'var(--space-xs)', color: 'var(--color-accent)' }}>
                 {data.stats.totalLeads}
               </h3>
             </div>
@@ -280,25 +280,25 @@ export default function AdminPage() {
         <div style={{ display: 'flex', gap: 'var(--space-xs)', borderBottom: '1px solid var(--color-border)', paddingBottom: '1px', marginBottom: 'var(--space-xl)', overflowX: 'auto' }}>
           <button
             onClick={() => setActiveTab('dashboard')}
-            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'dashboard' ? 'rgba(59, 130, 246, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'dashboard' ? '2px solid var(--color-accent-glow)' : 'none', color: activeTab === 'dashboard' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'dashboard' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'dashboard' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'dashboard' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
           >
             📊 Vue générale
           </button>
           <button
             onClick={() => setActiveTab('leads')}
-            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'leads' ? 'rgba(59, 130, 246, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'leads' ? '2px solid var(--color-accent-glow)' : 'none', color: activeTab === 'leads' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'leads' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'leads' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'leads' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
           >
             ✉️ Leads ({data?.leads.length || 0})
           </button>
           <button
             onClick={() => setActiveTab('orders')}
-            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'orders' ? 'rgba(59, 130, 246, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'orders' ? '2px solid var(--color-accent-glow)' : 'none', color: activeTab === 'orders' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'orders' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'orders' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'orders' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
           >
             🛒 Commandes ({data?.orders.length || 0})
           </button>
           <button
             onClick={() => setActiveTab('traffic')}
-            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'traffic' ? 'rgba(59, 130, 246, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'traffic' ? '2px solid var(--color-accent-glow)' : 'none', color: activeTab === 'traffic' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'traffic' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'traffic' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'traffic' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
           >
             🌐 Trafic Cookies ({data?.pageViews.length || 0})
           </button>
@@ -314,7 +314,7 @@ export default function AdminPage() {
                 
                 {/* Left: Popular Pages */}
                 <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-                  <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-lg)', fontWeight: 600, color: 'var(--color-accent-glow)' }}>
+                  <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-lg)', fontWeight: 600, color: 'var(--color-accent)' }}>
                     🔥 Top Pages Visités (Cookies Acceptés)
                   </h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
@@ -332,7 +332,7 @@ export default function AdminPage() {
 
                 {/* Right: Recent activity logs */}
                 <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-                  <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-lg)', fontWeight: 600, color: 'var(--color-accent-glow)' }}>
+                  <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-lg)', fontWeight: 600, color: 'var(--color-accent)' }}>
                     ⚡ Activité Récente (Leads & Commandes)
                   </h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
@@ -382,7 +382,7 @@ export default function AdminPage() {
                       <tr key={l.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', fontSize: '0.875rem' }}>
                         <td style={{ padding: '12px 8px', whiteSpace: 'nowrap' }}>{new Date(l.createdAt).toLocaleDateString()}</td>
                         <td style={{ padding: '12px 8px' }}>
-                          <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, background: l.type === 'quote_request' ? 'rgba(59, 130, 246, 0.2)' : 'rgba(16, 185, 129, 0.2)', color: l.type === 'quote_request' ? 'var(--color-accent-glow)' : 'var(--color-success)' }}>
+                          <span style={{ padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, background: l.type === 'quote_request' ? 'rgba(231, 173, 5, 0.2)' : 'rgba(16, 185, 129, 0.2)', color: l.type === 'quote_request' ? 'var(--color-accent)' : 'var(--color-success)' }}>
                             {l.type}
                           </span>
                         </td>
@@ -391,7 +391,7 @@ export default function AdminPage() {
                           {l.company && <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>{l.company}</div>}
                         </td>
                         <td style={{ padding: '12px 8px', whiteSpace: 'nowrap' }}>
-                          <div><a href={`mailto:${l.email}`} style={{ color: 'var(--color-accent-glow)' }}>{l.email}</a></div>
+                          <div><a href={`mailto:${l.email}`} style={{ color: 'var(--color-accent)' }}>{l.email}</a></div>
                           <div style={{ color: 'var(--color-text-secondary)', fontSize: '0.8125rem' }}><a href={`tel:${l.phone}`}>{l.phone}</a></div>
                         </td>
                         <td style={{ padding: '12px 8px', maxWidth: '300px', wordBreak: 'break-word' }}>{l.message}</td>
@@ -436,7 +436,7 @@ export default function AdminPage() {
                     {data.orders.map((o) => (
                       <tr key={o.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', fontSize: '0.875rem' }}>
                         <td style={{ padding: '12px 8px' }}>
-                          <div style={{ fontWeight: 600, color: 'var(--color-accent-glow)' }}>{o.id}</div>
+                          <div style={{ fontWeight: 600, color: 'var(--color-accent)' }}>{o.id}</div>
                           <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>{new Date(o.createdAt).toLocaleDateString()}</div>
                         </td>
                         <td style={{ padding: '12px 8px' }}>
@@ -513,7 +513,7 @@ export default function AdminPage() {
                       <tr key={pv.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', fontSize: '0.8125rem' }}>
                         <td style={{ padding: '10px 8px', whiteSpace: 'nowrap' }}>{new Date(pv.createdAt).toLocaleString()}</td>
                         <td style={{ padding: '10px 8px', fontFamily: 'monospace' }}>{pv.ip || '127.0.0.1'}</td>
-                        <td style={{ padding: '10px 8px', fontWeight: 600, color: 'var(--color-accent-glow)' }}>{pv.url}</td>
+                        <td style={{ padding: '10px 8px', fontWeight: 600, color: 'var(--color-accent)' }}>{pv.url}</td>
                         <td style={{ padding: '10px 8px', color: 'var(--color-text-secondary)', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{pv.referrer || 'Direct / Aucun'}</td>
                         <td style={{ padding: '10px 8px', color: 'var(--color-text-secondary)', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={pv.userAgent || ''}>{pv.userAgent || 'Inconnu'}</td>
                       </tr>

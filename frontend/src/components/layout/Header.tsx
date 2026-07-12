@@ -308,7 +308,7 @@ export function Header() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 10px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(59, 130, 246, 0.05);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(231, 173, 5, 0.05);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           opacity: 0;
@@ -349,7 +349,7 @@ export function Header() {
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.04em;
-          color: var(--color-accent-glow);
+          color: var(--color-accent);
           padding: 4px 12px 6px;
         }
 
@@ -406,7 +406,7 @@ export function Header() {
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.04em;
-          color: var(--color-accent-glow);
+          color: var(--color-accent);
           padding: 2px 8px 4px;
           text-align: left;
         }
@@ -424,8 +424,8 @@ export function Header() {
           transition: all var(--transition-fast);
         }
         .header-connection-btn:hover {
-          background: rgba(37, 99, 235, 0.07);
-          color: var(--color-accent-glow);
+          background: rgba(231, 173, 5, 0.07);
+          color: var(--color-accent);
           transform: scale(1.05);
         }
         .header-connection-btn svg {
@@ -443,9 +443,9 @@ export function Header() {
           font-family: var(--font-heading);
           font-weight: 600;
           font-size: 0.9375rem;
-          background: rgba(37, 99, 235, 0.08);
+          background: rgba(231, 173, 5, 0.08);
           border: 1.5px solid var(--color-accent);
-          color: var(--color-accent-glow);
+          color: var(--color-accent);
           transition: all var(--transition-base);
           text-decoration: none;
         }
@@ -463,7 +463,7 @@ export function Header() {
         }
         .user-avatar-btn:hover {
           transform: scale(1.05);
-          box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+          box-shadow: 0 0 12px rgba(231, 173, 5, 0.4);
         }
         @media (max-width: 767px) {
           #nav-cta-contact {

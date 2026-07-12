@@ -375,6 +375,279 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Le marketing digital en Côte d'Ivoire offre des opportunités extraordinaires à un coût encore accessible. Les entreprises qui construisent leur présence en ligne aujourd'hui prendront une avance considérable sur leurs concurrents dans les années à venir. La question n'est plus de savoir si vous devez vous digitaliser — c'est quand et comment.</p>
     `,
   },
+  {
+    slug: 'histoire-client-ecommerce-abidjan-episode-1',
+    title: 'Il Était Sur le Point de Tout Abandonner : Le Message de 21h47 (Épisode 1/5)',
+    description: 'Un client à quelques semaines du lancement de sa boutique en ligne était sur le point de tout abandonner. Épisode 1 d\'un récit inspiré de situations vécues chez NONALIX CI.',
+    date: '2026-07-08',
+    category: 'ecommerce',
+    categoryLabel: 'E-commerce',
+    readingTime: 4,
+    image: '/images/blog/histoire-client-episode-1.png',
+    tags: ['récit client', 'e-commerce Abidjan', 'accompagnement client', 'storytelling', 'Côte d\'Ivoire'],
+    featured: true,
+    content: `
+<p style="font-size:0.875rem; color:var(--color-text-muted); font-style:italic; border-left:3px solid var(--color-accent); padding:0.75rem 1rem; background:rgba(231,173,5,0.06); border-radius:8px; margin-bottom:2rem;">Ceci est un récit inspiré d'expériences vécues chez NONALIX CI — une histoire représentative de situations réelles rencontrées avec nos clients, et non le compte-rendu vérifiable d'un cas unique et précis.</p>
+
+<h2>21h47</h2>
+<p>Le bureau était presque vide. Olivia, responsable clientèle chez NONALIX CI, s'apprêtait à fermer son ordinateur quand une notification a vibré sur son téléphone.</p>
+<p>Un message.</p>
+<p>Un seul.</p>
+
+<p style="font-size:1.15rem; font-weight:700; color:var(--color-text); border-left:3px solid var(--color-accent); padding:0.75rem 0 0.75rem 1.25rem; margin:2rem 0;">« Je pense qu'on va arrêter le projet. »</p>
+
+<p>Elle a relu la phrase trois fois. Pas parce qu'elle ne la comprenait pas. Mais parce qu'elle refusait d'y croire.</p>
+<p>Cela faisait presque deux semaines que son équipe travaillait avec cet entrepreneur ivoirien. Un projet qu'elle avait vu grandir, réunion après réunion, comme on regarde une plante pousser sans s'en rendre compte — jusqu'au jour où elle est soudain là, prête à porter ses premiers fruits.</p>
+<p>Et maintenant, à quelques semaines du lancement, tout semblait sur le point de s'effondrer.</p>
+
+<h2>Une idée prometteuse</h2>
+<p>Il fallait remonter au tout premier appel pour comprendre.</p>
+<p>Le client avait rejoint la visioconférence avec l'énergie de quelqu'un qui porte un projet depuis longtemps dans sa tête et qui, enfin, peut en parler à voix haute. Il avait déjà son logo. Des centaines de photos de produits, soigneusement classées. Et surtout, une vision très précise de ce qu'il voulait.</p>
+<p>Un site rapide.</p>
+<p>Un design moderne.</p>
+<p>Des paiements sécurisés, adaptés à ses clients — Orange Money, Wave, comme tout le monde ici.</p>
+<p>Une gestion des commandes qu'il pourrait piloter seul, sans dépendre de personne.</p>
+<p>« Je veux vendre partout en Côte d'Ivoire », avait-il dit. « Et ensuite, dans la sous-région. »</p>
+<p>Ce n'était pas juste un site qu'il demandait. Olivia l'avait tout de suite senti. C'était un outil pour changer d'échelle.</p>
+
+<h2>Les semaines qui ont suivi</h2>
+<p>L'équipe s'est mise au travail avec un enthousiasme communicatif. Plusieurs réunions ont été nécessaires pour comprendre son activité en profondeur — pas seulement ce qu'il vendait, mais comment ses clients achetaient, ce qui les rassurait, ce qui les faisait hésiter.</p>
+<p>Les maquettes ont commencé à prendre forme.</p>
+<p>Les couleurs ont été choisies, une à une, jusqu'à trouver celles qui ressemblaient vraiment à sa marque.</p>
+<p>Chaque parcours d'achat a été pensé dans le détail : du premier clic sur une photo de produit jusqu'à la confirmation de commande par WhatsApp.</p>
+<p>Le client validait chaque étape avec enthousiasme. Il envoyait des messages vocaux pleins d'idées, parfois tard le soir, comme quelqu'un qui n'arrive plus à penser à autre chose.</p>
+<p>Tout avançait. Peut-être même trop bien.</p>
+
+<h2>Le silence qui s'installe</h2>
+<p>Puis, un matin, les réponses sont devenues plus courtes.</p>
+<p>« Ok, merci. »</p>
+<p>« Je regarde et je reviens vers vous. »</p>
+<p>Rien d'alarmant, en apparence. Chacun a des semaines plus chargées que d'autres.</p>
+<p>Mais Olivia, à force d'accompagner des dizaines de porteurs de projet, avait appris à repérer certains signaux. Le ton qui change. Les délais qui s'allongent. Les questions qui, autrefois, portaient sur le design — et qui, désormais, ne venaient plus du tout.</p>
+<p>Elle n'a rien dit à ce moment-là. Elle a juste... senti que quelque chose se préparait.</p>
+<p>Et ce soir-là, à 21h47, le message est arrivé.</p>
+
+<div style="text-align:center; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--color-border);">
+  <p style="color:var(--color-text-secondary); margin-bottom:1rem;">Ce que le client n'avait pas encore dit — et qui expliquait tout — dans l'épisode 2.</p>
+  <a href="/blog/histoire-client-ecommerce-abidjan-episode-2" style="display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:9999px; background:var(--color-accent); color:#fff; font-weight:700; text-decoration:none; font-size:0.95rem;">Lire l'épisode 2 →</a>
+</div>
+    `,
+  },
+  {
+    slug: 'histoire-client-ecommerce-abidjan-episode-2',
+    title: 'Ce Que le Client Ne Nous Avait Pas Dit : Le Poids du Doute (Épisode 2/5)',
+    description: 'Derrière le message d\'abandon d\'un client se cachait une peur bien plus profonde qu\'un simple problème de budget. Épisode 2 de notre récit inspiré d\'expériences vécues chez NONALIX CI.',
+    date: '2026-07-09',
+    category: 'ecommerce',
+    categoryLabel: 'E-commerce',
+    readingTime: 4,
+    image: '/images/blog/histoire-client-episode-2.png',
+    tags: ['récit client', 'e-commerce Abidjan', 'accompagnement client', 'storytelling', 'Côte d\'Ivoire'],
+    featured: false,
+    content: `
+<p style="font-size:0.875rem; color:var(--color-text-muted); font-style:italic; border-left:3px solid var(--color-accent); padding:0.75rem 1rem; background:rgba(231,173,5,0.06); border-radius:8px; margin-bottom:1.5rem;">Ceci est l'épisode 2 d'un récit inspiré d'expériences vécues chez NONALIX CI. <a href="/blog/histoire-client-ecommerce-abidjan-episode-1" style="color:var(--color-accent); font-weight:600;">Commencer par l'épisode 1 →</a></p>
+
+<div style="background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
+  <p style="margin:0 0 0.5rem; font-weight:700; color:var(--color-text);">📖 L'histoire jusqu'ici</p>
+  <p style="margin:0; color:var(--color-text-secondary);">Un entrepreneur ivoirien, à quelques semaines du lancement de sa boutique en ligne, envoie un message qui change tout : « Je pense qu'on va arrêter le projet. » Olivia, responsable clientèle chez NONALIX CI, ne sait pas encore pourquoi.</p>
+</div>
+
+<h2>Comprendre avant de convaincre</h2>
+<p>Face à un message comme celui-là, le premier réflexe pourrait être de répondre immédiatement, d'argumenter, de rassurer à tout prix. Olivia a choisi l'inverse.</p>
+<p>Elle a attendu le lendemain matin. Et elle a appelé — pas pour vendre, pour écouter.</p>
+<p>Ce qu'elle a découvert n'avait rien à voir avec le design du site, ni avec la qualité du travail réalisé. Le problème était ailleurs. Le problème était en lui.</p>
+
+<h2>Les devis qui sèment le doute</h2>
+<p>Quelques jours plus tôt, le client avait reçu d'autres propositions. Sans l'avoir vraiment demandé — un ami avait transmis son contact « à tout hasard ».</p>
+<p>Certains prestataires promettaient un site en quelques jours. D'autres, deux à trois fois moins cher.</p>
+<p>Sur le papier, difficile de comparer sérieusement des offres aussi différentes. Sur le plan émotionnel, le doute avait pourtant suffi à s'installer.</p>
+<p><em>Et si j'avais fait le mauvais choix ?</em></p>
+<p><em>Et si je payais trop cher pour quelque chose que je pourrais avoir ailleurs, plus vite ?</em></p>
+
+<h2>Les questions qu'on n'ose pas poser à voix haute</h2>
+<p>Mais ce n'était que la partie visible. En creusant, Olivia a découvert les vraies questions — celles que la plupart des entrepreneurs se posent en silence, et qu'ils n'osent presque jamais formuler à leur prestataire :</p>
+<ul>
+<li>Est-ce que mes clients vont vraiment acheter en ligne, ou vont-ils continuer à m'appeler directement ?</li>
+<li>Et si je ne récupère jamais l'argent investi ?</li>
+<li>Suis-je vraiment prêt pour cette étape, ou est-ce que je me précipite ?</li>
+<li>Et si ce projet échoue... publiquement ?</li>
+</ul>
+<p>Ce ne sont pas des questions absurdes. Ce sont les questions de quelqu'un qui a beaucoup à perdre, et qui, pour la première fois, s'apprête à le mettre en jeu devant tout le monde.</p>
+
+<h2>Un schéma que nous connaissons trop bien</h2>
+<p>Ce n'était pas la première fois qu'Olivia observait ce phénomène. Presque tous les projets ambitieux traversent, à un moment donné, cette même vallée du doute : l'enthousiasme du début retombe, la réalité du lancement se rapproche, et la peur de l'échec prend soudain toute la place.</p>
+<p>La plupart des prestataires y répondent avec un argumentaire commercial. Des garanties. Des chiffres. Des promesses.</p>
+<p>Olivia a choisi une autre voie.</p>
+<p>Elle a proposé un appel. Pas pour négocier. Pour comprendre vraiment ce qui se jouait derrière ce message de 21h47.</p>
+
+<div style="text-align:center; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--color-border);">
+  <p style="color:var(--color-text-secondary); margin-bottom:1rem;">Cet appel allait durer moins d'une heure. Et il allait tout changer.</p>
+  <a href="/blog/histoire-client-ecommerce-abidjan-episode-3" style="display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:9999px; background:var(--color-accent); color:#fff; font-weight:700; text-decoration:none; font-size:0.95rem;">Lire l'épisode 3 →</a>
+</div>
+    `,
+  },
+  {
+    slug: 'histoire-client-ecommerce-abidjan-episode-3',
+    title: 'La Question Qui a Tout Changé (Épisode 3/5)',
+    description: 'Une question, posée au bon moment, a tout changé pour ce client sur le point d\'abandonner son projet e-commerce. Épisode 3 de notre récit inspiré d\'expériences vécues chez NONALIX CI.',
+    date: '2026-07-10',
+    category: 'ecommerce',
+    categoryLabel: 'E-commerce',
+    readingTime: 3,
+    image: '/images/blog/histoire-client-episode-3.png',
+    tags: ['récit client', 'e-commerce Abidjan', 'relation client', 'storytelling', 'Côte d\'Ivoire'],
+    featured: false,
+    content: `
+<p style="font-size:0.875rem; color:var(--color-text-muted); font-style:italic; border-left:3px solid var(--color-accent); padding:0.75rem 1rem; background:rgba(231,173,5,0.06); border-radius:8px; margin-bottom:1.5rem;">Ceci est l'épisode 3 d'un récit inspiré d'expériences vécues chez NONALIX CI. <a href="/blog/histoire-client-ecommerce-abidjan-episode-1" style="color:var(--color-accent); font-weight:600;">Commencer par l'épisode 1 →</a></p>
+
+<div style="background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
+  <p style="margin:0 0 0.5rem; font-weight:700; color:var(--color-text);">📖 L'histoire jusqu'ici</p>
+  <p style="margin:0; color:var(--color-text-secondary);">Un client sur le point d'abandonner son projet e-commerce. Un appel, proposé sans arrière-pensée commerciale. Et des doutes bien plus profonds qu'un simple problème de budget.</p>
+</div>
+
+<h2>Un appel différent</h2>
+<p>Pas de présentation commerciale. Pas d'argumentaire de vente. Juste une visioconférence, une caméra allumée, et une question simple posée en ouverture : « Racontez-moi où vous en êtes vraiment. »</p>
+<p>Pendant près d'une heure, il n'a presque pas été question de technologie.</p>
+<p>Ils ont parlé de son entreprise. De ce qui l'avait poussé à se lancer, des années plus tôt. De ses concurrents, ceux qui semblaient toujours un peu plus loin, un peu plus visibles. De la façon dont ses clients achetaient aujourd'hui — au téléphone, sur WhatsApp, parfois en personne, jamais en ligne.</p>
+<p>Olivia écoutait. Elle notait peu. Elle laissait le silence faire son travail, entre deux phrases, pour que le client puisse aller un peu plus loin dans ce qu'il pensait vraiment.</p>
+
+<h2>La question</h2>
+<p>Puis, à un moment précis de la conversation, Olivia a posé une seule question. Pas une question technique. Une question qui ne concernait ni le site, ni le budget, ni les délais.</p>
+
+<p style="font-size:1.15rem; font-weight:700; color:var(--color-text); border-left:3px solid var(--color-accent); padding:0.75rem 0 0.75rem 1.25rem; margin:2rem 0;">« Dans deux ans, préférez-vous regretter d'avoir essayé... ou regretter de ne jamais avoir commencé ? »</p>
+
+<p>Un silence s'est installé. Sur l'écran, le client a détourné le regard une seconde, comme pour peser chaque mot de la question.</p>
+<p>Quelques secondes. Qui ont semblé beaucoup plus longues.</p>
+<p>Puis il a souri.</p>
+<p>Ce n'était pas un sourire commercial, ni un sourire de politesse. C'était le sourire de quelqu'un qui vient de se souvenir pourquoi il s'était lancé dans cette aventure, en premier lieu.</p>
+
+<h2>Ce que ce sourire signifiait</h2>
+<p>Ce sourire ne réglait rien, techniquement. Le projet n'avait pas avancé d'un seul pixel pendant cet appel. Mais quelque chose d'essentiel avait changé : le client ne se sentait plus seul face à sa décision.</p>
+<p>Il ne s'agissait plus de savoir si son projet était « le bon » ou « le mauvais » choix. Il s'agissait de savoir comment avancer, avec la bonne équipe, au bon rythme, sans se précipiter — et sans abandonner non plus.</p>
+<p>« Je crois que j'avais juste besoin d'en parler », a-t-il fini par dire.</p>
+<p>Olivia n'a pas répondu tout de suite. Elle a simplement pris une nouvelle feuille, et a commencé à esquisser un nouveau plan. Beaucoup plus réaliste que le premier.</p>
+
+<div style="text-align:center; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--color-border);">
+  <p style="color:var(--color-text-secondary); margin-bottom:1rem;">Ce nouveau plan allait tout changer dans la manière dont le projet a été reconstruit.</p>
+  <a href="/blog/histoire-client-ecommerce-abidjan-episode-4" style="display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:9999px; background:var(--color-accent); color:#fff; font-weight:700; text-decoration:none; font-size:0.95rem;">Lire l'épisode 4 →</a>
+</div>
+    `,
+  },
+  {
+    slug: 'histoire-client-ecommerce-abidjan-episode-4',
+    title: 'Reconstruire une Stratégie Sur des Bases Solides (Épisode 4/5)',
+    description: 'Comment reconstruire une stratégie e-commerce réaliste sans tout recommencer. Épisode 4 de notre récit inspiré d\'expériences vécues chez NONALIX CI.',
+    date: '2026-07-11',
+    category: 'ecommerce',
+    categoryLabel: 'E-commerce',
+    readingTime: 4,
+    image: '/images/blog/histoire-client-episode-4.png',
+    tags: ['récit client', 'e-commerce Abidjan', 'stratégie digitale', 'storytelling', 'Côte d\'Ivoire'],
+    featured: false,
+    content: `
+<p style="font-size:0.875rem; color:var(--color-text-muted); font-style:italic; border-left:3px solid var(--color-accent); padding:0.75rem 1rem; background:rgba(231,173,5,0.06); border-radius:8px; margin-bottom:1.5rem;">Ceci est l'épisode 4 d'un récit inspiré d'expériences vécues chez NONALIX CI. <a href="/blog/histoire-client-ecommerce-abidjan-episode-1" style="color:var(--color-accent); font-weight:600;">Commencer par l'épisode 1 →</a></p>
+
+<div style="background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
+  <p style="margin:0 0 0.5rem; font-weight:700; color:var(--color-text);">📖 L'histoire jusqu'ici</p>
+  <p style="margin:0; color:var(--color-text-secondary);">Une question posée au bon moment a fait renaître l'envie du client de poursuivre son projet e-commerce. Restait à transformer cette envie en une stratégie réaliste.</p>
+</div>
+
+<h2>Repartir du bon pied — sans tout recommencer</h2>
+<p>Reprendre un projet en crise ne veut pas dire tout jeter. Le travail déjà réalisé — les maquettes, les choix de couleurs, la réflexion sur le parcours client — restait solide. Ce qui devait changer, c'était l'ampleur du premier lancement.</p>
+<p>Au lieu de viser, dès le premier jour, une boutique complète avec toutes les fonctionnalités imaginées au départ, l'équipe a proposé une approche différente : avancer par étapes, chacune apportant une valeur immédiate et mesurable.</p>
+
+<h2>La première version, pensée pour rassurer</h2>
+<p>La nouvelle stratégie reposait sur quatre piliers, volontairement simples :</p>
+<ul>
+<li>Un catalogue professionnel, avec les meilleures photos du client mises en valeur</li>
+<li>Un système de commande simple, sans friction, pensé pour le mobile</li>
+<li>Un paiement sécurisé, via Orange Money et Wave, sans que le client n'ait jamais à saisir de carte bancaire</li>
+<li>Une base technique solide, capable d'accueillir les futures fonctionnalités sans tout reconstruire</li>
+</ul>
+<p>Les fonctionnalités plus ambitieuses — programme de fidélité, expansion régionale, catalogue étendu — n'ont pas disparu. Elles ont simplement été replacées plus loin dans le temps, comme des étapes à franchir une fois la première victoire acquise.</p>
+
+<h2>Un changement de posture, pas seulement de plan</h2>
+<p>Ce qui a le plus changé, ce n'est pas seulement le plan technique. C'est la façon dont le client a recommencé à parler de son projet.</p>
+<p>Les messages vocaux tardifs sont revenus — mais avec un ton différent. Plus posé. Moins de « et si ça ne marche pas », davantage de « et quand ça va marcher, on pourra ajouter... ».</p>
+<p>Le projet redevenait concret. Atteignable. Sien.</p>
+<p>Olivia se souvient d'un appel, à cette période, où le client a dit une phrase qui l'a marquée :</p>
+
+<p style="font-size:1.15rem; font-weight:700; color:var(--color-text); border-left:3px solid var(--color-accent); padding:0.75rem 0 0.75rem 1.25rem; margin:2rem 0;">« J'ai l'impression de reprendre le contrôle, au lieu de courir après quelque chose de trop grand pour moi. »</p>
+
+<p>Ce sentiment de contrôle retrouvé — plus que n'importe quelle fonctionnalité technique — a été le véritable tournant du projet.</p>
+
+<h2>Les dernières semaines avant l'ouverture</h2>
+<p>Les semaines suivantes ont filé à un rythme différent. Moins fébrile. Plus méthodique.</p>
+<p>Chaque test de commande était vérifié deux fois. Chaque page était relue du point de vue d'un client qui découvre la boutique pour la première fois, sur son téléphone, avec une connexion parfois capricieuse.</p>
+<p>Et puis, un vendredi, tout a été prêt.</p>
+
+<div style="text-align:center; margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--color-border);">
+  <p style="color:var(--color-text-secondary); margin-bottom:1rem;">Le jour du lancement était arrivé. Personne ne pouvait encore deviner ce qui allait se passer dans les premières 48 heures.</p>
+  <a href="/blog/histoire-client-ecommerce-abidjan-episode-5" style="display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:9999px; background:var(--color-accent); color:#fff; font-weight:700; text-decoration:none; font-size:0.95rem;">Lire l'épisode 5 (fin) →</a>
+</div>
+    `,
+  },
+  {
+    slug: 'histoire-client-ecommerce-abidjan-episode-5',
+    title: 'Le Lancement : « Heureusement Que Je N\'ai Pas Abandonné » (Épisode 5/5 — Fin)',
+    description: 'Le jour du lancement, les premières commandes, et l\'appel qui a tout résumé. Épisode final de notre récit inspiré d\'expériences vécues chez NONALIX CI.',
+    date: '2026-07-12',
+    category: 'ecommerce',
+    categoryLabel: 'E-commerce',
+    readingTime: 4,
+    image: '/images/blog/histoire-client-episode-5.png',
+    tags: ['récit client', 'e-commerce Abidjan', 'lancement e-commerce', 'storytelling', 'Côte d\'Ivoire'],
+    featured: false,
+    content: `
+<p style="font-size:0.875rem; color:var(--color-text-muted); font-style:italic; border-left:3px solid var(--color-accent); padding:0.75rem 1rem; background:rgba(231,173,5,0.06); border-radius:8px; margin-bottom:1.5rem;">Ceci est l'épisode 5, dernier épisode d'un récit inspiré d'expériences vécues chez NONALIX CI. <a href="/blog/histoire-client-ecommerce-abidjan-episode-1" style="color:var(--color-accent); font-weight:600;">Commencer par l'épisode 1 →</a></p>
+
+<div style="background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
+  <p style="margin:0 0 0.5rem; font-weight:700; color:var(--color-text);">📖 L'histoire jusqu'ici</p>
+  <p style="margin:0; color:var(--color-text-secondary);">Une nouvelle stratégie, plus réaliste, plus progressive. Le client a retrouvé confiance. Restait à affronter l'épreuve ultime : le lancement.</p>
+</div>
+
+<h2>La mise en ligne</h2>
+<p>Il n'y a pas eu de grande cérémonie. Pas de compte à rebours, pas de feu d'artifice numérique. Juste un bouton, cliqué un peu après midi, et une boutique qui, quelques secondes plus tard, est devenue accessible à n'importe qui, n'importe où en Côte d'Ivoire.</p>
+<p>Le client a envoyé un message. Un seul mot : « Voilà. »</p>
+<p>Puis, plus rien pendant plusieurs heures. Ce silence-là, cependant, n'avait rien à voir avec celui d'un mois plus tôt. C'était le silence de quelqu'un qui rafraîchit discrètement son tableau de bord, encore et encore, en retenant son souffle.</p>
+
+<h2>Les premières commandes</h2>
+<p>La première commande est arrivée en fin d'après-midi. Modeste. Un seul article.</p>
+<p>Mais pour le client, elle valait bien plus que son montant. C'était la preuve, concrète et indiscutable, que quelqu'un — un inconnu, quelque part en Côte d'Ivoire — avait fait suffisamment confiance à sa boutique pour ouvrir son application Orange Money et valider un paiement.</p>
+<p>D'autres commandes ont suivi les jours suivants. Puis les premiers avis clients, sincères, parfois maladroits, toujours précieux.</p>
+
+<h2>L'appel qui a bouclé la boucle</h2>
+<p>Quelques jours après le lancement, le téléphone d'Olivia a sonné. C'était lui.</p>
+<p>Elle s'attendait presque à un problème technique. Ce n'en était pas un.</p>
+
+<p style="font-size:1.15rem; font-weight:700; color:var(--color-text); border-left:3px solid var(--color-accent); padding:0.75rem 0 0.75rem 1.25rem; margin:2rem 0;">« Heureusement que je n'ai pas abandonné. »</p>
+
+<p>Une phrase simple. Mais qui résumait, à elle seule, tout ce qui s'était passé depuis ce message de 21h47.</p>
+<p>Pour Olivia, ce n'était pas seulement la victoire d'un client. C'était un rappel de ce que ce métier signifie vraiment.</p>
+
+<h2>Ce que cette histoire nous rappelle</h2>
+<p>Créer une boutique en ligne n'est pas simplement une dépense. C'est souvent le début d'une transformation — pour l'entreprise, et parfois pour la personne qui la porte.</p>
+<p>Chaque projet, aussi bien préparé soit-il, traverse des doutes, des imprévus, et parfois ce moment précis où l'on est tenté de tout arrêter.</p>
+<p>Mais avec une stratégie adaptée, une équipe réellement à l'écoute et une vision à long terme, ces obstacles deviennent souvent les toutes premières étapes d'une réussite qu'on n'aurait pas imaginée au départ.</p>
+<p>Chez NONALIX CI, nous ne construisons pas uniquement des sites web. Nous accompagnons des entrepreneurs qui prennent, parfois, la décision la plus importante de leur activité. Et ce dont ils ont le plus besoin, à ce moment précis, n'est pas toujours une ligne de code. C'est une équipe qui continue de croire en leur projet, même lorsqu'eux commencent à douter.</p>
+
+<div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--color-border);">
+  <p style="font-weight:700; color:var(--color-text); margin-bottom:0.75rem;">Toute la série :</p>
+  <ol>
+    <li><a href="/blog/histoire-client-ecommerce-abidjan-episode-1" style="color:var(--color-accent);">Épisode 1 — Le message de 21h47</a></li>
+    <li><a href="/blog/histoire-client-ecommerce-abidjan-episode-2" style="color:var(--color-accent);">Épisode 2 — Le poids du doute</a></li>
+    <li><a href="/blog/histoire-client-ecommerce-abidjan-episode-3" style="color:var(--color-accent);">Épisode 3 — La question qui a tout changé</a></li>
+    <li><a href="/blog/histoire-client-ecommerce-abidjan-episode-4" style="color:var(--color-accent);">Épisode 4 — Reconstruire une stratégie sur des bases solides</a></li>
+    <li><a href="/blog/histoire-client-ecommerce-abidjan-episode-5" style="color:var(--color-accent);">Épisode 5 — Le lancement</a></li>
+  </ol>
+</div>
+
+<div style="text-align:center; margin-top:2rem;">
+  <p style="color:var(--color-text-secondary); margin-bottom:1rem;">Vous portez, vous aussi, un projet e-commerce ? Parlons-en.</p>
+  <a href="/audit-ia" style="display:inline-flex; align-items:center; gap:8px; padding:14px 30px; border-radius:9999px; background:var(--color-accent); color:#fff; font-weight:700; text-decoration:none; font-size:0.95rem;">Discuter de votre projet →</a>
+</div>
+    `,
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {

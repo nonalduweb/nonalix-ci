@@ -113,7 +113,7 @@ function ConfirmationContent() {
             boxShadow: 'var(--shadow-glow)',
           }}
         >
-          <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+          <h3 style={{ fontSize: '1.125rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
             <span>📥</span> Vos téléchargements instantanés
           </h3>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem', marginBottom: 'var(--space-lg)' }}>
@@ -199,7 +199,7 @@ function ConfirmationContent() {
       {/* Next Steps for Physical Products */}
       {(!order || digitalItems.length === 0 || (order && order.items.length > digitalItems.length)) && (
         <div className="card" style={{ textAlign: 'left', marginBottom: 'var(--space-xl)' }}>
-          <h3 style={{ fontSize: '1rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)' }}>
+          <h3 style={{ fontSize: '1rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)' }}>
             Prochaines étapes (Produits physiques) :
           </h3>
           <ul style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>

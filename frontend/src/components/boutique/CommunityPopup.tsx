@@ -58,7 +58,7 @@ export default function CommunityPopup() {
         WebkitBackdropFilter: 'blur(20px)',
         border: '1px solid rgba(255,255,255,0.1)',
         borderRadius: '20px',
-        boxShadow: '0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.06)',
+        boxShadow: '0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(231,173,5,0.08), inset 0 1px 0 rgba(255,255,255,0.06)',
         overflow: 'hidden',
         transform: animateIn ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.95)',
         opacity: animateIn ? 1 : 0,
@@ -68,7 +68,7 @@ export default function CommunityPopup() {
       {/* Top accent bar */}
       <div style={{
         height: '3px',
-        background: 'linear-gradient(90deg, #3B82F6 0%, #25D366 50%, #1DC3FF 100%)',
+        background: 'linear-gradient(90deg, #e7ad05 0%, #25D366 50%, #FFFFFF 100%)',
       }} />
 
       <div style={{ padding: '18px 18px 20px 18px' }}>
@@ -80,8 +80,8 @@ export default function CommunityPopup() {
               width: '42px',
               height: '42px',
               borderRadius: '12px',
-              background: 'rgba(59,130,246,0.12)',
-              border: '1px solid rgba(59,130,246,0.2)',
+              background: 'rgba(231,173,5,0.12)',
+              border: '1px solid rgba(231,173,5,0.2)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -89,8 +89,8 @@ export default function CommunityPopup() {
             }}>
               {/* Bell / community icon */}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#e7ad05" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#e7ad05" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
             <div>

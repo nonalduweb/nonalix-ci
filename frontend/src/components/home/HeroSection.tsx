@@ -90,8 +90,8 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Floating particles layer (subtle blue) */}
-      <Particles color="rgba(59, 130, 246, 0.25)" quantity={35} speed={0.15} size={1.2} opacity={0.25} />
+      {/* Floating particles layer (subtle gold) */}
+      <Particles color="rgba(231, 173, 5, 0.25)" quantity={35} speed={0.15} size={1.2} opacity={0.25} />
 
       {/* Hero container */}
       <div className="container hero-container" style={{ position: 'relative', zIndex: 1, padding: 'calc(var(--header-height) + var(--space-md)) var(--content-padding) var(--space-3xl)' }}>
@@ -181,7 +181,7 @@ export function HeroSection() {
                   right: '-20%',
                   width: '200px',
                   height: '200px',
-                  background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 75%)',
+                  background: 'radial-gradient(circle, rgba(231, 173, 5, 0.1) 0%, transparent 75%)',
                   pointerEvents: 'none',
                 }}
               />
@@ -213,7 +213,7 @@ export function HeroSection() {
                   Agent WhatsApp Actif 24/7
                 </div>
                 <div className="hero-indicator-badge info-badge">
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3B82F6', display: 'inline-block' }} />
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#e7ad05', display: 'inline-block' }} />
                   n8n Lead Engine Connecté
                 </div>
                 <div className="hero-indicator-badge warning-badge">
@@ -259,8 +259,8 @@ export function HeroSection() {
           max-width: 520px;
           min-height: 280px;
           padding: var(--space-xl) var(--space-lg);
-          background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, rgba(59, 130, 246, 0.01) 100%);
-          border: 1px solid rgba(59, 130, 246, 0.15);
+          background: linear-gradient(135deg, rgba(231, 173, 5, 0.06) 0%, rgba(231, 173, 5, 0.01) 100%);
+          border: 1px solid rgba(231, 173, 5, 0.15);
           border-radius: var(--radius-xl);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(12px);
@@ -297,9 +297,9 @@ export function HeroSection() {
         }
 
         .info-badge {
-          background: rgba(59, 130, 246, 0.08);
-          color: #3B82F6;
-          border: 1px solid rgba(59, 130, 246, 0.2);
+          background: rgba(231, 173, 5, 0.08);
+          color: #e7ad05;
+          border: 1px solid rgba(231, 173, 5, 0.2);
         }
 
         .warning-badge {

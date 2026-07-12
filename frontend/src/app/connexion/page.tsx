@@ -233,7 +233,7 @@ export default function ConnexionPage() {
                 fontSize: '1.5rem',
                 fontWeight: 800,
                 letterSpacing: '0.05em',
-                background: 'linear-gradient(to right, #3b82f6, #60a5fa)',
+                background: 'linear-gradient(to right, #e7ad05, #f5d577)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>NONALIX CI</span>
@@ -251,9 +251,9 @@ export default function ConnexionPage() {
             
             <p style={{ fontSize: '0.875rem', color: '#94a3b8' }}>
               {isSignUp ? (
-                <>Vous avez déjà un compte ? <button onClick={() => setIsSignUp(false)} style={{ background: 'none', border: 'none', color: 'var(--color-accent-glow)', cursor: 'pointer', padding: 0, textDecoration: 'underline', font: 'inherit' }}>Se connecter</button></>
+                <>Vous avez déjà un compte ? <button onClick={() => setIsSignUp(false)} style={{ background: 'none', border: 'none', color: 'var(--color-accent)', cursor: 'pointer', padding: 0, textDecoration: 'underline', font: 'inherit' }}>Se connecter</button></>
               ) : (
-                <>Vous n'avez pas de compte ? <button onClick={() => setIsSignUp(true)} style={{ background: 'none', border: 'none', color: 'var(--color-accent-glow)', cursor: 'pointer', padding: 0, textDecoration: 'underline', font: 'inherit' }}>Commencer gratuitement</button></>
+                <>Vous n'avez pas de compte ? <button onClick={() => setIsSignUp(true)} style={{ background: 'none', border: 'none', color: 'var(--color-accent)', cursor: 'pointer', padding: 0, textDecoration: 'underline', font: 'inherit' }}>Commencer gratuitement</button></>
               )}
             </p>
           </div>

@@ -13,7 +13,7 @@ const REVIEWS = [
     rating: 5,
     text: 'NONALIX CI a créé notre boutique en ligne avec paiement Orange Money et Wave. En 3 semaines c\'était live. Nos ventes ont triplé en 2 mois. Je recommande vivement !',
     date: 'Juin 2026',
-    color: '#F59E0B',
+    color: '#e7ad05',
   },
   {
     name: 'Mariam Coulibaly',
@@ -22,7 +22,7 @@ const REVIEWS = [
     rating: 5,
     text: 'Le chatbot WhatsApp qu\'ils ont mis en place qualifie nos prospects automatiquement. On ne manque plus aucun lead, même la nuit. Équipe très professionnelle et réactive.',
     date: 'Mai 2026',
-    color: '#10B981',
+    color: '#e7ad05',
   },
   {
     name: 'Serge Yao',
@@ -31,7 +31,7 @@ const REVIEWS = [
     rating: 5,
     text: 'Excellente agence ! Notre site Next.js se charge en moins de 2 secondes. Le SEO local a fait passer notre trafic Google de 200 à 1 500 visites par mois en 4 mois.',
     date: 'Mai 2026',
-    color: '#3B82F6',
+    color: '#e7ad05',
   },
   {
     name: 'Fatou Traoré',
@@ -40,7 +40,7 @@ const REVIEWS = [
     rating: 5,
     text: 'Service impeccable du début à la fin. NONALIX CI a compris exactement ce dont nous avions besoin pour le marché ivoirien. Notre CA en ligne a augmenté de 180% en 3 mois.',
     date: 'Avril 2026',
-    color: '#EC4899',
+    color: '#e7ad05',
   },
   {
     name: 'Jean-Baptiste Koffi',
@@ -49,7 +49,7 @@ const REVIEWS = [
     rating: 5,
     text: 'L\'audit SEO gratuit était déjà très complet. Après avoir souscrit à leurs services, notre fiche Google Business est passée en top 3 pour "consultant Abidjan". Merci !',
     date: 'Mars 2026',
-    color: '#7C3AED',
+    color: '#e7ad05',
   },
 ];
 
@@ -97,7 +97,7 @@ export function GoogleReviews() {
             </div>
             <div style={{ width: '1px', height: '48px', background: 'var(--color-border)' }} />
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#10B981', lineHeight: 1 }}>98%</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-accent)', lineHeight: 1 }}>98%</div>
               <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginTop: '4px' }}>recommandent</div>
             </div>
           </div>

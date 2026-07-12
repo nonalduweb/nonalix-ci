@@ -91,7 +91,7 @@ export function FAQSection() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  style={{ flexShrink: 0, color: 'var(--color-accent-glow)' }}
+                  style={{ flexShrink: 0, color: 'var(--color-accent)' }}
                   aria-hidden="true"
                 >
                   <polyline points="6 9 12 15 18 9" />

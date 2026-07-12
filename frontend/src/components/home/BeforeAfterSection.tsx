@@ -96,7 +96,7 @@ export function BeforeAfterSection() {
           transform: 'translate(-50%, -50%)',
           width: '700px',
           height: '700px',
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(231, 173, 5, 0.04) 0%, transparent 70%)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -105,7 +105,7 @@ export function BeforeAfterSection() {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <ScrollReveal>
           <div className="section-header" style={{ marginBottom: 'var(--space-2xl)' }}>
-            <span className="badge badge-accent" style={{ background: 'var(--color-ai-purple-light)', color: 'var(--color-ai-purple-glow)', borderColor: 'rgba(59, 130, 246, 0.2)' }}>
+            <span className="badge badge-accent" style={{ background: 'var(--color-ai-purple-light)', color: 'var(--color-ai-purple-glow)', borderColor: 'rgba(231, 173, 5, 0.2)' }}>
               TRANSFORMATION
             </span>
             <h2 style={{ marginTop: 'var(--space-md)' }}>

@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
           right: '10%', 
           width: '450px', 
           height: '450px', 
-          backgroundColor: 'rgba(37, 99, 235, 0.04)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.04)', 
           filter: 'blur(100px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -30,7 +30,7 @@ export default function WhyChooseUs() {
           left: '5%', 
           width: '350px', 
           height: '350px', 
-          backgroundColor: 'rgba(59, 130, 246, 0.03)', 
+          backgroundColor: 'rgba(231, 173, 5, 0.03)', 
           filter: 'blur(90px)', 
           borderRadius: 'var(--radius-full)', 
           pointerEvents: 'none', 
@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
         {/* Left Side: Copy */}
         <ScrollReveal>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-            <span className="badge badge-accent" style={{ background: 'var(--color-ai-purple-light)', color: 'var(--color-ai-purple-glow)', borderColor: 'rgba(59, 130, 246, 0.3)' }}>RÉSULTATS</span>
+            <span className="badge badge-accent" style={{ background: 'var(--color-ai-purple-light)', color: 'var(--color-ai-purple-glow)', borderColor: 'rgba(231, 173, 5, 0.3)' }}>RÉSULTATS</span>
             
             <h2 style={{ fontSize: '2.25rem', fontFamily: 'var(--font-heading)', color: 'var(--color-text)', marginTop: 'var(--space-xs)' }}>
               Des systèmes qui génèrent des <span className="text-gradient">résultats</span> mesurables.
@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
                 width: '380px',
                 height: '380px',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(37,99,235,0.03) 0%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(231,173,5,0.03) 0%, transparent 70%)',
                 pointerEvents: 'none'
               }}
             />

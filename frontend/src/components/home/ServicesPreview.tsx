@@ -7,29 +7,29 @@ import ScrollReveal from '@/components/layout/ScrollReveal';
 import GlowingCard from '@/components/layout/GlowingCard';
 
 const colorMap: Record<string, string> = {
-  design: 'var(--color-accent-glow)',
-  development: 'var(--color-accent-glow)',
+  design: 'var(--color-accent)',
+  development: 'var(--color-accent)',
   branding: 'var(--color-highlight)',
-  seo: 'var(--color-accent-glow)',
+  seo: 'var(--color-accent)',
   ppc: 'var(--color-highlight)',
-  shopify: 'var(--color-accent-glow)',
+  shopify: 'var(--color-accent)',
   marketing: 'var(--color-highlight)',
-  audit: 'var(--color-accent-glow)',
-  ecommerce: 'var(--color-accent-glow)',
-  ai: 'var(--color-accent-glow)',
+  audit: 'var(--color-accent)',
+  ecommerce: 'var(--color-accent)',
+  ai: 'var(--color-accent)',
 };
 
 const colorRgbMap: Record<string, string> = {
-  design: '59, 130, 246',       // blue
-  development: '59, 130, 246',  // blue
-  branding: '226, 83, 54',      // orange-red
-  seo: '59, 130, 246',          // blue
-  ppc: '226, 83, 54',           // orange-red
-  shopify: '59, 130, 246',      // blue
-  marketing: '226, 83, 54',     // orange-red
-  audit: '59, 130, 246',        // blue
-  ecommerce: '59, 130, 246',    // blue
-  ai: '59, 130, 246',           // blue
+  design: '231, 173, 5',
+  development: '231, 173, 5',
+  branding: '231, 173, 5',
+  seo: '231, 173, 5',
+  ppc: '231, 173, 5',
+  shopify: '231, 173, 5',
+  marketing: '231, 173, 5',
+  audit: '231, 173, 5',
+  ecommerce: '231, 173, 5',
+  ai: '231, 173, 5',
 };
 
 const categoryBadges: Record<string, string> = {
@@ -137,10 +137,10 @@ export function ServicesPreview() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const sortedServices = [...services].sort((a, b) => {
-    const aColor = colorMap[a.icon] || 'var(--color-accent-glow)';
-    const bColor = colorMap[b.icon] || 'var(--color-accent-glow)';
-    if (aColor === 'var(--color-accent-glow)' && bColor === 'var(--color-highlight)') return -1;
-    if (aColor === 'var(--color-highlight)' && bColor === 'var(--color-accent-glow)') return 1;
+    const aColor = colorMap[a.icon] || 'var(--color-accent)';
+    const bColor = colorMap[b.icon] || 'var(--color-accent)';
+    if (aColor === 'var(--color-accent)' && bColor === 'var(--color-highlight)') return -1;
+    if (aColor === 'var(--color-highlight)' && bColor === 'var(--color-accent)') return 1;
     return 0;
   });
 
@@ -234,7 +234,7 @@ export function ServicesPreview() {
                     <linearGradient id="line-glow-grad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="var(--color-accent)" />
                       <stop offset="50%" stopColor="var(--color-highlight)" />
-                      <stop offset="100%" stopColor="var(--color-accent-glow)" />
+                      <stop offset="100%" stopColor="var(--color-accent)" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -259,7 +259,7 @@ export function ServicesPreview() {
               <div className="grid grid-3" style={{ position: 'relative', zIndex: 5, width: '100%' }}>
                 {sortedServices.slice(0, 9).map((service, index) => {
                   const serviceColor = colorMap[service.icon] || 'var(--color-accent)';
-                  const serviceRgb = colorRgbMap[service.icon] || '37, 99, 235';
+                  const serviceRgb = colorRgbMap[service.icon] || '231, 173, 5';
                   const badgeLabel = categoryBadges[service.icon] || 'Expertise';
                   const rowClass = index < 3 ? 'comp-card-row1' : index < 6 ? 'comp-card-row2' : 'comp-card-row3';
                   return (

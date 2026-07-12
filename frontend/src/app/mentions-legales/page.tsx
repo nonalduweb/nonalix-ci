@@ -34,7 +34,7 @@ export default function LegalNoticePage() {
             
             {/* Card 1: Éditeur & Hébergement */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 1. Édition du site & Hébergement
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -43,8 +43,8 @@ export default function LegalNoticePage() {
               </p>
               <ul style={{ lineHeight: '1.8', fontSize: '0.9375rem', marginTop: 'var(--space-sm)' }}>
                 <li><strong>Siège social :</strong> {CONTACT_INFO.address}</li>
-                <li><strong>Adresse e-mail :</strong> <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)' }}>{CONTACT_INFO.email}</a></li>
-                <li><strong>Téléphone :</strong> <a href={`tel:${CONTACT_INFO.phone}`} style={{ color: 'var(--color-accent-glow)' }}>{CONTACT_INFO.phoneDisplay}</a></li>
+                <li><strong>Adresse e-mail :</strong> <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent)' }}>{CONTACT_INFO.email}</a></li>
+                <li><strong>Téléphone :</strong> <a href={`tel:${CONTACT_INFO.phone}`} style={{ color: 'var(--color-accent)' }}>{CONTACT_INFO.phoneDisplay}</a></li>
               </ul>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem', marginTop: 'var(--space-md)' }}>
                 <strong>Hébergement :</strong> Ce site est hébergé localement sur des serveurs sécurisés pour garantir la disponibilité et le respect de la vitesse de chargement sur le réseau ivoirien.
@@ -53,7 +53,7 @@ export default function LegalNoticePage() {
 
             {/* Card 2: Protection des données */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 2. Protection des données personnelles (ARTCI & RGPD)
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -94,13 +94,13 @@ export default function LegalNoticePage() {
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
                 Vous disposez d&apos;un droit d&apos;accès, de rectification, de suppression et d&apos;opposition au traitement de vos données personnelles. 
                 Vous pouvez demander à tout moment la suppression complète de vos informations ou de votre historique de chat en nous envoyant un e-mail à l&apos;adresse : 
-                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent-glow)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>.
+                <a href={`mailto:${CONTACT_INFO.email}`} style={{ color: 'var(--color-accent)', marginLeft: '4px' }}>{CONTACT_INFO.email}</a>.
               </p>
             </div>
 
             {/* Card 3: Politique de Cookies */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 3. Utilisation des cookies & Mesure d&apos;audience
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
@@ -115,7 +115,7 @@ export default function LegalNoticePage() {
 
             {/* Card 4: Propriété Intellectuelle */}
             <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
-              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent-glow)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
+              <h2 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-accent)', borderBottom: '1px solid var(--color-border)', paddingBottom: '8px' }}>
                 4. Propriété intellectuelle
               </h2>
               <p style={{ lineHeight: '1.6', fontSize: '0.9375rem' }}>
