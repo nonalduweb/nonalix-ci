@@ -104,8 +104,9 @@ export async function POST(req: NextRequest) {
           amount: Math.round(amount).toString(),
           country: 'CIV',
           returnUrl: returnUrl,
-          // statementDescription doit faire 4-22 caractères alphanumériques/espaces uniquement
-          statementDescription: `Commande ${orderId.replace(/[^a-zA-Z0-9]/g, '').slice(-8)}`,
+          // statementDescription doit faire 4-22 caractères alphanumériques/espaces uniquement.
+          // C'est le libellé vu par le client sur son relevé Mobile Money : la marque, pas un id technique.
+          statementDescription: 'NONALIX CI',
           language: 'FR',
           msisdn: formattedPhone || undefined,
           metadata: [

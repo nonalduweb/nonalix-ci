@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CONTACT_INFO } from '@/lib/constants';
 import { fbTrack } from '@/lib/fbpixel';
+import { useCart } from '@/lib/cart';
 interface OrderItem {
   id: string;
   productId: string;
@@ -32,47 +33,72 @@ interface OrderData {
   firstName: string;
   lastName: string;
   paymentStatus: string;
+  paymentMethod?: string;
   items: OrderItem[];
 }
 
 function ConfirmationContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('order');
+  const { clearCart } = useCart();
   const [order, setOrder] = useState<OrderData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Au retour de la page de paiement PawaPay, le webhook peut mettre quelques
+  // secondes à confirmer : on re-vérifie le statut toutes les 4 s (2 min max)
+  // tant que le paiement est en cours.
   useEffect(() => {
     if (!orderId) {
       setLoading(false);
       return;
     }
 
-    fetch(`/api/orders?id=${orderId}`)
-      .then((res) => {
-        if (res.ok) return res.json();
-        return null;
-      })
-      .then((data) => {
-        setOrder(data);
-        setLoading(false);
-        // Pixel Meta : achat confirmé (une seule fois par commande grâce au flag sessionStorage)
-        if (data?.paymentStatus === 'completed' && orderId) {
-          const flag = `fb-purchase-${orderId}`;
-          if (!sessionStorage.getItem(flag)) {
-            sessionStorage.setItem(flag, '1');
-            fbTrack('Purchase', {
-              content_ids: data.items?.map((i: { product?: { id?: string } }) => i.product?.id).filter(Boolean),
-              content_type: 'product',
-              value: data.totalAmount,
-              currency: 'XOF',
-            });
+    let attempts = 0;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    let cancelled = false;
+
+    const fetchOrder = () => {
+      fetch(`/api/orders?id=${orderId}`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (cancelled) return;
+          setOrder(data);
+          setLoading(false);
+
+          if (data?.paymentStatus === 'completed') {
+            clearCart();
+            // Pixel Meta : achat confirmé (une seule fois par commande grâce au flag sessionStorage)
+            const flag = `fb-purchase-${orderId}`;
+            if (!sessionStorage.getItem(flag)) {
+              sessionStorage.setItem(flag, '1');
+              fbTrack('Purchase', {
+                content_ids: data.items?.map((i: { product?: { id?: string } }) => i.product?.id).filter(Boolean),
+                content_type: 'product',
+                value: data.totalAmount,
+                currency: 'XOF',
+              });
+            }
+          } else if (
+            data &&
+            ['pending', 'processing'].includes(data.paymentStatus) &&
+            attempts < 30
+          ) {
+            attempts += 1;
+            timer = setTimeout(fetchOrder, 4000);
           }
-        }
-      })
-      .catch((err) => {
-        console.error('Error fetching order:', err);
-        setLoading(false);
-      });
+        })
+        .catch((err) => {
+          console.error('Error fetching order:', err);
+          if (!cancelled) setLoading(false);
+        });
+    };
+
+    fetchOrder();
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderId]);
 
   // Identify digital products from order items
@@ -83,6 +109,10 @@ function ConfirmationContent() {
     : [];
 
   const paymentFailed = order?.paymentStatus === 'failed';
+  // Paiement en ligne encore en cours de vérification (retour de PawaPay avant le webhook)
+  const paymentInProgress =
+    order?.paymentMethod === 'pawapay' &&
+    ['pending', 'processing'].includes(order?.paymentStatus || '');
 
   return (
     <div className="container" style={{ textAlign: 'center', maxWidth: '600px' }}>
@@ -91,7 +121,11 @@ function ConfirmationContent() {
           width: '80px',
           height: '80px',
           borderRadius: '50%',
-          background: paymentFailed ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+          background: paymentFailed
+            ? 'rgba(239, 68, 68, 0.15)'
+            : paymentInProgress
+              ? 'rgba(231, 173, 5, 0.15)'
+              : 'rgba(16, 185, 129, 0.15)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -104,6 +138,11 @@ function ConfirmationContent() {
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
+        ) : paymentInProgress ? (
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
         ) : (
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
@@ -112,12 +151,18 @@ function ConfirmationContent() {
       </div>
 
       <h1 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)' }}>
-        {paymentFailed ? 'Paiement non abouti' : 'Commande confirmée !'}
+        {paymentFailed
+          ? 'Paiement non abouti'
+          : paymentInProgress
+            ? 'Vérification du paiement…'
+            : 'Commande confirmée !'}
       </h1>
 
       <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 'var(--space-xl)' }}>
         {paymentFailed
           ? 'Votre paiement n’a pas pu être finalisé. Aucun montant ne vous a été débité. Vous pouvez réessayer depuis la boutique ou nous contacter pour de l’aide.'
+          : paymentInProgress
+          ? 'Votre paiement est en cours de confirmation par votre opérateur Mobile Money. Cette page se mettra à jour automatiquement — cela prend généralement moins d’une minute. Si vous n’avez pas encore validé le paiement sur votre téléphone, faites-le maintenant.'
           : <>Merci pour votre commande ! Nous avons bien reçu votre demande.
         {digitalItems.length > 0
           ? (order?.paymentStatus === 'completed'
