@@ -43,7 +43,7 @@ export default function CheckoutPage() {
     email: '',
     phone: '',
     city: '',
-    paymentMethod: '' as PaymentMethod | '',
+    paymentMethod: 'pawapay' as PaymentMethod,
     consent: false,
   });
 
@@ -269,17 +269,31 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
-                <label className="input-label" htmlFor="email">E-mail *</label>
-                <input
-                  id="email"
-                  type="email"
-                  className={`input ${errors.email ? 'input-error' : ''}`}
-                  placeholder="votre.email@exemple.com"
-                  value={form.email}
-                  onChange={(e) => updateField('email', e.target.value)}
-                />
-                {errors.email && <span className="error-text">{errors.email}</span>}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)', marginTop: 'var(--space-md)' }}>
+                <div className="input-group">
+                  <label className="input-label" htmlFor="email">E-mail *</label>
+                  <input
+                    id="email"
+                    type="email"
+                    className={`input ${errors.email ? 'input-error' : ''}`}
+                    placeholder="votre.email@exemple.com"
+                    value={form.email}
+                    onChange={(e) => updateField('email', e.target.value)}
+                  />
+                  {errors.email && <span className="error-text">{errors.email}</span>}
+                </div>
+                <div className="input-group">
+                  <label className="input-label" htmlFor="phone">Téléphone *</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    className={`input ${errors.phone ? 'input-error' : ''}`}
+                    placeholder="ex: 0706906930"
+                    value={form.phone}
+                    onChange={(e) => handlePhoneChange(e.target.value)}
+                  />
+                  {errors.phone && <span className="error-text">{errors.phone}</span>}
+                </div>
               </div>
 
               {hasDigital && (
@@ -299,19 +313,6 @@ export default function CheckoutPage() {
                   <span>Les liens de téléchargement de vos packs digitaux seront envoyés à cette adresse dès confirmation du paiement.</span>
                 </div>
               )}
-
-              <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
-                <label className="input-label" htmlFor="phone">Téléphone *</label>
-                <input
-                  id="phone"
-                  type="tel"
-                  className={`input ${errors.phone ? 'input-error' : ''}`}
-                  placeholder="+225 07 06 90 69 30"
-                  value={form.phone}
-                  onChange={(e) => handlePhoneChange(e.target.value)}
-                />
-                {errors.phone && <span className="error-text">{errors.phone}</span>}
-              </div>
 
               {!hasDigital ? (
                 <div className="input-group" style={{ marginTop: 'var(--space-md)' }}>
@@ -360,12 +361,16 @@ export default function CheckoutPage() {
                   className={`payment-option ${form.paymentMethod === 'pawapay' ? 'selected' : ''}`}
                   onClick={() => updateField('paymentMethod', 'pawapay')}
                   id="payment-pawapay"
+                  style={{
+                    border: form.paymentMethod === 'pawapay' ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
+                    boxShadow: form.paymentMethod === 'pawapay' ? '0 0 10px rgba(231, 173, 5, 0.15)' : 'none'
+                  }}
                 >
-                  <div className="payment-option-icon" style={{ background: 'rgba(109, 40, 217, 0.15)' }}>
+                  <div className="payment-option-icon" style={{ background: 'rgba(231, 173, 5, 0.15)' }}>
                     <span style={{ fontSize: '1.5rem' }}>💳</span>
                   </div>
                   <div className="payment-option-details">
-                    <h4 style={{ color: '#6d28d9' }}>Paiement Mobile Money (Orange, Wave, MTN)</h4>
+                    <h4 style={{ color: 'var(--color-accent)' }}>Paiement Mobile Money (Orange, Wave, MTN)</h4>
                     <p>Paiement sécurisé et instantané via PawaPay</p>
                   </div>
                 </div>
