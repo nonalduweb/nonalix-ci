@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { formatPrice } from '@/lib/constants';
 
-type Tab = 'dashboard' | 'leads' | 'orders' | 'traffic';
+type Tab = 'dashboard' | 'leads' | 'orders' | 'traffic' | 'settings';
 
 interface Lead {
   id: string;
@@ -75,6 +75,49 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<AdminData | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
+  const [maintenanceMode, setMaintenanceMode] = useState<boolean>(false);
+  const [updatingMaintenance, setUpdatingMaintenance] = useState<boolean>(false);
+
+  // Charger le mode maintenance au chargement ou à l'authentification
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchMaintenanceStatus();
+    }
+  }, [isAuthenticated]);
+
+  const fetchMaintenanceStatus = async () => {
+    try {
+      const res = await fetch('/api/admin/settings');
+      if (res.ok) {
+        const result = await res.json();
+        setMaintenanceMode(!!result.maintenanceMode);
+      }
+    } catch (err) {
+      console.error('Failed to fetch maintenance status', err);
+    }
+  };
+
+  const handleToggleMaintenance = async () => {
+    setUpdatingMaintenance(true);
+    const newStatus = !maintenanceMode;
+    try {
+      const res = await fetch('/api/admin/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ maintenanceMode: newStatus }),
+      });
+      if (res.ok) {
+        setMaintenanceMode(newStatus);
+      } else {
+        alert('Erreur lors de la mise à jour du mode maintenance.');
+      }
+    } catch (err) {
+      console.error('Failed to toggle maintenance', err);
+      alert('Erreur de connexion.');
+    } finally {
+      setUpdatingMaintenance(false);
+    }
+  };
 
   // Verify session on mount
   useEffect(() => {
@@ -302,6 +345,12 @@ export default function AdminPage() {
           >
             🌐 Trafic Cookies ({data?.pageViews.length || 0})
           </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'settings' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'settings' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'settings' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+          >
+            ⚙️ Réglages
+          </button>
         </div>
 
         {/* --- TAB CONTENT --- */}
@@ -525,6 +574,48 @@ export default function AdminPage() {
                     )}
                   </tbody>
                 </table>
+              </div>
+            )}
+
+            {/* 5. SETTINGS PANEL */}
+            {activeTab === 'settings' && (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-xl)' }}>
+                <div className="card" style={{ padding: 'var(--space-xl)', background: 'var(--color-surface-elevated)' }}>
+                  <h3 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-lg)', fontWeight: 600, color: 'var(--color-accent)' }}>
+                    ⚙️ Réglages Généraux du Système
+                  </h3>
+                  
+                  <div style={{ padding: 'var(--space-lg)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', background: 'rgba(255,255,255,0.02)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-md)' }}>
+                    <div style={{ flex: 1, minWidth: '250px' }}>
+                      <h4 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--color-text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        🚧 Mode Maintenance {maintenanceMode && <span style={{ fontSize: '0.75rem', background: '#f59e0b', color: '#000', padding: '2px 6px', borderRadius: '4px', fontWeight: 700 }}>ACTIF</span>}
+                      </h4>
+                      <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '4px', lineHeight: '1.5' }}>
+                        Lorsqu&apos;il est activé, le site sera temporairement inaccessible aux visiteurs réguliers (qui verront une page de maintenance). Seuls les administrateurs connectés pourront encore naviguer.
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={handleToggleMaintenance}
+                        disabled={updatingMaintenance}
+                        style={{
+                          padding: '0.625rem 1.25rem',
+                          background: maintenanceMode ? '#ef4444' : 'var(--color-accent)',
+                          color: '#000',
+                          fontWeight: 700,
+                          border: 'none',
+                          borderRadius: 'var(--radius-md)',
+                          cursor: 'pointer',
+                          opacity: updatingMaintenance ? 0.6 : 1,
+                          transition: 'all 0.2s',
+                          fontSize: '0.875rem',
+                        }}
+                      >
+                        {updatingMaintenance ? 'Mise à jour...' : maintenanceMode ? '🔴 Désactiver le Mode Maintenance' : '🟢 Activer le Mode Maintenance'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 

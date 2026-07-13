@@ -29,6 +29,8 @@ services:
       - ALLOWED_ORIGINS=["https://nonalix-ci.com", "https://www.nonalix-ci.com"]
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - AI_MODEL=gpt-4o-mini
+      - ADMIN_API_SECRET=${ADMIN_API_SECRET}
+      - BLOG_SECRET_KEY=${BLOG_SECRET_KEY}
     depends_on:
       - db
     networks:
@@ -54,6 +56,9 @@ services:
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - N8N_WEBHOOK_URL=http://n8n:5678
       - PAWAPAY_API_KEY=${PAWAPAY_API_KEY}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_API_SECRET=${ADMIN_API_SECRET}
+      - BLOG_SECRET_KEY=${BLOG_SECRET_KEY}
     depends_on:
       - db
     networks:

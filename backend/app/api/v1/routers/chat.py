@@ -2,6 +2,7 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db
+from app.core.security import require_admin_secret
 from app.models.models import ChatSession, ChatMessage, ContactLead, AgentConfig
 from app.schemas.chat import MessageCreate, MessageResponse, ChatHistoryResponse, ChatMessageSchema, AgentConfigCreate, AgentConfigResponse
 from app.services.ai_agent import AIAgent
@@ -113,16 +114,24 @@ def get_chat_history(session_id: str, db: Session = Depends(get_db)):
     )
 
 
-@router.get("/config/{slug}", response_model=AgentConfigResponse)
+@router.get(
+    "/config/{slug}",
+    response_model=AgentConfigResponse,
+    dependencies=[Depends(require_admin_secret)],
+)
 def get_agent_config(slug: str, db: Session = Depends(get_db)):
-    """Récupère la configuration d'un agent IA par son slug."""
+    """Récupère la configuration d'un agent IA par son slug (admin uniquement — expose le system prompt)."""
     config = db.query(AgentConfig).filter(AgentConfig.slug == slug.lower().strip()).first()
     if not config:
         raise HTTPException(status_code=404, detail=f"Configuration d'agent '{slug}' introuvable")
     return config
 
 
-@router.post("/config", response_model=AgentConfigResponse)
+@router.post(
+    "/config",
+    response_model=AgentConfigResponse,
+    dependencies=[Depends(require_admin_secret)],
+)
 def upsert_agent_config(payload: AgentConfigCreate, db: Session = Depends(get_db)):
     """Crée ou met à jour la configuration d'un agent IA."""
     slug_clean = payload.slug.lower().strip()

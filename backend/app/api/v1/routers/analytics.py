@@ -3,10 +3,15 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from datetime import datetime, timedelta
 from app.db.session import get_db
+from app.core.security import require_admin_secret
 from app.models.models import Order, ContactLead, ChatSession, PageView
 from app.schemas.analytics import DashboardStats, LeadSummary
 
-router = APIRouter(prefix="/analytics", tags=["Analytics Dashboard"])
+router = APIRouter(
+    prefix="/analytics",
+    tags=["Analytics Dashboard"],
+    dependencies=[Depends(require_admin_secret)],
+)
 
 @router.get("/dashboard", response_model=DashboardStats)
 def get_dashboard_stats(db: Session = Depends(get_db)):

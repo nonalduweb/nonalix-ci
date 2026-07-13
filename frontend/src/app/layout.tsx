@@ -16,6 +16,9 @@ import { GridBackground } from "@/components/ui/GridBackground";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { AnalyticsTracker } from "@/components/layout/AnalyticsTracker";
 import { CanonicalURL } from "@/components/layout/CanonicalURL";
+import { headers, cookies } from "next/headers";
+import { prisma } from "@/lib/db";
+import { getExpectedToken } from "@/lib/auth";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -277,11 +280,35 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 1. Lire les en-têtes et les cookies pour la gestion de la maintenance
+  const headerList = await headers();
+  const pathname = headerList.get("x-pathname") || "";
+
+  const cookieStore = await cookies();
+  const adminToken = cookieStore.get("admin-token")?.value;
+  const isAdmin = adminToken === getExpectedToken();
+
+  // Exclure l'administration, l'API et la page de connexion
+  const isExcluded = pathname.startsWith('/admin') || pathname.startsWith('/api') || pathname === '/connexion';
+
+  let isMaintenanceActive = false;
+  if (!isExcluded && !isAdmin) {
+    try {
+      const config = await prisma.agentConfig.findUnique({
+        where: { slug: 'system_settings' }
+      });
+      const variables = config?.variables as Record<string, any> || {};
+      isMaintenanceActive = !!variables.maintenanceMode;
+    } catch (e) {
+      console.error('Error fetching maintenance settings:', e);
+    }
+  }
+
   return (
     <html lang="fr" className={`${inter.variable} ${plusJakartaSans.variable}`}>
       <head>
@@ -309,21 +336,107 @@ export default function RootLayout({
         `}
       </Script>
       <body style={{ position: 'relative' }}>
-        <AnnouncementBar />
-        <GridBackground />
-        <CartProvider>
-          <AuthProvider>
-            <ScrollProgress />
-            <Header />
-            <main className="page-transition-wrap">{children}</main>
-            <Footer />
-            <WhatsAppButton />
-            <AIChatWidget />
-            <WelcomePopup />
-            <CookieBanner />
-            <AnalyticsTracker />
-          </AuthProvider>
-        </CartProvider>
+        {isMaintenanceActive ? (
+          <div style={{
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#050505',
+            color: '#fafafa',
+            fontFamily: 'var(--font-heading)',
+            padding: '2rem',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <GridBackground />
+            <div style={{
+              position: 'relative',
+              zIndex: 2,
+              maxWidth: '600px',
+              width: '100%',
+              textAlign: 'center',
+              background: 'rgba(10, 10, 10, 0.8)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: '1.5rem',
+              padding: '3rem 2rem',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5), 0 0 40px rgba(231, 173, 5, 0.08)'
+            }}>
+              {/* Logo / Brand */}
+              <div style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '2px', color: '#fafafa', marginBottom: '2.5rem' }}>
+                NONALIX<span style={{ color: '#e7ad05' }}> CI</span>
+              </div>
+
+              {/* Animated Construction Indicator */}
+              <div style={{
+                fontSize: '4rem',
+                margin: '1.5rem auto 2.5rem',
+                display: 'inline-block',
+                animation: 'pulse 2s infinite ease-in-out'
+              }}>
+                🚧
+              </div>
+              
+              <h1 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '1rem', color: '#fafafa', lineHeight: 1.3 }}>
+                Site en cours de maintenance
+              </h1>
+              
+              <p style={{ color: '#a1a1aa', fontSize: '1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
+                Notre plateforme est actuellement en cours de mise à jour pour vous offrir une expérience encore plus rapide, sécurisée et premium. Nous serons de retour très bientôt.
+              </p>
+              
+              {/* WhatsApp Business Link */}
+              <a
+                href={`https://wa.me/${CONTACT_INFO.phone.replace(/\s/g, '')}?text=Bonjour%20NONALIX%20CI%20!%20Je%20souhaite%20échanger%20sur%20un%20projet.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  background: '#e7ad05',
+                  color: '#000',
+                  fontWeight: 700,
+                  fontSize: '0.9375rem',
+                  padding: '0.875rem 2rem',
+                  borderRadius: '9999px',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 12px rgba(231, 173, 5, 0.25)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
+                }}
+              >
+                💬 Nous contacter sur WhatsApp
+              </a>
+            </div>
+            
+            <style dangerouslySetInnerHTML={{ __html: `
+              @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.08); }
+                100% { transform: scale(1); }
+              }
+            `}} />
+          </div>
+        ) : (
+          <>
+            <AnnouncementBar />
+            <GridBackground />
+            <CartProvider>
+              <AuthProvider>
+                <ScrollProgress />
+                <Header />
+                <main className="page-transition-wrap">{children}</main>
+                <Footer />
+                <WhatsAppButton />
+                <AIChatWidget />
+                <WelcomePopup />
+                <CookieBanner />
+                <AnalyticsTracker />
+              </AuthProvider>
+            </CartProvider>
+          </>
+        )}
       </body>
     </html>
   );

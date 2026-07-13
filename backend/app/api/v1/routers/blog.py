@@ -1,3 +1,4 @@
+import hmac
 import uuid
 import json
 import os
@@ -13,8 +14,20 @@ from app.schemas.blog import BlogPostCreate, BlogPostResponse, ImageUploadReques
 
 router = APIRouter(prefix="/blog", tags=["blog"])
 
-BLOG_SECRET = os.environ.get("BLOG_SECRET_KEY", "NONALIX_BLOG_2026")
+# Pas de valeur par défaut : si BLOG_SECRET_KEY n'est pas défini,
+# les écritures sont refusées (fail-closed).
+BLOG_SECRET = os.environ.get("BLOG_SECRET_KEY", "")
 STATIC_DIR = "/app/static/blog"
+
+
+def _check_blog_secret(provided: str | None) -> None:
+    if not BLOG_SECRET:
+        raise HTTPException(
+            status_code=503,
+            detail="BLOG_SECRET_KEY non configuré sur le serveur — accès refusé.",
+        )
+    if not provided or not hmac.compare_digest(provided, BLOG_SECRET):
+        raise HTTPException(status_code=401, detail="Non autorisé")
 
 
 def _ensure_static_dir():
@@ -49,8 +62,7 @@ def create_blog_post(
     x_blog_secret: str = Header(None, alias="x-blog-secret"),
     db: Session = Depends(get_db),
 ):
-    if x_blog_secret != BLOG_SECRET:
-        raise HTTPException(status_code=401, detail="Non autorisé")
+    _check_blog_secret(x_blog_secret)
 
     existing = db.query(BlogPost).filter(BlogPost.slug == post_data.slug).first()
     if existing:
@@ -92,8 +104,7 @@ def delete_blog_post(
     x_blog_secret: str = Header(None, alias="x-blog-secret"),
     db: Session = Depends(get_db),
 ):
-    if x_blog_secret != BLOG_SECRET:
-        raise HTTPException(status_code=401, detail="Non autorisé")
+    _check_blog_secret(x_blog_secret)
     post = db.query(BlogPost).filter(BlogPost.slug == slug).first()
     if not post:
         raise HTTPException(status_code=404, detail="Article non trouvé")
@@ -107,8 +118,7 @@ async def upload_image(
     x_blog_secret: str = Header(None, alias="x-blog-secret"),
 ):
     """Download an image from a URL and save it to /static/blog/. Returns the public path."""
-    if x_blog_secret != BLOG_SECRET:
-        raise HTTPException(status_code=401, detail="Non autorisé")
+    _check_blog_secret(x_blog_secret)
 
     _ensure_static_dir()
     filename = f"{body.slug}.jpg"
