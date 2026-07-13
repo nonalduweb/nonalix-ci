@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/lib/cart';
 import { formatPrice, CITIES } from '@/lib/constants';
+import { fbTrack } from '@/lib/fbpixel';
 
 type PaymentMethod = 'pawapay' | 'cash_on_delivery';
 
@@ -21,6 +22,19 @@ export default function CheckoutPage() {
     return () => {
       if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
     };
+  }, []);
+
+  // Pixel Meta : arrivée sur la page de commande
+  useEffect(() => {
+    if (items.length > 0) {
+      fbTrack('InitiateCheckout', {
+        content_ids: items.map((i) => i.product.id),
+        num_items: items.reduce((sum, i) => sum + i.quantity, 0),
+        value: totalAmount,
+        currency: 'XOF',
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [form, setForm] = useState({

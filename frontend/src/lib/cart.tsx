@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
 import type { Product, CartItem, CartState } from '@/types/product';
+import { fbTrack } from '@/lib/fbpixel';
 
 // Actions
 type CartAction =
@@ -109,7 +110,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state.items]);
 
-  const addItem = (product: Product) => dispatch({ type: 'ADD_ITEM', product });
+  const addItem = (product: Product) => {
+    dispatch({ type: 'ADD_ITEM', product });
+    fbTrack('AddToCart', {
+      content_ids: [product.id],
+      content_name: product.name,
+      content_type: 'product',
+      value: product.price,
+      currency: 'XOF',
+    });
+  };
   const removeItem = (productId: string) => dispatch({ type: 'REMOVE_ITEM', productId });
   const updateQuantity = (productId: string, quantity: number) =>
     dispatch({ type: 'UPDATE_QUANTITY', productId, quantity });

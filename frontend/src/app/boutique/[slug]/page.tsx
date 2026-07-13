@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { formatPrice } from '@/lib/constants';
+import { fbTrack } from '@/lib/fbpixel';
 import type { Product } from '@/types/product';
 
 // High-converting copywriting and marketing metadata for each digital pack to make the product pages detailed and highly convincing
@@ -167,6 +168,15 @@ export default function ProductDetailPage() {
         setProduct(currentProduct);
         setAllProducts(list);
         setLoading(false);
+        if (currentProduct) {
+          fbTrack('ViewContent', {
+            content_ids: [currentProduct.id],
+            content_name: currentProduct.name,
+            content_type: 'product',
+            value: currentProduct.price,
+            currency: 'XOF',
+          });
+        }
       })
       .catch((err) => {
         console.error('Failed to load product details:', err);

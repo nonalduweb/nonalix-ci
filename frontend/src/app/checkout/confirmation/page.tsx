@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CONTACT_INFO } from '@/lib/constants';
+import { fbTrack } from '@/lib/fbpixel';
 interface OrderItem {
   id: string;
   productId: string;
@@ -54,6 +55,19 @@ function ConfirmationContent() {
       .then((data) => {
         setOrder(data);
         setLoading(false);
+        // Pixel Meta : achat confirmé (une seule fois par commande grâce au flag sessionStorage)
+        if (data?.paymentStatus === 'completed' && orderId) {
+          const flag = `fb-purchase-${orderId}`;
+          if (!sessionStorage.getItem(flag)) {
+            sessionStorage.setItem(flag, '1');
+            fbTrack('Purchase', {
+              content_ids: data.items?.map((i: { product?: { id?: string } }) => i.product?.id).filter(Boolean),
+              content_type: 'product',
+              value: data.totalAmount,
+              currency: 'XOF',
+            });
+          }
+        }
       })
       .catch((err) => {
         console.error('Error fetching order:', err);
@@ -68,6 +82,8 @@ function ConfirmationContent() {
         .filter((p): p is NonNullable<typeof p> => !!p && p.isDigital)
     : [];
 
+  const paymentFailed = order?.paymentStatus === 'failed';
+
   return (
     <div className="container" style={{ textAlign: 'center', maxWidth: '600px' }}>
       <div
@@ -75,7 +91,7 @@ function ConfirmationContent() {
           width: '80px',
           height: '80px',
           borderRadius: '50%',
-          background: 'rgba(16, 185, 129, 0.15)',
+          background: paymentFailed ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -83,22 +99,31 @@ function ConfirmationContent() {
           fontSize: '2.5rem',
         }}
       >
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
+        {paymentFailed ? (
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        ) : (
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        )}
       </div>
 
       <h1 style={{ fontSize: '1.75rem', marginBottom: 'var(--space-md)' }}>
-        Commande confirmée !
+        {paymentFailed ? 'Paiement non abouti' : 'Commande confirmée !'}
       </h1>
 
       <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 'var(--space-xl)' }}>
-        Merci pour votre commande ! Nous avons bien reçu votre demande.
+        {paymentFailed
+          ? 'Votre paiement n’a pas pu être finalisé. Aucun montant ne vous a été débité. Vous pouvez réessayer depuis la boutique ou nous contacter pour de l’aide.'
+          : <>Merci pour votre commande ! Nous avons bien reçu votre demande.
         {digitalItems.length > 0
           ? (order?.paymentStatus === 'completed'
               ? " Vos liens de téléchargement pour vos produits digitaux sont disponibles ci-dessous."
               : " Vos liens de téléchargement seront disponibles dès la validation de votre paiement en ligne.")
-          : " Notre équipe va vous contacter très rapidement par téléphone pour confirmer les détails de livraison."}
+          : " Notre équipe va vous contacter très rapidement par téléphone pour confirmer les détails de livraison."}</>}
       </p>
 
       {/* Digital Products Downloads */}

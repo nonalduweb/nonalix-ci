@@ -19,12 +19,13 @@ export async function POST(req: NextRequest) {
     }
 
     const apiKey = process.env.PAWAPAY_API_KEY;
-    const isSimulation = !apiKey;
 
-    if (isSimulation) {
+    // Le mode simulation doit être demandé EXPLICITEMENT (dev local uniquement).
+    // Sans clé API et sans ce flag, on refuse le paiement (fail-closed) : une
+    // variable manquante en prod ne doit jamais offrir les produits gratuitement.
+    if (process.env.PAWAPAY_SIMULATION === 'true') {
       const transactionId = `SIM-PP-${Date.now()}`;
-      
-      // En mode simulation, marquer directement la commande comme complétée
+
       await prisma.order.update({
         where: { id: orderId },
         data: {
@@ -48,6 +49,14 @@ export async function POST(req: NextRequest) {
         message: 'Mode simulation — Paiement PawaPay marqué comme complété en base de données.',
         transactionId,
       });
+    }
+
+    if (!apiKey) {
+      console.error('[PAWAPAY] PAWAPAY_API_KEY non définie — paiement refusé (fail-closed).');
+      return NextResponse.json(
+        { error: 'Le paiement en ligne est temporairement indisponible. Veuillez réessayer plus tard ou nous contacter.' },
+        { status: 503 }
+      );
     }
 
     try {

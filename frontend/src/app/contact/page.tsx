@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { CONTACT_INFO, SOCIAL_LINKS } from '@/lib/constants';
 import { isValidIvorianPhone } from '@/lib/utils';
+import { fbTrack } from '@/lib/fbpixel';
 
 const SERVICES = [
   'Design Web & UI/UX',
@@ -80,6 +81,7 @@ export default function ContactPage() {
       });
       if (res.ok) {
         setSubmitted(true);
+        fbTrack('Lead', { content_name: 'formulaire-contact' });
       } else {
         setErrors({ submit: 'Erreur. Veuillez réessayer.' });
       }

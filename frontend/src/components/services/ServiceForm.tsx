@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { fbTrack } from '@/lib/fbpixel';
 
 interface ServiceFormProps {
   serviceTitle: string;
@@ -72,6 +73,7 @@ export function ServiceForm({ serviceTitle }: ServiceFormProps) {
       });
       if (response.ok) {
         setStatus('success');
+        fbTrack('Lead', { content_name: `devis-${serviceTitle}` });
       } else {
         setStatus('error');
       }

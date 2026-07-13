@@ -24,6 +24,39 @@ const getTransporter = () => {
   return null;
 };
 
+// Webhook n8n qui envoie l'alerte WhatsApp au patron (workflow "[Notif] Nouveau Lead WhatsApp").
+// En prod le frontend joint n8n via le réseau Docker interne (N8N_WEBHOOK_URL=http://n8n:5678).
+const N8N_LEAD_WEBHOOK = `${process.env.N8N_WEBHOOK_URL || 'https://n8n.nonalix-ci.com'}/webhook/notif-lead-wa-8385148ea2e2b1af`;
+
+/**
+ * Notifie le patron par WhatsApp (fire-and-forget : ne bloque jamais le lead).
+ */
+function notifyWhatsAppNewLead(lead: {
+  firstName: string;
+  lastName?: string | null;
+  email?: string | null;
+  phone: string;
+  message: string;
+  type: string;
+  company?: string | null;
+}) {
+  fetch(N8N_LEAD_WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nom: `${lead.firstName} ${lead.lastName || ''}`.trim(),
+      email: lead.email,
+      phone: lead.phone,
+      besoin: lead.message,
+      source: lead.type,
+      company: lead.company,
+    }),
+    signal: AbortSignal.timeout(8000),
+  }).catch((err) => {
+    console.error('[WHATSAPP NOTIF FAIL]', err?.message || err);
+  });
+}
+
 /**
  * Sends an email notification to the admin for a new contact lead
  */
@@ -37,6 +70,8 @@ export async function sendAdminLeadNotification(lead: {
   type: string;
   company?: string | null;
 }) {
+  notifyWhatsAppNewLead(lead);
+
   const subject = `[NONALIX CI] Nouveau Lead - ${lead.type.toUpperCase()}`;
   const from = process.env.SMTP_FROM || 'no-reply@nonalix-ci.com';
 

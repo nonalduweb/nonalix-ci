@@ -15,6 +15,7 @@ import { WelcomePopup } from "@/components/layout/WelcomePopup";
 import { GridBackground } from "@/components/ui/GridBackground";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { AnalyticsTracker } from "@/components/layout/AnalyticsTracker";
+import { FacebookPixel } from "@/components/layout/FacebookPixel";
 import { CanonicalURL } from "@/components/layout/CanonicalURL";
 import { headers, cookies } from "next/headers";
 import { prisma } from "@/lib/db";
@@ -433,6 +434,7 @@ export default async function RootLayout({
                 <WelcomePopup />
                 <CookieBanner />
                 <AnalyticsTracker />
+                <FacebookPixel />
               </AuthProvider>
             </CartProvider>
           </>
