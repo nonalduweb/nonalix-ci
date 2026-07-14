@@ -31,6 +31,7 @@ services:
       - AI_MODEL=gpt-4o-mini
       - ADMIN_API_SECRET=${ADMIN_API_SECRET}
       - BLOG_SECRET_KEY=${BLOG_SECRET_KEY}
+      - WHATSAPP_BUSINESS_TOKEN=${WHATSAPP_BUSINESS_TOKEN}
     depends_on:
       - db
     networks:
