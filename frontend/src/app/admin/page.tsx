@@ -182,9 +182,8 @@ export default function AdminPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, activeTab]);
 
-  // Faire défiler la ZONE DES MESSAGES vers le bas (sans déplacer la page entière).
-  // On agit directement sur le conteneur scrollable pour éviter que scrollIntoView
-  // ne fasse défiler toute la page admin jusqu'au footer.
+  // À la sélection d'une conversation : défiler la zone des messages tout en bas
+  // (on agit sur le conteneur scrollable, pas sur scrollIntoView qui déplaçait la page).
   useEffect(() => {
     if (activeTab === 'conversations' && selectedConvId) {
       setTimeout(() => {
@@ -192,7 +191,17 @@ export default function AdminPage() {
         if (el) el.scrollTop = el.scrollHeight;
       }, 100);
     }
-  }, [selectedConvId, activeTab, conversations]);
+  }, [selectedConvId, activeTab]);
+
+  // À l'actualisation auto (polling 8s) : ne descendre en bas QUE si l'admin y était
+  // déjà, pour ne pas interrompre la lecture d'anciens messages.
+  useEffect(() => {
+    if (activeTab !== 'conversations') return;
+    const el = messagesContainerRef.current;
+    if (!el) return;
+    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 120;
+    if (nearBottom) el.scrollTop = el.scrollHeight;
+  }, [conversations, activeTab]);
 
   const fetchData = async () => {
     try {
@@ -666,7 +675,7 @@ export default function AdminPage() {
                     </div>
 
                     {/* Discussions List */}
-                    <div style={{ flex: 1, overflowY: 'auto', background: '#111b21' }}>
+                    <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', background: '#111b21' }}>
                       {loadingConversations && (
                         <p style={{ padding: '16px', color: '#8696a0', fontSize: '0.85rem', textAlign: 'center' }}>Chargement des discussions…</p>
                       )}
@@ -773,6 +782,7 @@ export default function AdminPage() {
                           {/* Chat Messages Log */}
                           <div ref={messagesContainerRef} style={{
                             flex: 1,
+                            minHeight: 0,
                             overflowY: 'auto',
                             padding: '24px 32px',
                             display: 'flex', 
