@@ -39,12 +39,16 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const rows: { id: string; sessionId: string; role: string; content: string }[] = [];
+    // Horodatages explicites décalés : la colonne DateTime est à la seconde près,
+    // donc sans décalage le message client et la réponse pourraient s'afficher
+    // dans le désordre.
+    const now = Date.now();
+    const rows: { id: string; sessionId: string; role: string; content: string; createdAt: Date }[] = [];
     if (userMessage) {
-      rows.push({ id: crypto.randomUUID(), sessionId: String(sessionId), role: 'user', content: String(userMessage) });
+      rows.push({ id: crypto.randomUUID(), sessionId: String(sessionId), role: 'user', content: String(userMessage), createdAt: new Date(now) });
     }
     if (botReply) {
-      rows.push({ id: crypto.randomUUID(), sessionId: String(sessionId), role: 'assistant', content: String(botReply) });
+      rows.push({ id: crypto.randomUUID(), sessionId: String(sessionId), role: 'assistant', content: String(botReply), createdAt: new Date(now + 1000) });
     }
     if (rows.length) {
       await prisma.chatMessage.createMany({ data: rows });
