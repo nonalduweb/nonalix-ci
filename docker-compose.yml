@@ -16,6 +16,12 @@ services:
       - mysql_data:/var/lib/mysql
     networks:
       - nonalix_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
 
   backend:
     build:
@@ -33,7 +39,8 @@ services:
       - BLOG_SECRET_KEY=${BLOG_SECRET_KEY}
       - WHATSAPP_BUSINESS_TOKEN=${WHATSAPP_BUSINESS_TOKEN}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - nonalix_net
 
@@ -62,7 +69,8 @@ services:
       - ADMIN_API_SECRET=${ADMIN_API_SECRET}
       - BLOG_SECRET_KEY=${BLOG_SECRET_KEY}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - nonalix_net
 
