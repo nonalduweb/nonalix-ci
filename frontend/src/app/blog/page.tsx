@@ -242,7 +242,7 @@ export default async function BlogPage() {
                 Rejoignez +300 entrepreneurs ivoiriens qui reçoivent chaque semaine nos meilleures stratégies digitales.
               </p>
               <a
-                href="https://wa.me/2250566360303?text=Bonjour%20NONALIX%20CI%20!%20Je%20veux%20recevoir%20vos%20conseils%20marketing%20digital."
+                href="https://wa.me/22502637171?text=Bonjour%20NONALIX%20CI%20!%20Je%20veux%20recevoir%20vos%20conseils%20marketing%20digital."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-highlight btn-lg"

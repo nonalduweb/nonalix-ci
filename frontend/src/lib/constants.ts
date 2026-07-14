@@ -9,11 +9,11 @@ export const SITE_CONFIG = {
 } as const;
 
 export const CONTACT_INFO = {
-  phone: '+2250566360303',
-  phoneDisplay: '+225 05 66 36 03 03',
+  phone: '+22502637171',
+  phoneDisplay: '+225 02 63 71 71',
   email: 'contact@nonalix-ci.com',
   address: 'Abidjan Cocody Angré Pétro Ivoire près de BAOBAB microfinance, Ilot :332, lot :4172',
-  whatsappLink: 'https://wa.me/2250566360303?text=Bonjour%20NONALIX%20CI%20!',
+  whatsappLink: 'https://wa.me/22502637171?text=Bonjour%20NONALIX%20CI%20!',
 } as const;
 
 export const LEGAL_INFO = {

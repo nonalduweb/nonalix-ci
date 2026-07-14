@@ -507,7 +507,7 @@ export async function sendDigitalProductsDeliveryEmail(order: {
         <p style="font-size: 0.9rem; color: #475569; margin-bottom: 15px;">
           Un problème pour télécharger vos fichiers ou une question ?
         </p>
-        <a href="https://wa.me/2250566360303?text=Bonjour%20NONALIX%20CI,%20j'ai%20besoin%20d'aide%20concernant%20ma%20commande%20${order.id}." 
+        <a href="https://wa.me/22502637171?text=Bonjour%20NONALIX%20CI,%20j'ai%20besoin%20d'aide%20concernant%20ma%20commande%20${order.id}." 
            style="background-color: #10b981; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; font-size: 0.85rem;">
           💬 Contacter le Support WhatsApp
         </a>
@@ -516,7 +516,7 @@ export async function sendDigitalProductsDeliveryEmail(order: {
       <!-- Footer -->
       <div style="text-align: center; margin-top: 35px; padding-top: 15px; border-top: 1px solid #f1f5f9; font-size: 0.75rem; color: #94a3b8;">
         © ${new Date().getFullYear()} NONALIX CI. Tous droits réservés.<br/>
-        Email : contact@nonalix-ci.com | Téléphone : +225 05 66 36 03 03
+        Email : contact@nonalix-ci.com | Téléphone : +225 02 63 71 71
       </div>
     </div>
   `;
