@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { formatPrice } from '@/lib/constants';
 
 type Tab = 'dashboard' | 'leads' | 'orders' | 'conversations' | 'traffic' | 'settings';
@@ -100,6 +100,7 @@ export default function AdminPage() {
   const [selectedConvId, setSelectedConvId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loadingConversations, setLoadingConversations] = useState<boolean>(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Charger le mode maintenance au chargement ou à l'authentification
   useEffect(() => {
@@ -165,13 +166,29 @@ export default function AdminPage() {
     }
   };
 
-  // Charger les conversations à l'ouverture de l'onglet
+  // Charger les conversations à l'ouverture de l'onglet et actualiser automatiquement
   useEffect(() => {
+    let interval: NodeJS.Timeout;
     if (isAuthenticated && activeTab === 'conversations') {
       fetchConversations();
+      interval = setInterval(() => {
+        fetchConversations();
+      }, 8000); // Polling toutes les 8 secondes
     }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, activeTab]);
+
+  // Faire défiler automatiquement vers le bas à la sélection de la conversation
+  useEffect(() => {
+    if (activeTab === 'conversations' && selectedConvId) {
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [selectedConvId, activeTab]);
 
   const fetchData = async () => {
     try {
@@ -812,6 +829,7 @@ export default function AdminPage() {
                             {conv.messages.length === 0 && (
                               <p style={{ color: '#8696a0', textAlign: 'center', margin: 'auto', fontSize: '0.85rem' }}>Aucun message dans cette discussion.</p>
                             )}
+                            <div ref={messagesEndRef} />
                           </div>
 
                           {/* Chat Footer - WhatsApp Input Style */}
