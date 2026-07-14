@@ -101,6 +101,7 @@ export default function AdminPage() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loadingConversations, setLoadingConversations] = useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   // Charger le mode maintenance au chargement ou à l'authentification
   useEffect(() => {
@@ -181,14 +182,17 @@ export default function AdminPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, activeTab]);
 
-  // Faire défiler automatiquement vers le bas à la sélection de la conversation
+  // Faire défiler la ZONE DES MESSAGES vers le bas (sans déplacer la page entière).
+  // On agit directement sur le conteneur scrollable pour éviter que scrollIntoView
+  // ne fasse défiler toute la page admin jusqu'au footer.
   useEffect(() => {
     if (activeTab === 'conversations' && selectedConvId) {
       setTimeout(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        const el = messagesContainerRef.current;
+        if (el) el.scrollTop = el.scrollHeight;
       }, 100);
     }
-  }, [selectedConvId, activeTab]);
+  }, [selectedConvId, activeTab, conversations]);
 
   const fetchData = async () => {
     try {
@@ -767,10 +771,10 @@ export default function AdminPage() {
                           </div>
 
                           {/* Chat Messages Log */}
-                          <div style={{ 
-                            flex: 1, 
-                            overflowY: 'auto', 
-                            padding: '24px 32px', 
+                          <div ref={messagesContainerRef} style={{
+                            flex: 1,
+                            overflowY: 'auto',
+                            padding: '24px 32px',
                             display: 'flex', 
                             flexDirection: 'column', 
                             gap: '8px',
