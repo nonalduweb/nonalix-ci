@@ -3,7 +3,26 @@
 import { useState, useEffect } from 'react';
 import { formatPrice } from '@/lib/constants';
 
-type Tab = 'dashboard' | 'leads' | 'orders' | 'traffic' | 'settings';
+type Tab = 'dashboard' | 'leads' | 'orders' | 'conversations' | 'traffic' | 'settings';
+
+interface ConvMessage {
+  role: string;
+  content: string;
+  createdAt: string;
+}
+
+interface Conversation {
+  id: string;
+  platform: string;
+  name?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  isQualified: boolean;
+  updatedAt: string;
+  messageCount: number;
+  lastMessage: string;
+  messages: ConvMessage[];
+}
 
 interface Lead {
   id: string;
@@ -77,6 +96,9 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
   const [maintenanceMode, setMaintenanceMode] = useState<boolean>(false);
   const [updatingMaintenance, setUpdatingMaintenance] = useState<boolean>(false);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
+  const [selectedConvId, setSelectedConvId] = useState<string | null>(null);
+  const [loadingConversations, setLoadingConversations] = useState<boolean>(false);
 
   // Charger le mode maintenance au chargement ou à l'authentification
   useEffect(() => {
@@ -123,6 +145,32 @@ export default function AdminPage() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const fetchConversations = async () => {
+    setLoadingConversations(true);
+    try {
+      const res = await fetch('/api/admin/conversations');
+      if (res.ok) {
+        const result = await res.json();
+        setConversations(result.conversations || []);
+        if (!selectedConvId && result.conversations?.length) {
+          setSelectedConvId(result.conversations[0].id);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to fetch conversations', err);
+    } finally {
+      setLoadingConversations(false);
+    }
+  };
+
+  // Charger les conversations à l'ouverture de l'onglet
+  useEffect(() => {
+    if (isAuthenticated && activeTab === 'conversations') {
+      fetchConversations();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, activeTab]);
 
   const fetchData = async () => {
     try {
@@ -340,6 +388,12 @@ export default function AdminPage() {
             🛒 Commandes ({data?.orders.length || 0})
           </button>
           <button
+            onClick={() => setActiveTab('conversations')}
+            style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'conversations' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'conversations' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'conversations' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
+          >
+            💬 Conversations
+          </button>
+          <button
             onClick={() => setActiveTab('traffic')}
             style={{ padding: 'var(--space-sm) var(--space-lg)', background: activeTab === 'traffic' ? 'rgba(231, 173, 5, 0.1)' : 'transparent', border: 'none', borderBottom: activeTab === 'traffic' ? '2px solid var(--color-accent)' : 'none', color: activeTab === 'traffic' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)', cursor: 'pointer', fontWeight: 600, fontSize: '0.9375rem', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
           >
@@ -537,6 +591,96 @@ export default function AdminPage() {
                     )}
                   </tbody>
                 </table>
+              </div>
+            )}
+
+            {/* 3.5 CONVERSATIONS (WhatsApp + chat du site) */}
+            {activeTab === 'conversations' && (
+              <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 'var(--space-lg)', alignItems: 'start' }} className="conversations-grid">
+                {/* Liste des conversations */}
+                <div className="card" style={{ padding: 0, background: 'var(--color-surface-elevated)', maxHeight: '70vh', overflowY: 'auto' }}>
+                  <div style={{ padding: 'var(--space-md) var(--space-lg)', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ fontSize: '0.9rem' }}>Discussions ({conversations.length})</strong>
+                    <button onClick={fetchConversations} style={{ background: 'none', border: 'none', color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.8rem' }}>↻ Rafraîchir</button>
+                  </div>
+                  {loadingConversations && (
+                    <p style={{ padding: 'var(--space-lg)', color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>Chargement…</p>
+                  )}
+                  {!loadingConversations && conversations.length === 0 && (
+                    <p style={{ padding: 'var(--space-lg)', color: 'var(--color-text-secondary)', fontSize: '0.85rem' }}>Aucune conversation pour le moment. Les échanges WhatsApp apparaîtront ici.</p>
+                  )}
+                  {conversations.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() => setSelectedConvId(c.id)}
+                      style={{
+                        display: 'block', width: '100%', textAlign: 'left', cursor: 'pointer',
+                        padding: 'var(--space-md) var(--space-lg)', border: 'none',
+                        borderBottom: '1px solid var(--color-border)',
+                        background: selectedConvId === c.id ? 'rgba(231, 173, 5, 0.08)' : 'transparent',
+                        borderLeft: selectedConvId === c.id ? '3px solid var(--color-accent)' : '3px solid transparent',
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--color-text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {c.platform === 'whatsapp' ? '🟢 ' : '💻 '}{c.name || c.phone || c.id}
+                        </span>
+                        {c.isQualified && <span style={{ fontSize: '0.6rem', background: 'rgba(16,185,129,0.2)', color: 'var(--color-success)', padding: '1px 6px', borderRadius: '99px', fontWeight: 700 }}>LEAD</span>}
+                      </div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {c.lastMessage || `${c.messageCount} message(s)`}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Fil de discussion */}
+                <div className="card" style={{ padding: 0, background: 'var(--color-surface-elevated)', display: 'flex', flexDirection: 'column', height: '70vh' }}>
+                  {(() => {
+                    const conv = conversations.find((c) => c.id === selectedConvId);
+                    if (!conv) {
+                      return <p style={{ padding: 'var(--space-xl)', color: 'var(--color-text-secondary)', textAlign: 'center', margin: 'auto' }}>Sélectionnez une conversation.</p>;
+                    }
+                    return (
+                      <>
+                        <div style={{ padding: 'var(--space-md) var(--space-lg)', borderBottom: '1px solid var(--color-border)' }}>
+                          <strong style={{ fontSize: '0.95rem' }}>{conv.name || conv.phone || conv.id}</strong>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)' }}>
+                            {conv.platform === 'whatsapp' ? 'WhatsApp' : 'Chat du site'}
+                            {conv.phone ? ` · +${conv.phone}` : ''}
+                            {conv.email ? ` · ${conv.email}` : ''}
+                          </div>
+                        </div>
+                        <div style={{ flex: 1, overflowY: 'auto', padding: 'var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+                          {conv.messages.map((m, idx) => (
+                            <div
+                              key={idx}
+                              style={{
+                                alignSelf: m.role === 'user' ? 'flex-start' : 'flex-end',
+                                maxWidth: '75%',
+                                background: m.role === 'user' ? 'var(--color-primary-light)' : 'var(--color-accent)',
+                                color: m.role === 'user' ? 'var(--color-text)' : '#050505',
+                                padding: '8px 14px',
+                                borderRadius: m.role === 'user' ? '14px 14px 14px 2px' : '14px 14px 2px 14px',
+                                fontSize: '0.85rem',
+                                lineHeight: 1.5,
+                                whiteSpace: 'pre-wrap',
+                              }}
+                            >
+                              {m.content}
+                              <div style={{ fontSize: '0.6rem', opacity: 0.6, marginTop: '4px', textAlign: 'right' }}>
+                                {new Date(m.createdAt).toLocaleString('fr-CI', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })}
+                              </div>
+                            </div>
+                          ))}
+                          {conv.messages.length === 0 && (
+                            <p style={{ color: 'var(--color-text-secondary)', textAlign: 'center' }}>Aucun message enregistré.</p>
+                          )}
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
               </div>
             )}
 
