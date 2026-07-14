@@ -50,7 +50,7 @@ services:
       - SMTP_HOST=smtp.hostinger.com
       - SMTP_PORT=465
       - SMTP_USER=contact@nonalix-ci.com
-      - SMTP_PASS=XfezOTML>0x
+      - SMTP_PASS=${SMTP_PASS}
       - SMTP_FROM=contact@nonalix-ci.com
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
