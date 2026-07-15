@@ -640,7 +640,7 @@ export default function AdminPage() {
                 <div style={{ display: 'grid', gridTemplateColumns: '360px 1fr', gap: 0, height: '75vh', borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--color-border)', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }} className="conversations-grid">
                   
                   {/* WhatsApp style Left Sidebar */}
-                  <div style={{ display: 'flex', flexDirection: 'column', background: '#111b21', borderRight: '1px solid #222e35', height: '100%' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', background: '#111b21', borderRight: '1px solid #222e35', height: '100%', minHeight: 0, minWidth: 0 }}>
                     {/* Sidebar Header */}
                     <div style={{ padding: '12px 16px', background: '#202c33', display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '60px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -736,7 +736,7 @@ export default function AdminPage() {
                   </div>
 
                   {/* WhatsApp style Chat Pane */}
-                  <div style={{ display: 'flex', flexDirection: 'column', background: '#0b141a', height: '100%', position: 'relative' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', background: '#0b141a', height: '100%', minHeight: 0, minWidth: 0, position: 'relative' }}>
                     {(() => {
                       const conv = conversations.find((c) => c.id === selectedConvId);
                       if (!conv) {
