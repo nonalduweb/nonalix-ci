@@ -1,5 +1,5 @@
 // Pixel Facebook (Meta) — dataset « NONALIX CI »
-export const FB_PIXEL_ID = '1374964951206776';
+export const FB_PIXEL_ID = '1012114148276272';
 
 declare global {
   interface Window {
